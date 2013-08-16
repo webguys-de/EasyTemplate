@@ -22,6 +22,7 @@
         <models>
             <easytemplate>
                 <class>Webguys_Easytemplate_Model</class>
+                <resourceModel>easytemplate_resource</resourceModel>
             </easytemplate>
             <easytemplate_resource>
                 <class>Webguys_Easytemplate_Model_Resource</class>
