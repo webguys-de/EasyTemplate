@@ -3,15 +3,32 @@
 class Webguys_Easytemplate_Test_Core_ConfigTest extends EcomDev_PHPUnit_Test_Case_Config
 {
 
-    public function testModelAlias()
+    /**
+     * @dataProvider dataProvider
+     */
+    public function testBackendType($type)
     {
-        $this->assertModelAlias('easytemplate/backend_varchar', 'Webguys_Easytemplate_Model_Backend_Varchar' );
+        $l_type = strtolower($type);
+        $u_type = ucfirst( $l_type );
+
+        $this->assertModelAlias('easytemplate/backend_'.$l_type, 'Webguys_Easytemplate_Model_Backend_' . $u_type );
+        $this->assertResourceModelAlias('easytemplate/backend_'.$l_type, 'Webguys_Easytemplate_Model_Resource_Backend_' . $u_type );
+
+        $model = Mage::getModel('easytemplate/backend_'.$l_type );
+        $this->assertInstanceOf( 'Webguys_Easytemplate_Model_Backend_' . $u_type, $model );
+
+        $collection = $model->getCollection();
+        $this->assertInstanceOf( 'Webguys_Easytemplate_Model_Backend_' . $u_type.'_Collection', $collection );
+
+        $resource = $model->getResource();
+        $this->assertInstanceOf('Webguys_Easytemplate_Model_Resource_Backend_' . $u_type, $resource);
+
+        $resourceCollection = $model->getResourceCollection();
+        $this->assertInstanceOf('Webguys_Easytemplate_Model_Resource_Backend_' . $u_type.'_Collection', $resourceCollection);
+
     }
 
-    public function testResourceAlias()
-    {
-        $this->assertResourceModelAlias('easytemplate/backend_varchar', 'Webguys_Easytemplate_Model_Resource_Backend_Varchar' );
-    }
+
 
     public function testBlockAlias()
     {
