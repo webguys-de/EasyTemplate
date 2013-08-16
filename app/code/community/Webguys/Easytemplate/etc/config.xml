@@ -26,5 +26,13 @@
         </models>
     </global>
 
+    <phpunit>
+        <suite>
+            <modules>
+                <Webguys_Easytemplate />
+            </modules>
+        </suite>
+    </phpunit>
+
 
 </config>
