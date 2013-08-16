@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Webguys_Easytemplate>
+            <version>0.0.1</version>
+        </Webguys_Easytemplate>
+    </modules>
+
+    <global>
+        <helpers>
+            <easytemplate>
+                <class>Webguys_Easytemplate_Helper</class>
+            </easytemplate>
+        </helpers>
+
+        <blocks>
+            <easytemplate>
+                <class>Webguys_Easytemplate_Block</class>
+            </easytemplate>
+        </blocks>
+
+        <models>
+            <easytemplate>
+                <class>Webguys_Easytemplate_Model</class>
+            </easytemplate>
+        </models>
+    </global>
+
+
+</config>
