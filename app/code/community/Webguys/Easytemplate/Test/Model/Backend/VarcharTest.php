@@ -1,6 +1,6 @@
 <?php
 
-class Webguys_Easytemplate_Test_Core_Backend_VarcharTest
+class Webguys_Easytemplate_Test_Model_Backend_VarcharTest
     extends EcomDev_PHPUnit_Test_Case
 {
 
