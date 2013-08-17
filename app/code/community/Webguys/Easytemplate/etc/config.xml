@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Webguys_Easytemplate>
-            <version>0.0.1</version>
+            <version>1.0.0.0</version>
         </Webguys_Easytemplate>
     </modules>
 
@@ -43,7 +43,7 @@
                 <class>Webguys_Easytemplate_Model_Resource</class>
                 <entities>
                     <backend_varchar>
-                        <table>easytemplate_template_varchar</table>
+                        <table>easytemplate_backend_varchar</table>
                     </backend_varchar>
                 </entities>
             </easytemplate_resource>
@@ -52,7 +52,7 @@
         <resources>
             <easytemplate_setup>
                 <setup>
-                    <module>Codex_Carousel</module>
+                    <module>Webguys_Easytemplate</module>
                 </setup>
             </easytemplate_setup>
         </resources>
