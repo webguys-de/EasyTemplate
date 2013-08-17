@@ -1,8 +1,7 @@
 <?php
 
-class Webguys_Easytemplate_Model_Backend_Abstract
+abstract class Webguys_Easytemplate_Model_Backend_Abstract
+    extends Mage_Core_Model_Abstract
 {
-
-    protected $resource_model = null;
 
 }

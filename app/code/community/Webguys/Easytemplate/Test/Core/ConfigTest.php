@@ -14,11 +14,9 @@ class Webguys_Easytemplate_Test_Core_ConfigTest extends EcomDev_PHPUnit_Test_Cas
         $this->assertModelAlias('easytemplate/backend_'.$l_type, 'Webguys_Easytemplate_Model_Backend_' . $u_type );
         $this->assertResourceModelAlias('easytemplate/backend_'.$l_type, 'Webguys_Easytemplate_Model_Resource_Backend_' . $u_type );
 
+        /** @var $model Webguys_Easytemplate_Model_Backend_Varchar */
         $model = Mage::getModel('easytemplate/backend_'.$l_type );
         $this->assertInstanceOf( 'Webguys_Easytemplate_Model_Backend_' . $u_type, $model );
-
-        $collection = $model->getCollection();
-        $this->assertInstanceOf( 'Webguys_Easytemplate_Model_Backend_' . $u_type.'_Collection', $collection );
 
         $resource = $model->getResource();
         $this->assertInstanceOf('Webguys_Easytemplate_Model_Resource_Backend_' . $u_type, $resource);

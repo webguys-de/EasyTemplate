@@ -1,8 +1,12 @@
 <?php
 
-class Webguys_Easytemplate_Model_Backend_Varchar extends Webguys_Easytemplate_Model_Backend_Abstract
+class Webguys_Easytemplate_Model_Backend_Varchar
+    extends Webguys_Easytemplate_Model_Backend_Abstract
 {
 
-    protected $resource_model = 'easycms/resource_backend_varchar';
+    protected function _construct()
+    {
+        $this->_init('easytemplate/backend_varchar');
+    }
 
 }
