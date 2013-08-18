@@ -6,7 +6,6 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
 
     public function getLabel()
     {
-        return (string) $this->getConfig()->getNode( 'label' );
         return $this->getData('label');
     }
 
