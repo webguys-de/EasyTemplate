@@ -42,9 +42,12 @@
             <easytemplate_resource>
                 <class>Webguys_Easytemplate_Model_Resource</class>
                 <entities>
-                    <backend_varchar>
-                        <table>easytemplate_backend_varchar</table>
-                    </backend_varchar>
+                    <template>
+                        <table>easytemplate</table>
+                    </template>
+                    <template_data_varchar>
+                        <table>easytemplate_data_varchar</table>
+                    </template_data_varchar>
                 </entities>
             </easytemplate_resource>
         </models>

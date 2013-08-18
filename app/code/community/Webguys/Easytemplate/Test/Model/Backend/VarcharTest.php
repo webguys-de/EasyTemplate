@@ -6,18 +6,18 @@ class Webguys_Easytemplate_Test_Model_Backend_VarcharTest
 
     public function testLoadAndSave()
     {
-        $model = Mage::getModel('easytemplate/backend_varchar' );
+        $model = Mage::getModel('easytemplate/template_data_varchar' );
 
-        $model->setName('Test');
+        $model->setField('Test');
         $model->save();
 
         $id = $model->getId();
-        $model = Mage::getModel('easytemplate/backend_varchar' );
+        $model = Mage::getModel('easytemplate/template_data_varchar' );
         $model->load( $id );
-        $this->assertEquals('Test', $model->getName() );
+        $this->assertEquals('Test', $model->getField() );
 
         $model->delete();
-        $model = Mage::getModel('easytemplate/backend_varchar' );
+        $model = Mage::getModel('easytemplate/template_data_varchar' );
         $model->load( $id );
         $this->assertNotEquals( $id, $model->getId() );
 
