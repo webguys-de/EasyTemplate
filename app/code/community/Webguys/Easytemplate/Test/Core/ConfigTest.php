@@ -4,7 +4,7 @@ class Webguys_Easytemplate_Test_Core_ConfigTest extends EcomDev_PHPUnit_Test_Cas
 {
 
     /**
-     * @dataProvider dataProvider
+     * @dataProvider Webguys_Easytemplate_Test_Provider_Datatypes::get
      */
     public function testBackendType($type)
     {

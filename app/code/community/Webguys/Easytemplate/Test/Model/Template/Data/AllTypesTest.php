@@ -1,10 +1,13 @@
 <?php
 
-class Webguys_Easytemplate_Test_Model_Backend_VarcharTest
+class Webguys_Easytemplate_Test_Model_Template_Data_AllTypesTest
     extends EcomDev_PHPUnit_Test_Case
 {
 
-    public function testLoadAndSave()
+    /**
+     * @dataProvider Webguys_Easytemplate_Test_Provider_Datatypes::get
+     */
+    public function testLoadAndSave( $type )
     {
         $model = Mage::getModel('easytemplate/template_data_varchar' );
 
