@@ -9,18 +9,20 @@ class Webguys_Easytemplate_Test_Model_Template_Data_AllTypesTest
      */
     public function testLoadAndSave( $type )
     {
-        $model = Mage::getModel('easytemplate/template_data_varchar' );
+        $l_type = strtolower($type);
+
+        $model = Mage::getModel('easytemplate/template_data_'.$l_type );
 
         $model->setField('Test');
         $model->save();
 
         $id = $model->getId();
-        $model = Mage::getModel('easytemplate/template_data_varchar' );
+        $model = Mage::getModel('easytemplate/template_data_'.$l_type );
         $model->load( $id );
         $this->assertEquals('Test', $model->getField() );
 
         $model->delete();
-        $model = Mage::getModel('easytemplate/template_data_varchar' );
+        $model = Mage::getModel('easytemplate/template_data_'.$l_type );
         $model->load( $id );
         $this->assertNotEquals( $id, $model->getId() );
 
