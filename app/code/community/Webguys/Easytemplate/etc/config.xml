@@ -27,24 +27,13 @@
             <easytemplate_resource>
                 <class>Webguys_Easytemplate_Model_Resource</class>
                 <entities>
-                    <backend_varchar>
-                        <table>easytemplate_template_varchar</table>
-                    </backend_varchar>
-                </entities>
-            </easytemplate_resource>
-        </models>
-
-        <models>
-            <easytemplate>
-                <class>Webguys_Easytemplate_Model</class>
-                <resourceModel>easytemplate_resource</resourceModel>
-            </easytemplate>
-            <easytemplate_resource>
-                <class>Webguys_Easytemplate_Model_Resource</class>
-                <entities>
                     <template>
                         <table>easytemplate</table>
                     </template>
+                    <group>
+                        <table>easytemplate_group</table>
+                    </group>
+
                     <template_data_varchar>
                         <table>easytemplate_data_varchar</table>
                     </template_data_varchar>
