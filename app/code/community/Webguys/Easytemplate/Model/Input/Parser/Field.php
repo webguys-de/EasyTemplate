@@ -46,7 +46,7 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
             $this->getBackendModelAlias( $this->getData('backend_model') )
         );
 
-        $model->setField( $this );
+        $model->setParentParserField( $this );
         return $model;
     }
 
@@ -58,7 +58,7 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
         $block = Mage::app()->getLayout()->createBlock(
             $this->getBackendModelAlias( $this->getData('input_renderer') )
         );
-        $block->setField( $this );
+        $block->setParentParserField( $this );
 
         return $block;
     }
