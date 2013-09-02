@@ -1,2 +1,5 @@
 app/code/community/Webguys/*    app/code/community/Webguys/
 app/etc/modules/*   app/etc/modules/
+app/design/adminhtml/default/default/layout/Webguys_Easytemplate.xml app/design/adminhtml/default/default/layout/Webguys_Easytemplate.xml
+app/design/adminhtml/default/default/template/easytemplate app/design/adminhtml/default/default/template/easytemplate
+skin/adminhtml/default/default/webguys_easytemplate.css skin/adminhtml/default/default/webguys_easytemplate.css

@@ -1,0 +1,13 @@
+.page-templates .template-box {
+    border: 1px solid #cddddd;
+    padding: 1em;
+    background: #e7efef;
+    margin: 1.5em 0;
+}
+
+.page-templates .template-header {
+    border: 0;
+    width: 100%;
+    background: #e7efef;
+    border-bottom: 1em solid #e7efef;
+}

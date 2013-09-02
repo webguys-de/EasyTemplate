@@ -1,0 +1,29 @@
+<?php /** @var $this Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates */ ?>
+
+<div class="entry-edit page-templates">
+    <?php if (!$this->isInTemplateMode()) : ?>
+    <div id="dynamic-template-warrning">
+        <ul class="messages">
+            <li class="error-msg">
+                <ul>
+                    <li><?php echo $this->__('Page output is not set to templates - template content will not be available on frontend') ?></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <?php endif; ?>
+    <div class="entry-edit-head">
+        <h4><?php echo Mage::helper('easytemplate')->__('Page Templates') ?></h4>
+        <div class="right"><?php echo $this->getAddButtonHtml() ?></div>
+    </div>
+
+    <div id="page_templates_container" class="box">
+        <div id="page_templates_container_top"></div>
+        <?php echo $this->getTemplatesBoxHtml() ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // re-bind form elements onchange
+    varienWindowOnload(true);
+</script>

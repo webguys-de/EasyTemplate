@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Webguys_Easytemplate>
-            <version>1.0.0.0</version>
+            <version>1.0.0.1</version>
         </Webguys_Easytemplate>
     </modules>
 
@@ -51,6 +51,16 @@
 
     </global>
 
+    <adminhtml>
+        <layout>
+            <updates>
+                <easytemplate>
+                    <file>Webguys_Easytemplate.xml</file>
+                </easytemplate>
+            </updates>
+        </layout>
+    </adminhtml>
+
     <phpunit>
         <suite>
             <modules>
@@ -59,5 +69,32 @@
         </suite>
     </phpunit>
 
+    <easytemplate>
+        <h1_text template="easytemplate/h1_text.phtml" type="easytemplate/template" translate="label,comment">
+            <label>Heading + Text</label>
+            <comment>A simple heading with some additional text</comment>
+            <fields>
+                <h1 translate="label,comment">
+                    <label>Heading</label>
+                    <comment>The heading of the template</comment>
+                    <backend_model>easytemplate/template_data_varchar</backend_model>
+                    <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                    <sort_order>1</sort_order>
+                    <default_value>Example Title</default_value>
+                    <required>1</required>
+                </h1>
+
+                <text translate="label,comment">
+                    <label>Text</label>
+                    <comment>Some text under the heading</comment>
+                    <backend_model>easytemplate/source_text</backend_model>
+                    <input_renderer>easytemplate/renderer_textarea</input_renderer>
+                    <sort_order>1</sort_order>
+                    <default_value>Hallo EasyTemplate Textarea</default_value>
+                    <required>1</required>
+                </text>
+            </fields>
+        </h1_text>
+    </easytemplate>
 
 </config>

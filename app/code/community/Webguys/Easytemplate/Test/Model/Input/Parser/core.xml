@@ -9,21 +9,21 @@
 
             <h1 translate="label,comment">
                 <label>Überschrift</label>
+                <comment>Testkommentar</comment>
                 <backend_model>easytemplate/template_data_varchar</backend_model>
                 <input_renderer>easytemplate/input_renderer_text</input_renderer>
                 <sort_order>1</sort_order>
                 <default_value>Hallo EasyTemplate</default_value>
-                <comment>Testkommentar</comment>
                 <required>1</required>
             </h1>
 
             <text>
                 <label>Text</label>
+                <comment>Testkommentar</comment>
                 <backend_model>easytemplate/source_text</backend_model>
                 <input_renderer>easytemplate/renderer_textarea</input_renderer>
                 <sort_order>1</sort_order>
                 <default_value>Hallo EasyTemplate Textarea</default_value>
-                <comment>Testkommentar</comment>
                 <required>1</required>
             </text>
 
