@@ -42,7 +42,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates
     public function isInTemplateMode()
     {
         if ($page = Mage::registry('cms_page')) {
-            return $page->getViewMode() == 'easytemplate';
+            return $page->getViewMode() == Webguys_Easytemplate_Model_Config_Source_Cms_Page_Viewmode::VIEWMODE_EASYTPL;
         }
         return false;
     }
