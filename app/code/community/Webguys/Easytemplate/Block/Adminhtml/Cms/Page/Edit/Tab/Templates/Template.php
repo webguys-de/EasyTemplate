@@ -97,17 +97,27 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates_Template 
                 ))
         );
 
-        /*
-        $path = 'global/catalog/product/options/custom/groups';
+        $path = 'easytemplate';
 
-        foreach (Mage::getConfig()->getNode($path)->children() as $group) {
-            $this->setChild($group->getName() . '_option_type',
-                $this->getLayout()->createBlock(
-                    (string) Mage::getConfig()->getNode($path . '/' . $group->getName() . '/render')
-                )
-            );
+        foreach (Mage::getConfig()->getNode($path)->children() as $category) {
+            $templatesPath = $path . '/' . $category->getName() . '/templates';
+            foreach (Mage::getConfig()->getNode($templatesPath)->children() as $template) {
+
+                $name = $category->getName().'_'.$template->getName() . '_template_type';
+
+                $this->setChild($name,
+                    $this->getLayout()->createBlock(
+                        'easytemplate/adminhtml_edit_abstract',
+                        $name,
+                        array(
+                            'category_name' => $category->getName(),
+                            'template_name' => $template->getName()
+                        )
+                    )
+                );
+            }
+
         }
-        */
 
         return parent::_prepareLayout();
     }
@@ -133,9 +143,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates_Template 
                 'class' => 'select select-page-template-type required-template-select'
             ))
             ->setName($this->getFieldName().'[{{id}}][type]')
-            ->setOptions(Mage::getSingleton('adminhtml/system_config_source_product_options_type')->toOptionArray());
-
-        // TODO: Liste der möglichen Templates ausliefern
+            ->setOptions(Mage::getSingleton('easytemplate/config_source_template_type')->toOptionArray());
 
         return $select->getHtml();
     }
