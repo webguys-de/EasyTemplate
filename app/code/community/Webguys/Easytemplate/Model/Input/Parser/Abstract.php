@@ -17,9 +17,10 @@ abstract class Webguys_Easytemplate_Model_Input_Parser_Abstract extends Varien_O
         return $this->_config;
     }
 
-    public function getData($key)
+    public function getData($key='', $index=null)
     {
-        return (string) $this->getConfig()->getNode( $key );
+        $parent = parent::getData($key);
+        return $parent ? $parent : (string) $this->getConfig()->getNode( $key );
     }
 
 }
