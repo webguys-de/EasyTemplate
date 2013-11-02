@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Webguys_Easytemplate>
-            <version>1.0.0.1</version>
+            <version>1.0.0.2</version>
         </Webguys_Easytemplate>
     </modules>
 
@@ -37,6 +37,10 @@
                     <template_data_varchar>
                         <table>easytemplate_data_varchar</table>
                     </template_data_varchar>
+
+                    <template_data_text>
+                        <table>easytemplate_data_text</table>
+                    </template_data_text>
                 </entities>
             </easytemplate_resource>
         </models>

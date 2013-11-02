@@ -16,7 +16,7 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
     {
         if ( strpos($name, '/') === false )
         {
-            $name = 'easytemplate/template_data_'. $name;
+            $name = 'easytemplate/template_data_' . $name;
         }
 
         return $name;
@@ -26,7 +26,7 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
     {
         if ( strpos($name, '/') === false )
         {
-            $name = 'easytemplate/input_renderer_'. $name;
+            $name = 'easytemplate/input_renderer_' . $name;
         }
 
         return $name;

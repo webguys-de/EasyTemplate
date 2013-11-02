@@ -2,11 +2,10 @@
 
 abstract class Webguys_Easytemplate_Model_Input_Parser_Abstract extends Varien_Object
 {
-
     /** @var Varien_Simplexml_Config */
     protected $_config;
 
-    public function setConfig( Varien_Simplexml_Element $data )
+    public function setConfig(Varien_Simplexml_Element $data)
     {
         $this->_config = new Varien_Simplexml_Config($data);
     }
@@ -17,10 +16,9 @@ abstract class Webguys_Easytemplate_Model_Input_Parser_Abstract extends Varien_O
         return $this->_config;
     }
 
-    public function getData($key='', $index=null)
+    public function getData($key = '', $index = null)
     {
-        $parent = parent::getData($key);
-        return $parent ? $parent : (string) $this->getConfig()->getNode( $key );
+        $parent = parent::getData($key, $index);
+        return $parent ? $parent : (string)$this->getConfig()->getNode($key);
     }
-
 }

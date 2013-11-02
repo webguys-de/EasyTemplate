@@ -15,6 +15,11 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Abstract
 
         if ($model = $configModel->getTemplate($categoryName, $templateName)) {
 
+            foreach ($model->getFields() as $field) {
+                $backendModel = $field->getBackendModel();
+
+            }
+
         }
 
         /*

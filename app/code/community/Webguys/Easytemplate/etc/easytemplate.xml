@@ -21,8 +21,8 @@
                         <text translate="label,comment">
                             <label>Text</label>
                             <comment>Some text under the heading</comment>
-                            <backend_model>easytemplate/source_text</backend_model>
-                            <input_renderer>easytemplate/renderer_textarea</input_renderer>
+                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
                             <sort_order>1</sort_order>
                             <default_value>Hallo EasyTemplate Textarea</default_value>
                             <required>1</required>
@@ -37,8 +37,8 @@
                         <text translate="label,comment">
                             <label>Text</label>
                             <comment>Some text</comment>
-                            <backend_model>easytemplate/source_text</backend_model>
-                            <input_renderer>easytemplate/renderer_textarea</input_renderer>
+                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
                             <sort_order>1</sort_order>
                             <default_value>Hallo EasyTemplate Paragraph Textarea</default_value>
                             <required>1</required>
@@ -57,8 +57,8 @@
                         <text translate="label,comment">
                             <label>Text</label>
                             <comment>Some text</comment>
-                            <backend_model>easytemplate/source_text</backend_model>
-                            <input_renderer>easytemplate/renderer_textarea</input_renderer>
+                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
                             <sort_order>1</sort_order>
                             <default_value>Hallo EasyTemplate Imagegallery Textarea</default_value>
                             <required>1</required>
