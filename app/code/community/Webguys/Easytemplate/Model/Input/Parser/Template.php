@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Class Webguys_Easytemplate_Model_Input_Parser_Template
+ *
+ * @method setCategory
+ * @method getCategory
+ * @method setTemplateName
+ * @method getTemplateName
+ *
+ */
 class Webguys_Easytemplate_Model_Input_Parser_Template
  extends Webguys_Easytemplate_Model_Input_Parser_Abstract
 {

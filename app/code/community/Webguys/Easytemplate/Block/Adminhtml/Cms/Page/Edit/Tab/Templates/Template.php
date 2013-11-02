@@ -97,11 +97,14 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates_Template 
                 ))
         );
 
+        /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
+        $configModel = Mage::getSingleton('easytemplate/input_parser');
+        $config = $configModel->getXmlConfig();
         $path = 'easytemplate';
 
-        foreach (Mage::getConfig()->getNode($path)->children() as $category) {
+        foreach ($config->getNode($path)->children() as $category) {
             $templatesPath = $path . '/' . $category->getName() . '/templates';
-            foreach (Mage::getConfig()->getNode($templatesPath)->children() as $template) {
+            foreach ($config->getNode($templatesPath)->children() as $template) {
 
                 $name = $category->getName().'_'.$template->getName() . '_template_type';
 

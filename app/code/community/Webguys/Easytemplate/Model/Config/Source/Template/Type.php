@@ -12,14 +12,18 @@ class Webguys_Easytemplate_Model_Config_Source_Template_Type
 
         $helper = Mage::helper('easytemplate');
 
-        foreach (Mage::getConfig()->getNode(self::TEMPLATE_TYPES_PATH)->children() as $category) {
+        /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
+        $configModel = Mage::getSingleton('easytemplate/input_parser');
+        $config = $configModel->getXmlConfig();
+
+        foreach ($config->getNode(self::TEMPLATE_TYPES_PATH)->children() as $category) {
             $types = array();
             $templatesPath = self::TEMPLATE_TYPES_PATH . '/' . $category->getName() . '/templates';
 
-            foreach (Mage::getConfig()->getNode($templatesPath)->children() as $template) {
+            foreach ($config->getNode($templatesPath)->children() as $template) {
                 $labelPath = self::TEMPLATE_TYPES_PATH . '/' . $category->getName() . '/templates/' . $template->getName() . '/label';
                 $types[] = array(
-                    'label' => $helper->__((string) Mage::getConfig()->getNode($labelPath)),
+                    'label' => $helper->__((string) $config->getNode($labelPath)),
                     'value' => $template->getName()
                 );
             }
@@ -27,7 +31,7 @@ class Webguys_Easytemplate_Model_Config_Source_Template_Type
             $labelPath = self::TEMPLATE_TYPES_PATH . '/' . $category->getName() . '/label';
 
             $categories[] = array(
-                'label' => $helper->__((string) Mage::getConfig()->getNode($labelPath)),
+                'label' => $helper->__((string) $config->getNode($labelPath)),
                 'value' => $types
             );
         }
