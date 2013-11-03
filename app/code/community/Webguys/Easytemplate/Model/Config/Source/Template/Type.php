@@ -24,7 +24,7 @@ class Webguys_Easytemplate_Model_Config_Source_Template_Type
                 $labelPath = self::TEMPLATE_TYPES_PATH . '/' . $category->getName() . '/templates/' . $template->getName() . '/label';
                 $types[] = array(
                     'label' => $helper->__((string) $config->getNode($labelPath)),
-                    'value' => $template->getName()
+                    'value' => $category->getName().'_'.$template->getName()
                 );
             }
 

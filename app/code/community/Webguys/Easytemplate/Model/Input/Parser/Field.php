@@ -8,6 +8,8 @@
  * @method getDefaultValue
  * @method getComment
  * @method getRequired
+ * @method setTemplate
+ * @method getTemplate
  */
 class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate_Model_Input_Parser_Abstract
 {
@@ -32,11 +34,6 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
         return $name;
     }
 
-    public function getCode()
-    {
-        return $this->getConfig()->getNode()->getName();
-    }
-
     /**
      * @return Webguys_Easytemplate_Model_Template_Data_Abstract
      */
@@ -55,8 +52,12 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
      */
     public function getInputRenderer()
     {
+        $template = $this->getTemplate();
+        $name = $template->getCategory().'_'.$template->getCode().'_'.$this->getCode();
+
         $block = Mage::app()->getLayout()->createBlock(
-            $this->getBackendModelAlias( $this->getData('input_renderer') )
+            $this->getBackendModelAlias( $this->getData('input_renderer') ),
+            'easytemplate_template_field_'.$name
         );
         $block->setParentParserField( $this );
         $block->setDefault( $this->getDefaultValue() );

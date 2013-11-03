@@ -38,7 +38,6 @@ class Webguys_Easytemplate_Model_Input_Parser
                     $parser = Mage::getModel('easytemplate/input_parser_template');
                     $parser->setConfig( $template );
                     $parser->setCategory( $category->getName() );
-                    $parser->setTemplateName( $template->getName() );
 
                     $result[] = $parser;
                 }
@@ -50,14 +49,14 @@ class Webguys_Easytemplate_Model_Input_Parser
         return $this->_templates;
     }
 
-    public function getTemplate($category, $name)
+    public function getTemplate($category, $code)
     {
         $templates = $this->getTemplates();
 
         /** @var $template Webguys_Easytemplate_Model_Input_Parser_Template */
         foreach ($templates as $template) {
 
-            if ($template->getCategory() == $category && $template->getTemplateName() == $name)
+            if ($template->getCategory() == $category && $template->getCode() == $code)
             {
                 return $template;
             }

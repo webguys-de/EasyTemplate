@@ -104,15 +104,15 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates_Template 
 
         foreach ($configModel->getTemplates() as $template) {
 
-            $name = $template->getTemplateName().'_'.$template->getCategory() . '_template_type';
+            $name = $template->getCategory().'_'.$template->getCode();
 
             $this->setChild($name,
                 $this->getLayout()->createBlock(
-                    'easytemplate/adminhtml_edit_abstract',
-                    $name,
+                    'easytemplate/adminhtml_edit_renderer',
+                    'easytemplate_template_' . $name,
                     array(
-                        'category_name' => $template->getCategory(),
-                        'template_name' => $template->getTemplateName()
+                        'category' => $template->getCategory(),
+                        'code' => $template->getCode()
                     )
                 )
             );

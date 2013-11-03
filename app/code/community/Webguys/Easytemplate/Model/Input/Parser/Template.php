@@ -5,8 +5,6 @@
  *
  * @method setCategory
  * @method getCategory
- * @method setTemplateName
- * @method getTemplateName
  *
  */
 class Webguys_Easytemplate_Model_Input_Parser_Template
@@ -30,9 +28,10 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
 
         foreach( $fields->children() AS $data )
         {
-            /** @var $field_parser Webguys_Easytemplate_Model_Input_Parser_Field */
+            /** @var $parser Webguys_Easytemplate_Model_Input_Parser_Field */
             $parser = Mage::getModel('easytemplate/input_parser_field');
             $parser->setConfig( $data );
+            $parser->setTemplate( $this );
 
             $result[] = $parser;
         }

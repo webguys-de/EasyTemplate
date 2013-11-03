@@ -21,4 +21,9 @@ abstract class Webguys_Easytemplate_Model_Input_Parser_Abstract extends Varien_O
         $parent = parent::getData($key, $index);
         return $parent ? $parent : (string)$this->getConfig()->getNode($key);
     }
+
+    public function getCode()
+    {
+        return $this->getConfig()->getNode()->getName();
+    }
 }
