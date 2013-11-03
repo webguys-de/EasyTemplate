@@ -11,8 +11,6 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
 {
     protected $_name = 'abstract';
 
-    protected $_childs = array();
-
     public function __construct()
     {
         parent::__construct();
@@ -35,7 +33,6 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
 
                 $fieldAlias = $this->getBlockAliasFor($field);
                 $this->setChild($fieldAlias, $inputRenderer);
-                $this->_childs[] = $fieldAlias;
             }
 
         }
@@ -45,17 +42,11 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
 
     protected function getBlockAliasFor($field)
     {
-        return sprintf('%s_%s_%s', $this->getCategoryName(), $this->getTemplateName(), $field->getCode());
+        return sprintf('%s_%s_%s', $this->getCategory(), $this->getCode(), $field->getCode());
     }
 
     protected function getRendererHtml()
     {
-        $res = '';
-
-        foreach ($this->_childs as $child) {
-            $res .= $this->getChildHtml($child);
-        }
-
-        return $res;
+        return $this->getChildHtml();
     }
 }
