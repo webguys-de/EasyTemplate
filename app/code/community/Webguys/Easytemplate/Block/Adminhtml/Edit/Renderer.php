@@ -47,6 +47,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
 
     protected function getRendererHtml()
     {
-        return $this->getChildHtml();
+        // Join to avoid javascript errors for new lines
+        return join('', explode("\n", $this->getChildHtml()));
     }
 }

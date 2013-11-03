@@ -11,3 +11,9 @@
     background: #e7efef;
     border-bottom: 1em solid #e7efef;
 }
+
+.page-templates .form-list td.comment {
+    padding-left: 5px;
+    color: #6f8992;
+    font-size: .9em;
+}

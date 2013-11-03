@@ -60,7 +60,11 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
             'easytemplate_template_field_'.$name
         );
         $block->setParentParserField( $this );
+        $block->setCode( $this->getCode() );
+        $block->setLabel( $this->getLabel() );
+        $block->setComment( $this->getComment() );
         $block->setDefault( $this->getDefaultValue() );
+        $block->setRequired( $this->getRequired() );
 
         return $block;
     }

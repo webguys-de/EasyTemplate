@@ -1,1 +1,13 @@
-<input type="text" value="123" />
+<?php /** @var $this Webguys_Easytemplate_Block_Input_Renderer_Text */ ?>
+
+<tr class="template_field_text_<?php echo $this->getCode() ?>">
+    <td class="label">
+        <label for="template_field_{{template_id}}_<?php echo $this->getCode() ?>"><?php echo $this->__($this->getLabel()) ?></label>
+    </td>
+    <td class="value">
+        <input id="template_field_{{template_id}}_<?php echo $this->getCode() ?>" name="page[templates][{{template_id}}][<?php echo $this->getCode() ?>]" value="<?php echo $this->getDefault() ?>" class="input-text" type="text">
+    </td>
+    <td class="comment">
+        <?php echo $this->__($this->getComment()) ?>
+    </td>
+</tr>

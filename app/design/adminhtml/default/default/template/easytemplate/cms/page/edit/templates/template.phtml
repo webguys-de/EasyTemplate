@@ -31,7 +31,7 @@ var firstStepTemplate = '<div class="template-box" id="template_{{id}}">'+
     '<td>&nbsp;</td>'+
     '</tr></table></div>';
 
-var productOption = {
+var pageTemplate = {
     div : $('page_templates_container_top'),
     templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
     templateText : firstStepTemplate,
@@ -43,7 +43,7 @@ var productOption = {
             data = {};
             data.id  = this.itemCount;
             data.type = '';
-            data.option_id = 0;
+            data.template_id = 0;
         } else {
             this.itemCount = data.item_count;
         }
@@ -66,33 +66,33 @@ var productOption = {
 
         if (data.checkboxScopeTitle) {
             //set disabled
-            if ($('<?php echo $this->getFieldId() ?>_'+data.option_id+'_title') && data.scopeTitleDisabled) {
-                $('<?php echo $this->getFieldId() ?>_'+data.option_id+'_title').disable();
+            if ($('<?php echo $this->getFieldId() ?>_'+data.template_id+'_title') && data.scopeTitleDisabled) {
+                $('<?php echo $this->getFieldId() ?>_'+data.template_id+'_title').disable();
             }
         }
 
         this.itemCount++;
         this.bindRemoveButtons();
-        productOptionType.bindSelectInputType();
+        pageTemplateType.bindSelectInputType();
     },
     remove : function(event){
         var element = $(Event.findElement(event, 'div'));
         if(element){
-            $('product_'+element.readAttribute('id')+'_'+'is_delete').value = '1';
+            $('page_'+element.readAttribute('id')+'_'+'is_delete').value = '1';
             element.addClassName('no-display');
             element.addClassName('ignore-validate');
             element.hide();
         }
     },
     bindRemoveButtons : function(){
-        var buttons = $$('div.product-custom-options .delete-product-option');
+        var buttons = $$('div.page-templates .delete-page-template');
         for(var i=0;i<buttons.length;i++){
             if(!$(buttons[i]).binded){
                 $(buttons[i]).binded = true;
                 Event.observe(buttons[i], 'click', this.remove.bind(this));
             }
         }
-        var inputs = $$('div.product-custom-options button', 'div.product-custom-options input', 'div.product-custom-options select', 'div.product-custom-options textarea');
+        var inputs = $$('div.page-templates button', 'div.page-templates input', 'div.page-templates select', 'div.page-templates textarea');
         <?php if ($this->isReadonly()):?>
         for (var i=0, l = inputs.length; i < l; i ++) {
             inputs[i].disabled = true;
@@ -106,96 +106,39 @@ var productOption = {
     }
 }
 
-
-var productOptionType = {
+var pageTemplateType = {
     templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
     loadStepTwo : function(event){
         var element = $(Event.findElement(event, 'select'));
 
-        var group = '';
-        var previousGroupElm = $(element.readAttribute('id').sub('_type', '_previous_group'));
-
-        switch(element.getValue()){
-            case 'field':
-            case 'area':
-                template = OptionTemplateText;
-                group = 'text';
-                break;
-            case 'file':
-                template = OptionTemplateFile;
-                group = 'file';
-                break;
-            case 'drop_down':
-            case 'radio':
-            case 'checkbox':
-            case 'multiple':
-                template = OptionTemplateSelect;
-                group = 'select';
-                break;
-            case 'date':
-            case 'date_time':
-            case 'time':
-                template = OptionTemplateDate;
-                group = 'date';
-                break;
-            default:
-                template = '';
-                group = 'unknown';
-                break;
+        var value = element.getValue();
+        if (templates[value]) {
+            template = templates[value];
+        } else {
+            template = '';
         }
 
-        if (previousGroupElm.getValue() != group) {
-            if ($(element.readAttribute('id')+'_'+previousGroupElm.getValue())) {
-                formElm = $(element.readAttribute('id')+'_'+previousGroupElm.getValue()).descendants();
-                formElm.each(function(elm){
-                    if (elm.tagName == 'input' || elm.tagName == 'select') {
-                        elm.name = '__delete__'+elm.readAttribute('name');
-                    }
-                });
-
-                $(element.readAttribute('id')+'_'+previousGroupElm.getValue()).addClassName('no-display');
-                $(element.readAttribute('id')+'_'+previousGroupElm.getValue()).addClassName('ignore-validate');
-                $(element.readAttribute('id')+'_'+previousGroupElm.getValue()).hide();
+        if (template) {
+            var oldContent = $(element.readAttribute('id')+'_content');
+            if (oldContent) {
+                oldContent.remove();
             }
 
-            previousGroupElm.value = group;
+            template = '<div id="'+element.readAttribute('id')+'_content" class="entry-edit">'+template+'</div>';
+            this.secondTemplate = new Template(template, this.templateSyntax);
 
-            if ($(element.readAttribute('id')+'_'+group)) {
-                formElm = $(element.readAttribute('id')+'_'+group).descendants();
-                formElm.each(function(elm){
-                    if (elm.match('input') || elm.match('select')) {
-                        elm.name = elm.readAttribute('name').sub('__delete__', '');
-                    }
-                });
-                $(element.readAttribute('id')+'_'+group).removeClassName('no-display');
-                $(element.readAttribute('id')+'_'+group).removeClassName('ignore-validate');
-                $(element.readAttribute('id')+'_'+group).show();
-
-            } else {
-                template = '<div id="'+element.readAttribute('id')+'_'+group+'" class="grid tier form-list">'+template+'</div><div id="'+element.readAttribute('id')+'_'+group+'_advice"></div';
-                this.secondTemplate = new Template(template, this.templateSyntax);
-
+            data = {};
+            if (!data.template_id) {
                 data = {};
-                if (!data.option_id) {
-                    data = {};
-                    data.option_id = $(element.readAttribute('id').sub('_type', '_id')).getValue();
-                }
-
-                Element.insert(element.readAttribute('id').sub('_type', ''), {'after':this.secondTemplate.evaluate(data)});
-
-                switch(element.getValue()){
-                    case 'drop_down':
-                    case 'radio':
-                    case 'checkbox':
-                    case 'multiple':
-                        selectOptionType.bindAddButton();
-                        break;
-                }
+                data.template_id = $(element.readAttribute('id').sub('_type', '_id')).getValue();
             }
+
+            Element.insert(element.readAttribute('id').sub('_type', ''), {'after':this.secondTemplate.evaluate(data)});
+
         }
     },
     addDataToValues : function(data){
-
+        alert('jop');
         switch(data.type){
             case 'field':
             case 'area':
@@ -227,49 +170,29 @@ var productOptionType = {
 
         this.secondTemplate = new Template(template, this.templateSyntax);
 
-        Element.insert($('<?php echo $this->getFieldId() ?>_'+data.option_id), {'after':this.secondTemplate.evaluate(data)});
-
-        if (data.checkboxScopePrice) {
-            //set disabled
-            if ($('<?php echo $this->getFieldId() ?>_'+data.option_id+'_price') && data.scopePriceDisabled) {
-                $('<?php echo $this->getFieldId() ?>_'+data.option_id+'_price').disable();
-                $('<?php echo $this->getFieldId() ?>_'+data.option_id+'_price_type').disable();
-            }
-        }
-
-        switch(data.type){
-            case 'drop_down':
-            case 'radio':
-            case 'checkbox':
-            case 'multiple':
-                data.optionValues.each(function(value) {
-                    selectOptionType.add(value);
-                });
-                selectOptionType.bindAddButton();
-                break;
-        }
+        Element.insert($('<?php echo $this->getFieldId() ?>_'+data.template_id), {'after':this.secondTemplate.evaluate(data)});
 
         if (data.price_type) {
-            $A($('<?php echo $this->getFieldId() ?>_'+data.option_id+'_price_type').options).each(function(option){
+            $A($('<?php echo $this->getFieldId() ?>_'+data.template_id+'_price_type').options).each(function(option){
                 if (option.value==data.price_type) option.selected = true;
             });
         }
 
     },
     bindSelectInputType : function(){
-        var types = $$('.select-product-option-type');
+        var types = $$('.select-page-template-type');
         for(var i=0;i<types.length;i++){
             if(!$(types[i]).binded){
                 $(types[i]).binded = true;
                 Event.observe(types[i], 'change', function(event){
-                    productOptionType.loadStepTwo(event);
+                    pageTemplateType.loadStepTwo(event);
                 });
             }
         }
     }
 }
 
-var productOptionScope = {
+var pageTemplateScope = {
     addScope : function(event){
         var element = $(Event.element(event));
         fieldToDisable = $(element.readAttribute('id').sub('_use_default', ''));
@@ -301,10 +224,10 @@ if($('option_panel')){
     $('option_panel').remove();
 }
 
-productOption.bindRemoveButtons();
+pageTemplate.bindRemoveButtons();
 
 if($('<?php echo $this->getAddButtonId() ?>')){
-    Event.observe('<?php echo $this->getAddButtonId() ?>', 'click', productOption.add.bind(productOption));
+    Event.observe('<?php echo $this->getAddButtonId() ?>', 'click', pageTemplate.add.bind(pageTemplate));
 }
 
 //validation for selected input type
@@ -318,12 +241,12 @@ Validation.addAllThese([
 
 //adding data to templates
 <?php foreach ($this->getOptionValues() as $_value): ?>
-productOption.add(<?php echo $_value->toJson() ?>);
-productOptionType.addDataToValues(<?php echo $_value->toJson() ?>);
+pageTemplate.add(<?php echo $_value->toJson() ?>);
+pageTemplateType.addDataToValues(<?php echo $_value->toJson() ?>);
 <?php endforeach; ?>
 
 //bind scope checkboxes
-productOptionScope.bindScopeCheckbox();
+pageTemplateScope.bindScopeCheckbox();
 //]]>
 </script>
 
