@@ -66,6 +66,15 @@
                     </easytemplate_adminhtml_cms_page_edit_tab_main_prepare_form>
                 </observers>
             </adminhtml_cms_page_edit_tab_main_prepare_form>
+            <controller_action_predispatch_adminhtml_cms_page_save>
+                <observers>
+                    <easytemplate_controller_action_predispatch_adminhtml_cms_page_save>
+                        <type>singleton</type>
+                        <class>easytemplate/observer</class>
+                        <method>controller_action_predispatch_adminhtml_cms_page_save</method>
+                    </easytemplate_controller_action_predispatch_adminhtml_cms_page_save>
+                </observers>
+            </controller_action_predispatch_adminhtml_cms_page_save>
         </events>
         <layout>
             <updates>

@@ -26,4 +26,12 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
             }
         }
     }
+
+    public function controller_action_predispatch_adminhtml_cms_page_save($observer)
+    {
+        /** @var $controller Mage_Adminhtml_Cms_PageController */
+        $controller = $observer->getControllerAction();
+        $post = $controller->getRequest()->getPost();
+
+    }
 }

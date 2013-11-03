@@ -65,7 +65,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates_Template 
      */
     public function getFieldName()
     {
-        return 'page[templates]';
+        return 'templates';
     }
 
     /**
@@ -75,7 +75,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates_Template 
      */
     public function getFieldId()
     {
-        return 'page_template';
+        return 'template';
     }
 
     /**
@@ -167,14 +167,17 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates_Template 
 
     public function getOptionValues()
     {
-        $optionsArr = array_reverse($this->getPage()->getOptions(), true);
+        $page = $this->getPage();
+
+        $optionsArr = array_reverse($page->getOptions(), true);
 
         if (!$this->_values) {
             $showPrice = $this->getCanReadPrice();
             $values = array();
             $scope = (int) Mage::app()->getStore()->getConfig(Mage_Core_Model_Store::XML_PATH_PRICE_SCOPE);
+
+            /* @var $option Mage_Catalog_Model_Product_Option */
             foreach ($optionsArr as $option) {
-                /* @var $option Mage_Catalog_Model_Product_Option */
 
                 $this->setItemCount($option->getOptionId());
 
@@ -217,13 +220,6 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates_Template 
                                 $_value->getOptionTypeId());
                             $value['optionValues'][$i]['scopeTitleDisabled'] = is_null($_value->getStoreTitle())
                                 ? 'disabled' : null;
-                            if ($scope == Mage_Core_Model_Store::PRICE_SCOPE_WEBSITE) {
-                                $value['optionValues'][$i]['checkboxScopePrice'] = $this->getCheckboxScopeHtml(
-                                    $_value->getOptionId(), 'price', is_null($_value->getstorePrice()),
-                                    $_value->getOptionTypeId());
-                                $value['optionValues'][$i]['scopePriceDisabled'] = is_null($_value->getStorePrice())
-                                    ? 'disabled' : null;
-                            }
                         }
                         $i++;
                     }
@@ -235,12 +231,6 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates_Template 
                     $value['file_extension'] = $option->getFileExtension();
                     $value['image_size_x'] = $option->getImageSizeX();
                     $value['image_size_y'] = $option->getImageSizeY();
-                    if ($this->getPage()->getStoreId() != '0' &&
-                        $scope == Mage_Core_Model_Store::PRICE_SCOPE_WEBSITE) {
-                        $value['checkboxScopePrice'] = $this->getCheckboxScopeHtml($option->getOptionId(),
-                            'price', is_null($option->getStorePrice()));
-                        $value['scopePriceDisabled'] = is_null($option->getStorePrice())?'disabled':null;
-                    }
                 }
                 $values[] = new Varien_Object($value);
             }

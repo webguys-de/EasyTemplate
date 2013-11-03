@@ -6,7 +6,7 @@
     </td>
     <td class="value">
         <textarea id="template_field_{{template_id}}_<?php echo $this->getCode() ?>"
-            name="page[templates][{{template_id}}][<?php echo $this->getCode() ?>]" class="textarea<?php if($this->getRequired()) : ?> required-entry<?php endif; ?>" rows="2"
+            name="templates[{{template_id}}][fields][<?php echo $this->getCode() ?>]" class="textarea<?php if($this->getRequired()) : ?> required-entry<?php endif; ?>" rows="2"
             cols="15"><?php echo $this->getDefault() ?></textarea>
     </td>
     <td class="comment">

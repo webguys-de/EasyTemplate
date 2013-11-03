@@ -12,10 +12,7 @@
 var firstStepTemplate = '<div class="template-box" id="template_{{id}}">'+
     '<table id="<?php echo $this->getFieldId() ?>_{{id}}" class="template-header" cellpadding="0" cellspacing="0">'+
     '<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{id}}_is_delete" name="<?php echo $this->getFieldName() ?>[{{id}}][is_delete]" value="" />'+
-    '<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{id}}_previous_type" name="<?php echo $this->getFieldName() ?>[{{id}}][previous_type]" value="{{type}}" />'+
-    '<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{id}}_previous_group" name="<?php echo $this->getFieldName() ?>[{{id}}][previous_group]" value="" />'+
     '<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{id}}_id" name="<?php echo $this->getFieldName() ?>[{{id}}][id]" value="{{id}}" />'+
-    '<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{id}}_group_id" name="<?php echo $this->getFieldName() ?>[{{id}}][group_id]" value="{{group_id}}" />'+
     '<thead>'+
     '<tr>'+
     '<th class="tpl-title"><?php echo Mage::helper('easytemplate')->__('Name') ?> <span class="required">*</span></th>'+
