@@ -59,6 +59,7 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
             $this->getBackendModelAlias( $this->getData('input_renderer') )
         );
         $block->setParentParserField( $this );
+        $block->setDefault( $this->getDefaultValue() );
 
         return $block;
     }

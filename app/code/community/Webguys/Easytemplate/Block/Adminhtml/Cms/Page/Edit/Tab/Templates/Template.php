@@ -10,6 +10,8 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates_Template 
 
     protected $_itemCount = 1;
 
+    protected $_templateBlocks = array();
+
     /**
      * Class constructor
      */
@@ -99,27 +101,23 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates_Template 
 
         /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
         $configModel = Mage::getSingleton('easytemplate/input_parser');
-        $config = $configModel->getXmlConfig();
-        $path = 'easytemplate';
 
-        foreach ($config->getNode($path)->children() as $category) {
-            $templatesPath = $path . '/' . $category->getName() . '/templates';
-            foreach ($config->getNode($templatesPath)->children() as $template) {
+        foreach ($configModel->getTemplates() as $template) {
 
-                $name = $category->getName().'_'.$template->getName() . '_template_type';
+            $name = $template->getTemplateName().'_'.$template->getCategory() . '_template_type';
 
-                $this->setChild($name,
-                    $this->getLayout()->createBlock(
-                        'easytemplate/adminhtml_edit_abstract',
-                        $name,
-                        array(
-                            'category_name' => $category->getName(),
-                            'template_name' => $template->getName()
-                        )
+            $this->setChild($name,
+                $this->getLayout()->createBlock(
+                    'easytemplate/adminhtml_edit_abstract',
+                    $name,
+                    array(
+                        'category_name' => $template->getCategory(),
+                        'template_name' => $template->getTemplateName()
                     )
-                );
-            }
+                )
+            );
 
+            $this->_templateBlocks[] = $name;
         }
 
         return parent::_prepareLayout();
@@ -158,33 +156,13 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates_Template 
      */
     public function getTemplatesHtml()
     {
-        // TODO: Ausgeben der verschiedenen JavaScript-Funktionalitäten
+        $templates = '';
 
-        /*
-        $canEditPrice = $this->getCanEditPrice();
-        $canReadPrice = $this->getCanReadPrice();
-        $this->getChild('select_option_type')
-            ->setCanReadPrice($canReadPrice)
-            ->setCanEditPrice($canEditPrice);
+        foreach ($this->_templateBlocks as $templateBlock) {
+            $templates .= $this->getChildHtml($templateBlock)."\n";
+        }
 
-        $this->getChild('file_option_type')
-            ->setCanReadPrice($canReadPrice)
-            ->setCanEditPrice($canEditPrice);
-
-        $this->getChild('date_option_type')
-            ->setCanReadPrice($canReadPrice)
-            ->setCanEditPrice($canEditPrice);
-
-        $this->getChild('text_option_type')
-            ->setCanReadPrice($canReadPrice)
-            ->setCanEditPrice($canEditPrice);
-
-        $templates = $this->getChildHtml('text_option_type') . "\n" .
-            $this->getChildHtml('file_option_type') . "\n" .
-            $this->getChildHtml('select_option_type') . "\n" .
-            $this->getChildHtml('date_option_type');
-
-        return $templates;*/
+        return $templates;
     }
 
     public function getOptionValues()

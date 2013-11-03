@@ -17,23 +17,15 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Abstract
 
             foreach ($model->getFields() as $field) {
                 $backendModel = $field->getBackendModel();
+                $inputRenderer = $field->getInputRenderer();
 
+                $this->setChild('option_price_type', $inputRenderer);
             }
 
         }
 
-        /*
-        $this->setChild('option_price_type',
-            $this->getLayout()->createBlock('adminhtml/html_select')
-                ->setData(array(
-                    'id' => 'product_option_{{option_id}}_price_type',
-                    'class' => 'select product-option-price-type'
-                ))
-        );
-        */
-
-        // TODO: Create dynamic interface
-
         return parent::_prepareLayout();
     }
+
+
 }
