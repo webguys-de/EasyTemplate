@@ -31,7 +31,23 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
     {
         /** @var $controller Mage_Adminhtml_Cms_PageController */
         $controller = $observer->getControllerAction();
-        $post = $controller->getRequest()->getPost();
+        $post = new Varien_Object($controller->getRequest()->getPost());
 
+        if (is_array($post->getTemplates())) {
+            /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
+            $configModel = Mage::getSingleton('easytemplate/input_parser');
+
+            /** @var $group Webguys_Easytemplate_Model_Group */
+            $group = Mage::getModel('easytemplate/group')->loadPageById($post->getPageId());
+            $groupId = $group->getId();
+
+            foreach ($post->getTemplates() as $template) {
+                list($category, $code) = explode('_', $template['type'], 2);
+
+                if ($model = $configModel->getTemplate($category, $code)) {
+                    // TODO: Save changes
+                }
+            }
+        }
     }
 }
