@@ -9,8 +9,8 @@
 
 <script type="text/javascript">
 //<![CDATA[
-var firstStepTemplate = '<div class="template-box" id="template_{{id}}_wrapper">'+
-    '<table id="<?php echo $this->getFieldId() ?>_{{id}}" class="template-header" cellpadding="0" cellspacing="0">'+
+var firstStepTemplate = '<div class="template-box" id="template_{{id}}">'+
+    '<table id="<?php echo $this->getFieldId() ?>_{{id}}_table" class="template-header" cellpadding="0" cellspacing="0">'+
     '<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{id}}_is_delete" name="<?php echo $this->getFieldName() ?>[{{id}}][is_delete]" value="" />'+
     '<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{id}}_id" name="<?php echo $this->getFieldName() ?>[{{id}}][id]" value="{{id}}" />'+
     '<thead>'+
@@ -75,7 +75,7 @@ var pageTemplate = {
     remove : function(event){
         var element = $(Event.findElement(event, 'div'));
         if(element){
-            $('page_'+element.readAttribute('id')+'_'+'is_delete').value = '1';
+            $(element.readAttribute('id')+'_'+'is_delete').value = '1';
             element.addClassName('no-display');
             element.addClassName('ignore-validate');
             element.hide();
@@ -130,7 +130,7 @@ var pageTemplateType = {
                 data.template_id = $(element.readAttribute('id').sub('_type', '_id')).getValue();
             }
 
-            Element.insert(element.readAttribute('id').sub('_type', ''), {'after':this.secondTemplate.evaluate(data)});
+            Element.insert(element.readAttribute('id').sub('_type', '')+'_table', {'after':this.secondTemplate.evaluate(data)});
 
         }
     },
