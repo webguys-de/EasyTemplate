@@ -21,22 +21,11 @@
     </div>
 
     <div id="page_template_selector" style="display: none;">
-
-        <?php
-            $templates = Mage::getSingleton('easytemplate/config_source_template_type')->toSelectionArray();
-            foreach( $templates AS $template){
-                echo '<div class="template-wrapper" style="">';
-                echo '<div class="title">' . $template['label'] . '</div>';
-                if( is_array($template['value']) && count($template['value'])>0){
-                    foreach( $template['value'] AS $item)
-                    echo '<div class="template"><div class="title">' . $item['label'] . '</div><a onclick="pageTemplate.add(\'' . $item['value'] . '\')"><img src="' . $this->getSkinUrl('images/easytemplate/'.$item['image']) . '" /></a></div>';
-                }
-                echo '</div>';
-            }
-        ?>
-
+        <?php echo $this->getChildHtml('selection'); ?>
     </div>
     <div style="clear:both;"></div>
+
+
     <div id="page_templates_container" class="box">
         <div id="page_templates_container_top"></div>
         <?php echo $this->getTemplatesBoxHtml() ?>
