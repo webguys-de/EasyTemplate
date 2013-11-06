@@ -58,15 +58,25 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
         }
     }
 
-    public function getFields()
+    /**
+     * @return Webguys_Easytemplate_Model_Input_Parser_Template
+     */
+    public function getConfig()
     {
+        /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
         $configModel = Mage::getSingleton('easytemplate/input_parser');
         if ($model = $configModel->getTemplate( $this->getCode() )) {
-            return $model->getFields();
+            return $model;
         }
+        return Mage::getModel('easytemplate/input_parser_template')
+    }
+
+    public function getFields()
+    {
+        return $this->getConfig()->getFields();
     }
     
-    public function getFieldData()
+    public function getFieldData( )
     {
 
     }
