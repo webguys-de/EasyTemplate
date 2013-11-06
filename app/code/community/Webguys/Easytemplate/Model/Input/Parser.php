@@ -49,14 +49,14 @@ class Webguys_Easytemplate_Model_Input_Parser
         return $this->_templates;
     }
 
-    public function getTemplate($category, $code)
+    public function getTemplate( $code)
     {
         $templates = $this->getTemplates();
 
         /** @var $template Webguys_Easytemplate_Model_Input_Parser_Template */
         foreach ($templates as $template) {
 
-            if ($template->getCategory() == $category && $template->getCode() == $code)
+            if ($template->getCode() == $code)
             {
                 return $template;
             }

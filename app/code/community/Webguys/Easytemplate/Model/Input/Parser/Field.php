@@ -53,7 +53,7 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
     public function getInputRenderer()
     {
         $template = $this->getTemplate();
-        $name = $template->getCategory().'_'.$template->getCode().'_'.$this->getCode();
+        $name = $template->getCode().'_'.$this->getCode();
 
         $block = Mage::app()->getLayout()->createBlock(
             $this->getBackendModelAlias( $this->getData('input_renderer') ),
