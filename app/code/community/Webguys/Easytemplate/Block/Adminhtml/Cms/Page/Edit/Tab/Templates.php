@@ -8,7 +8,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates
     {
         parent::__construct();
         $this->setShowGlobalIcon(true);
-        $this->setTemplate('easytemplate/cms/page/edit/templates.phtml');
+        $this->setTemplate('easytemplate/cms/page/edit/template.phtml');
     }
 
     public function getExistingTemplatesHtml()

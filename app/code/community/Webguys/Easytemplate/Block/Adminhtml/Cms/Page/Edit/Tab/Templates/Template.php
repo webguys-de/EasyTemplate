@@ -18,12 +18,12 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates_Template 
     public function __construct()
     {
         parent::__construct();
-        $this->setTemplate('easytemplate/cms/page/edit/templates/template.phtml');
+        $this->setTemplate('easytemplate/edit/template.phtml');
     }
 
     public function getTemplateWrapperHtml()
     {
-        return $this->getLayout()->createBlock('core/template')->setTemplate('easytemplate/cms/page/edit/templates/wrapper.phtml')->toHtml();
+        return $this->getLayout()->createBlock('core/template')->setTemplate('easytemplate/edit/wrapper.phtml')->toHtml();
     }
 
     protected function _prepareLayout()
