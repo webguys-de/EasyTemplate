@@ -30,6 +30,13 @@
         <div id="page_templates_container_top"></div>
         <?php echo $this->getTemplatesBoxHtml() ?>
     </div>
+
+    <script type="text/javascript">
+        // <![CDATA[
+        Sortable.create("page_templates_container", {tag:'div', treeTag:'div', onUpdate:function(){ var i = 1; $$('#page_templates_container div').each(function(c){ if(c.hasClassName('template-box')){ $( c.id + '_sort_order').value = i; i++; }}); }});
+        // ]]>
+    </script>
+
 </div>
 
 <script type="text/javascript">
