@@ -31,23 +31,22 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
     {
         /** @var $controller Mage_Adminhtml_Cms_PageController */
         $controller = $observer->getControllerAction();
-        $post = new Varien_Object($controller->getRequest()->getPost());
 
-        if (is_array($post->getTemplates())) {
+        $templatedata = $controller->getRequest()->getPost('template');
+
+        //die(var_dump($controller->getRequest()->getPost()));
+
+        if (is_array( $templatedata ) ) {
+
+            // TODO: Creating new page could not work
+            $group = Mage::helper('easytemplate')->getGroupByPageId( $controller->getRequest()->getPost('page_id') );
+
             /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
             $configModel = Mage::getSingleton('easytemplate/input_parser');
 
             /** @var $group Webguys_Easytemplate_Model_Group */
-            $group = Mage::getModel('easytemplate/group')->loadPageById($post->getPageId());
-            $groupId = $group->getId();
+            $group->importData( $templatedata );
 
-            foreach ($post->getTemplates() as $template) {
-                list($category, $code) = explode('_', $template['type'], 2);
-
-                if ($model = $configModel->getTemplate($category, $code)) {
-                    // TODO: Save changes
-                }
-            }
         }
     }
 }

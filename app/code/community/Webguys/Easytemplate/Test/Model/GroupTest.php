@@ -31,6 +31,11 @@ class Webguys_Easytemplate_Test_Model_GroupTest
 
     }
 
+    public function testRoundtrip()
+    {
+
+    }
+
     public function testGetTemplateCollection()
     {
         $model = $this->getModel();

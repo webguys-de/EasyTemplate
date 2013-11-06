@@ -21,6 +21,9 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
         return $this->getData('comment');
     }
 
+    /**
+     * @return Webguys_Easytemplate_Model_Input_Parser_Field[]
+     */
     public function getFields()
     {
         $fields = $this->getConfig()->getNode('fields');
@@ -37,6 +40,11 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
         }
 
         return $result;
+    }
+
+    public function getCode()
+    {
+        return $this->getCategory() .'_'.parent::getCode();
     }
 
 }

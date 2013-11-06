@@ -11,11 +11,37 @@
 class Webguys_Easytemplate_Model_Group
  extends Mage_Core_Model_Abstract
 {
-    const ENTITY_TYPE_PAGE = 'cms_page';
 
     protected function _construct()
     {
         $this->_init('easytemplate/group');
+    }
+
+    public function importData( $data )
+    {
+        if( !$this->getId() )
+        {
+            throw new Exception("Could not import data to empty entity");
+        }
+
+        foreach( $data AS $id => $template_data )
+        {
+
+            /** @var $template Webguys_Easytemplate_Model_Template */
+            $template = Mage::getModel('easytemplate/template');
+            if ( is_numeric( $id ) )
+            {
+                $template->load( $id );
+            }
+            $template->setGroupId( $this->getId() );
+
+            $template->importData( $template_data );
+            $template->save();
+
+
+        }
+
+
     }
 
     public function getTemplateCollection()
@@ -26,27 +52,6 @@ class Webguys_Easytemplate_Model_Group
         return $collection;
     }
 
-    public function loadPageById($id)
-    {
-        /** @var $collection Webguys_Easytemplate_Model_Resource_Group_Collection */
-        $collection = Mage::getModel('easytemplate/group')->getCollection()
-            ->addFieldToFilter('entity_type', self::ENTITY_TYPE_PAGE)
-            ->addFieldToFilter('entity_id', $id)
-            ->load();
 
-        if ($collection->getSize() >= 1) {
-            return $collection->getFirstItem();
-        }
-        else {
-            // Return new item
-            /** @var $newItem Webguys_Easytemplate_Model_Group */
-            $newItem = Mage::getModel('easytemplate/group');
-            $newItem->setEntityType(self::ENTITY_TYPE_PAGE);
-            $newItem->setEntityId($id);
-            $newItem->save();
-
-            return $newItem;
-        }
-    }
 
 }
