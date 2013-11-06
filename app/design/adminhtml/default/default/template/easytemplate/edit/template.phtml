@@ -34,6 +34,12 @@
     </div>
 
     <script type="text/javascript">
+        // <![CDATA[
+        Sortable.create("page_templates_container", {tag:'div', treeTag:'div', onUpdate:function(){ var i = 1; $$('#page_templates_container div').each(function(c){ if(c.hasClassName('template-box')){ $( c.id + '_sort_order').value = i; i++; }}); }});
+        // ]]>
+    </script>
+
+    <script type="text/javascript">
         //<![CDATA[
         var templates = <?php echo json_encode( $this->getEmptyTemplates() ); ?>
         //]]>
@@ -62,9 +68,10 @@
 
                 }
                 $('page_template_selector').hide();
+                Sortable.create("page_templates_container", {tag:'div', treeTag:'div', onUpdate:function(){ var i = 1; $$('#page_templates_container div').each(function(c){ if(c.hasClassName('template-box')){ $( c.id + '_sort_order').value = i; i++; }}); }});
+
                 this.itemCount++;
                 this.bindRemoveButtons();
-
 
             },
             remove : function(event){
