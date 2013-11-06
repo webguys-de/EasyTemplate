@@ -1,66 +1,106 @@
 <?php /** @var $this Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates_Template */ ?>
 
-<script type="text/javascript">
-//<![CDATA[
-    var templates = new Array();
-//]]>
-</script>
-<?php echo $this->getTemplatesHtml() ?>
+<?php /** @var $this Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates */ ?>
 
-<script type="text/javascript">
-//<![CDATA[
+<div class="entry-edit page-templates">
+    <?php if (!$this->isInTemplateMode()) : ?>
+        <div id="dynamic-template-warrning">
+            <ul class="messages">
+                <li class="error-msg">
+                    <ul>
+                        <li><?php echo $this->__('Page output is not set to templates - template content will not be available on frontend') ?></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    <?php endif; ?>
 
-var pageTemplate = {
-    div : $('page_templates_container_top'),
-    templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
-    templateText : <?php echo json_encode( $this->getTemplateWrapperHtml() ); ?>,
-    itemCount : 1,
-    add : function( code ) {
-        this.template = new Template(this.templateText, this.templateSyntax);
+    <div class="entry-edit-head">
+        <h4><?php echo Mage::helper('easytemplate')->__('Page Templates') ?></h4>
+        <div class="right">
+            <button style="" onclick="$('page_template_selector').show();" class="scalable add" type="button" title="Add New Template"><span><span><span>Add New Template</span></span></span></button>
+        </div>
+    </div>
 
-        data = {};
-        data.id  = 'new_' + this.itemCount;
-        data.code = code;
-        data.name = code; // TODO
+    <div id="page_template_selector" style="display: none;">
+        <?php echo $this->getChildHtml('selection'); ?>
+    </div>
+    <div style="clear:both;"></div>
 
-        var selector_id = 'template_' + data.id;
 
-        Element.insert(this.div, {'after':this.template.evaluate(data)});
+    <div id="page_templates_container" class="box">
+        <div id="page_templates_container_top"></div>
+        <?php echo $this->getExistingTemplatesHtml(); ?>
+    </div>
 
-        this.itemCount++;
-        this.bindRemoveButtons();
+    <script type="text/javascript">
+        //<![CDATA[
+        var templates = new Array();
+        //]]>
+    </script>
+    <?php echo $this->getTemplatesHtml() ?>
 
-        if ( template = templates[code] ) {
+    <script type="text/javascript">
+        //<![CDATA[
 
-            template = '<div id="'+selector_id+'_content" class="entry-edit">'+template+'</div>';
-            this.secondTemplate = new Template(template, this.templateSyntax);
+        var pageTemplate = {
+            div : $('page_templates_container_top'),
+            templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
+            templateText : <?php echo json_encode( $this->getTemplateWrapperHtml() ); ?>,
+            itemCount : 1,
+            add : function( code ) {
+                this.template = new Template(this.templateText, this.templateSyntax);
 
-            Element.insert( selector_id +'_table', {'after':this.secondTemplate.evaluate(data)});
+                data = {};
+                data.id  = 'new_' + this.itemCount;
+                data.code = code;
+                data.name = code; // TODO
 
-        }
-        $('page_template_selector').hide();
-    },
-    remove : function(event){
-        var element = $(Event.findElement(event, 'div'));
-        if(element){
-            $(element.readAttribute('id')+'_'+'is_delete').value = '1';
-            element.addClassName('no-display');
-            element.addClassName('ignore-validate');
-            element.hide();
-        }
-    },
-    bindRemoveButtons : function(){
-        var buttons = $$('div.page-templates .delete-page-template');
-        for(var i=0;i<buttons.length;i++){
-            if(!$(buttons[i]).binded){
-                $(buttons[i]).binded = true;
-                Event.observe(buttons[i], 'click', this.remove.bind(this));
+                var selector_id = 'template_' + data.id;
+
+                Element.insert(this.div, {'after':this.template.evaluate(data)});
+
+                this.itemCount++;
+                this.bindRemoveButtons();
+
+                if ( template = templates[code] ) {
+
+                    template = '<div id="'+selector_id+'_content" class="entry-edit">'+template+'</div>';
+                    this.secondTemplate = new Template(template, this.templateSyntax);
+
+                    Element.insert( selector_id +'_table', {'after':this.secondTemplate.evaluate(data)});
+
+                }
+                $('page_template_selector').hide();
+            },
+            remove : function(event){
+                var element = $(Event.findElement(event, 'div'));
+                if(element){
+                    $(element.readAttribute('id')+'_'+'is_delete').value = '1';
+                    element.addClassName('no-display');
+                    element.addClassName('ignore-validate');
+                    element.hide();
+                }
+            },
+            bindRemoveButtons : function(){
+                var buttons = $$('div.page-templates .delete-page-template');
+                for(var i=0;i<buttons.length;i++){
+                    if(!$(buttons[i]).binded){
+                        $(buttons[i]).binded = true;
+                        Event.observe(buttons[i], 'click', this.remove.bind(this));
+                    }
+                }
             }
         }
-    }
-}
 
-pageTemplate.bindRemoveButtons();
+        pageTemplate.bindRemoveButtons();
 
-//]]>
+        //]]>
+    </script>
+
+</div>
+
+<script type="text/javascript">
+    // re-bind form elements onchange
+    varienWindowOnload(true);
 </script>

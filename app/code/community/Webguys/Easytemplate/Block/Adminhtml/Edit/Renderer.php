@@ -8,43 +8,35 @@
 class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
     extends Mage_Adminhtml_Block_Widget
 {
-    protected $_name = 'abstract';
 
-    public function __construct()
+    protected $_template_model;
+
+    /**
+     * @return Webguys_Easytemplate_Model_Template
+     */
+    public function getTemplateModel()
     {
-        parent::__construct();
-        $this->setTemplate('easytemplate/edit/renderer.phtml');
+        return $this->_template_model;
     }
 
-    protected function _prepareLayout()
+    public function setTemplateModel( Webguys_Easytemplate_Model_Template $model )
     {
-        $code = $this->getCode();
+        $this->_template_model = $model;
+        return $this;
+    }
 
-        /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
-        $configModel = Mage::getSingleton('easytemplate/input_parser');
-
-        if ($model = $configModel->getTemplate( $code ) ) {
+    protected function _toHtml()
+    {
+        $html = '';
+        if ($model = $this->getTemplateModel() ) {
 
             foreach ($model->getFields() as $field) {
                 $inputRenderer = $field->getInputRenderer();
-
-                $fieldAlias = $this->getBlockAliasFor($field);
-                $this->setChild($fieldAlias, $inputRenderer);
+                $html .= $inputRenderer->toHtml();
             }
 
         }
-
-        return parent::_prepareLayout();
+        return $html;
     }
 
-    protected function getBlockAliasFor($field)
-    {
-        return sprintf('%s_%s', $this->getCode(), $field->getCode());
-    }
-
-    protected function getRendererHtml()
-    {
-        // Join to avoid javascript errors for new lines
-        return join('', explode("\n", $this->getChildHtml()));
-    }
 }

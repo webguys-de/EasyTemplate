@@ -18,15 +18,17 @@
         </thead>
         <tr>
             <td><input type="text" class="required-entry input-text" id="template_{{id}}_name"
-                       name="template[{{id}}][name]" value="">
+                       name="template[{{id}}][name]" value="{{name}}">
             </td>
             <td>
                 <span>{{name}}</span>
                 <input type="hidden" name="template[{{id}}][code]"
                        value="{{code}}"/></td>
             <td><input type="text" class="validate-zero-or-greater input-text"
-                       name="template[{{id}}][sort_order]" value=""></td>
+                       name="template[{{id}}][sort_order]" value="{{position}}"></td>
             <td>&nbsp;</td>
         </tr>
     </table>
+
+    <?php echo $this->getChildHtml('input'); ?>
 </div>
