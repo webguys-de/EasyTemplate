@@ -6,6 +6,7 @@
             <templates>
                 <h1_text template="easytemplate/template/h1_text.phtml" type="easytemplate/template" translate="label,comment">
                     <label>Heading + Text</label>
+                    <image>h1_text.png</image>
                     <comment>A simple heading with some additional text</comment>
                     <fields>
                         <h1 translate="label,comment">
@@ -32,6 +33,7 @@
 
                 <paragraph template="easytemplate/template/paragraph.phtml" type="easytemplate/template" translate="label,comment">
                     <label>Paragraph</label>
+                    <image>paragraph.png</image>
                     <comment>A simple paragraph for plain text</comment>
                     <fields>
                         <text translate="label,comment">
