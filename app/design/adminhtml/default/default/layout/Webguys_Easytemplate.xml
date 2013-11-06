@@ -6,7 +6,9 @@
             <action method="addCss"><name>webguys_easytemplate.css</name></action>
         </reference>
         <reference name="cms_page_edit_tabs">
-            <block type="easytemplate/adminhtml_cms_page_edit_tab_templates" name="cms_page_edit_tab_templates" />
+            <block type="easytemplate/adminhtml_cms_page_edit_tab_templates" name="cms_page_edit_tab_templates">
+                <block type="easytemplate/adminhtml_edit_selection" name="selection" as="selection" template="easytemplate/edit/selection.phtml" />
+            </block>
             <action method="addTab"><name>templates</name><block>cms_page_edit_tab_templates</block></action>
         </reference>
     </adminhtml_cms_page_edit>

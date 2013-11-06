@@ -1,0 +1,16 @@
+<?php /** @var $this Webguys_Easytemplate_Block_Adminhtml_Edit_Selection */ ?>
+<?php
+    $templates = $this->getTemplates();
+    foreach( $templates AS $template)
+    {
+        echo '<div class="template-wrapper">';
+        echo '<div class="title">' . $template['label'] . '</div>';
+
+        if( is_array($template['items']) && count($template['items'])>0){
+            foreach( $template['items'] AS $item)
+                echo '<div class="template"><div class="title">' . $item['label'] . '</div><a onclick="pageTemplate.add(\'' . $item['value'] . '\')"><img src="' . $this->getSkinUrl($item['image']) . '" /></a></div>';
+        }
+        echo '</div>';
+    }
+
+?>
