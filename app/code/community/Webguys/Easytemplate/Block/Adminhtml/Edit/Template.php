@@ -18,12 +18,6 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
         return $this->getLayout()->createBlock('core/template')->setTemplate('easytemplate/edit/box.phtml')->toHtml();
     }
 
-
-    public function getDeleteButtonHtml()
-    {
-        return $this->getChildHtml('delete_button');
-    }
-
     /**
      * Retrieve html templates for different types of product custom options
      *
@@ -87,14 +81,6 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
                     'label' => Mage::helper('easytemplate')->__('Add New Template'),
                     'class' => 'add',
                     'id'    => 'add_new_template'
-                ))
-        );
-
-        $this->setChild('delete_button',
-            $this->getLayout()->createBlock('adminhtml/widget_button')
-                ->setData(array(
-                    'label' => Mage::helper('easytemplate')->__('Delete Template'),
-                    'class' => 'delete delete-page-template '
                 ))
         );
 

@@ -17,6 +17,11 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box
         $this->setTemplate('easytemplate/edit/box.phtml');
     }
 
+    public function getDeleteButtonHtml()
+    {
+        return $this->getChildHtml('delete_button');
+    }
+
     public function _toHtml() {
 
         /** @var $input Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer */
@@ -36,6 +41,19 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box
         }
 
         return $html;
+    }
+
+    protected function _prepareLayout()
+    {
+        $this->setChild('delete_button',
+            $this->getLayout()->createBlock('adminhtml/widget_button')
+                ->setData(array(
+                    'label' => Mage::helper('easytemplate')->__('Delete Template'),
+                    'class' => 'delete delete-page-template '
+                ))
+        );
+
+        return parent::_prepareLayout();
     }
 
     /**
