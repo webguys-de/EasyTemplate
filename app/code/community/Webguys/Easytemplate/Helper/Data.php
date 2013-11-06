@@ -5,6 +5,10 @@ class Webguys_Easytemplate_Helper_Data extends Mage_Core_Helper_Abstract
 
     const ENTITY_TYPE_PAGE = 'cms_page';
 
+    /**
+     * @param $id PageId
+     * @return Webguys_Easytemplate_Model_Group
+     */
     public function getGroupByPageId($id)
     {
         /** @var $collection Webguys_Easytemplate_Model_Resource_Group_Collection */

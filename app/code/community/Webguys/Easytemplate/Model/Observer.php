@@ -34,19 +34,38 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
 
         $templatedata = $controller->getRequest()->getPost('template');
 
-        //die(var_dump($controller->getRequest()->getPost()));
-
         if (is_array( $templatedata ) ) {
-
             // TODO: Creating new page could not work
             $group = Mage::helper('easytemplate')->getGroupByPageId( $controller->getRequest()->getPost('page_id') );
 
-            /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
-            $configModel = Mage::getSingleton('easytemplate/input_parser');
-
             /** @var $group Webguys_Easytemplate_Model_Group */
             $group->importData( $templatedata );
+        }
+    }
+
+    public function controller_action_layout_generate_blocks_after($observer)
+    {
+        $action = $observer->getAction();
+
+        if ($action instanceof Mage_Cms_PageController) {
+
+            $layout = $action->getLayout();
+            $pageId = $action->getRequest()->getParam('page_id', $action->getRequest()->getParam('id', false));
+
+            if ($pageId !== false && Mage::helper('easytemplate/page')->isEasyTemplatePage($pageId)) {
+                if ($block = $layout->getBlock('cms_page')) {
+
+                    $parent = $block->getParentBlock();
+                    $layout->unsetBlock('cms_page');
+
+                    $parent->setChild('cms_page',
+                        $layout->createBlock('easytemplate/frontend_page', 'cms_page')
+                    );
+
+                }
+            }
 
         }
+
     }
 }

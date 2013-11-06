@@ -21,6 +21,21 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
         return $this->getData('comment');
     }
 
+    public function getTemplate()
+    {
+        return $this->_getAttribute('template');
+    }
+
+    public function getType()
+    {
+        return $this->_getAttribute('type');
+    }
+
+    protected function _getAttribute($name)
+    {
+        return $this->getConfig()->getNode()->getAttribute($name);
+    }
+
     /**
      * @return Webguys_Easytemplate_Model_Input_Parser_Field[]
      */

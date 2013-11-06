@@ -4,6 +4,8 @@
                name="template[{{id}}][is_delete]" value=""/>
         <input type="hidden" id="template_{{id}}_id"
                name="template[{{id}}][id]" value="{{id}}"/>
+        <input type="hidden" id="template_{{id}}_sort_order"
+               name="template[{{id}}][sort_order]" value="{{sort_order}}"/>
         <thead>
         <tr>
             <th class="tpl-title"><?php echo Mage::helper('easytemplate')->__('Name') ?>

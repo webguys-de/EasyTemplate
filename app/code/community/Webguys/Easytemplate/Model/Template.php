@@ -65,5 +65,9 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
             return $model->getFields();
         }
     }
+    
+    public function getFieldData()
+    {
 
+    }
 }
