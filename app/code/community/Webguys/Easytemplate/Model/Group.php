@@ -50,6 +50,9 @@ class Webguys_Easytemplate_Model_Group
 
     }
 
+    /**
+     * @return Webguys_Easytemplate_Model_Template[]
+     */
     public function getTemplateCollection()
     {
         /** @var $collection Webguys_Easytemplate_Model_Resource_Template_Collection */

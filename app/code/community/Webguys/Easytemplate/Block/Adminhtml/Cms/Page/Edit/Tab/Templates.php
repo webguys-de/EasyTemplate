@@ -11,6 +11,48 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates
         $this->setTemplate('easytemplate/cms/page/edit/templates.phtml');
     }
 
+    public function getExistingTemplatesHtml()
+    {
+        $group = $this->getGroup();
+
+        $html = '';
+
+        /** @var $renderer Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer */
+        //$renderer = $this->getLayout()->createBlock('easytemplate/adminhtml_edit_renderer');
+        //$renderer->setCode( $template->getCode() );
+
+        foreach( $group->getTemplateCollection() AS $template )
+        {
+
+            $block = $this->getLayout()->createBlock(
+                    'easytemplate/adminhtml_edit_renderer',
+                    'easytemplate_template_' . $template->getCode(),
+                    array(
+                        'code' => $template->getCode()
+                    )
+                );
+
+            $block->setTemplate('easytemplate/edit/renderer2.phtml');
+
+            $html .= ( $block->toHtml() );
+
+        }
+
+        return $html;
+
+    }
+
+    /**
+     * @return Webguys_Easytemplate_Model_Group
+     */
+    public function getGroup()
+    {
+        if ($page = Mage::registry('cms_page')) {
+            return Mage::helper('easytemplate')->getGroupByPageId( $page->getId() );
+        }
+        return Mage::getModel('easytemplate/group');
+    }
+
     protected function _prepareLayout()
     {
         $this->setChild('add_button',
