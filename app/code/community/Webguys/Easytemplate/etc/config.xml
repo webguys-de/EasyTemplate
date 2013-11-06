@@ -55,6 +55,20 @@
 
     </global>
 
+    <frontend>
+        <events>
+            <controller_action_layout_generate_blocks_after>
+                <observers>
+                    <easytemplate_controller_action_layout_generate_blocks_after>
+                        <type>singleton</type>
+                        <class>easytemplate/observer</class>
+                        <method>controller_action_layout_generate_blocks_after</method>
+                    </easytemplate_controller_action_layout_generate_blocks_after>
+                </observers>
+            </controller_action_layout_generate_blocks_after>
+        </events>
+    </frontend>
+
     <adminhtml>
         <events>
             <adminhtml_cms_page_edit_tab_main_prepare_form>
