@@ -50,14 +50,19 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
         if ($action instanceof Mage_Cms_PageController) {
 
             $layout = $action->getLayout();
+            $pageId = $action->getRequest()->getParam('page_id', $action->getRequest()->getParam('id', false));
 
-            if ($block = $layout->getBlock('cms_page')) {
-                $parent = $block->getParentBlock();
-                $layout->unsetBlock('cms_page');
+            if ($pageId !== false && Mage::helper('easytemplate/page')->isEasyTemplatePage($pageId)) {
+                if ($block = $layout->getBlock('cms_page')) {
 
-                $parent->setChild('cms_page',
-                    $layout->createBlock('easytemplate/frontend_renderer', 'cms_page')
-                );
+                    $parent = $block->getParentBlock();
+                    $layout->unsetBlock('cms_page');
+
+                    $parent->setChild('cms_page',
+                        $layout->createBlock('easytemplate/frontend_page', 'cms_page')
+                    );
+
+                }
             }
 
         }
