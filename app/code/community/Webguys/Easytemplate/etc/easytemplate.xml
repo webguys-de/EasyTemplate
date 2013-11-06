@@ -16,7 +16,7 @@
                             <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>1</sort_order>
                             <default_value>Example Title</default_value>
-                            <required>1</required>
+                            <required>1</required>cd
                         </h1>
 
                         <text translate="label,comment">
@@ -55,6 +55,7 @@
                 <imagegallery template="easytemplate/template/imagegallery.phtml" type="easytemplate/template" translate="label,comment">
                     <label>Gallery</label>
                     <comment>A gallery with photos</comment>
+                    <image>imagegallery.png</image>
                     <fields>
                         <text translate="label,comment">
                             <label>Text</label>

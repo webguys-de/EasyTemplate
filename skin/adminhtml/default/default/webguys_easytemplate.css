@@ -17,3 +17,39 @@
     color: #6f8992;
     font-size: .9em;
 }
+
+#page_template_selector{
+    width: 98%;
+    background:#6F8992;
+    margin:15px 0;
+    padding:1% 1%;
+    float:left;
+}
+#page_template_selector .template-wrapper{
+    background:white;
+    margin:0;
+    float:left;
+    margin-right:5px;
+    padding:5px 0 5px 5px;
+}
+#page_template_selector .template-wrapper .title{
+    display:block;
+    text-align:center;
+    margin:0px 0 6px;
+    font-weight:bold
+}
+#page_template_selector .template-wrapper .template{
+    background:white;
+    float:left;
+    display:inline-block;
+    margin:0px 10px 10px 5px;
+    border:1px solid lightgray;
+}
+#page_template_selector .template-wrapper .template .title{
+    text-align:center;
+    font-weight: normal;
+}
+#page_template_selector .template-wrapper .template img {
+    margin:0 5px;
+    cursor: pointer;
+}
