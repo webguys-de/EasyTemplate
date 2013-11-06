@@ -35,16 +35,16 @@ class Webguys_Easytemplate_Model_Group
             }
             $template->setGroupId( $this->getId() );
 
-            if( !isset($template_data['is_delete']) && !$template_data['is_delete'] )
-            {
+            //if( !isset($template_data['is_delete']) && !$template_data['is_delete'] )
+            //{
                 $template->importData( $template_data );
                 $template->save();
-            } else {
-                if( $template->getId() )
-                {
-                    $template->delete();
-                }
-            }
+            //} else {
+            //    if( $template->getId() )
+            //    {
+            //        $template->delete();
+            //    }
+            //}
 
         }
 

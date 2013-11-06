@@ -68,7 +68,7 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
         if ($model = $configModel->getTemplate( $this->getCode() )) {
             return $model;
         }
-        return Mage::getModel('easytemplate/input_parser_template')
+        return Mage::getModel('easytemplate/input_parser_template');
     }
 
     public function getFields()
