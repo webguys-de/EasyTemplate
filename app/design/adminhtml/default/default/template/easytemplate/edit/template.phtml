@@ -35,10 +35,9 @@
 
     <script type="text/javascript">
         //<![CDATA[
-        var templates = new Array();
+        var templates = <?php echo json_encode( $this->getEmptyTemplates() ); ?>
         //]]>
     </script>
-    <?php echo $this->getTemplatesHtml() ?>
 
     <script type="text/javascript">
         //<![CDATA[
@@ -46,32 +45,27 @@
         var pageTemplate = {
             div : $('page_templates_container_top'),
             templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
-            templateText : <?php echo json_encode( $this->getTemplateWrapperHtml() ); ?>,
             itemCount : 1,
             add : function( code ) {
-                this.template = new Template(this.templateText, this.templateSyntax);
 
                 data = {};
                 data.id  = 'new_' + this.itemCount;
                 data.code = code;
                 data.name = code; // TODO
 
-                var selector_id = 'template_' + data.id;
-
-                Element.insert(this.div, {'after':this.template.evaluate(data)});
-
-                this.itemCount++;
-                this.bindRemoveButtons();
 
                 if ( template = templates[code] ) {
 
-                    template = '<div id="'+selector_id+'_content" class="entry-edit">'+template+'</div>';
                     this.secondTemplate = new Template(template, this.templateSyntax);
 
-                    Element.insert( selector_id +'_table', {'after':this.secondTemplate.evaluate(data)});
+                    Element.insert(this.div, {'after':this.secondTemplate.evaluate(data)});
 
                 }
                 $('page_template_selector').hide();
+                this.itemCount++;
+                this.bindRemoveButtons();
+
+
             },
             remove : function(event){
                 var element = $(Event.findElement(event, 'div'));

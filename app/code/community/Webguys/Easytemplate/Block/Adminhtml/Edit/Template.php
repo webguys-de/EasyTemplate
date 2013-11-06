@@ -15,7 +15,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
 
     public function getTemplateWrapperHtml()
     {
-        return $this->getLayout()->createBlock('core/template')->setTemplate('easytemplate/edit/wrapper.phtml')->toHtml();
+        return $this->getLayout()->createBlock('core/template')->setTemplate('easytemplate/edit/box.phtml')->toHtml();
     }
 
 
@@ -29,24 +29,21 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
      *
      * @return string
      */
-    public function getTemplatesHtml()
+    public function getEmptyTemplates()
     {
-        $templates = '';
+        $templates = array();
 
         /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
         $configModel = Mage::getSingleton('easytemplate/input_parser');
 
         foreach ($configModel->getTemplates() as $template) {
 
-            $block = $this->getLayout()->createBlock(
-                'easytemplate/adminhtml_edit_renderer',
-                'easytemplate_template_' . $template->getCode(),
-                array(
-                    'code' => $template
-                )
-            );
+            /** @var $box Webguys_Easytemplate_Block_Adminhtml_Edit_Box */
+            $box = $this->getLayout()->createBlock( 'easytemplate/adminhtml_edit_box');
+            $box->setTemplateModel($template);
 
-            $templates .= $block->toHtml();
+            $templates[ $template->getCode() ] = $box->toHtml();
+
         }
 
         return $templates;
