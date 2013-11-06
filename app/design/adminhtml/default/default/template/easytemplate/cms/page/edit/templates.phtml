@@ -11,10 +11,20 @@
             </li>
         </ul>
     </div>
+
     <?php endif; ?>
     <div class="entry-edit-head">
         <h4><?php echo Mage::helper('easytemplate')->__('Page Templates') ?></h4>
-        <div class="right"><?php echo $this->getAddButtonHtml() ?></div>
+        <div class="right">
+            <button style="" onclick="$('page_template_selector').show();" class="scalable add" type="button" title="Add New Template"><span><span><span>Add New Template</span></span></span></button>
+        </div>
+    </div>
+
+    <div id="page_template_selector" style="display: none">
+
+        // Hier kommt ein Block mit Auswahl aller Templates
+        <a onclick="pageTemplate.add('simple_h1_text')"> simple_h1_text </a>
+
     </div>
 
     <div id="page_templates_container" class="box">

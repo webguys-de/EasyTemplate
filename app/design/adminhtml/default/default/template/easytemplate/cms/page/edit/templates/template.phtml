@@ -23,7 +23,7 @@ var firstStepTemplate = '<div class="template-box" id="template_{{id}}">'+
     '</thead>'+
     '<tr>'+
     '<td><input type="text" class="required-entry input-text" id="<?php echo $this->getFieldId() ?>_{{id}}_name" name="<?php echo $this->getFieldName() ?>[{{id}}][name]" value="{{title}}">{{checkboxScopeTitle}}</td>'+
-    '<td><?php echo $this->getTypeSelectHtml() ?></td>'+
+    '<td> <span>{{template_name}}</span> <input type="hidden" name="<?php echo $this->getFieldName() ?>[{{id}}][code]" value="{{template_code}}" /> </td>'+
     '<td><input type="text" class="validate-zero-or-greater input-text" name="<?php echo $this->getFieldName() ?>[{{id}}][sort_order]" value="{{sort_order}}"></td>'+
     '<td>&nbsp;</td>'+
     '</tr></table></div>';
@@ -33,44 +33,30 @@ var pageTemplate = {
     templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
     templateText : firstStepTemplate,
     itemCount : 1,
-    add : function(data) {
+    add : function( code ) {
         this.template = new Template(this.templateText, this.templateSyntax);
 
-        if(!data.id){
-            data = {};
-            data.id  = this.itemCount;
-            data.type = '';
-            data.template_id = 0;
-        } else {
-            this.itemCount = data.item_count;
-        }
+        data = {};
+        data.id  = 'new_' + this.itemCount;
+        data.template_code = code;
+        data.template_name = 'todo'; // TODO
+
+        var selector_id = '<?php echo $this->getFieldId() ?>_' + data.id;
 
         Element.insert(this.div, {'after':this.template.evaluate(data)});
 
-        //set selected type
-        if (data.type) {
-            $A($('<?php echo $this->getFieldId() ?>_'+data.id+'_type').options).each(function(option){
-                if (option.value==data.type) option.selected = true;
-            });
-        }
-
-        //set selected is_require
-        if (data.is_require) {
-            $A($('<?php echo $this->getFieldId() ?>_'+data.id+'_is_require').options).each(function(option){
-                if (option.value==data.is_require) option.selected = true;
-            });
-        }
-
-        if (data.checkboxScopeTitle) {
-            //set disabled
-            if ($('<?php echo $this->getFieldId() ?>_'+data.template_id+'_title') && data.scopeTitleDisabled) {
-                $('<?php echo $this->getFieldId() ?>_'+data.template_id+'_title').disable();
-            }
-        }
-
         this.itemCount++;
         this.bindRemoveButtons();
-        pageTemplateType.bindSelectInputType();
+
+        if ( template = templates[code] ) {
+
+            template = '<div id="'+selector_id+'_content" class="entry-edit">'+template+'</div>';
+            this.secondTemplate = new Template(template, this.templateSyntax);
+
+            Element.insert( selector_id +'_table', {'after':this.secondTemplate.evaluate(data)});
+
+        }
+        $('page_template_selector').hide();
     },
     remove : function(event){
         var element = $(Event.findElement(event, 'div'));
@@ -89,161 +75,11 @@ var pageTemplate = {
                 Event.observe(buttons[i], 'click', this.remove.bind(this));
             }
         }
-        var inputs = $$('div.page-templates button', 'div.page-templates input', 'div.page-templates select', 'div.page-templates textarea');
-        <?php if ($this->isReadonly()):?>
-        for (var i=0, l = inputs.length; i < l; i ++) {
-            inputs[i].disabled = true;
-            if (inputs[i].tagName.toLowerCase()=='button') {
-                inputs[i].addClassName('disabled');
-            }
-        }
-        <?php else: ?>
-        inputs.each(function(el) { Event.observe(el, 'change', el.setHasChanges.bind(el));  } )
-        <?php endif;?>
     }
-}
-
-var pageTemplateType = {
-    templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
-    loadStepTwo : function(event){
-        var element = $(Event.findElement(event, 'select'));
-
-        var value = element.getValue();
-        if (templates[value]) {
-            template = templates[value];
-        } else {
-            template = '';
-        }
-
-        if (template) {
-            var oldContent = $(element.readAttribute('id')+'_content');
-            if (oldContent) {
-                oldContent.remove();
-            }
-
-            template = '<div id="'+element.readAttribute('id')+'_content" class="entry-edit">'+template+'</div>';
-            this.secondTemplate = new Template(template, this.templateSyntax);
-
-            data = {};
-            if (!data.template_id) {
-                data = {};
-                data.template_id = $(element.readAttribute('id').sub('_type', '_id')).getValue();
-            }
-
-            Element.insert(element.readAttribute('id').sub('_type', '')+'_table', {'after':this.secondTemplate.evaluate(data)});
-
-        }
-    },
-    addDataToValues : function(data){
-        alert('jop');
-        switch(data.type){
-            case 'field':
-            case 'area':
-                template = OptionTemplateText;
-                group = 'text';
-                break;
-            case 'file':
-                template = OptionTemplateFile;
-                group = 'file';
-                break;
-            case 'drop_down':
-            case 'radio':
-            case 'checkbox':
-            case 'multiple':
-                template = OptionTemplateSelect;
-                group = 'select';
-                break;
-            case 'date':
-            case 'date_time':
-            case 'time':
-                template = OptionTemplateDate;
-                group = 'date';
-                break;
-        }
-
-        $('<?php echo $this->getFieldId() ?>_'+data.id+'_previous_group').value = group;
-
-        template = '<div id="<?php echo $this->getFieldId() ?>_{{id}}_type_'+group+'" class="grid tier form-list">'+template+'</div><div id="<?php echo $this->getFieldId() ?>_{{id}}_type_'+group+'_advice"></div>';
-
-        this.secondTemplate = new Template(template, this.templateSyntax);
-
-        Element.insert($('<?php echo $this->getFieldId() ?>_'+data.template_id), {'after':this.secondTemplate.evaluate(data)});
-
-        if (data.price_type) {
-            $A($('<?php echo $this->getFieldId() ?>_'+data.template_id+'_price_type').options).each(function(option){
-                if (option.value==data.price_type) option.selected = true;
-            });
-        }
-
-    },
-    bindSelectInputType : function(){
-        var types = $$('.select-page-template-type');
-        for(var i=0;i<types.length;i++){
-            if(!$(types[i]).binded){
-                $(types[i]).binded = true;
-                Event.observe(types[i], 'change', function(event){
-                    pageTemplateType.loadStepTwo(event);
-                });
-            }
-        }
-    }
-}
-
-var pageTemplateScope = {
-    addScope : function(event){
-        var element = $(Event.element(event));
-        fieldToDisable = $(element.readAttribute('id').sub('_use_default', ''));
-
-        if (fieldToDisable.disabled) {
-            if (fieldToDisable.hasClassName('product-option-price')) {//need change to cheking value of element
-                $(fieldToDisable.readAttribute('id')+'_type').enable();
-            }
-            fieldToDisable.enable();
-        } else {
-            if (fieldToDisable.hasClassName('product-option-price')) {//need change to cheking value of element
-                $(fieldToDisable.readAttribute('id')+'_type').disable();
-            }
-            fieldToDisable.disable();
-        }
-    },
-    bindScopeCheckbox : function(){
-        var checkboxes = $$('.product-option-scope-checkbox');
-        for (var i=0;i<checkboxes.length;i++) {
-            if (!$(checkboxes[i]).binded) {
-                $(checkboxes[i]).binded = true;
-                Event.observe(checkboxes[i], 'click', this.addScope.bind(this));
-            }
-        }
-    }
-}
-
-if($('option_panel')){
-    $('option_panel').remove();
 }
 
 pageTemplate.bindRemoveButtons();
 
-if($('<?php echo $this->getAddButtonId() ?>')){
-    Event.observe('<?php echo $this->getAddButtonId() ?>', 'click', pageTemplate.add.bind(pageTemplate));
-}
-
-//validation for selected input type
-Validation.addAllThese([
-    ['required-option-select', <?php echo $this->helper('core')->jsonEncode(Mage::helper('easytemplate')->__('Select type of option')) ?>, function(v, elm) {
-        if (elm.getValue() == '') {
-            return false;
-        }
-        return true;
-    }]]);
-
-//adding data to templates
-<?php foreach ($this->getOptionValues() as $_value): ?>
-pageTemplate.add(<?php echo $_value->toJson() ?>);
-pageTemplateType.addDataToValues(<?php echo $_value->toJson() ?>);
-<?php endforeach; ?>
-
-//bind scope checkboxes
-pageTemplateScope.bindScopeCheckbox();
 //]]>
 </script>
 

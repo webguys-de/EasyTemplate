@@ -2,10 +2,10 @@
 
 <tr class="template_field_text_<?php echo $this->getCode() ?>">
     <td class="label">
-        <label for="template_field_{{template_id}}_<?php echo $this->getCode() ?>"><?php echo $this->__($this->getLabel()) ?><?php if($this->getRequired()) : ?> <span class="required">*</span><?php endif; ?></label>
+        <label for="template_field_{{id}}_<?php echo $this->getCode() ?>"><?php echo $this->__($this->getLabel()) ?><?php if($this->getRequired()) : ?> <span class="required">*</span><?php endif; ?></label>
     </td>
     <td class="value">
-        <input id="template_field_{{template_id}}_<?php echo $this->getCode() ?>" name="templates[{{template_id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->getDefault() ?>" class="input-text<?php if($this->getRequired()) : ?> required-entry<?php endif; ?>" type="text">
+        <input id="template_field_{{id}}_<?php echo $this->getCode() ?>" name="templates[{{id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->getDefault() ?>" class="input-text<?php if($this->getRequired()) : ?> required-entry<?php endif; ?>" type="text">
     </td>
     <td class="comment">
         <?php echo $this->__($this->getComment()) ?>

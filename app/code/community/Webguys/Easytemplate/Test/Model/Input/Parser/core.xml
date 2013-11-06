@@ -1,80 +1,90 @@
 <?xml version="1.0"?>
-<easytemplate>
+<config>
+    <easytemplate>
 
-    <h1_text template="easytemplate/h1_text.phtml" type="easytemplate/template" translate="label,comment">
-        <label>Überschrift + Text</label>
-        <comment>Hallo Welt</comment>
-        <fields>
+        <simple translate="label">
+            <label>Simple Templates</label>
+
+            <templates>
+
+                <h1_text template="easytemplate/h1_text.phtml" type="easytemplate/template" translate="label,comment">
+                    <label>Überschrift + Text</label>
+                    <comment>Hallo Welt</comment>
+                    <fields>
 
 
-            <h1 translate="label,comment">
-                <label>Überschrift</label>
-                <comment>Testkommentar</comment>
-                <backend_model>easytemplate/template_data_varchar</backend_model>
-                <input_renderer>easytemplate/input_renderer_text</input_renderer>
-                <sort_order>1</sort_order>
-                <default_value>Hallo EasyTemplate</default_value>
-                <required>1</required>
-            </h1>
+                        <h1 translate="label,comment">
+                            <label>Überschrift</label>
+                            <comment>Testkommentar</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                            <sort_order>1</sort_order>
+                            <default_value>Hallo EasyTemplate</default_value>
+                            <required>1</required>
+                        </h1>
 
-            <text>
-                <label>Text</label>
-                <comment>Testkommentar</comment>
-                <backend_model>easytemplate/source_text</backend_model>
-                <input_renderer>easytemplate/renderer_textarea</input_renderer>
-                <sort_order>1</sort_order>
-                <default_value>Hallo EasyTemplate Textarea</default_value>
-                <required>1</required>
-            </text>
+                        <text>
+                            <label>Text</label>
+                            <comment>Testkommentar</comment>
+                            <backend_model>easytemplate/source_text</backend_model>
+                            <input_renderer>easytemplate/renderer_textarea</input_renderer>
+                            <sort_order>1</sort_order>
+                            <default_value>Hallo EasyTemplate Textarea</default_value>
+                            <required>1</required>
+                        </text>
 
-            <select>
-                <label>Text</label>
-                <backend_model>easytemplate/source_varchar</backend_model>
-                <input_renderer>easytemplate/renderer_select</input_renderer>
+                        <select>
+                            <label>Text</label>
+                            <backend_model>easytemplate/source_varchar</backend_model>
+                            <input_renderer>easytemplate/renderer_select</input_renderer>
 
-                <input_renderer_source>easytemplate/renderer_source_values</input_renderer_source>
-                <values>
-                    <item value="wert1">Darstellung 1</item>
-                    <item value="wert2">Darstellung 2</item>
-                </values>
+                            <input_renderer_source>easytemplate/renderer_source_values</input_renderer_source>
+                            <values>
+                                <item value="wert1">Darstellung 1</item>
+                                <item value="wert2">Darstellung 2</item>
+                            </values>
 
-                <sort_order>1</sort_order>
-                <default_value>Hallo EasyTemplate Textarea</default_value>
-                <comment/>
-                <required>1</required>
-            </select>
+                            <sort_order>1</sort_order>
+                            <default_value>Hallo EasyTemplate Textarea</default_value>
+                            <comment/>
+                            <required>1</required>
+                        </select>
 
-        </fields>
+                    </fields>
 
-    </h1_text>
+                </h1_text>
 
-    <image_text template="easytemplate/image_text.phtml" type="easytemplate/template" translate="label,comment">
-        <label>Überschrift + Text</label>
-        <comment>Hallo Welt</comment>
+                <image_text template="easytemplate/image_text.phtml" type="easytemplate/template" translate="label,comment">
+                    <label>Überschrift + Text</label>
+                    <comment>Hallo Welt</comment>
 
-        <fields>
-            <h1 translate="label,comment">
-                <label>Überschrift</label>
-                <backend_model>easytemplate/source_varchar</backend_model>
-                <input_renderer>easytemplate/renderer_text</input_renderer>
-                <sort_order>1</sort_order>
-                <default_value>Hallo EasyTemplate</default_value>
-                <comment/>
-                <required>1</required>
-            </h1>
+                    <fields>
+                        <h1 translate="label,comment">
+                            <label>Überschrift</label>
+                            <backend_model>easytemplate/source_varchar</backend_model>
+                            <input_renderer>easytemplate/renderer_text</input_renderer>
+                            <sort_order>1</sort_order>
+                            <default_value>Hallo EasyTemplate</default_value>
+                            <comment/>
+                            <required>1</required>
+                        </h1>
 
-            <image translate="label,comment">
-                <label>Bild</label>
-                <backend_model>easytemplate/source_varchar</backend_model>
-                <input_renderer>easytemplate/renderer_text</input_renderer>
-                <sort_order>1</sort_order>
-                <default_value>Hallo EasyTemplate</default_value>
-                <comment/>
-                <required>1</required>
-            </image>
-        </fields>
+                        <image translate="label,comment">
+                            <label>Bild</label>
+                            <backend_model>easytemplate/source_varchar</backend_model>
+                            <input_renderer>easytemplate/renderer_text</input_renderer>
+                            <sort_order>1</sort_order>
+                            <default_value>Hallo EasyTemplate</default_value>
+                            <comment/>
+                            <required>1</required>
+                        </image>
+                    </fields>
 
-    </image_text>
+                </image_text>
 
-</easytemplate>
+            </templates>
 
+        </simple>
+
+    </easytemplate>
+</config>
