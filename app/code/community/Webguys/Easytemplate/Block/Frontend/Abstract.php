@@ -7,6 +7,8 @@ class Webguys_Easytemplate_Block_Frontend_Abstract extends Mage_Core_Block_Templ
         /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
         $configModel = Mage::getSingleton('easytemplate/input_parser');
 
+        $position = 1;
+
         /** @var $template Webguys_Easytemplate_Model_Template */
         foreach ($group->getTemplateCollection() as $template) {
             if ($model = $configModel->getTemplate( $template->getCode() )) {
@@ -18,7 +20,8 @@ class Webguys_Easytemplate_Block_Frontend_Abstract extends Mage_Core_Block_Templ
                     $childBlock->setData($field->getCode(), $template->getFieldData($field->getCode()));
                 }
 
-                $this->setChild('block_'.$template->getCode(), $childBlock);
+                $this->setChild('block_'.$position.'_'.$template->getCode(), $childBlock);
+                $position++;
             }
         }
     }
