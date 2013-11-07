@@ -26,5 +26,9 @@ abstract class Webguys_Easytemplate_Model_Template_Data_Abstract
         $this->setValue( $data );
     }
 
+    public function getInternalName()
+    {
+        return get_class( $this );
+    }
 
 }

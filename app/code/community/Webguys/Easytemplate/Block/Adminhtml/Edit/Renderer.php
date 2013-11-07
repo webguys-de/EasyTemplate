@@ -31,7 +31,16 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
         if ($model = $this->getTemplateModel() ) {
 
             foreach ($model->getFields() as $field) {
+                /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
+
+                /** @var $inputRenderer Webguys_Easytemplate_Block_Input_Renderer_Abstract */
                 $inputRenderer = $field->getInputRenderer();
+
+                if( $this->getTemplateModel()->getId() )
+                {
+                    $inputRenderer->setValue( $this->getTemplateModel()->getFieldData( $field->getCode() ) );
+                }
+
                 $html .= $inputRenderer->toHtml();
             }
 

@@ -23,6 +23,12 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
 
     protected $_field_data;
 
+    /**
+     * $field_data = array(
+     *      $code => $value
+     * );
+     */
+
     protected function _construct()
     {
         $this->_init('easytemplate/template');
@@ -75,9 +81,50 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
     {
         return $this->getConfig()->getFields();
     }
-    
-    public function getFieldData( )
+
+    public function _afterLoad()
     {
 
+        /** @var $models Webguys_Easytemplate_Model_Template_Data_Abstract[] */
+        $models = array();
+        $model2field = array();
+
+        // collect all input-resources
+        foreach( $this->getFields() AS $field )
+        {
+            $backend_model_name = $field->getBackendModel()->getInternalName();
+            $models[ $backend_model_name ] = $field->getBackendModel();
+            $model2field[ $backend_model_name ] = $field;
+        }
+
+        // iterate all models and get data using collections
+        foreach( $models AS $backend_model )
+        {
+            /** @var $data_collection Webguys_Easytemplate_Model_Resource_Template_Data_Collection_Abstract */
+            $data_collection = $backend_model->getCollection();
+            $data_collection->addTemplateFilter( $this );
+
+            foreach( $data_collection AS $data )
+            {
+                /** @var $data Webguys_Easytemplate_Model_Resource_Template_Data_Abstract */
+
+                /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
+                $field = $model2field[ $backend_model->getInternalName() ];
+
+                $this->_field_data[ $field->getCode() ] = $data->getValue();
+            }
+
+        }
+
+        return $this;
+    }
+
+    public function getFieldData( $field = null )
+    {
+        if( $field === null )
+        {
+            return $this->_field_data;
+        }
+        return $this->_field_data[ $field ];
     }
 }
