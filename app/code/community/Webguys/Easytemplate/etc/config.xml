@@ -97,6 +97,15 @@
                 </easytemplate>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <easytemplate>
+                    <files>
+                        <default>Webguys_Easytemplate.csv</default>
+                    </files>
+                </easytemplate>
+            </modules>
+        </translate>
     </adminhtml>
 
     <phpunit>
