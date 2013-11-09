@@ -75,7 +75,7 @@
 
             },
             remove : function(event){
-                var element = $(Event.findElement(event, 'div'));
+                var element = $(Event.findElement(event, 'div.template-box'));
                 if(element){
                     $(element.readAttribute('id')+'_'+'is_delete').value = '1';
                     element.addClassName('no-display');
