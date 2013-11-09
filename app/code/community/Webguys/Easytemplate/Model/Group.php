@@ -8,9 +8,15 @@
  * @method setEntityId
  * @method getEntityId
  */
-class Webguys_Easytemplate_Model_Group
- extends Mage_Core_Model_Abstract
+class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
 {
+
+    /**
+     * Prefix of model events names
+     *
+     * @var string
+     */
+    protected $_eventPrefix = 'easytemplate_group';
 
     protected function _construct()
     {

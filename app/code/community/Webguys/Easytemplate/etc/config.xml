@@ -80,15 +80,20 @@
                     </easytemplate_adminhtml_cms_page_edit_tab_main_prepare_form>
                 </observers>
             </adminhtml_cms_page_edit_tab_main_prepare_form>
-            <controller_action_predispatch_adminhtml_cms_page_save>
+            <cms_page_save_before>
                 <observers>
-                    <easytemplate_controller_action_predispatch_adminhtml_cms_page_save>
+                    <easytemplate_cms_page_save_before>
                         <type>singleton</type>
                         <class>easytemplate/observer</class>
-                        <method>controller_action_predispatch_adminhtml_cms_page_save</method>
-                    </easytemplate_controller_action_predispatch_adminhtml_cms_page_save>
+                        <method>cms_page_save_before</method>
+                    </easytemplate_cms_page_save_before>
+                    <easytemplate_cms_page_save_after>
+                        <type>singleton</type>
+                        <class>easytemplate/observer</class>
+                        <method>cms_page_save_after</method>
+                    </easytemplate_cms_page_save_after>
                 </observers>
-            </controller_action_predispatch_adminhtml_cms_page_save>
+            </cms_page_save_before>
         </events>
         <layout>
             <updates>

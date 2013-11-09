@@ -27,19 +27,29 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
         }
     }
 
-    public function controller_action_predispatch_adminhtml_cms_page_save($observer)
+    public function cms_page_save_before($observer)
     {
-        /** @var $controller Mage_Adminhtml_Cms_PageController */
-        $controller = $observer->getControllerAction();
+        // TODO: Check validation
+    }
 
-        $templatedata = $controller->getRequest()->getPost('template');
+    public function cms_page_save_after($observer)
+    {
+        /** @var $page Mage_Cms_Model_Page */
+        $page = $observer->getDataObject();
+
+        $request = Mage::app()->getRequest();
+        $templatedata = $request->getPost('template');
 
         if (is_array( $templatedata ) ) {
-            // TODO: Creating new page could not work
-            $group = Mage::helper('easytemplate')->getGroupByPageId( $controller->getRequest()->getPost('page_id') );
+            try {
+                $group = Mage::helper('easytemplate')->getGroupByPageId( $page->getId() );
 
-            /** @var $group Webguys_Easytemplate_Model_Group */
-            $group->importData( $templatedata );
+                /** @var $group Webguys_Easytemplate_Model_Group */
+                $group->importData( $templatedata );
+            } catch (Exception $e) {
+                $page->_dataSaveAllowed = false;
+                Mage::getSingleton('core/session')->addError($e->getMessage());
+            }
         }
     }
 
