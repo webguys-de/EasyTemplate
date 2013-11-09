@@ -70,6 +70,10 @@
                 $('page_template_selector').hide();
                 Sortable.create("page_templates_container", {tag:'div', treeTag:'div', onUpdate:function(){ var i = 1; $$('#page_templates_container div').each(function(c){ if(c.hasClassName('template-box')){ $( c.id + '_sort_order').value = i; i++; }}); }});
 
+                // TODO: Remove duplicate logic here and in box.phtml
+                $('template_content_' + data.id).show();
+                $('template_overview_' + data.id).hide();
+
                 this.itemCount++;
                 this.bindRemoveButtons();
 

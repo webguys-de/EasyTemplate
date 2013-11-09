@@ -8,8 +8,8 @@
                 <span><strong><?php echo Mage::helper('easytemplate')->__('Valid To') ?>:</strong></span>
             </div>
             <div class="f-left">
-                <span>12.12.2012</span><br/>
-                <span>12.12.2012</span>
+                <span>{{valid_from}}</span><br/>
+                <span>{{valid_to}}</span>
             </div>
             <br style="clear:both"/>
         </div>
@@ -56,14 +56,14 @@
             //<![CDATA[
             Calendar.setup({
                 inputField: '_valid_to_{{id}}',
-                ifFormat: '%m.%e.%y',
+                ifFormat: '%e.%m.%y',
                 button: '_valid_to_{{id}}_trig',
                 align: 'Bl',
                 singleClick: true
             });
             Calendar.setup({
                 inputField: '_valid_from_{{id}}',
-                ifFormat: '%m.%e.%y',
+                ifFormat: '%e.%m.%y',
                 button: '_valid_from_{{id}}_trig',
                 align: 'Bl',
                 singleClick: true
