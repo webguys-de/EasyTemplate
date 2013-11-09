@@ -1,16 +1,26 @@
 <?php /** @var $this Webguys_Easytemplate_Block_Adminhtml_Edit_Selection */ ?>
-<?php
-    $templates = $this->getTemplates();
-    foreach( $templates AS $template)
-    {
-        echo '<div class="template-wrapper">';
-        echo '<div class="title">' . $template['label'] . '</div>';
 
-        if( is_array($template['items']) && count($template['items'])>0){
-            foreach( $template['items'] AS $item)
-                echo '<div class="template"><div class="title">' . $item['label'] . '</div><a onclick="pageTemplate.add(\'' . $item['value'] . '\')"><img src="' . $this->getSkinUrl($item['image']) . '" /></a></div>';
-        }
-        echo '</div>';
-    }
+<?php foreach( $this->getTemplates() AS $template) : ?>
 
-?>
+    <div class="template-wrapper">
+
+        <div class="title">
+            <?php echo $template['label'] ?>
+        </div>
+
+        <?php if( is_array($template['items']) && count($template['items'])>0) : ?>
+
+            <?php  foreach( $template['items'] AS $item) : ?>
+                <div class="template">
+                    <div class="title"><?php echo $item['label'] ?> </div>
+                    <a onclick="pageTemplate.add('<?php echo $item['value']?>')">
+                        <img src="<?php echo $this->getSkinUrl($item['image']) ?>" />
+                    </a>
+                </div>
+            <?php endforeach; ?>
+
+        <?php endif; ?>
+
+    </div>
+
+<?php endforeach; ?>
