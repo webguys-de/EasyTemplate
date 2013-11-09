@@ -11,7 +11,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates
     public function getGroup()
     {
         if ($page = Mage::registry('cms_page')) {
-            return Mage::helper('easytemplate')->getGroupByPageId( $page->getId() );
+            return Mage::helper('easytemplate/page')->getGroupByPageId( $page->getId() );
         }
         return Mage::getModel('easytemplate/group');
     }

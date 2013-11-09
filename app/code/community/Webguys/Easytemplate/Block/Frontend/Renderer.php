@@ -1,6 +1,12 @@
 <?php
 
-class Webguys_Easytemplate_Block_Frontend_Abstract extends Mage_Core_Block_Template
+/**
+ * Class Webguys_Easytemplate_Block_Frontend_Renderer
+ *
+ * @method getGroupId
+ * @method setGroupId
+ */
+class Webguys_Easytemplate_Block_Frontend_Renderer extends Mage_Core_Block_Template
 {
     public function setChildsBasedOnGroup($group)
     {
@@ -24,6 +30,14 @@ class Webguys_Easytemplate_Block_Frontend_Abstract extends Mage_Core_Block_Templ
                 $position++;
             }
         }
+
+        return $this;
+    }
+
+    protected function _beforeToHtml()
+    {
+        $this->setChildsBasedOnGroup( $this->getGroupId() );
+        return $this;
     }
 
     protected function _toHtml()

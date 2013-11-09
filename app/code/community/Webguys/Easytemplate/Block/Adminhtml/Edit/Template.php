@@ -68,7 +68,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
     public function getGroup()
     {
         if ($page = Mage::registry('cms_page')) {
-            return Mage::helper('easytemplate')->getGroupByPageId( $page->getId() );
+            return Mage::helper('easytemplate/page')->getGroupByPageId( $page->getId() );
         }
         return Mage::getModel('easytemplate/group');
     }

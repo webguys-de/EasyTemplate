@@ -42,7 +42,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
 
         if (is_array( $templatedata ) ) {
             try {
-                $group = Mage::helper('easytemplate')->getGroupByPageId( $page->getId() );
+                $group = Mage::helper('easytemplate/page')->getGroupByPageId( $page->getId() );
 
                 /** @var $group Webguys_Easytemplate_Model_Group */
                 $group->importData( $templatedata );
@@ -53,26 +53,34 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
         }
     }
 
-    public function controller_action_layout_generate_blocks_after($observer)
+    public function core_block_abstract_to_html_after($observer)
     {
-        $action = $observer->getAction();
+        /** @var $block Mage_Core_Block_Abstract */
+        $block = $observer->getBlock();
 
-        if ($action instanceof Mage_Cms_PageController) {
+        /** @var $transport Varien_Object */
+        $transport = $observer->getTransport();
 
-            $layout = $action->getLayout();
-            $pageId = $action->getRequest()->getParam('page_id', $action->getRequest()->getParam('id', false));
+        if ($block instanceof Mage_Cms_Block_Page ) {
+
+            /** @var $block Mage_Cms_Block_Page  */
+            $pageId = $block->getPage()->getId();
 
             if ($pageId !== false && Mage::helper('easytemplate/page')->isEasyTemplatePage($pageId)) {
-                if ($block = $layout->getBlock('cms_page')) {
+                $html = '';
 
-                    $parent = $block->getParentBlock();
-                    $layout->unsetBlock('cms_page');
+                /** @var $helper Webguys_Easytemplate_Helper_Page */
+                $helper = Mage::helper('easytemplate/page');
 
-                    $parent->setChild('cms_page',
-                        $layout->createBlock('easytemplate/frontend_page', 'cms_page')
-                    );
-
+                if ( $groupId = $helper->getGroupByPageId( $pageId ) )
+                {
+                    /** @var $renderer Webguys_Easytemplate_Block_Frontend_Renderer */
+                    $renderer = Mage::app()->getLayout()->createBlock('easytemplate/frontend_renderer');
+                    $renderer->setGroupId( $groupId );
+                    $html = $renderer->toHtml();
                 }
+
+                $transport->setHtml( $html );
             }
 
         }
