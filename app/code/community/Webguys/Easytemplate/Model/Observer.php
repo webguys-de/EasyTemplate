@@ -75,7 +75,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
                 if ( $groupId = $helper->getGroupByPageId( $pageId ) )
                 {
                     /** @var $renderer Webguys_Easytemplate_Block_Frontend_Renderer */
-                    $renderer = Mage::app()->getLayout()->createBlock('easytemplate/frontend_renderer');
+                    $renderer = Mage::app()->getLayout()->createBlock('easytemplate/renderer');
                     $renderer->setGroupId( $groupId );
                     $html = $renderer->toHtml();
                 }
