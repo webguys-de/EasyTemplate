@@ -100,7 +100,8 @@ EOF;
 
             foreach ($this->getTemplateModel()->getData() AS $replace => $to) {
                 if (in_array($replace, array('valid_from', 'valid_to'))) {
-                    $html = str_replace('{{' . $replace . '}}', strftime($this->getDateStrFormat(), strtotime($to)), $html);
+                    $date = strftime($this->getDateStrFormat(), strtotime($to));
+                    $html = str_replace('{{' . $replace . '}}', $to ? $date : '', $html);
                 } else {
                     $html = str_replace('{{' . $replace . '}}', $to, $html);
                 }
