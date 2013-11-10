@@ -5,6 +5,10 @@
     margin: 1.5em 0;
 }
 
+.page-templates .template-box .information {
+    min-width: 140px;
+}
+
 .page-templates .template-header {
     border: 0;
     width: 100%;
