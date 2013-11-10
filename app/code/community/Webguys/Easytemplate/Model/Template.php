@@ -118,14 +118,12 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
 
         /** @var $models Webguys_Easytemplate_Model_Template_Data_Abstract[] */
         $models = array();
-        $model2field = array();
 
         // collect all input-resources
         foreach( $this->getFields() AS $field )
         {
             $backend_model_name = $field->getBackendModel()->getInternalName();
             $models[ $backend_model_name ] = $field->getBackendModel();
-            $model2field[ $backend_model_name ] = $field;
         }
 
         // iterate all models and get data using collections
@@ -135,16 +133,11 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
             $data_collection = $backend_model->getCollection();
             $data_collection->addTemplateFilter( $this );
 
+            /** @var $data Webguys_Easytemplate_Model_Resource_Template_Data_Abstract */
             foreach( $data_collection AS $data )
             {
-                /** @var $data Webguys_Easytemplate_Model_Resource_Template_Data_Abstract */
-
-                /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
-                $field = $model2field[ $backend_model->getInternalName() ];
-
-                $this->_field_data[ $field->getCode() ] = $data->getValue();
+                $this->_field_data[ $data->getField() ] = $data->getValue();
             }
-
         }
 
         return $this;
