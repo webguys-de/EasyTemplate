@@ -64,7 +64,7 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         /** @var $collection Webguys_Easytemplate_Model_Resource_Template_Collection */
         $collection = Mage::getModel('easytemplate/template')->getCollection();
         $collection->addGroupFilter($this);
-        $collection->setOrder('position');
+        $collection->getSelect()->order('main_table.position');
 
         foreach( $collection AS &$model )
         {
