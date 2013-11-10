@@ -9,6 +9,20 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
 
     protected $_templates = null;
 
+    protected function getEasytemplateSchema()
+    {
+        return Mage::getModuleDir('etc', 'Webguys_Easytemplate'). DS . 'easytemplate.xsd';
+    }
+
+    protected function validateConfig(Varien_Simplexml_Config $config)
+    {
+        $xml = $config->getXmlString();
+        $doc = new DOMDocument();
+        $doc->loadXML($xml);
+
+        return $doc->schemaValidate($this->getEasytemplateSchema());
+    }
+
     public function getXmlConfig()
     {
         $cachedXml = Mage::app()->loadCache('easytemplate_config');
@@ -19,6 +33,12 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
             $config->loadString('<?xml version="1.0"?><config><easytemplate></easytemplate></config>');
             Mage::getConfig()->loadModulesConfiguration('easytemplate.xml', $config);
             $xmlConfig = $config;
+
+            // Validate config with xsd
+            if (!$this->validateConfig($xmlConfig)) {
+                throw new Exception('easytemplate config not valid');
+            }
+
             if (Mage::app()->useCache('config')) {
                 Mage::app()->saveCache($config->getXmlString(), 'easytemplate_config',
                     array(Mage_Core_Model_Config::CACHE_TAG));

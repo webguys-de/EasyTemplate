@@ -1,11 +1,181 @@
-<?xml version="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://www.w3schools.com"
-           xmlns="http://www.w3schools.com"
-           elementFormDefault="qualified">
-    <xs:element name="config" maxOccurs="1">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="config">
         <xs:complexType>
-
+            <xs:sequence>
+                <xs:element name="easytemplate">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="simple">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:string" name="label"/>
+                                        <xs:element name="templates">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="h1_text">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:string" name="label"/>
+                                                                <xs:element type="xs:string" name="image"/>
+                                                                <xs:element type="xs:string" name="comment"/>
+                                                                <xs:element name="fields">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="h1">
+                                                                                <xs:complexType mixed="true">
+                                                                                    <xs:sequence>
+                                                                                        <xs:element type="xs:string" name="label"/>
+                                                                                        <xs:element type="xs:string" name="comment"/>
+                                                                                        <xs:element type="xs:string" name="backend_model"/>
+                                                                                        <xs:element type="xs:string" name="input_renderer"/>
+                                                                                        <xs:element type="xs:byte" name="sort_order"/>
+                                                                                        <xs:element type="xs:string" name="default_value"/>
+                                                                                        <xs:element type="xs:byte" name="required"/>
+                                                                                    </xs:sequence>
+                                                                                    <xs:attribute type="xs:string" name="translate"/>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="text">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element type="xs:string" name="label"/>
+                                                                                        <xs:element type="xs:string" name="comment"/>
+                                                                                        <xs:element type="xs:string" name="backend_model"/>
+                                                                                        <xs:element type="xs:string" name="input_renderer"/>
+                                                                                        <xs:element type="xs:byte" name="sort_order"/>
+                                                                                        <xs:element type="xs:string" name="default_value"/>
+                                                                                        <xs:element type="xs:byte" name="required"/>
+                                                                                    </xs:sequence>
+                                                                                    <xs:attribute type="xs:string" name="translate"/>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="template"/>
+                                                            <xs:attribute type="xs:string" name="type"/>
+                                                            <xs:attribute type="xs:string" name="translate"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="paragraph">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:string" name="label"/>
+                                                                <xs:element type="xs:string" name="image"/>
+                                                                <xs:element type="xs:string" name="comment"/>
+                                                                <xs:element name="fields">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="text">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element type="xs:string" name="label"/>
+                                                                                        <xs:element type="xs:string" name="comment"/>
+                                                                                        <xs:element type="xs:string" name="backend_model"/>
+                                                                                        <xs:element type="xs:string" name="input_renderer"/>
+                                                                                        <xs:element type="xs:byte" name="sort_order"/>
+                                                                                        <xs:element type="xs:string" name="default_value"/>
+                                                                                        <xs:element type="xs:byte" name="required"/>
+                                                                                    </xs:sequence>
+                                                                                    <xs:attribute type="xs:string" name="translate"/>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="alignment">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element type="xs:string" name="label"/>
+                                                                                        <xs:element type="xs:string" name="comment"/>
+                                                                                        <xs:element type="xs:string" name="backend_model"/>
+                                                                                        <xs:element type="xs:string" name="input_renderer"/>
+                                                                                        <xs:element type="xs:string" name="input_renderer_source"/>
+                                                                                        <xs:element name="values">
+                                                                                            <xs:complexType>
+                                                                                                <xs:sequence>
+                                                                                                    <xs:element name="item" maxOccurs="unbounded" minOccurs="0">
+                                                                                                        <xs:complexType>
+                                                                                                            <xs:simpleContent>
+                                                                                                                <xs:extension base="xs:string">
+                                                                                                                    <xs:attribute type="xs:string" name="value" use="optional"/>
+                                                                                                                </xs:extension>
+                                                                                                            </xs:simpleContent>
+                                                                                                        </xs:complexType>
+                                                                                                    </xs:element>
+                                                                                                </xs:sequence>
+                                                                                            </xs:complexType>
+                                                                                        </xs:element>
+                                                                                        <xs:element type="xs:byte" name="sort_order"/>
+                                                                                        <xs:element type="xs:string" name="default_value"/>
+                                                                                        <xs:element type="xs:byte" name="required"/>
+                                                                                    </xs:sequence>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="template"/>
+                                                            <xs:attribute type="xs:string" name="type"/>
+                                                            <xs:attribute type="xs:string" name="translate"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:string" name="translate"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="complex">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:string" name="label"/>
+                                        <xs:element name="templates">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="imagegallery">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:string" name="label"/>
+                                                                <xs:element type="xs:string" name="comment"/>
+                                                                <xs:element type="xs:string" name="image"/>
+                                                                <xs:element name="fields">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="text">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element type="xs:string" name="label"/>
+                                                                                        <xs:element type="xs:string" name="comment"/>
+                                                                                        <xs:element type="xs:string" name="backend_model"/>
+                                                                                        <xs:element type="xs:string" name="input_renderer"/>
+                                                                                        <xs:element type="xs:byte" name="sort_order"/>
+                                                                                        <xs:element type="xs:string" name="default_value"/>
+                                                                                        <xs:element type="xs:byte" name="required"/>
+                                                                                    </xs:sequence>
+                                                                                    <xs:attribute type="xs:string" name="translate"/>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="template"/>
+                                                            <xs:attribute type="xs:string" name="type"/>
+                                                            <xs:attribute type="xs:string" name="translate"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:string" name="translate"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
         </xs:complexType>
     </xs:element>
 </xs:schema>
