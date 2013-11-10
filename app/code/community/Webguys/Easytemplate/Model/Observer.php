@@ -27,12 +27,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
         }
     }
 
-    public function cms_page_save_before($observer)
-    {
-        // TODO: Check validation
-    }
-
-    public function cms_page_save_after($observer)
+    public function cms_page_save_commit_after($observer)
     {
         /** @var $page Mage_Cms_Model_Page */
         $page = $observer->getDataObject();

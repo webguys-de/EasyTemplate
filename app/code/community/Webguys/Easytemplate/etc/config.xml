@@ -88,20 +88,15 @@
                     </easytemplate_adminhtml_cms_page_edit_tab_main_prepare_form>
                 </observers>
             </adminhtml_cms_page_edit_tab_main_prepare_form>
-            <cms_page_save_before>
+            <cms_page_save_commit_after>
                 <observers>
-                    <easytemplate_cms_page_save_before>
+                    <easytemplate_cms_page_save_commit_after>
                         <type>singleton</type>
                         <class>easytemplate/observer</class>
-                        <method>cms_page_save_before</method>
-                    </easytemplate_cms_page_save_before>
-                    <easytemplate_cms_page_save_after>
-                        <type>singleton</type>
-                        <class>easytemplate/observer</class>
-                        <method>cms_page_save_after</method>
-                    </easytemplate_cms_page_save_after>
+                        <method>cms_page_save_commit_after</method>
+                    </easytemplate_cms_page_save_commit_after>
                 </observers>
-            </cms_page_save_before>
+            </cms_page_save_commit_after>
         </events>
         <layout>
             <updates>
