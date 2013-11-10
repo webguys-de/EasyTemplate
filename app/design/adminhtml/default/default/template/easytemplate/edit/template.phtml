@@ -35,7 +35,19 @@
 
     <script type="text/javascript">
         // <![CDATA[
-        Sortable.create("page_templates_container", {tag:'div', treeTag:'div', onUpdate:function(){ var i = 1; $$('#page_templates_container div').each(function(c){ if(c.hasClassName('template-box')){ $( c.id + '_sort_order').value = i; i++; }}); }});
+        Sortable.create("page_templates_container", {
+            tag: 'div',
+            treeTag: 'div',
+            onUpdate: function(){
+                var i = 1;
+                $$('#page_templates_container div').each(function(c){
+                    if(c.hasClassName('template-box')){
+                        $( c.id + '_sort_order').value = i;
+                        i++;
+                    }
+                });
+            }
+        });
         // ]]>
     </script>
 

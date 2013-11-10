@@ -47,6 +47,7 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
         $this->setName( $data['name'] );
         $this->setValidFrom( date('Y-m-d', strtotime($data['valid_from'])) );
         $this->setValidTo( date('Y-m-d', strtotime($data['valid_to'])) );
+        $this->setPosition( $data['sort_order'] );
 
         // TODO: Other Fields
 

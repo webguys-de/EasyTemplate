@@ -42,7 +42,7 @@
         <input type="hidden" id="template_{{id}}_id"
                name="template[{{id}}][id]" value="{{id}}"/>
         <input type="hidden" id="template_{{id}}_sort_order"
-               name="template[{{id}}][sort_order]" value="{{sort_order}}"/>
+               name="template[{{id}}][sort_order]" value="{{position}}"/>
         <div style="margin-top:-10px;padding:5px 20px;margin-bottom:10px;border:1px solid #6F8992;background:#6F8992;color:white">
             <span class=""><strong><?php echo Mage::helper('easytemplate')->__('Valid From') ?>:</strong></span>
             <span class=""><input name="template[{{id}}][valid_from]" id="_valid_from_{{id}}" value="{{valid_from}}" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_from_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
