@@ -42,4 +42,9 @@ class Webguys_Easytemplate_Block_Input_Renderer_Abstract extends Mage_Core_Block
         return $this->_value;
     }
 
+    public function prepareForFrontend($value)
+    {
+        return $value;
+    }
+
 }

@@ -28,7 +28,9 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
 
                     /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
                     foreach ($model->getFields() as $field) {
-                        $childBlock->setData($field->getCode(), $template->getFieldData($field->getCode()));
+                        $inputRenderer = $field->getInputRenderer();
+                        $frontendValue = $inputRenderer->prepareForFrontend($template->getFieldData($field->getCode()));
+                        $childBlock->setData($field->getCode(), $frontendValue);
                     }
 
                     $this->setChild('block_'.$position.'_'.$template->getCode(), $childBlock);
