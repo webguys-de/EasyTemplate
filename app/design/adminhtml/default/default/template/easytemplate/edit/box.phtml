@@ -58,14 +58,14 @@
             //<![CDATA[
             Calendar.setup({
                 inputField: '_valid_to_{{id}}',
-                ifFormat: '<?php echo $this->getDateFormat() ?>',
+                ifFormat: '<?php echo $this->getDateStrFormat() ?>',
                 button: '_valid_to_{{id}}_trig',
                 align: 'Bl',
                 singleClick: true
             });
             Calendar.setup({
                 inputField: '_valid_from_{{id}}',
-                ifFormat: '<?php echo $this->getDateFormat() ?>',
+                ifFormat: '<?php echo $this->getDateStrFormat() ?>',
                 button: '_valid_from_{{id}}_trig',
                 align: 'Bl',
                 singleClick: true

@@ -81,7 +81,7 @@ EOF;
         return $this->_locale;
     }
 
-    public function getDateFormat()
+    public function getDateStrFormat()
     {
         return $this->getLocale()->getDateStrFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT);
     }
@@ -99,7 +99,11 @@ EOF;
         if ($this->getTemplateModel() && $this->getTemplateModel()->getId()) {
 
             foreach ($this->getTemplateModel()->getData() AS $replace => $to) {
-                $html = str_replace('{{' . $replace . '}}', $to, $html);
+                if (in_array($replace, array('valid_from', 'valid_to'))) {
+                    $html = str_replace('{{' . $replace . '}}', strftime($this->getDateStrFormat(), strtotime($to)), $html);
+                } else {
+                    $html = str_replace('{{' . $replace . '}}', $to, $html);
+                }
             }
 
         }
