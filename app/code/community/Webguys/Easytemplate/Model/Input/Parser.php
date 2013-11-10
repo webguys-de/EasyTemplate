@@ -1,6 +1,10 @@
 <?php
 
-class Webguys_Easytemplate_Model_Input_Parser
+/**
+ * Class Webguys_Easytemplate_Model_Input_Parser
+ *
+ */
+class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
 {
 
     protected $_templates = null;

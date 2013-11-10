@@ -4,10 +4,17 @@
  * Class Webguys_Easytemplate_Block_Input_Renderer_Abstract
  *
  * @method getCode
+ * @method setCode
  * @method getLabel
+ * @method setLabel
  * @method getComment
+ * @method setComment
  * @method getDefault
+ * @method setDefault
  * @method getRequired
+ * @method setRequired
+ * @method getSource
+ * @method setSource
  */
 class Webguys_Easytemplate_Block_Input_Renderer_Abstract extends Mage_Core_Block_Template
 {

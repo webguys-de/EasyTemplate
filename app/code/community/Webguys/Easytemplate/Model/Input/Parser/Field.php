@@ -55,6 +55,7 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
         $template = $this->getTemplate();
         $name = $template->getCode().'_'.$this->getCode();
 
+        /** @var $block Webguys_Easytemplate_Block_Input_Renderer_Abstract */
         $block = Mage::app()->getLayout()->createBlock(
             $this->getBackendModelAlias( $this->getData('input_renderer') ),
             'easytemplate_template_field_'.$name
@@ -65,8 +66,15 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
         $block->setComment( $this->getComment() );
         $block->setDefault( $this->getDefaultValue() );
         $block->setRequired( $this->getRequired() );
+        $block->setSource( $this->getInputRendererSource() );
 
         return $block;
+    }
+
+    public function getInputRendererSource()
+    {
+        $inputRenderer = $this->getData('input_renderer_source');
+        return $inputRenderer ? Mage::getModel($inputRenderer) : false;
     }
 
 }
