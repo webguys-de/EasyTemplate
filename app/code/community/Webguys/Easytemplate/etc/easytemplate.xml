@@ -28,6 +28,16 @@
                             <default_value>Hallo EasyTemplate Textarea</default_value>
                             <required>1</required>
                         </text>
+
+                        <headimg translate="label,comment">
+                            <label>Image</label>
+                            <comment>An example file</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_file</input_renderer>
+                            <sort_order>3</sort_order>
+                            <default_value></default_value>
+                            <required>1</required>
+                        </headimg>
                     </fields>
                 </h1_text>
 
