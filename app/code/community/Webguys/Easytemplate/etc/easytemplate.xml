@@ -54,9 +54,9 @@
 
                             <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
                             <values>
-                                <item value="left">Left</item>
-                                <item value="right">Right</item>
-                                <item value="center">Center</item>
+                                <left>Left</left>
+                                <right>Right</right>
+                                <center>Center</center>
                             </values>
 
                             <sort_order>2</sort_order>
