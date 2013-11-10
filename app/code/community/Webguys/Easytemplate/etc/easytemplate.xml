@@ -46,9 +46,9 @@
                             <required>1</required>
                         </text>
 
-                        <alignment>
-                            <label>Text</label>
-                            <comment/>
+                        <alignment translate="label,comment">
+                            <label>Alignment</label>
+                            <comment>How to align this paragraph</comment>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
 
@@ -63,6 +63,24 @@
                             <default_value>left</default_value>
                             <required>1</required>
                         </alignment>
+
+                        <socialmediabuttons translate="label,comment">
+                            <label>Social media buttons</label>
+                            <comment>Which social media buttons</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_multiselect</input_renderer>
+
+                            <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
+                            <values>
+                                <facebook>Facebook</facebook>
+                                <google>Google+</google>
+                                <twitter>Twitter</twitter>
+                            </values>
+
+                            <sort_order>3</sort_order>
+                            <default_value>facebook,twitter</default_value>
+                            <required>0</required>
+                        </socialmediabuttons>
                     </fields>
                 </paragraph>
             </templates>

@@ -1,4 +1,4 @@
-<?php /** @var $this Webguys_Easytemplate_Block_Input_Renderer_Select */ ?>
+<?php /** @var $this Webguys_Easytemplate_Block_Input_Renderer_Multiselect */ ?>
 
 <fieldset class="config">
     <table cellspacing="0" class="form-list">
@@ -11,9 +11,9 @@
                 <label for="template_field_{{id}}_<?php echo $this->getCode() ?>"><?php echo $this->__($this->getLabel()) ?><?php if($this->getRequired()) : ?> <span class="required">*</span><?php endif; ?></label>
             </td>
             <td class="value">
-                <select id="template_field_{{id}}_<?php echo $this->getCode() ?>" name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" class="select<?php if($this->getRequired()) : ?> required-entry<?php endif; ?>">
+                <select id="template_field_{{id}}_<?php echo $this->getCode() ?>" name="template[{{id}}][fields][<?php echo $this->getCode() ?>][]" class="select multiselect<?php if($this->getRequired()) : ?> required-entry<?php endif; ?>" size="10" multiple="multiple">
                     <?php foreach ($this->getOptionValues() as $value => $label) : ?>
-                        <option value="<? echo $value ?>"<?php if ($this->getValue() == $value) : ?> selected="selected" <?php endif; ?>><?php echo $label ?></option>
+                        <option value="<? echo $value ?>"<?php if ($this->isSelected($value)) : ?> selected="selected" <?php endif; ?>><?php echo $label ?></option>
                     <?php endforeach; ?>
                 </select>
             </td>
