@@ -24,7 +24,7 @@
                             <comment>Some text under the heading</comment>
                             <backend_model>easytemplate/template_data_text</backend_model>
                             <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
-                            <sort_order>1</sort_order>
+                            <sort_order>2</sort_order>
                             <default_value>Hallo EasyTemplate Textarea</default_value>
                             <required>1</required>
                         </text>
@@ -45,6 +45,24 @@
                             <default_value>Hallo EasyTemplate Paragraph Textarea</default_value>
                             <required>1</required>
                         </text>
+
+                        <alignment>
+                            <label>Text</label>
+                            <comment/>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
+
+                            <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
+                            <values>
+                                <item value="left">Left</item>
+                                <item value="right">Right</item>
+                                <item value="center">Center</item>
+                            </values>
+
+                            <sort_order>2</sort_order>
+                            <default_value>left</default_value>
+                            <required>1</required>
+                        </alignment>
                     </fields>
                 </paragraph>
             </templates>
