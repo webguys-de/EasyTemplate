@@ -35,6 +35,11 @@
 
     <script type="text/javascript">
         // <![CDATA[
+        function useEasyTemplate() {
+            $('page_content').addClassName('ignore-validate');
+            $('page_view_mode').value = 'easytemplate';
+        }
+
         function sortableUpdate() {
             var i = 1;
             $$('#page_templates_container div').each(function(c){
@@ -49,6 +54,12 @@
             tag: 'div',
             treeTag: 'div',
             onUpdate: sortableUpdate
+        });
+
+        document.observe("dom:loaded", function() {
+            if ($('page_view_mode').value == 'easytemplate') {
+                useEasyTemplate();
+            }
         });
         // ]]>
     </script>
@@ -83,6 +94,7 @@
                 }
                 $('page_template_selector').hide();
                 sortableUpdate();
+                useEasyTemplate();
 
                 // TODO: Remove duplicate logic here and in box.phtml
                 $('template_content_' + data.id).show();
