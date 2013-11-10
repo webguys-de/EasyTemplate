@@ -76,7 +76,7 @@
 
                 this.itemCount++;
                 this.bindRemoveButtons();
-
+                this.bindDateTimeChangeEvents();
             },
             remove : function(event){
                 var element = $(Event.findElement(event, 'div.template-box'));
@@ -87,6 +87,23 @@
                     element.hide();
                 }
             },
+            dateTimeChanged : function(event){
+
+                var dateTimeTarget = null;
+                var sourceElement = event.srcElement;
+                var sourceId = sourceElement.readAttribute('id');
+
+                if (sourceId.indexOf('from') > -1) {
+                    dateTimeTarget = 'span.valid-from';
+                } else if (sourceId.indexOf('to') > -1) {
+                    dateTimeTarget = 'span.valid-to';
+                }
+
+                var element = $(Event.findElement(event, 'div.template-box'));
+                if(dateTimeTarget && element){
+                    element.down(dateTimeTarget).update(sourceElement.value);
+                }
+            },
             bindRemoveButtons : function(){
                 var buttons = $$('div.page-templates .delete-page-template');
                 for(var i=0;i<buttons.length;i++){
@@ -95,10 +112,20 @@
                         Event.observe(buttons[i], 'click', this.remove.bind(this));
                     }
                 }
+            },
+            bindDateTimeChangeEvents : function(){
+                var inputFields = $$('div.page-templates input.datetime-input')
+                for(var i=0;i<inputFields.length;i++){
+                    if(!$(inputFields[i]).binded){
+                        $(inputFields[i]).binded = true;
+                        Event.observe(inputFields[i], 'change', this.dateTimeChanged.bind(this));
+                    }
+                }
             }
         }
 
         pageTemplate.bindRemoveButtons();
+        pageTemplate.bindDateTimeChangeEvents();
 
         //]]>
     </script>

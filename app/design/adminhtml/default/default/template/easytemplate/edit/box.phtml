@@ -8,8 +8,8 @@
                 <span><strong><?php echo Mage::helper('easytemplate')->__('Valid To') ?>:</strong></span>
             </div>
             <div class="f-left">
-                <span>{{valid_from}}</span><br/>
-                <span>{{valid_to}}</span>
+                <span class="valid-from">{{valid_from}}</span><br/>
+                <span class="valid-to">{{valid_to}}</span>
             </div>
             <br style="clear:both"/>
         </div>
@@ -43,10 +43,10 @@
                name="template[{{id}}][sort_order]" value="{{sort_order}}"/>
         <div style="margin-top:-10px;padding:5px 20px;margin-bottom:10px;border:1px solid #6F8992;background:#6F8992;color:white">
             <span class=""><strong><?php echo Mage::helper('easytemplate')->__('Valid From') ?>:</strong></span>
-            <span class=""><input name="template[{{id}}][valid_from]" id="_valid_from_{{id}}" value="" type="text" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_from_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
+            <span class=""><input name="template[{{id}}][valid_from]" id="_valid_from_{{id}}" value="" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_from_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
             <span class="separator"></span>
             <span><strong><?php echo Mage::helper('easytemplate')->__('Valid To') ?>:</strong></span>
-            <span><input id="_valid_to_{{id}}" name="template[{{id}}][valid_to]" value="" type="text" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_to_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
+            <span><input id="_valid_to_{{id}}" name="template[{{id}}][valid_to]" value="" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_to_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
             <span class="separator"></span>
             <span><strong><?php echo Mage::helper('easytemplate')->__('Name') ?></strong></span>
             <span><input type="text" class="required-entry input-text" id="template_{{id}}_name" name="template[{{id}}][name]" value="{{name}}" style="width:250px"></span>
