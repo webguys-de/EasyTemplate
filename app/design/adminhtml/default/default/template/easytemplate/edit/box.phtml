@@ -1,3 +1,5 @@
+<?php /** @var $this Webguys_Easytemplate_Block_Adminhtml_Edit_Box */ ?>
+
 <div class="template-box" id="template_{{id}}">
 
     <div id="template_overview_{{id}}" class="f-left" style="width:100%">
@@ -43,10 +45,10 @@
                name="template[{{id}}][sort_order]" value="{{sort_order}}"/>
         <div style="margin-top:-10px;padding:5px 20px;margin-bottom:10px;border:1px solid #6F8992;background:#6F8992;color:white">
             <span class=""><strong><?php echo Mage::helper('easytemplate')->__('Valid From') ?>:</strong></span>
-            <span class=""><input name="template[{{id}}][valid_from]" id="_valid_from_{{id}}" value="" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_from_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
+            <span class=""><input name="template[{{id}}][valid_from]" id="_valid_from_{{id}}" value="{{valid_from}}" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_from_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
             <span class="separator"></span>
             <span><strong><?php echo Mage::helper('easytemplate')->__('Valid To') ?>:</strong></span>
-            <span><input id="_valid_to_{{id}}" name="template[{{id}}][valid_to]" value="" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_to_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
+            <span><input id="_valid_to_{{id}}" name="template[{{id}}][valid_to]" value="{{valid_to}}" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_to_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
             <span class="separator"></span>
             <span><strong><?php echo Mage::helper('easytemplate')->__('Name') ?></strong></span>
             <span><input type="text" class="required-entry input-text" id="template_{{id}}_name" name="template[{{id}}][name]" value="{{name}}" style="width:250px"></span>
@@ -56,14 +58,14 @@
             //<![CDATA[
             Calendar.setup({
                 inputField: '_valid_to_{{id}}',
-                ifFormat: '%e.%m.%y',
+                ifFormat: '<?php echo $this->getDateFormat() ?>',
                 button: '_valid_to_{{id}}_trig',
                 align: 'Bl',
                 singleClick: true
             });
             Calendar.setup({
                 inputField: '_valid_from_{{id}}',
-                ifFormat: '%e.%m.%y',
+                ifFormat: '<?php echo $this->getDateFormat() ?>',
                 button: '_valid_from_{{id}}_trig',
                 align: 'Bl',
                 singleClick: true

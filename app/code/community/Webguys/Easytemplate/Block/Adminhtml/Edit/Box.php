@@ -1,13 +1,14 @@
 <?php
 
 /**
- * Class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
+ * Class Webguys_Easytemplate_Block_Adminhtml_Edit_Box
  *
  * @method getCode
  */
 class Webguys_Easytemplate_Block_Adminhtml_Edit_Box
     extends Mage_Adminhtml_Block_Widget
 {
+    protected $_locale;
 
     protected $_template_model;
 
@@ -65,6 +66,24 @@ EOF;
     public function getDeleteButtonHtml()
     {
         return $this->getChildHtml('delete_button');
+    }
+
+    /**
+     * Retrieve locale
+     *
+     * @return Mage_Core_Model_Locale
+     */
+    public function getLocale()
+    {
+        if (!$this->_locale) {
+            $this->_locale = Mage::app()->getLocale();
+        }
+        return $this->_locale;
+    }
+
+    public function getDateFormat()
+    {
+        return $this->getLocale()->getDateStrFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT);
     }
 
     public function _toHtml()

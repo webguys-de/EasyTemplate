@@ -45,13 +45,12 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
     {
         $this->setCode( $data['code'] );
         $this->setName( $data['name'] );
-        $this->setValidFrom( $data['valid_from'] );
-        $this->setValidTo( $data['valid_to'] );
+        $this->setValidFrom( date('Y-m-d', strtotime($data['valid_from'])) );
+        $this->setValidTo( date('Y-m-d', strtotime($data['valid_to'])) );
 
         // TODO: Other Fields
 
         $this->_field_data = $data['fields'];
-
     }
 
     protected function _isValid()
