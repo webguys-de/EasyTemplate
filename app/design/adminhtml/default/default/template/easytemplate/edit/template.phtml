@@ -57,6 +57,7 @@
         });
 
         document.observe("dom:loaded", function() {
+            $('edit_form').writeAttribute('enctype', 'multipart/form-data');
             if ($('page_view_mode').value == 'easytemplate') {
                 useEasyTemplate();
             }

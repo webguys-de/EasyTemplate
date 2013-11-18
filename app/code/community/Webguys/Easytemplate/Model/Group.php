@@ -39,6 +39,10 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
             {
                 $template->load( $id );
             }
+            else {
+                // Used for file handling to identify entries of array
+                $template->setTemporaryId( $id );
+            }
             $template->setGroupId( $this->getId() );
 
             if( $template_data['is_delete'] == '1' )
