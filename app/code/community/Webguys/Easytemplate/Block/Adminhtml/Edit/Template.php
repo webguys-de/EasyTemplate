@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
+ *
+ */
 class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
     extends Mage_Adminhtml_Block_Widget
 {

@@ -1,6 +1,9 @@
 <?php
 
-
+/**
+ * Class Webguys_Easytemplate_Model_Observer
+ *
+ */
 class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
 {
     public function adminhtml_cms_page_edit_tab_main_prepare_form($observer)

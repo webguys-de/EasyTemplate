@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class Webguys_Easytemplate_Model_Resource_Template_Collection
+ *
+ */
 class Webguys_Easytemplate_Model_Resource_Template_Collection
     extends Mage_Core_Model_Resource_Db_Collection_Abstract
 {

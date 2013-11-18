@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class Webguys_Easytemplate_Helper_File
+ *
+ */
 class Webguys_Easytemplate_Helper_File extends Mage_Core_Helper_Abstract
 {
     public function getDestinationUrl($groupId, $templateId)

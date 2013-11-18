@@ -2,6 +2,7 @@
 
 /**
  * Class Webguys_Easytemplate_Model_Input_Renderer_Source_Abstract
+ *
  */
 abstract class Webguys_Easytemplate_Model_Input_Renderer_Source_Abstract extends Mage_Core_Model_Abstract
 {

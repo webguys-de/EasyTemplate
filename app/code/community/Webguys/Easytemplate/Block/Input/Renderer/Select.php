@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class Webguys_Easytemplate_Block_Input_Renderer_Select
+ *
+ */
 class Webguys_Easytemplate_Block_Input_Renderer_Select extends Webguys_Easytemplate_Block_Input_Renderer_Abstract
 {
     public function __construct()

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class Webguys_Easytemplate_Model_Input_Parser_Abstract
+ *
+ */
 abstract class Webguys_Easytemplate_Model_Input_Parser_Abstract extends Varien_Object
 {
     /** @var Varien_Simplexml_Config */

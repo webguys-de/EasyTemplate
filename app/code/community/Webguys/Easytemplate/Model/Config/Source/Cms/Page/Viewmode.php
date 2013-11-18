@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class Webguys_Easytemplate_Model_Config_Source_Cms_Page_Viewmode
+ *
+ */
 class Webguys_Easytemplate_Model_Config_Source_Cms_Page_Viewmode
 {
     const VIEWMODE_CORE = 'core';

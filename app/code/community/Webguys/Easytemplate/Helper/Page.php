@@ -1,10 +1,12 @@
 <?php
 
+/**
+ * Class Webguys_Easytemplate_Helper_Page
+ *
+ */
 class Webguys_Easytemplate_Helper_Page extends Mage_Core_Helper_Abstract
 {
-
     const ENTITY_TYPE_PAGE = 'cms_page';
-
 
     public function isEasyTemplatePage($pageId)
     {
@@ -16,6 +18,8 @@ class Webguys_Easytemplate_Helper_Page extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * Returns an existing page entry or creates a new one
+     *
      * @param $id PageId
      * @return Webguys_Easytemplate_Model_Group
      */
