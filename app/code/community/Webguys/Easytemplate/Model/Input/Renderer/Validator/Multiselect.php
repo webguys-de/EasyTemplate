@@ -10,4 +10,9 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_Multiselect extends We
     {
         return explode(',', $data);
     }
+
+    public function prepareForSave($data)
+    {
+        return join(',', $data);
+    }
 }

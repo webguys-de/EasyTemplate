@@ -32,3 +32,8 @@
         </tbody>
     </table>
 </fieldset>
+<script type="text/javascript">
+    document.observe("dom:loaded", function() {
+        $('edit_form').writeAttribute('enctype', 'multipart/form-data');
+    });
+</script>

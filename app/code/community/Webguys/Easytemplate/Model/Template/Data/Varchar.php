@@ -27,9 +27,6 @@ class Webguys_Easytemplate_Model_Template_Data_Varchar
      */
     public function importData( $data )
     {
-        if (is_array($data)) {
-            $data = join(',', $data);
-        }
         parent::importData($data);
     }
 
