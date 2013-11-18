@@ -33,7 +33,7 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                         /** @var $inputRenderer Webguys_Easytemplate_Model_Input_Renderer_Validator_Base */
                         $inputRenderer = $field->getInputRendererValidator();
                         $frontendValue = $inputRenderer->prepareForFrontend($template->getFieldData($field->getCode()));
-                        $childBlock->setData($field->getCode(), $frontendValue);
+                        $childBlock->setTemplateVar($field->getCode(), $frontendValue);
                     }
 
                     $this->setChild('block_'.$position.'_'.$template->getCode(), $childBlock);
