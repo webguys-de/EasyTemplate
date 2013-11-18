@@ -85,15 +85,18 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
             foreach ($model->getFields() as $field) {
 
                 $inputValidator = $field->getInputRendererValidator();
+                $inputValidator->setTemplate($this);
+                $inputValidator->setField($field);
+
                 $value = $inputValidator->prepareForSave($this->_field_data[$field->getCode()]);
 
                 $backendModel = $field->getBackendModel();
                 $backendModel->importData($value);
                 $backendModel->setElementId( $this->getId() ); // TODO: Change naming to template!!
 
-                $inputValidator->beforeFieldSave($this, $backendModel, $field, $value);
+                $inputValidator->beforeFieldSave($value);
                 $backendModel->save();
-                $inputValidator->afterFieldSave($this, $backendModel, $field, $value);
+                $inputValidator->afterFieldSave($value);
             }
 
         }

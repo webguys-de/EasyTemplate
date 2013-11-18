@@ -33,6 +33,9 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                     foreach ($model->getFields() as $field) {
                         /** @var $inputValidator Webguys_Easytemplate_Model_Input_Renderer_Validator_Base */
                         $inputValidator = $field->getInputRendererValidator();
+                        $inputValidator->setTemplate($template);
+                        $inputValidator->setField($field);
+
                         $frontendValue = $inputValidator->prepareForFrontend($template->getFieldData($field->getCode()));
 
                         Mage::dispatchEvent('easytemplate_frontend_prepared_var', array(

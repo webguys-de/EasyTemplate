@@ -8,24 +8,36 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_File extends Webguys_E
 {
     protected $_deleteFile = false;
 
+    public function prepareForFrontend($data)
+    {
+        /** @var $fileHelper Webguys_Easytemplate_Helper_File */
+        $fileHelper = Mage::helper('easytemplate/file');
+
+        $template = $this->getTemplate();
+
+        return $fileHelper->getDestinationUrl($template->getGroupId(), $template->getId()) . DS . $data;
+    }
+
     public function prepareForSave($data)
     {
         $this->_deleteFile = (bool)$data['delete'];
         return Mage_Core_Model_File_Uploader::getNewFileName(strtolower($data['value']));
     }
 
-    public function beforeFieldSave($template, $backendModel, $field, $value)
+    public function beforeFieldSave($value)
     {
-        parent::beforeFieldSave($template, $backendModel, $field, $value);
+        parent::beforeFieldSave($value);
+
+        $template = $this->getTemplate();
 
         /** @var $fileHelper Webguys_Easytemplate_Helper_File */
         $fileHelper = Mage::helper('easytemplate/file');
 
         $fileHelper->createTmpPath($template->getGroupId(), $template->getId());
 
-        if ($this->uploadComplete($template, $field->getCode())) {
+        if ($this->uploadComplete()) {
             $uploaderData = array(
-                'tmp_name' => $this->extractFilePostInformation('tmp_name', $template, $field->getCode()),
+                'tmp_name' => $this->extractFilePostInformation('tmp_name'),
                 'name' => $value
             );
 
@@ -48,15 +60,16 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_File extends Webguys_E
         return $this;
     }
 
-    protected function extractFilePostInformation($type, $template, $fieldCode)
+    protected function extractFilePostInformation($type)
     {
+        $template = $this->getTemplate();
         $templateId = ($template->getTemporaryId()) ? $template->getTemporaryId() : $template->getId();
-        return $_FILES['template'][$type][$templateId]['fields'][$fieldCode];
+        return $_FILES['template'][$type][$templateId]['fields'][$this->getField()->getCode()];
     }
 
-    protected function uploadComplete($template, $fieldCode)
+    protected function uploadComplete()
     {
-        return ($this->extractFilePostInformation('error', $template, $fieldCode) === UPLOAD_ERR_OK);
+        return ($this->extractFilePostInformation('error') === UPLOAD_ERR_OK);
     }
 
 }
