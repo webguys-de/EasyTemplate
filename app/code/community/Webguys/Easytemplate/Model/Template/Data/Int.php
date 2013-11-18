@@ -1,6 +1,6 @@
 <?php
 
-class Webguys_Easytemplate_Model_Template_Data_Text
+class Webguys_Easytemplate_Model_Template_Data_Int
     extends Webguys_Easytemplate_Model_Template_Data_Abstract
 {
 
@@ -9,11 +9,11 @@ class Webguys_Easytemplate_Model_Template_Data_Text
      *
      * @var string
      */
-    protected $_eventPrefix = 'easytemplate_template_data_text';
+    protected $_eventPrefix = 'easytemplate_template_data_int';
 
     protected function _construct()
     {
-        $this->_init('easytemplate/template_data_text');
+        $this->_init('easytemplate/template_data_int');
     }
 
 }
