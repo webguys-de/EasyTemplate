@@ -45,6 +45,7 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
     {
         $this->setCode( $data['code'] );
         $this->setName( $data['name'] );
+        $this->setActive( $data['active'] );
         $this->setPosition( $data['sort_order'] );
 
         if (($time = strtotime($data['valid_from'])) !== false) {

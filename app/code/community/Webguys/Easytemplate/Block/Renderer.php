@@ -19,10 +19,11 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
         /** @var $template Webguys_Easytemplate_Model_Template */
         foreach ($group->getTemplateCollection() as $template) {
             if ($model = $configModel->getTemplate( $template->getCode() )) {
+                $active = $template->getActive();
                 $validFrom = ($template->getValidFrom()) ? strtotime($template->getValidFrom()) : false;
                 $validTo = ($template->getValidTo()) ? strtotime($template->getValidTo()) : false;
 
-                if ((!$validFrom || $validFrom <= $time) && (!$validTo || $validTo >= $time)) {
+                if ($active && (!$validFrom || $validFrom <= $time) && (!$validTo || $validTo >= $time)) {
 
                     /** @var $childBlock Webguys_Easytemplate_Block_Template */
                     $childBlock = $this->getLayout()->createBlock($model->getType());
@@ -30,9 +31,19 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
 
                     /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
                     foreach ($model->getFields() as $field) {
-                        /** @var $inputRenderer Webguys_Easytemplate_Model_Input_Renderer_Validator_Base */
-                        $inputRenderer = $field->getInputRendererValidator();
-                        $frontendValue = $inputRenderer->prepareForFrontend($template->getFieldData($field->getCode()));
+                        /** @var $inputValidator Webguys_Easytemplate_Model_Input_Renderer_Validator_Base */
+                        $inputValidator = $field->getInputRendererValidator();
+                        $frontendValue = $inputValidator->prepareForFrontend($template->getFieldData($field->getCode()));
+
+                        Mage::dispatchEvent('easytemplate_frontend_prepared_var', array(
+                            'template' => $template,
+                            'template_model' => $model,
+                            'field' => $field,
+                            'block' => $childBlock,
+                            'validator' => $inputValidator,
+                            'value' => $frontendValue
+                        ));
+
                         $childBlock->setTemplateVar($field->getCode(), $frontendValue);
                     }
 
