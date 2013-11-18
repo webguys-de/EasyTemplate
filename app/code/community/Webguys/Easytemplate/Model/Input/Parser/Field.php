@@ -71,6 +71,22 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
         return $block;
     }
 
+    /**
+     *
+     * @return Webguys_Easytemplate_Model_Input_Renderer_Validator_Base
+     */
+    public function getInputRendererValidator()
+    {
+        $modelName = str_replace('input_renderer', 'input_renderer_validator', $this->getData('input_renderer'));
+
+        if ($model = Mage::getModel($modelName)) {
+            return $model;
+        }
+        else {
+            return Mage::getModel('easytemplate/input_renderer_validator_base');
+        }
+    }
+
     public function getInputRendererSource()
     {
         $inputRenderer = $this->getData('input_renderer_source');

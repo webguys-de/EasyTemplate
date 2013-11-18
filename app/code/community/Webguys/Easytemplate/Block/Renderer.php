@@ -22,19 +22,23 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                 $validFrom = ($template->getValidFrom()) ? strtotime($template->getValidFrom()) : false;
                 $validTo = ($template->getValidTo()) ? strtotime($template->getValidTo()) : false;
 
-                if ((!$validFrom || $validFrom < $time) && (!$validTo || $validTo > $time)) {
+                if ((!$validFrom || $validFrom <= $time) && (!$validTo || $validTo >= $time)) {
+
+                    /** @var $childBlock Webguys_Easytemplate_Block_Template */
                     $childBlock = $this->getLayout()->createBlock($model->getType());
                     $childBlock->setTemplate($model->getTemplate());
 
                     /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
                     foreach ($model->getFields() as $field) {
-                        $inputRenderer = $field->getInputRenderer();
+                        /** @var $inputRenderer Webguys_Easytemplate_Model_Input_Renderer_Validator_Base */
+                        $inputRenderer = $field->getInputRendererValidator();
                         $frontendValue = $inputRenderer->prepareForFrontend($template->getFieldData($field->getCode()));
                         $childBlock->setData($field->getCode(), $frontendValue);
                     }
 
                     $this->setChild('block_'.$position.'_'.$template->getCode(), $childBlock);
                     $position++;
+
                 }
             }
         }

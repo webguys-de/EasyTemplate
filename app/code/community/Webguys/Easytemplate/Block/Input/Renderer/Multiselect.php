@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class Webguys_Easytemplate_Block_Input_Renderer_Multiselect
+ *
+ */
 class Webguys_Easytemplate_Block_Input_Renderer_Multiselect extends Webguys_Easytemplate_Block_Input_Renderer_Select
 {
     public function __construct()
@@ -12,10 +16,5 @@ class Webguys_Easytemplate_Block_Input_Renderer_Multiselect extends Webguys_Easy
     {
         $values = explode(',', $this->getValue());
         return in_array($value, $values);
-    }
-
-    public function prepareForFrontend($value)
-    {
-        return explode(',', $value);
     }
 }
