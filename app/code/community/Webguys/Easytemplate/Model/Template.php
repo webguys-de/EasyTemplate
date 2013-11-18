@@ -56,8 +56,6 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
             $this->setValidTo( date('Y-m-d', $time) );
         }
 
-        // TODO: Other Fields
-
         $this->_field_data = $data['fields'];
     }
 
@@ -86,11 +84,16 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
 
             foreach ($model->getFields() as $field) {
 
-                $backendModel = $field->getBackendModel();
-                $backendModel->importData( $this->_field_data[ $field->getCode() ] );
-                $backendModel->setElementId( $this->getId() ); // TODO: Change naming to template!!
-                $backendModel->save();
+                $inputValidator = $field->getInputRendererValidator();
+                $value = $this->_field_data[$field->getCode()];
 
+                $backendModel = $field->getBackendModel();
+                $backendModel->importData($value);
+                $backendModel->setElementId( $this->getId() ); // TODO: Change naming to template!!
+
+                $inputValidator->beforeFieldSave($backendModel, $field, $value);
+                $backendModel->save();
+                $inputValidator->afterFieldSave($backendModel, $field, $value);
             }
 
         }
