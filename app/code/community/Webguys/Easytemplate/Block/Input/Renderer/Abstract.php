@@ -3,6 +3,8 @@
 /**
  * Class Webguys_Easytemplate_Block_Input_Renderer_Abstract
  *
+ * @method getTemplateModel
+ * @method setTemplateModel
  * @method getCode
  * @method setCode
  * @method getLabel
@@ -19,6 +21,9 @@
 class Webguys_Easytemplate_Block_Input_Renderer_Abstract extends Mage_Core_Block_Template
 {
 
+    /**
+     * @var Webguys_Easytemplate_Model_Input_Parser_Field
+     */
     protected $_parent_parser_field = null;
 
     protected $_value = null;
@@ -26,6 +31,11 @@ class Webguys_Easytemplate_Block_Input_Renderer_Abstract extends Mage_Core_Block
     public function setParentParserField($field)
     {
         $this->_parent_parser_field = $field;
+    }
+
+    public function getParentParserField()
+    {
+        return $this->_parent_parser_field;
     }
 
     public function setValue( $value )

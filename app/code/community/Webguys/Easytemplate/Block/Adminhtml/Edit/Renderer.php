@@ -38,6 +38,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
 
                 if( $this->getTemplateModel()->getId() )
                 {
+                    $inputRenderer->setTemplateModel($this->getTemplateModel());
                     $inputRenderer->setValue( $this->getTemplateModel()->getFieldData( $field->getCode() ) );
                 }
 

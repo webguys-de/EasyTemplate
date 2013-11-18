@@ -2,6 +2,11 @@
 
 class Webguys_Easytemplate_Helper_File extends Mage_Core_Helper_Abstract
 {
+    public function getDestinationUrl($groupId, $templateId)
+    {
+        return Mage::getBaseUrl('media') . 'easytemplate' . DS . $groupId . DS . $templateId;
+    }
+
     public function getDestinationFilePath($groupId, $templateId)
     {
         return Mage::getBaseDir('media') . DS . 'easytemplate' . DS . $groupId . DS . $templateId;
