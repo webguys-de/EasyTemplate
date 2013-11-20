@@ -32,7 +32,7 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_Link extends Webguys_E
 
         if( is_numeric( $data ) )
         {
-            return Mage::Helper('cms/page')->getPageUrl( $data )
+            return Mage::Helper('cms/page')->getPageUrl( $data );
         }
 
         return $data;
