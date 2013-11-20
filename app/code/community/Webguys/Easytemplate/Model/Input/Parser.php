@@ -27,6 +27,43 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
         return $xmlConfig;
     }
 
+    public function getCategories()
+    {
+        $result = array();
+
+        foreach ($this->getTemplates() as $template) {
+            $result[] = $template->getCategory();
+        }
+
+        $result = array_unique($result);
+        sort($result);
+
+        return $result;
+    }
+
+    /**
+     * @param $category Category name
+     *
+     * @return Webguys_Easytemplate_Model_Input_Parser_Template[]
+     */
+    public function getTemplatesOfCategory($category)
+    {
+        $result = array();
+
+        foreach ($this->getTemplates() as $template) {
+            if ($template->getCategory() == $category) {
+                $result[] = $template;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Returns an array of all templates which are defined in easytemplate.xml files
+     *
+     * @return Webguys_Easytemplate_Model_Input_Parser_Template[]
+     */
     public function getTemplates()
     {
         if (is_null($this->_templates)) {
@@ -38,12 +75,14 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
                 $templatesPath = $path . '/' . $category->getName() . '/templates';
                 foreach ($config->getNode($templatesPath)->children() as $template) {
 
-                    /** @var $parser Webguys_Easytemplate_Model_Input_Parser_Template */
-                    $parser = Mage::getModel('easytemplate/input_parser_template');
-                    $parser->setConfig( $template );
-                    $parser->setCategory( $category->getName() );
+                    /** @var $templateParser Webguys_Easytemplate_Model_Input_Parser_Template */
+                    $templateParser = Mage::getModel('easytemplate/input_parser_template');
+                    $templateParser->setConfig( $template );
+                    $templateParser->setCategory( $category->getName() );
 
-                    $result[] = $parser;
+                    if ($templateParser->isEnabled()) {
+                        $result[] = $templateParser;
+                    }
                 }
 
             }
@@ -53,7 +92,7 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
         return $this->_templates;
     }
 
-    public function getTemplate( $code)
+    public function getTemplate( $code )
     {
         $templates = $this->getTemplates();
 
