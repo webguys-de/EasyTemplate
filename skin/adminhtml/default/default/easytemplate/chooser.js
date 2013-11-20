@@ -28,12 +28,21 @@ EasytemplateChooser.prototype = {
             url = this.cms_chooser_url;
         }
 
-        this.chooser.chooserUrl = url;
-        this.chooser.config.buttons = {"open": this.title ,"close": this.button_close };
+        if( url )
+        {
+
+            this.chooser.chooserUrl = url;
+            this.chooser.config.buttons = {"open": this.title ,"close": this.button_close };
 
 
-        this.chooser.dialogContent = null;
-        this.chooser.choose();
+            this.chooser.dialogContent = null;
+            this.chooser.choose();
+
+        } else {
+
+            alert("Das ist leider nicht möglich"); // TODO: Translate?
+
+        }
 
     }
 
