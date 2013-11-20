@@ -1,12 +1,11 @@
 <?php
 
 /**
- * Class Webguys_Easytemplate_Model_Input_Renderer_Validator_File
+ * Class Webguys_Easytemplate_Model_Input_Renderer_Validator_Link
  *
  */
 class Webguys_Easytemplate_Model_Input_Renderer_Validator_Link extends Webguys_Easytemplate_Model_Input_Renderer_Validator_Base
 {
-    protected $_deleteFile = false;
 
     public function prepareForFrontend($data)
     {
