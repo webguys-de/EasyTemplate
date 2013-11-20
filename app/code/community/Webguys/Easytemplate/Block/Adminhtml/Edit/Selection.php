@@ -11,36 +11,32 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Bloc
     const TEMPLATE_TYPES_PATH = 'easytemplate';
 
     public function getTemplates()
-       {
-           $categories = array();
+    {
+        $categories = array();
 
-           $helper = Mage::helper('easytemplate');
+        /** @var $helper Webguys_Easytemplate_Helper_Data */
+        $helper = Mage::helper('easytemplate');
 
-           /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
-           $configModel = Mage::getSingleton('easytemplate/input_parser');
-           $config = $configModel->getXmlConfig();
+        /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
+        $configModel = Mage::getSingleton('easytemplate/input_parser');
 
-           foreach ($config->getNode(self::TEMPLATE_TYPES_PATH)->children() as $category) {
-               $types = array();
-               $templatesPath = self::TEMPLATE_TYPES_PATH . '/' . $category->getName() . '/templates';
+        foreach ($configModel->getCategories() as $category) {
+            $types = array();
 
-               foreach ($config->getNode($templatesPath)->children() as $template) {
-                   $labelPath = self::TEMPLATE_TYPES_PATH . '/' . $category->getName() . '/templates/' . $template->getName() . '/label';
-                   $types[] = array(
-                       'label' => $helper->__((string) $config->getNode($labelPath)),
-                       'value' => $category->getName().'_'.$template->getName(),
-                       'image' => (string)$template->image
-                   );
-               }
+            foreach ($configModel->getTemplatesOfCategory($category) as $template) {
+                $types[] = array(
+                    'label' => $helper->__($template->getLabel()),
+                    'value' => $template->getCode(),
+                    'image' => $template->getImage()
+                );
+            }
 
-               $labelPath = self::TEMPLATE_TYPES_PATH . '/' . $category->getName() . '/label';
+            $categories[] = array(
+                'label' => $helper->__($category),
+                'items' => $types
+            );
+        }
 
-               $categories[] = array(
-                   'label' => $helper->__((string) $config->getNode($labelPath)),
-                   'items' => $types
-               );
-           }
-
-           return $categories;
-       }
+        return $categories;
+    }
 }

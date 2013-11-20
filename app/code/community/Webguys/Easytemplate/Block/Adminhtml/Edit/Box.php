@@ -22,7 +22,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box
     {
         $button = $this->getLayout()->createBlock('adminhtml/widget_button')
             ->setData(array(
-                'id' => 'atwixtweaks_button',
+                'id' => $id,
                 'label' => $this->helper('easytemplate')->__('Edit'),
                 'onclick' => '$(\'template_content_' . $id . '\').show();$(\'template_overview_' . $id . '\').hide();',
                 'class' => 'scalable back',
@@ -32,14 +32,14 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box
         return $button->toHtml();
     }
 
-    public function getCloseButton($id)
+    public function getCloseButton($id, $position)
     {
         $button = $this->getLayout()->createBlock('adminhtml/widget_button')
             ->setData(array(
-                'id' => 'atwixtweaks_button',
+                'id' => $id.'_'.$position,
                 'label' => $this->helper('easytemplate')->__('Close'),
                 'onclick' => '$(\'template_content_' . $id . '\').hide();$(\'template_overview_' . $id . '\').show();',
-                'class' => 'scalable back',
+                'class' => 'easytemplate scalable back f-right '.$position,
                 'title' => $this->helper('easytemplate')->__('Close')
             ));
         return $button->toHtml();

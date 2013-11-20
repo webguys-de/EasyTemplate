@@ -47,6 +47,8 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                             'value' => $frontendValue
                         ));
 
+                        // TODO: So kann man mit dem value im event noch nichts machen... :(
+
                         $childBlock->setTemplateVar($field->getCode(), $frontendValue);
                     }
 

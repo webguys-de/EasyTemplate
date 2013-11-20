@@ -11,6 +11,12 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
  extends Webguys_Easytemplate_Model_Input_Parser_Abstract
 {
 
+    public function isEnabled()
+    {
+        $enabled = $this->getData('enabled');
+        return empty($enabled) ? true : (bool)$enabled;
+    }
+
     public function getLabel()
     {
         return $this->getData('label');

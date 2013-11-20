@@ -1,60 +1,59 @@
 <?php /** @var $this Webguys_Easytemplate_Block_Adminhtml_Edit_Box */ ?>
 
-<div class="template-box" id="template_{{id}}">
+<div class="template-box easytemplate" id="template_{{id}}">
 
-    <div id="template_overview_{{id}}" class="f-left" style="width:100%">
+    <div id="template_overview_{{id}}" class="template_overview f-left">
 
         <div class="information f-left">
-            <div class="f-left" style="margin-right: 8px;">
-                <span><strong><?php echo Mage::helper('easytemplate')->__('Valid From') ?>:</strong></span><br/>
-                <span><strong><?php echo Mage::helper('easytemplate')->__('Valid To') ?>:</strong></span>
+            <div class="f-left">
+                <span class="label"><?php echo Mage::helper('easytemplate')->__('Valid From') ?>:</span><br/>
+                <span class="label"><?php echo Mage::helper('easytemplate')->__('Valid To') ?>:</span>
             </div>
             <div class="f-left">
                 <span class="valid-from">{{valid_from}}</span><br/>
                 <span class="valid-to">{{valid_to}}</span>
             </div>
-            <br style="clear:both"/>
+            <br class="clear" />
         </div>
 
-        <div class="information f-left" style="border-left: 1px solid #CDDDDD; padding: 0 0 0 10px;margin:0 0 0 10px;">
-            <div class="f-left" style="margin-right: 8px;">
-                <span><strong><?php echo Mage::helper('easytemplate')->__('Template Type') ?>:</strong></span><br/>
-                <span><strong><?php echo Mage::helper('easytemplate')->__('Name') ?>:</strong></span>
+        <div class="information f-left">
+            <div class="f-left">
+                <span class="label"><?php echo Mage::helper('easytemplate')->__('Template Type') ?>:</span><br/>
+                <span class="label"><?php echo Mage::helper('easytemplate')->__('Name') ?>:</span>
             </div>
             <div class="f-left">
                 <span>{{code}}</span><br/>
                 <span>{{name}}</span>
-                <input type="hidden" name="template[{{id}}][code]" value="{{code}}"/></td>
-                <input type="hidden" name="template[{{id}}][active]" value="1"/></td>
+                <input type="hidden" name="template[{{id}}][code]" value="{{code}}"/>
             </div>
             <br style="clear:both"/>
         </div>
-        <div class="information f-right a-right">
+        <div class="information last f-right a-right">
             <!-- <?php echo $this->jsQuoteEscape($this->getDeleteButtonHtml()) ?><br/> -->
             <?php echo $this->getOpenButton('{{id}}'); ?>
         </div>
-        <br style="clear:both"/>
+        <br class="clear"/>
     </div>
-    <br style="clear:both"/>
+    <br class="clear"/>
 
     <div id="template_content_{{id}}" style="display:none">
-        <input type="hidden" id="template_{{id}}_is_delete"
-               name="template[{{id}}][is_delete]" value=""/>
-        <input type="hidden" id="template_{{id}}_id"
-               name="template[{{id}}][id]" value="{{id}}"/>
-        <input type="hidden" id="template_{{id}}_sort_order"
-               name="template[{{id}}][sort_order]" value="{{position}}"/>
-        <div style="margin-top:-10px;padding:5px 20px;margin-bottom:10px;border:1px solid #6F8992;background:#6F8992;color:white">
-            <span class=""><strong><?php echo Mage::helper('easytemplate')->__('Valid From') ?>:</strong></span>
-            <span class=""><input name="template[{{id}}][valid_from]" id="_valid_from_{{id}}" value="{{valid_from}}" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_from_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
+        <?php echo $this->getCloseButton('{{id}}', 'top'); ?>
+        <input type="hidden" id="template_{{id}}_is_delete" name="template[{{id}}][is_delete]" value=""/>
+        <input type="hidden" id="template_{{id}}_id" name="template[{{id}}][id]" value="{{id}}"/>
+        <input type="hidden" id="template_{{id}}_sort_order" name="template[{{id}}][sort_order]" value="{{position}}"/>
+        <div class="template_content_status">
+            <span class="label"><?php echo Mage::helper('easytemplate')->__('Active'); ?>:</span>
+            <span class="desc"><input type="checkbox" name="template[{{id}}][active]" id="template_{{id}}_active" value="1" /></span>
             <span class="separator"></span>
-            <span><strong><?php echo Mage::helper('easytemplate')->__('Valid To') ?>:</strong></span>
-            <span><input id="_valid_to_{{id}}" name="template[{{id}}][valid_to]" value="{{valid_to}}" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_to_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
+            <span class="label"><?php echo Mage::helper('easytemplate')->__('Valid From') ?>:</span>
+            <span class="desc"><input name="template[{{id}}][valid_from]" id="_valid_from_{{id}}" value="{{valid_from}}" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_from_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
             <span class="separator"></span>
-            <span><strong><?php echo Mage::helper('easytemplate')->__('Name') ?></strong></span>
-            <span><input type="text" class="required-entry input-text" id="template_{{id}}_name" name="template[{{id}}][name]" value="{{name}}" style="width:250px"></span>
+            <span class="label"><?php echo Mage::helper('easytemplate')->__('Valid To') ?>:</span>
+            <span clasS="desc"><input id="_valid_to_{{id}}" name="template[{{id}}][valid_to]" value="{{valid_to}}" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_to_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
+            <span class="separator"></span>
+            <span class="label"><?php echo Mage::helper('easytemplate')->__('Name') ?></span>
+            <span class="desc"><input type="text" class="required-entry input-text" id="template_{{id}}_name" name="template[{{id}}][name]" value="{{name}}" style="width:250px"></span>
         </div>
-
         <script type="text/javascript">
             //<![CDATA[
             Calendar.setup({
@@ -71,16 +70,15 @@
                 align: 'Bl',
                 singleClick: true
             });
+
+            if( '{{active}}' == 1){
+                $('template_{{id}}_active').setAttribute('checked', true);
+            }
             //]]>
         </script>
         <?php echo $this->getChildHtml('input'); ?>
         <?php echo $this->jsQuoteEscape($this->getDeleteButtonHtml()) ?>
-        <button style="margin-top:-2px"
-                onclick="$('template_content_{{id}}').hide();$('template_overview_{{id}}').show();"
-                class="scalable back f-right" type="button"
-                title="<?php echo Mage::helper('easytemplate')->__('Schließen'); ?>"
-                id="id_30a39a6323d65c516cd7e4fcaf4b683f">
-            <span><span><span><?php echo Mage::helper('easytemplate')->__('Schließen'); ?></span></span></span></button>
+        <?php echo $this->getCloseButton('{{id}}', 'bottom'); ?>
         <br/>
     </div>
 </div>

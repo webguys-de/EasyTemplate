@@ -5,6 +5,7 @@
             <label>Simple Templates</label>
             <templates>
                 <h1_text template="easytemplate/template/h1_text.phtml" type="easytemplate/template" translate="label,comment">
+                    <enabled>1</enabled>
                     <label>Heading + Text</label>
                     <image>images/easytemplate/h1_text.png</image>
                     <comment>A simple heading with some additional text</comment>
@@ -64,6 +65,7 @@
                 </h1_text>
 
                 <paragraph template="easytemplate/template/paragraph.phtml" type="easytemplate/template" translate="label,comment">
+                    <enabled>1</enabled>
                     <label>Paragraph</label>
                     <image>images/easytemplate/paragraph.png</image>
                     <comment>A simple paragraph for plain text</comment>
@@ -118,6 +120,7 @@
             </templates>
         </simple>
         <complex translate="label">
+            <enabled>1</enabled>
             <label>Complex Templates</label>
             <templates>
                 <imagegallery template="easytemplate/template/imagegallery.phtml" type="easytemplate/template" translate="label,comment">

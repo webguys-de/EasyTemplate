@@ -57,3 +57,43 @@
     margin:0 5px;
     cursor: pointer;
 }
+.template_overview {
+    width:100%
+}
+.easytemplate .clear{
+    clear:both;
+}
+.template_content_status{
+    margin-top:-10px;
+    padding:5px 20px;
+    margin-bottom:10px;
+    border:1px solid #6F8992;
+    background:#6F8992;
+    color:white;
+}
+.easytemplate .information{
+    padding: 0 10px 0 0 ;
+    margin:0 10px 0 0;
+}
+.easytemplate .information.last{
+    padding: 0;
+    margin:0;
+}
+.easytemplate .information div{
+    margin-right: 8px;
+}
+.easytemplate span.separator {
+    padding: 0 10px;
+}
+.easytemplate span.label {
+    font-weight: bold;
+}
+.easytemplate span.desc {
+    font-weight: normal;
+}
+.easytemplate button.easytemplate.top{
+    margin:5px 5px 0 0;
+}
+.easytemplate button.easytemplate.bottom{
+    margin-top:-2px
+}
