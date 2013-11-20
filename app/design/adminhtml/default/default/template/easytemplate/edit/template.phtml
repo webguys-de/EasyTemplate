@@ -105,7 +105,10 @@
 
                     this.secondTemplate = new Template(template, this.templateSyntax);
 
-                    Element.insert(this.div, {'after':this.secondTemplate.evaluate(data)});
+                    var content = this.secondTemplate.evaluate(data);
+                    Element.insert(this.div, {'after':content});
+
+                    content.evalScripts();
 
                 }
                 $('page_template_selector').hide();

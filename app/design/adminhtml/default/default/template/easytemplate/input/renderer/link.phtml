@@ -1,4 +1,4 @@
-<?php /** @var $this Webguys_Easytemplate_Block_Input_Renderer_Text */ ?>
+<?php /** @var $this Webguys_Easytemplate_Block_Input_Renderer_Link */ ?>
 
 <fieldset class="config">
     <table cellspacing="0" class="form-list">
@@ -7,13 +7,13 @@
         <colgroup class="comment"></colgroup>
         <tbody>
 
-            <script>
-                var chooser_template_field_{{id}} = new WysiwygWidget.chooser(
+            <script type="text/javascript">
+                chooser_template_field_{{id}} = new WysiwygWidget.chooser(
                     'template_field_{{id}}',
                     null,
                     {}
                 );
-                var easytemplatechooser_{{id}} = new EasytemplateChooser( chooser_template_field_{{id}} , <?php echo json_encode( Mage::helper('easytemplate/chooser')->getInitChooserArray('template_field_{{id}}' ) ) ?> );
+                easytemplatechooser_{{id}} = new EasytemplateChooser( chooser_template_field_{{id}} , <?php echo json_encode( Mage::helper('easytemplate/chooser')->getInitChooserArray('template_field_{{id}}' ) ) ?> );
             </script>
 
             <tr class="template_field_text_<?php echo $this->getCode() ?>">
@@ -22,18 +22,30 @@
                 </td>
                 <td class="value">
 
-                    <span id="template_field_{{id}}label"></span>
+                    <div id="template_field_{{id}}label">
+                        <?php echo $this->getName(); ?>
+                    </div>
 
-                    <select id="template_field_{{id}}typeselect">
+                    <select id="template_field_{{id}}typeselect" onchange="$('template_field_{{id}}button').show(); if( this.value == 'custom' || this.value == '' ) $('template_field_{{id}}button').hide(); ">
 
-                        <option value="product">Product</option>
-                        <option value="cms">CMS</option>
-                        <option value="category">Kategorie</option>
+                        <option value="custom">
+                            <?php echo $this->__('Custom')?>
+                        </option>
+
+                        <option value="product" <?php echo ( $this->getEntityCode() == 'product' ? 'selected="selected"':'' ) ?> >
+                            <?php echo $this->__('Product')?>
+                        </option>
+                        <option value="category" <?php echo ( $this->getEntityCode() == 'category' ? 'selected="selected"':'' ) ?>>
+                            <?php echo $this->__('Category')?>
+                        </option>
+                        <option value="cms" <?php echo ( $this->getEntityCode() == 'cms' ? 'selected="selected"':'' ) ?>>
+                            <?php echo $this->__('Pages')?>
+                        </option>
 
                     </select>
 
                     <input id="template_field_{{id}}value" name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->getValue() ?>" class="input-text<?php if($this->getRequired()) : ?> required-entry<?php endif; ?>" type="text">
-                    <button onclick="easytemplatechooser_{{id}}.open( $('template_field_{{id}}typeselect').value );" class="scalable" type="button">
+                    <button id="template_field_{{id}}button" onclick="easytemplatechooser_{{id}}.open( $('template_field_{{id}}typeselect').value );" class="scalable" type="button">
                         <span><span><span><?php echo $this->__('Please Select') ?></span></span></span>
                     </button>
                 </td>
