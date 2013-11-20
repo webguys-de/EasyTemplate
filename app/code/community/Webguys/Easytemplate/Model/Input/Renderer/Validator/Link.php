@@ -35,7 +35,13 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_Link extends Webguys_E
             return Mage::Helper('cms/page')->getPageUrl( $data );
         }
 
-        return $data;
+        if( substr($data, 0, 4 ) == 'http' || substr($data, 0, 1 ) == '.' || substr($data, 0, 1 ) == '/' )
+        {
+            // do not touch http or relative links
+            return $data;
+        }
+
+        return Mage::getUrl( $data );
     }
 
 

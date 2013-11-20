@@ -28,6 +28,10 @@
 
                     <select id="template_field_{{id}}typeselect" onchange="$('template_field_{{id}}button').show(); if( this.value == 'custom' || this.value == '' ) $('template_field_{{id}}button').hide(); ">
 
+                        <option value="custom">
+                            <?php echo $this->__('Custom')?>
+                        </option>
+
                         <option value="product" <?php echo ( $this->getEntityCode() == 'product' ? 'selected="selected"':'' ) ?> >
                             <?php echo $this->__('Product')?>
                         </option>
@@ -36,10 +40,6 @@
                         </option>
                         <option value="cms" <?php echo ( $this->getEntityCode() == 'cms' ? 'selected="selected"':'' ) ?>>
                             <?php echo $this->__('Pages')?>
-                        </option>
-
-                        <option value="custom">
-                            <?php echo $this->__('Custom')?>
                         </option>
 
                     </select>
