@@ -8,12 +8,12 @@
         <tbody>
 
             <script type="text/javascript">
-                var chooser_template_field_{{id}} = new WysiwygWidget.chooser(
+                chooser_template_field_{{id}} = new WysiwygWidget.chooser(
                     'template_field_{{id}}',
                     null,
                     {}
                 );
-                var easytemplatechooser_{{id}} = new EasytemplateChooser( chooser_template_field_{{id}} , <?php echo json_encode( Mage::helper('easytemplate/chooser')->getInitChooserArray('template_field_{{id}}' ) ) ?> );
+                easytemplatechooser_{{id}} = new EasytemplateChooser( chooser_template_field_{{id}} , <?php echo json_encode( Mage::helper('easytemplate/chooser')->getInitChooserArray('template_field_{{id}}' ) ) ?> );
             </script>
 
             <tr class="template_field_text_<?php echo $this->getCode() ?>">
