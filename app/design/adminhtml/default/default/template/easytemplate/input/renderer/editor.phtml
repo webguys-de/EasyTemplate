@@ -1,0 +1,26 @@
+<?php /** @var $this Webguys_Easytemplate_Block_Input_Renderer_Editor */ ?>
+
+<fieldset class="config">
+    <table cellspacing="0" class="form-list">
+        <colgroup class="label"></colgroup>
+        <colgroup class="value"></colgroup>
+        <colgroup class="comment"></colgroup>
+        <tbody>
+        <tr class="template_field_editor_<?php echo $this->getCode() ?>">
+            <td class="label">
+                <label for="template_field_{{id}}_<?php echo $this->getCode() ?>"><?php echo $this->__($this->getLabel()) ?><?php if($this->getRequired()) : ?> <span class="required">*</span><?php endif; ?></label>
+            </td>
+            <td class="value" colspan="2">
+                <?php echo $this->getEditor()->getElementHtml(); ?>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</fieldset>
+<script type="text/javascript">
+    // <![CDATA[
+    if ('{{id}}'.indexOf('new') > -1) {
+        tinyMCE.execCommand('mceAddControl', false, '<?php echo $this->getEditor()->getHtmlId(); ?>');
+    }
+    //]]>
+</script>
