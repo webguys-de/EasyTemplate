@@ -7,7 +7,7 @@
         <colgroup class="comment"></colgroup>
         <tbody>
 
-            <script>
+            <script type="text/javascript">
                 var chooser_template_field_{{id}} = new WysiwygWidget.chooser(
                     'template_field_{{id}}',
                     null,
@@ -26,9 +26,15 @@
 
                     <select id="template_field_{{id}}typeselect">
 
-                        <option value="product">Product</option>
-                        <option value="cms">CMS</option>
-                        <option value="category">Kategorie</option>
+                        <option value="product">
+                            <?php echo $this->__('Product')?>
+                        </option>
+                        <option value="cms">
+                            <?php echo $this->__('Pages')?>
+                        </option>
+                        <option value="category">
+                            <?php echo $this->__('Category')?>
+                        </option>
 
                     </select>
 
