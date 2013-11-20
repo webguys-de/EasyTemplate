@@ -4,110 +4,188 @@
         <simple translate="label">
             <label>Simple Templates</label>
             <templates>
-                <h1_text template="easytemplate/template/h1_text.phtml" type="easytemplate/template" translate="label,comment">
+                <headline_text template="easytemplate/template/headline_text.phtml" type="easytemplate/template" translate="label,comment">
                     <enabled>1</enabled>
-                    <label>Heading + Text</label>
-                    <image>images/easytemplate/h1_text.png</image>
-                    <comment>A simple heading with some additional text</comment>
+                    <label>Headline + Text</label>
+                    <image>images/easytemplate/headline_text.png</image>
+                    <comment>Headline, subheadline and some additional text</comment>
                     <fields>
                         <h1 translate="label,comment">
-                            <label>Heading</label>
-                            <comment>The heading of the template</comment>
+                            <label>Headline</label>
+                            <comment>The headline of the template</comment>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_text</input_renderer>
-                            <sort_order>1</sort_order>
-                            <default_value>Example Title</default_value>
-                            <required>1</required>cd
-                        </h1>
-
-                        <text translate="label,comment">
-                            <label>Text</label>
-                            <comment>Some text under the heading</comment>
-                            <backend_model>easytemplate/template_data_text</backend_model>
-                            <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
-                            <sort_order>2</sort_order>
-                            <default_value>Hallo EasyTemplate Textarea</default_value>
-                            <required>1</required>
-                        </text>
-
-                        <headimg translate="label,comment">
-                            <label>Image</label>
-                            <comment>An example file</comment>
-                            <backend_model>easytemplate/template_data_varchar</backend_model>
-                            <input_renderer>easytemplate/input_renderer_file</input_renderer>
-                            <sort_order>3</sort_order>
+                            <sort_order>10</sort_order>
                             <default_value></default_value>
                             <required>0</required>
-                        </headimg>
-
-                        <showheadimg translate="label,comment">
-                            <label>Show image?</label>
-                            <comment>Defines if the head img will be shown</comment>
-                            <backend_model>easytemplate/template_data_int</backend_model>
-                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
-
-                            <input_renderer_source>easytemplate/input_renderer_source_yesno</input_renderer_source>
-
-                            <sort_order>4</sort_order>
-                            <default_value>1</default_value>
-                            <required>1</required>
-                        </showheadimg>
-                    </fields>
-                </h1_text>
-
-                <paragraph template="easytemplate/template/paragraph.phtml" type="easytemplate/template" translate="label,comment">
-                    <enabled>1</enabled>
-                    <label>Paragraph</label>
-                    <image>images/easytemplate/paragraph.png</image>
-                    <comment>A simple paragraph for plain text</comment>
-                    <fields>
+                        </h1>
+                        <h2 translate="label,comment">
+                            <label>Subheadline</label>
+                            <comment>Subheadline under the heading</comment>
+                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
+                            <sort_order>20</sort_order>
+                            <default_value></default_value>
+                            <required>0</required>
+                        </h2>
                         <text translate="label,comment">
                             <label>Text</label>
-                            <comment>Some text</comment>
+                            <comment>Text</comment>
+                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
+                            <sort_order>30</sort_order>
+                            <default_value>Hallo EasyTemplate Paragraph Textarea</default_value>
+                            <required>0</required>
+                            <wysiwyg>1</wysiwyg>
+                        </text>
+                    </fields>
+                </headline_text>
+
+                <google_maps template="easytemplate/template/google_maps.phtml" type="easytemplate/template" translate="label,comment">
+                    <enabled>1</enabled>
+                    <label>Google Maps</label>
+                    <image>images/easytemplate/google_maps.png</image>
+                    <comment>Displays a point on the landscape</comment>
+                    <fields>
+                        <map_url translate="label,comment">
+                            <label>Map Url</label>
+                            <comment>Simply paste the map url</comment>
+                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                            <sort_order>10</sort_order>
+                            <default_value></default_value>
+                            <required>1</required>
+                        </map_url>
+                        <width translate="label,comment">
+                            <label>Width</label>
+                            <comment>Width of the map </comment>
+                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                            <sort_order>20</sort_order>
+                            <default_value>425</default_value>
+                            <required>1</required>
+                        </width>
+                        <height translate="label,comment">
+                            <label>Height</label>
+                            <comment>Height of the map </comment>
+                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                            <sort_order>30</sort_order>
+                            <default_value>350</default_value>
+                            <required>1</required>
+                        </height>
+                        <show_link translate="label,comment">
+                            <label>Show link</label>
+                            <comment>How to align the image</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
+                            <values>
+                                <false>No</false>
+                                <true>Yes</true>
+                            </values>
+                            <sort_order>40</sort_order>
+                            <default_value>true</default_value>
+                            <required>1</required>
+                        </show_link>
+                    </fields>
+                </google_maps>
+
+                <youtube template="easytemplate/template/youtube.phtml" type="easytemplate/template" translate="label,comment">
+                    <enabled>1</enabled>
+                    <label>Youtube</label>
+                    <image>images/easytemplate/youtube.png</image>
+                    <comment>Displays a youtube video</comment>
+                    <fields>
+                        <video translate="label,comment">
+                            <label>Video</label>
+                            <comment>Simply paste the Video-ID</comment>
+                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                            <sort_order>10</sort_order>
+                            <default_value></default_value>
+                            <required>0</required>
+                        </video>
+                    </fields>
+                </youtube>
+
+                <text_2column template="easytemplate/template/text_2column.phtml" type="easytemplate/template" translate="label,comment">
+                    <enabled>1</enabled>
+                    <label>Text 2column</label>
+                    <image>images/easytemplate/text_2column.png</image>
+                    <comment>2 Columns text</comment>
+                    <fields>
+                        <text_left translate="label,comment">
+                            <label>Text</label>
+                            <comment>Text in the left column</comment>
                             <backend_model>easytemplate/template_data_text</backend_model>
                             <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
                             <sort_order>1</sort_order>
-                            <default_value>Hallo EasyTemplate Paragraph Textarea</default_value>
-                            <required>1</required>
-                        </text>
+                            <default_value></default_value>
+                            <required>0</required>
+                        </text_left>
+                        <text_right translate="label,comment">
+                            <label>Text</label>
+                            <comment>Text in the right column</comment>
+                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
+                            <sort_order>1</sort_order>
+                            <default_value></default_value>
+                            <required>0</required>
+                        </text_right>
+                    </fields>
+                </text_2column>
 
-                        <alignment translate="label,comment">
+                <text_picture template="easytemplate/template/text_picture.phtml" type="easytemplate/template" translate="label,comment">
+                    <enabled>1</enabled>
+                    <label>Text + picture</label>
+                    <image>images/easytemplate/text_picture.png</image>
+                    <comment>Display a point on the landscape</comment>
+                    <fields>
+                        <image translate="label,comment">
+                            <label>Image</label>
+                            <comment>An image</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_file</input_renderer>
+                            <sort_order>10</sort_order>
+                            <default_value></default_value>
+                            <required>0</required>
+                        </image>
+                        <image_alignment translate="label,comment">
                             <label>Alignment</label>
-                            <comment>How to align this paragraph</comment>
+                            <comment>How to align the image</comment>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
-
                             <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
                             <values>
                                 <left>Left</left>
-                                <right>Right</right>
                                 <center>Center</center>
+                                <right>Right</right>
                             </values>
-
-                            <sort_order>2</sort_order>
+                            <sort_order>20</sort_order>
                             <default_value>left</default_value>
                             <required>1</required>
-                        </alignment>
-
-                        <socialmediabuttons translate="label,comment">
-                            <label>Social media buttons</label>
-                            <comment>Which social media buttons</comment>
-                            <backend_model>easytemplate/template_data_varchar</backend_model>
-                            <input_renderer>easytemplate/input_renderer_multiselect</input_renderer>
-
-                            <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
-                            <values>
-                                <facebook>Facebook</facebook>
-                                <google>Google+</google>
-                                <twitter>Twitter</twitter>
-                            </values>
-
-                            <sort_order>3</sort_order>
-                            <default_value>facebook,twitter</default_value>
+                        </image_alignment>
+                        <caption translate="label,comment">
+                            <label>Caption</label>
+                            <comment>The caption of the image</comment>
+                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
+                            <sort_order>30</sort_order>
+                            <default_value></default_value>
                             <required>0</required>
-                        </socialmediabuttons>
+                        </caption>
+                        <text translate="label,comment">
+                            <label>Text</label>
+                            <comment>Text</comment>
+                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
+                            <sort_order>40</sort_order>
+                            <default_value></default_value>
+                            <required>0</required>
+                        </text>
                     </fields>
-                </paragraph>
+                </text_picture>
             </templates>
         </simple>
         <complex translate="label">

@@ -1,0 +1,13 @@
+<?php /** @var $this Webguys_Easytemplate_Block_Template */ ?>
+
+<p>
+    <?php if( $image = $this->getTemplateVar('image')) : ?>
+       <div class="image-wrapper  <?php echo $this->getTemplateVar('image_alignment'); ?>">
+            <img src="<?php echo $image; ?>" />
+            <?php if( $caption = $this->getTemplateVar('caption')) : ?>
+                <div class="caption"><?php echo $caption; ?></div>
+            <?php endif; ?>
+       </div>
+    <?php endif; ?>
+    <?php echo $this->getTemplateVar('text'); ?>
+</p>
