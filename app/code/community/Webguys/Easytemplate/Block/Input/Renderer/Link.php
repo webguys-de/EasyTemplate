@@ -6,6 +6,9 @@
  */
 class Webguys_Easytemplate_Block_Input_Renderer_Link extends Webguys_Easytemplate_Block_Input_Renderer_Abstract
 {
+
+    // TODO: Clean up code
+
     public function __construct()
     {
         parent::__construct();
