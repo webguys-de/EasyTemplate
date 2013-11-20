@@ -7,6 +7,44 @@ class Webguys_Easytemplate_Adminhtml_Easytemplate_Renderer_LinkController extend
     public function indexAction()
     {
 
+        $html =  '
+
+            <script>
+            //<![CDATA[
+            (function() {
+            var instantiateChooser = function() {
+            window.template_field_14_link = new WysiwygWidget.chooser(
+            "template_field_14_link",
+            "http://localhost.magento/test.webguys.de/htdocs/index.php/admin/catalog_product_widget/chooser/uniq_id/template_field_14_link/",
+            {"buttons":{"open":"Artikel ausw\u00e4hlen\u2026","close":"Schlie\u00dfen"}}
+            );
+            if ($("template_field_14_link")) {
+//            $("template_field_14_link").advaiceContainer = "template_field_14_link-container";
+            }
+
+            template_field_14_link.choose();
+
+            }
+            if (document.loaded) { //allow load over ajax
+            instantiateChooser();
+            } else {
+            document.observe("dom:loaded", instantiateChooser);
+            }
+            })();
+            //]]>
+
+            </script>
+
+
+        ';
+
+        $this->getResponse()->setBody($html);
+
+    }
+
+    public function tmpindexAction()
+    {
+
         $uniqId = $this->getRequest()->getParam('uniq_id');
         $massAction = $this->getRequest()->getParam('use_massaction', false);
         $productTypeId = $this->getRequest()->getParam('product_type_id', null);
