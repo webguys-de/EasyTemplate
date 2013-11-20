@@ -3,7 +3,8 @@
 
     <adminhtml_cms_page_edit>
         <reference name="head">
-            <action method="addCss"><name>webguys_easytemplate.css</name></action>
+            <action method="addCss"><name>easytemplate/easytemplate.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>easytemplate/chooser.js</name></action>
         </reference>
         <reference name="cms_page_edit_tabs">
             <block type="easytemplate/adminhtml_cms_page_edit_tab_templates" name="cms_page_edit_tab_templates">

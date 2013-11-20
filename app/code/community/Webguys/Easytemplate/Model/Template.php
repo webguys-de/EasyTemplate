@@ -91,6 +91,8 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
                 $value = $inputValidator->prepareForSave($this->_field_data[$field->getCode()]);
 
                 $backendModel = $field->getBackendModel();
+                $backendModel->loadByTemplate($this);
+
                 $backendModel->importData($value);
                 $backendModel->setElementId( $this->getId() ); // TODO: Change naming to template!!
 

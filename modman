@@ -3,6 +3,6 @@ app/etc/modules/* app/etc/modules/
 app/design/frontend/base/default/template/* app/design/frontend/base/default/template/
 app/design/adminhtml/default/default/layout/Webguys_Easytemplate.xml app/design/adminhtml/default/default/layout/Webguys_Easytemplate.xml
 app/design/adminhtml/default/default/template/easytemplate app/design/adminhtml/default/default/template/easytemplate
-skin/adminhtml/default/default/webguys_easytemplate.css skin/adminhtml/default/default/webguys_easytemplate.css
+skin/adminhtml/default/default/easytemplate skin/adminhtml/default/default/easytemplate
 skin/adminhtml/default/default/images/easytemplate skin/adminhtml/default/default/images/easytemplate
 app/locale/de_DE/Webguys_Easytemplate.csv app/locale/de_DE/Webguys_Easytemplate.csv

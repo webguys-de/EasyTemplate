@@ -43,6 +43,20 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
     }
 
     /**
+     * Orders field by sort_order attribute
+     *
+     * @param $a Webguys_Easytemplate_Model_Input_Parser_Field
+     * @param $b Webguys_Easytemplate_Model_Input_Parser_Field
+     */
+    private function orderFields($a, $b)
+    {
+        if ($a->getSortOrder() == $b->getSortOrder()) {
+            return 0;
+        }
+        return ($a->getSortOrder() < $b->getSortOrder()) ? -1 : 1;
+    }
+
+    /**
      * @return Webguys_Easytemplate_Model_Input_Parser_Field[]
      */
     public function getFields()
@@ -59,6 +73,9 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
 
             $result[] = $parser;
         }
+
+        // Sort fields by sort_order
+        usort($result, array($this, 'orderFields'));
 
         return $result;
     }

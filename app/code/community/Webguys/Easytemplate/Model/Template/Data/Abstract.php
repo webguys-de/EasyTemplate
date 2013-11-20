@@ -35,4 +35,25 @@ abstract class Webguys_Easytemplate_Model_Template_Data_Abstract
         return get_class( $this );
     }
 
+    /**
+     * Loads existing values for given template
+     *
+     * @param $template Webguys_Easytemplate_Model_Template
+     * @return $this
+     */
+    public function loadByTemplate($template) {
+        $fieldCode = $this->getParentParserField()->getCode();
+
+        /** @var $collection Webguys_Easytemplate_Model_Resource_Template_Data_Collection_Abstract */
+        $collection = $this->getCollection()
+            ->addFieldToFilter('element_id', $template->getId())
+            ->addFieldToFilter('field', $fieldCode)
+            ->load();
+
+        if ($collection->getSize() > 0) {
+            $this->load($collection->getFirstItem()->getId());
+        }
+
+        return $this;
+    }
 }

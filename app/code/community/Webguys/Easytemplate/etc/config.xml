@@ -116,6 +116,18 @@
         </translate>
     </adminhtml>
 
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <easytemplate before="Mage_Adminhtml">Webguys_Easytemplate_Adminhtml</easytemplate>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
     <phpunit>
         <suite>
             <modules>

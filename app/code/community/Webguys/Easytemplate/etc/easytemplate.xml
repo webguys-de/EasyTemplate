@@ -151,6 +151,15 @@
                             <default_value></default_value>
                             <required>0</required>
                         </image>
+                        <link translate="label,comment">
+                            <label>Link</label>
+                            <comment>A simple Link</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_link</input_renderer>
+                            <sort_order>1</sort_order>
+                            <required>1</required>
+                        </link>
+                        
                         <image_alignment translate="label,comment">
                             <label>Alignment</label>
                             <comment>How to align the image</comment>
