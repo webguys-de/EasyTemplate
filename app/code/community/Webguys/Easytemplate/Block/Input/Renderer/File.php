@@ -20,7 +20,7 @@ class Webguys_Easytemplate_Block_Input_Renderer_File extends Webguys_Easytemplat
     public function isImageFile()
     {
         $i = getimagesize($this->getFileUri(true));
-        return (in_array($i[2] , array(IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_BMP)));
+        return (in_array($i[2] , array(IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG)));
     }
 
     public function getFileUri($asPath = false)
