@@ -13,7 +13,8 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
 
     public function isEnabled()
     {
-        return (bool)$this->getData('enabled');
+        $enabled = $this->getData('enabled');
+        return empty($enabled) ? true : (bool)$enabled;
     }
 
     public function getLabel()
