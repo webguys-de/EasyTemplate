@@ -24,6 +24,23 @@ abstract class Webguys_Easytemplate_Model_Input_Renderer_Source_Abstract extends
         $this->_parentField = $parentField;
     }
 
+    private function translate(&$item)
+    {
+        /** @var $helper Webguys_Easytemplate_Helper_Data */
+        $helper = Mage::helper('easytemplate');
+        $item = $helper->__($item);
+    }
+
+    protected function translateOptions($options)
+    {
+        if (!is_array($options)) {
+            throw new Exception('Unable to translate options - no array defined');
+        }
+
+        array_walk($options, array($this, 'translate'));
+        return $options;
+    }
+
     abstract public function getOptionValues();
 
 }

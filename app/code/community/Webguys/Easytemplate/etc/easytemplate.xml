@@ -36,8 +36,21 @@
                             <input_renderer>easytemplate/input_renderer_file</input_renderer>
                             <sort_order>3</sort_order>
                             <default_value></default_value>
-                            <required>1</required>
+                            <required>0</required>
                         </headimg>
+
+                        <showheadimg translate="label,comment">
+                            <label>Show image?</label>
+                            <comment>Defines if the head img will be shown</comment>
+                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
+
+                            <input_renderer_source>easytemplate/input_renderer_source_yesno</input_renderer_source>
+
+                            <sort_order>4</sort_order>
+                            <default_value>1</default_value>
+                            <required>1</required>
+                        </showheadimg>
                     </fields>
                 </h1_text>
 
