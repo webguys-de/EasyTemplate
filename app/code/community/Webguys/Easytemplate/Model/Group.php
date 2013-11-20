@@ -65,9 +65,18 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
      */
     public function getTemplateCollection()
     {
+        /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
+        $configModel = Mage::getSingleton('easytemplate/input_parser');
+        $validTemplates = array();
+
+        foreach ($configModel->getTemplates() as $template) {
+            $validTemplates[] = $template->getCode();
+        }
+
         /** @var $collection Webguys_Easytemplate_Model_Resource_Template_Collection */
         $collection = Mage::getModel('easytemplate/template')->getCollection();
         $collection->addGroupFilter($this);
+        $collection->addFieldToFilter('code', array('in' => $validTemplates));
         $collection->getSelect()->order('main_table.position');
 
         foreach( $collection AS &$model )
