@@ -16,8 +16,17 @@
                             <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>1</sort_order>
                             <default_value>Example Title</default_value>
-                            <required>1</required>cd
+                            <required>1</required>
                         </h1>
+
+                        <link translate="label,comment">
+                            <label>Link</label>
+                            <comment>A simple Link</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_link</input_renderer>
+                            <sort_order>1</sort_order>
+                            <required>1</required>
+                        </link>
 
                         <text translate="label,comment">
                             <label>Text</label>
