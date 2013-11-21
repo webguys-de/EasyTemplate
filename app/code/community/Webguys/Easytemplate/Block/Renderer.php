@@ -28,6 +28,7 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                     /** @var $childBlock Webguys_Easytemplate_Block_Template */
                     $childBlock = $this->getLayout()->createBlock($model->getType());
                     $childBlock->setTemplate($model->getTemplate());
+                    $childBlock->setTemplateModel($template);
 
                     /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
                     foreach ($model->getFields() as $field) {

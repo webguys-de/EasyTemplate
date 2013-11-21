@@ -3,6 +3,8 @@
 /**
  * Class Webguys_Easytemplate_Block_Template
  *
+ * @method getTemplateModel
+ * @method setTemplateModel
  */
 class Webguys_Easytemplate_Block_Template extends Mage_Core_Block_Template
 {
@@ -34,5 +36,17 @@ class Webguys_Easytemplate_Block_Template extends Mage_Core_Block_Template
     public function getTemplateVarList()
     {
         return array_keys($this->_templateVars->getData());
+    }
+
+    /**
+     * Returns the code of the parent template model
+     *
+     * @return string
+     */
+    public function getTemplateCode()
+    {
+        /** @var $model Webguys_Easytemplate_Model_Template */
+        $model = $this->getTemplateModel();
+        return $model->getCode();
     }
 }
