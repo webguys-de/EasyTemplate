@@ -2,15 +2,19 @@
 
 <p>
     <?php if( $image = $this->getTemplateVar('image')) : ?>
-       <div class="image-wrapper  <?php echo $this->getTemplateVar('image_alignment'); ?>">
-            <img src="<?php echo $image; ?>" />
+       <div class="<?php echo $this->getTemplateCode() ?> et-image-wrapper  <?php echo $this->getTemplateVar('image_alignment'); ?>">
+
+            <?php if( $link = $this->getTemplateVar('link')) : ?>
+                <a href="<?php echo $link; ?>">
+            <?php endif; ?>
+                <img src="<?php echo $image; ?>" />
+            <?php if( $link = $this->getTemplateVar('link')) : ?>
+                </a>
+            <?php endif; ?>
             <?php if( $caption = $this->getTemplateVar('caption')) : ?>
                 <div class="caption"><?php echo $caption; ?></div>
             <?php endif; ?>
        </div>
     <?php endif; ?>
     <?php echo $this->getTemplateVar('text'); ?>
-
-<?php echo $this->getTemplateVar('link'); ?>
-
 </p>

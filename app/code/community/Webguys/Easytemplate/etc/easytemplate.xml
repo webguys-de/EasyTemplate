@@ -76,7 +76,7 @@
                         </height>
                         <show_link translate="label,comment">
                             <label>Show link</label>
-                            <comment>How to align the image</comment>
+                            <comment>Show link to google</comment>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
                             <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
@@ -97,15 +97,47 @@
                     <image>images/easytemplate/youtube.png</image>
                     <comment>Displays a youtube video</comment>
                     <fields>
-                        <video translate="label,comment">
-                            <label>Video</label>
+                        <video_id translate="label,comment">
+                            <label>Video-ID</label>
                             <comment>Simply paste the Video-ID</comment>
                             <backend_model>easytemplate/template_data_text</backend_model>
                             <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>10</sort_order>
                             <default_value></default_value>
                             <required>0</required>
-                        </video>
+                        </video_id>
+                        <width translate="label,comment">
+                            <label>Width</label>
+                            <comment>Width of the video</comment>
+                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                            <sort_order>20</sort_order>
+                            <default_value>560</default_value>
+                            <required>1</required>
+                        </width>
+                        <height translate="label,comment">
+                            <label>Height</label>
+                            <comment>Height of the video</comment>
+                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                            <sort_order>30</sort_order>
+                            <default_value>315</default_value>
+                            <required>1</required>
+                        </height>
+                        <allowfullscreen translate="label,comment">
+                            <label>Fullscreen</label>
+                            <comment>Allow fullscreen</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
+                            <values>
+                                <false>No</false>
+                                <true>Yes</true>
+                            </values>
+                            <sort_order>40</sort_order>
+                            <default_value>true</default_value>
+                            <required>1</required>
+                        </allowfullscreen>
                     </fields>
                 </youtube>
 

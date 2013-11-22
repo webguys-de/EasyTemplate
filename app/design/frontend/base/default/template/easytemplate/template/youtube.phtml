@@ -1,0 +1,11 @@
+<?php /** @var $this Webguys_Easytemplate_Block_Template */ ?>
+
+<?php if( $video_id = $this->getTemplateVar('video_id')) : ?>
+<div class="et <?php echo $this->getTemplateCode() ?>">
+    <iframe
+        width="<?php echo $this->getTemplateVar('width'); ?>"
+        height="<?php echo $this->getTemplateVar('height'); ?>"
+        src="http://www.youtube.com/embed/<?php echo $video_id; ?>?rel=0" frameborder="0" <?php echo $this->getTemplateVar('allowfullscreen'); ?>>
+    </iframe>
+</div>
+<?php endif; ?>

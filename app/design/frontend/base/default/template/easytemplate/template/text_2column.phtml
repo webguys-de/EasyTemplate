@@ -1,7 +1,7 @@
 <?php /** @var $this Webguys_Easytemplate_Block_Template */ ?>
 
-<div class="text_2column_wrapper">
+<div class="<?php echo $this->getTemplateCode() ?>">
     <div class="left-column"><?php echo $this->getTemplateVar('text_left'); ?></div>
     <div class="right-column"><?php echo $this->getTemplateVar('text_right'); ?></div>
 </div>
-<div class="clear"/>
+<br class="clear"/>
