@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Webguys_Easytemplate_Model_Input_Renderer_Source_Yesno
+ * Class Webguys_Easytemplate_Model_Input_Renderer_Source_Numbers
  *
  */
 class Webguys_Easytemplate_Model_Input_Renderer_Source_Numbers extends Webguys_Easytemplate_Model_Input_Renderer_Source_Abstract

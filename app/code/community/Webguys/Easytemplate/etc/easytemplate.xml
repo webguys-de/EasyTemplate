@@ -22,8 +22,8 @@
                         <h2 translate="label,comment">
                             <label>Subheadline</label>
                             <comment>Subheadline under the heading</comment>
-                            <backend_model>easytemplate/template_data_text</backend_model>
-                            <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>20</sort_order>
                             <default_value></default_value>
                             <required>0</required>
@@ -32,7 +32,7 @@
                             <label>Text</label>
                             <comment>Text</comment>
                             <backend_model>easytemplate/template_data_text</backend_model>
-                            <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
+                            <input_renderer>easytemplate/input_renderer_editor</input_renderer>
                             <sort_order>30</sort_order>
                             <default_value>Hallo EasyTemplate Paragraph Textarea</default_value>
                             <required>0</required>
@@ -50,7 +50,7 @@
                         <map_url translate="label,comment">
                             <label>Map Url</label>
                             <comment>Simply paste the map url</comment>
-                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>10</sort_order>
                             <default_value></default_value>
@@ -58,8 +58,8 @@
                         </map_url>
                         <width translate="label,comment">
                             <label>Width</label>
-                            <comment>Width of the map </comment>
-                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <comment>Width of the map</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>20</sort_order>
                             <default_value>425</default_value>
@@ -68,7 +68,7 @@
                         <height translate="label,comment">
                             <label>Height</label>
                             <comment>Height of the map </comment>
-                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>30</sort_order>
                             <default_value>350</default_value>
@@ -77,7 +77,7 @@
                         <show_link translate="label,comment">
                             <label>Show link</label>
                             <comment>Show link to google</comment>
-                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <backend_model>easytemplate/template_data_int</backend_model>
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
                             <input_renderer_source>easytemplate/input_renderer_source_yesno</input_renderer_source>
                             <sort_order>40</sort_order>
@@ -96,7 +96,7 @@
                         <video_id translate="label,comment">
                             <label>Video-ID</label>
                             <comment>Simply paste the Video-ID</comment>
-                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>10</sort_order>
                             <default_value></default_value>
@@ -105,7 +105,7 @@
                         <width translate="label,comment">
                             <label>Width</label>
                             <comment>Width of the video</comment>
-                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>20</sort_order>
                             <default_value>560</default_value>
@@ -114,7 +114,7 @@
                         <height translate="label,comment">
                             <label>Height</label>
                             <comment>Height of the video</comment>
-                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>30</sort_order>
                             <default_value>315</default_value>
@@ -123,7 +123,7 @@
                         <allowfullscreen translate="label,comment">
                             <label>Fullscreen</label>
                             <comment>Allow fullscreen</comment>
-                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <backend_model>easytemplate/template_data_int</backend_model>
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
                             <input_renderer_source>easytemplate/input_renderer_source_yesno</input_renderer_source>
                             <sort_order>40</sort_order>
@@ -143,7 +143,7 @@
                             <label>Text</label>
                             <comment>Text in the left column</comment>
                             <backend_model>easytemplate/template_data_text</backend_model>
-                            <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
+                            <input_renderer>easytemplate/input_renderer_editor</input_renderer>
                             <sort_order>1</sort_order>
                             <default_value></default_value>
                             <required>0</required>
@@ -152,7 +152,7 @@
                             <label>Text</label>
                             <comment>Text in the right column</comment>
                             <backend_model>easytemplate/template_data_text</backend_model>
-                            <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
+                            <input_renderer>easytemplate/input_renderer_editor</input_renderer>
                             <sort_order>1</sort_order>
                             <default_value></default_value>
                             <required>0</required>
@@ -169,7 +169,7 @@
                         <test translate="label,comment">
                             <label>Image</label>
                             <comment>An image</comment>
-                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <backend_model>easytemplate/template_data_int</backend_model>
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
                             <input_renderer_source>easytemplate/input_renderer_source_numbers</input_renderer_source>
                             <sort_order>5</sort_order>
@@ -212,8 +212,8 @@
                         <caption translate="label,comment">
                             <label>Caption</label>
                             <comment>The caption of the image</comment>
-                            <backend_model>easytemplate/template_data_text</backend_model>
-                            <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>30</sort_order>
                             <default_value></default_value>
                             <required>0</required>
@@ -238,7 +238,7 @@
                     <fields>
                         <amount translate="label,comment">
                             <label>Amount of lines</label>
-                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <backend_model>easytemplate/template_data_int</backend_model>
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
                             <input_renderer_source>easytemplate/input_renderer_source_numbers</input_renderer_source>
                             <sort_order>10</sort_order>
