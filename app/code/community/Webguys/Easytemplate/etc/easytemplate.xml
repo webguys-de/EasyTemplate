@@ -79,11 +79,7 @@
                             <comment>Show link to google</comment>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
-                            <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
-                            <values>
-                                <false>No</false>
-                                <true>Yes</true>
-                            </values>
+                            <input_renderer_source>easytemplate/input_renderer_source_yesno</input_renderer_source>
                             <sort_order>40</sort_order>
                             <default_value>true</default_value>
                             <required>1</required>
@@ -129,11 +125,7 @@
                             <comment>Allow fullscreen</comment>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
-                            <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
-                            <values>
-                                <false>No</false>
-                                <true>Yes</true>
-                            </values>
+                            <input_renderer_source>easytemplate/input_renderer_source_yesno</input_renderer_source>
                             <sort_order>40</sort_order>
                             <default_value>true</default_value>
                             <required>1</required>
@@ -174,6 +166,16 @@
                     <image>images/easytemplate/text_picture.png</image>
                     <comment>Display a point on the landscape</comment>
                     <fields>
+                        <test translate="label,comment">
+                            <label>Image</label>
+                            <comment>An image</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_numbers</input_renderer_source>
+                            <sort_order>5</sort_order>
+                            <default_value></default_value>
+                            <required>0</required>
+                        </test>
                         <image translate="label,comment">
                             <label>Image</label>
                             <comment>An image</comment>
@@ -227,6 +229,24 @@
                         </text>
                     </fields>
                 </text_picture>
+
+                <spacer template="easytemplate/template/spacer.phtml" type="easytemplate/template" translate="label,comment">
+                    <enabled>1</enabled>
+                    <label>Spacer</label>
+                    <image>images/easytemplate/spacer.png</image>
+                    <comment>Inserts empty line(s)</comment>
+                    <fields>
+                        <amount translate="label,comment">
+                            <label>Amount of lines</label>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_numbers</input_renderer_source>
+                            <sort_order>10</sort_order>
+                            <default_value>1</default_value>
+                            <required>1</required>
+                        </amount>
+                    </fields>
+                </spacer>
             </templates>
         </simple>
         <complex translate="label">

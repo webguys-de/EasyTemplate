@@ -1,9 +1,9 @@
 <?php /** @var $this Webguys_Easytemplate_Block_Template */ ?>
 
-<p>
+<div class="<?php echo $this->getTemplateCode() ?>">
     <?php if( $image = $this->getTemplateVar('image')) : ?>
-       <div class="<?php echo $this->getTemplateCode() ?> et-image-wrapper  <?php echo $this->getTemplateVar('image_alignment'); ?>">
-
+       <dl class="<?php echo $this->getTemplateVar('image_alignment'); ?>">
+            <dt>
             <?php if( $link = $this->getTemplateVar('link')) : ?>
                 <a href="<?php echo $link; ?>">
             <?php endif; ?>
@@ -11,10 +11,11 @@
             <?php if( $link = $this->getTemplateVar('link')) : ?>
                 </a>
             <?php endif; ?>
+            </dt>
             <?php if( $caption = $this->getTemplateVar('caption')) : ?>
-                <div class="caption"><?php echo $caption; ?></div>
+                <dd class="caption"><?php echo $caption; ?></dd>
             <?php endif; ?>
-       </div>
+       </dl>
     <?php endif; ?>
     <?php echo $this->getTemplateVar('text'); ?>
-</p>
+</div>
