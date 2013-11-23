@@ -46,7 +46,7 @@ abstract class Webguys_Easytemplate_Model_Template_Data_Abstract
 
         /** @var $collection Webguys_Easytemplate_Model_Resource_Template_Data_Collection_Abstract */
         $collection = $this->getCollection()
-            ->addFieldToFilter('element_id', $template->getId())
+            ->addFieldToFilter('template_id', $template->getId())
             ->addFieldToFilter('field', $fieldCode)
             ->load();
 
