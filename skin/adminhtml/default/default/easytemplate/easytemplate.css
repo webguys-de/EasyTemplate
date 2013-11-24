@@ -97,3 +97,14 @@
 .easytemplate button.easytemplate.bottom{
     margin-top:-2px
 }
+.easytemplate .config {
+    border: none;
+    margin-bottom: 0;
+    border-bottom: 1px solid #d6d6d6;
+}
+.easytemplate .value.wide {
+    width: 100% !important;
+}
+.easytemplate .buttons {
+    margin-top: 10px;
+}

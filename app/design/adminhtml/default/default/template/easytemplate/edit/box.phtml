@@ -77,8 +77,9 @@
             //]]>
         </script>
         <?php echo $this->getChildHtml('input'); ?>
-        <?php echo $this->jsQuoteEscape($this->getDeleteButtonHtml()) ?>
-        <?php echo $this->getCloseButton('{{id}}', 'bottom'); ?>
-        <br/>
+        <div class="buttons">
+            <?php echo $this->jsQuoteEscape($this->getDeleteButtonHtml()) ?>
+            <?php echo $this->getCloseButton('{{id}}', 'bottom'); ?>
+        </div>
     </div>
 </div>
