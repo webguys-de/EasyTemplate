@@ -118,7 +118,7 @@ EOF;
             $this->getLayout()->createBlock('adminhtml/widget_button')
                 ->setData(array(
                     'label' => Mage::helper('easytemplate')->__('Delete Template'),
-                    'class' => 'delete delete-page-template '
+                    'class' => 'delete delete-easy-template '
                 ))
         );
 

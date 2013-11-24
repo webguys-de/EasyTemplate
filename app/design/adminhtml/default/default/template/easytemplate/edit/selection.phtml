@@ -13,7 +13,7 @@
             <?php  foreach( $template['items'] AS $item) : ?>
                 <div class="template">
                     <div class="title"><?php echo $item['label'] ?> </div>
-                    <a onclick="pageTemplate.add('<?php echo $item['value']?>', '<?php echo $item['label']?>')">
+                    <a onclick="easyTemplate.add('<?php echo $item['value']?>', '<?php echo $item['label']?>')">
                         <img src="<?php echo $this->getSkinUrl($item['image']) ?>" />
                     </a>
                 </div>
