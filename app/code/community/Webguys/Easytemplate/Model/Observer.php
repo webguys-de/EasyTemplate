@@ -40,26 +40,12 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
         /** @var $page Mage_Cms_Model_Page */
         $page = $observer->getDataObject();
 
-        $request = Mage::app()->getRequest();
-        $templatedata = $request->getPost('template');
+        /** @var $group Webguys_Easytemplate_Model_Group */
+        $group = Mage::helper('easytemplate/page')->getGroupByPageId( $page->getId() );
 
-        if (is_array( $templatedata ) ) {
-            /** @var $group Webguys_Easytemplate_Model_Group */
-            $group = Mage::helper('easytemplate/page')->getGroupByPageId( $page->getId() );
-
-            // Merge file information of $_FILES to $_POST
-            if (isset($_FILES['template']['name']) && is_array($_FILES['template']['name'])) {
-                foreach($_FILES['template']['name'] as $templateId => $data) {
-                    if (is_array($data)) {
-                        foreach ($data['fields'] as $fieldName => $field) {
-                            $templatedata[$templateId]['fields'][$fieldName] = array('value' => $field);
-                        }
-                    }
-                }
-            }
-
-            $group->importData( $templatedata );
-        }
+        /** @var $helper Webguys_Easytemplate_Helper_Data */
+        $helper = Mage::helper('easytemplate');
+        $helper->saveTemplateInformation($group);
     }
 
     public function cms_block_save_commit_after($observer)
@@ -67,26 +53,12 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
         /** @var $block Mage_Cms_Model_Block */
         $block = $observer->getDataObject();
 
-        $request = Mage::app()->getRequest();
-        $templatedata = $request->getPost('template');
+        /** @var $group Webguys_Easytemplate_Model_Group */
+        $group = Mage::helper('easytemplate/block')->getGroupByBlockId( $block->getId() );
 
-        if (is_array( $templatedata ) ) {
-            /** @var $group Webguys_Easytemplate_Model_Group */
-            $group = Mage::helper('easytemplate/block')->getGroupByBlockId( $block->getId() );
-
-            // Merge file information of $_FILES to $_POST
-            if (isset($_FILES['template']['name']) && is_array($_FILES['template']['name'])) {
-                foreach($_FILES['template']['name'] as $templateId => $data) {
-                    if (is_array($data)) {
-                        foreach ($data['fields'] as $fieldName => $field) {
-                            $templatedata[$templateId]['fields'][$fieldName] = array('value' => $field);
-                        }
-                    }
-                }
-            }
-
-            $group->importData( $templatedata );
-        }
+        /** @var $helper Webguys_Easytemplate_Helper_Data */
+        $helper = Mage::helper('easytemplate');
+        $helper->saveTemplateInformation($group);
     }
 
     public function core_block_abstract_to_html_after($observer)
