@@ -93,13 +93,13 @@
             div : $('page_templates_container_top'),
             templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
             itemCount : 1,
-            add : function( code ) {
+            add : function( code, label ) {
 
                 data = {};
                 data.id  = 'new_' + this.itemCount;
                 data.code = code;
-                data.name = code; // TODO
-
+                data.name = label;
+                data.label = label;
 
                 if ( template = templates[code] ) {
 

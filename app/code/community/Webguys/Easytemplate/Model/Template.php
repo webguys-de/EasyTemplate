@@ -124,9 +124,13 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
 
     public function _afterLoad()
     {
+        /** @var $helper Webguys_Easytemplate_Helper_Data */
+        $helper = Mage::helper('easytemplate');
 
         /** @var $models Webguys_Easytemplate_Model_Template_Data_Abstract[] */
         $models = array();
+
+        $this->setLabel($helper->__($this->getConfig()->getLabel()));
 
         // collect all input-resources
         foreach( $this->getFields() AS $field )
