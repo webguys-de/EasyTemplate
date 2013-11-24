@@ -81,7 +81,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
                 $helper = Mage::helper('easytemplate/page');
 
                 if ( $groupId = $helper->getGroupByPageId( $pageId ) ) {
-                    /** @var $renderer Webguys_Easytemplate_Block_Frontend_Renderer */
+                    /** @var $renderer Webguys_Easytemplate_Block_Renderer */
                     $renderer = Mage::app()->getLayout()->createBlock('easytemplate/renderer');
                     $renderer->setGroupId( $groupId );
                     $html = $renderer->toHtml();
@@ -102,7 +102,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
                 $helper = Mage::helper('easytemplate/block');
 
                 if ( $groupId = $helper->getGroupByBlockId( $blockId ) ) {
-                    /** @var $renderer Webguys_Easytemplate_Block_Frontend_Renderer */
+                    /** @var $renderer Webguys_Easytemplate_Block_Renderer */
                     $renderer = Mage::app()->getLayout()->createBlock('easytemplate/renderer');
                     $renderer->setGroupId( $groupId );
                     $html = $renderer->toHtml();
