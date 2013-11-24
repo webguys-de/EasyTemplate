@@ -44,7 +44,7 @@
 
                     </select>
 
-                    <input id="template_field_{{id}}value" name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->getValue() ?>" class="input-text<?php if($this->getRequired()) : ?> required-entry<?php endif; ?>" type="text">
+                    <input id="template_field_{{id}}value" name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->escapeHtml( $this->getValue() ) ?>" class="input-text<?php if($this->getRequired()) : ?> required-entry<?php endif; ?>" type="text">
                     <button id="template_field_{{id}}button" onclick="easytemplatechooser_{{id}}.open( $('template_field_{{id}}typeselect').value );" class="scalable" type="button">
                         <span><span><span><?php echo $this->__('Please Select') ?></span></span></span>
                     </button>

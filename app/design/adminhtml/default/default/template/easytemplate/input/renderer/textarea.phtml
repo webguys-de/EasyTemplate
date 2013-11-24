@@ -14,7 +14,7 @@
                 <td class="value">
                     <textarea id="template_field_{{id}}_<?php echo $this->getCode() ?>"
                               name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" class="textarea<?php if($this->getRequired()) : ?> required-entry<?php endif; ?>" rows="2"
-                              cols="15"><?php echo $this->getValue() ?></textarea>
+                              cols="15"><?php echo $this->escapeHtml( $this->getValue() ) ?></textarea>
                 </td>
                 <td class="comment">
                     <?php echo $this->__($this->getComment()) ?>
