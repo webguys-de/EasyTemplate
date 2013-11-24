@@ -6,7 +6,12 @@
  */
 class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
 {
-    public function adminhtml_cms_page_edit_tab_main_prepare_form($observer)
+    /**
+     * Adds view mode to cms_page and cms_block
+     *
+     * @param $observer
+     */
+    public function adminhtml_cms_prepare_form($observer)
     {
         $form = $observer->getForm();
 
@@ -41,6 +46,33 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
         if (is_array( $templatedata ) ) {
             /** @var $group Webguys_Easytemplate_Model_Group */
             $group = Mage::helper('easytemplate/page')->getGroupByPageId( $page->getId() );
+
+            // Merge file information of $_FILES to $_POST
+            if (isset($_FILES['template']['name']) && is_array($_FILES['template']['name'])) {
+                foreach($_FILES['template']['name'] as $templateId => $data) {
+                    if (is_array($data)) {
+                        foreach ($data['fields'] as $fieldName => $field) {
+                            $templatedata[$templateId]['fields'][$fieldName] = array('value' => $field);
+                        }
+                    }
+                }
+            }
+
+            $group->importData( $templatedata );
+        }
+    }
+
+    public function cms_block_save_commit_after($observer)
+    {
+        /** @var $block Mage_Cms_Model_Block */
+        $block = $observer->getDataObject();
+
+        $request = Mage::app()->getRequest();
+        $templatedata = $request->getPost('template');
+
+        if (is_array( $templatedata ) ) {
+            /** @var $group Webguys_Easytemplate_Model_Group */
+            $group = Mage::helper('easytemplate/block')->getGroupByBlockId( $block->getId() );
 
             // Merge file information of $_FILES to $_POST
             if (isset($_FILES['template']['name']) && is_array($_FILES['template']['name'])) {

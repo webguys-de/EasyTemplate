@@ -4,12 +4,11 @@
  * Class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
  *
  */
-class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
+abstract class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
     extends Mage_Adminhtml_Block_Widget
 {
 
     protected $_templateBlocks = array();
-
 
     public function __construct()
     {
@@ -69,13 +68,11 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
     /**
      * @return Webguys_Easytemplate_Model_Group
      */
-    public function getGroup()
-    {
-        if ($page = Mage::registry('cms_page')) {
-            return Mage::helper('easytemplate/page')->getGroupByPageId( $page->getId() );
-        }
-        return Mage::getModel('easytemplate/group');
-    }
+    abstract public function getGroup();
+
+    abstract public function getType();
+
+    abstract public function getObjectOfType();
 
     protected function _prepareLayout()
     {
@@ -98,7 +95,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
 
     public function isInTemplateMode()
     {
-        if ($page = Mage::registry('cms_page')) {
+        if ($page = $this->getObjectOfType()) {
             return $page->getViewMode() == Webguys_Easytemplate_Model_Config_Source_Cms_Page_Viewmode::VIEWMODE_EASYTPL;
         }
         return false;
@@ -152,6 +149,6 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
      */
     protected function _isAllowedAction($action)
     {
-        return Mage::getSingleton('admin/session')->isAllowed('cms/page/' . $action);
+        return Mage::getSingleton('admin/session')->isAllowed('cms/'.$this->getType().'/' . $action);
     }
 }

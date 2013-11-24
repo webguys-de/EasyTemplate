@@ -51,6 +51,11 @@
                     </template_data_decimal>
                 </entities>
             </easytemplate_resource>
+            <cms>
+                <rewrite>
+                    <block>Webguys_Easytemplate_Model_Cms_Block</block>
+                </rewrite>
+            </cms>
         </models>
 
         <resources>
@@ -84,10 +89,19 @@
                     <easytemplate_adminhtml_cms_page_edit_tab_main_prepare_form>
                         <type>singleton</type>
                         <class>easytemplate/observer</class>
-                        <method>adminhtml_cms_page_edit_tab_main_prepare_form</method>
+                        <method>adminhtml_cms_prepare_form</method>
                     </easytemplate_adminhtml_cms_page_edit_tab_main_prepare_form>
                 </observers>
             </adminhtml_cms_page_edit_tab_main_prepare_form>
+            <easytemplate_adminhtml_cms_block_edit_tab_main_prepare_form>
+                <observers>
+                    <easytemplate_adminhtml_cms_block_edit_tab_main_prepare_form>
+                        <type>singleton</type>
+                        <class>easytemplate/observer</class>
+                        <method>adminhtml_cms_prepare_form</method>
+                    </easytemplate_adminhtml_cms_block_edit_tab_main_prepare_form>
+                </observers>
+            </easytemplate_adminhtml_cms_block_edit_tab_main_prepare_form>
             <adminhtml_block_html_before>
                 <observers>
                     <easytemplate_adminhtml_block_html_before>
@@ -106,6 +120,15 @@
                     </easytemplate_cms_page_save_commit_after>
                 </observers>
             </cms_page_save_commit_after>
+            <cms_block_save_commit_after>
+                <observers>
+                    <easytemplate_cms_block_save_commit_after>
+                        <type>singleton</type>
+                        <class>easytemplate/observer</class>
+                        <method>cms_block_save_commit_after</method>
+                    </easytemplate_cms_block_save_commit_after>
+                </observers>
+            </cms_block_save_commit_after>
         </events>
         <layout>
             <updates>

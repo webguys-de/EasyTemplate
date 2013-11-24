@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates
+ * Class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Templates
  *
  */
-class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates
+class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Templates
     extends Webguys_Easytemplate_Block_Adminhtml_Edit_Template
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
@@ -15,19 +15,18 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates
     public function getGroup()
     {
         if ($page = $this->getObjectOfType()) {
-            return Mage::helper('easytemplate/page')->getGroupByPageId( $page->getId() );
+            return Mage::helper('easytemplate/block')->getGroupByBlockId( $page->getId() );
         }
         return Mage::getModel('easytemplate/group');
     }
 
     public function getType()
     {
-        return 'page';
+        return 'block';
     }
 
     public function getObjectOfType()
     {
-        return Mage::registry('cms_page');
+        return Mage::registry('cms_block');
     }
-
 }
