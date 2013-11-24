@@ -8,9 +8,16 @@ class Webguys_Easytemplate_Model_Input_Renderer_Source_Blocks extends Webguys_Ea
 {
     public function getOptionValues()
     {
+        /** @var $blockCollection Mage_Cms_Model_Resource_Block_Collection */
         $blockCollection = Mage::getModel('cms/block')->getCollection()
-            ->addFieldToFilter('is_active', 1)
-            ->load();
+            ->addFieldToFilter('is_active', 1);
+
+        // Avoid to choose current block (will result in loop)
+        if ($curBlock = Mage::registry('cms_block')) {
+            $blockCollection->addFieldToFilter('block_id', array('neq' => $curBlock->getId()));
+        }
+
+        $blockCollection->load();
 
         $values = array();
 
