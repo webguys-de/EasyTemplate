@@ -267,6 +267,16 @@
                             <default_value>Hallo EasyTemplate Imagegallery Textarea</default_value>
                             <required>1</required>
                         </text>
+
+                        <otherblock translate="label,comment">
+                            <label>Another block as test</label>
+                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <input_renderer>easytemplate/input_renderer_block</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_blocks</input_renderer_source>
+                            <sort_order>20</sort_order>
+                            <default_value></default_value>
+                            <required>0</required>
+                        </otherblock>
                     </fields>
                 </imagegallery>
             </templates>
