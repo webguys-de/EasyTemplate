@@ -60,6 +60,9 @@
 .easytemplate .clear{
     clear:both;
 }
+.easytemplate.inactive {
+    background: #fdfaa4;
+}
 .template_content_status{
     margin-top:-10px;
     padding:5px 20px;

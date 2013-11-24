@@ -16,7 +16,7 @@
                     <img src="<?php echo $this->getFileUri() ?>" id="template_field_{{id}}_file_<?php echo $this->getCode() ?>" title="<?php echo $this->getValue() ?>" alt="<?php echo $this->getValue() ?>" height="22" width="22" class="small-image-preview v-middle">
                 </a>
                 <?php endif; ?>
-                <input id="template_field_{{id}}_<?php echo $this->getCode() ?>" name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->getValue() ?>" class="input-file<?php if($this->getRequired()) : ?> required-entry<?php endif; ?>" type="file">
+                <input id="template_field_{{id}}_<?php echo $this->getCode() ?>" name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->getValue() ?>" class="input-file<?php if($this->getRequired() && !$this->hasFile()) : ?> required-entry<?php endif; ?>" type="file">
                 <?php if ($this->hasFile()) : ?>
                 <span class="delete-image">
                     <input type="checkbox" name="template[{{id}}][fields][<?php echo $this->getCode() ?>][delete]" value="1" class="checkbox" id="template_field_{{id}}_delete_<?php echo $this->getCode() ?>">

@@ -100,6 +100,7 @@
                 data.code = code;
                 data.name = label;
                 data.label = label;
+                data.active = 1;
 
                 if ( template = templates[code] ) {
 
@@ -122,6 +123,7 @@
                 this.itemCount++;
                 this.bindRemoveButtons();
                 this.bindDateTimeChangeEvents();
+                this.bindActiveChangeEvents();
             },
             remove : function(event){
                 var element = $(Event.findElement(event, 'div.template-box'));
@@ -150,6 +152,19 @@
                     element.down(dateTimeTarget).update(sourceElement.value);
                 }
             },
+            activeChanged : function(event){
+                var sourceElement = event.srcElement;
+
+                var element = $(Event.findElement(event, 'div.template-box'));
+                if (element) {
+                    if (sourceElement.checked) {
+                        element.removeClassName('inactive');
+                    }
+                    else {
+                        element.addClassName('inactive');
+                    }
+                }
+            },
             bindRemoveButtons : function(){
                 var buttons = $$('div.page-templates .delete-page-template');
                 for(var i=0;i<buttons.length;i++){
@@ -167,11 +182,21 @@
                         Event.observe(inputFields[i], 'change', this.dateTimeChanged.bind(this));
                     }
                 }
+            },
+            bindActiveChangeEvents : function() {
+                var inputFields = $$('div.page-templates input.active-input')
+                for(var i=0;i<inputFields.length;i++){
+                    if(!$(inputFields[i]).binded){
+                        $(inputFields[i]).binded = true;
+                        Event.observe(inputFields[i], 'change', this.activeChanged.bind(this));
+                    }
+                }
             }
         }
 
         pageTemplate.bindRemoveButtons();
         pageTemplate.bindDateTimeChangeEvents();
+        pageTemplate.bindActiveChangeEvents();
 
         //]]>
     </script>
