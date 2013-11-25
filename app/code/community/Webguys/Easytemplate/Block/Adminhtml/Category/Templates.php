@@ -16,14 +16,14 @@ class Webguys_Easytemplate_Block_Adminhtml_Category_Templates
     public function getGroup()
     {
         if ($category = $this->getObjectOfType()) {
-            return Mage::helper('easytemplate/page')->getGroupByPageId( $category->getId() );
+            return Mage::helper('easytemplate/category')->getGroupByCategoryId( $category->getId() );
         }
         return Mage::getModel('easytemplate/group');
     }
 
     public function getType()
     {
-        return 'category';
+        return 'catalog_category';
     }
 
     public function getObjectOfType()

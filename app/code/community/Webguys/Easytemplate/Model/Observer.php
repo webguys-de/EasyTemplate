@@ -152,4 +152,18 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
 
     }
 
+    public function catalog_category_save_commit_after($observer)
+    {
+
+        /** @var $category Mage_Catalog_Model_Category */
+        $category = $observer->getDataObject();
+
+        /** @var $group Webguys_Easytemplate_Model_Group */
+        $group = Mage::helper('easytemplate/category')->getGroupByCategoryId( $category->getId() );
+
+        /** @var $helper Webguys_Easytemplate_Helper_Data */
+        $helper = Mage::helper('easytemplate');
+        $helper->saveTemplateInformation($group);
+    }
+
 }
