@@ -99,14 +99,14 @@
 
     <script type="text/javascript">
         //<![CDATA[
-        var templates = <?php echo json_encode( $this->getEmptyTemplates() ); ?>
+        templates = <?php echo json_encode( $this->getEmptyTemplates() ); ?>
         //]]>
     </script>
 
     <script type="text/javascript">
         //<![CDATA[
 
-        var easyTemplate = {
+        easyTemplate = {
             div : $('easy_templates_container_top'),
             templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
             itemCount : 1,

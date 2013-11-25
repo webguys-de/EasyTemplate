@@ -129,6 +129,15 @@
                     </easytemplate_cms_block_save_commit_after>
                 </observers>
             </cms_block_save_commit_after>
+            <adminhtml_catalog_category_tabs>
+                <observers>
+                    <easytemplate_adminhtml_catalog_category_tabs>
+                        <type>singleton</type>
+                        <class>easytemplate/observer</class>
+                        <method>adminhtml_catalog_category_tabs</method>
+                    </easytemplate_adminhtml_catalog_category_tabs>
+                </observers>
+            </adminhtml_catalog_category_tabs>
         </events>
         <layout>
             <updates>

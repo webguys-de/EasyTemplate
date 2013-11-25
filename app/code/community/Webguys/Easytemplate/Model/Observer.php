@@ -139,4 +139,17 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
 
         }
     }
+
+    public function adminhtml_catalog_category_tabs( $observer )
+    {
+        /** @var $tabs Mage_Adminhtml_Block_Catalog_Category_Tabs */
+        $tabs = $observer->getTabs();
+
+        $tabs->addTab('easytemplate', array(
+            'label'     => Mage::helper('catalog')->__('Template'),
+            'content'   => $tabs->getLayout()->getBlock('adminhtml_category_templates')->toHtml(),
+        ));
+
+    }
+
 }
