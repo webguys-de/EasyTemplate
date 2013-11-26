@@ -166,4 +166,10 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
         $helper->saveTemplateInformation($group);
     }
 
+    public function core_block_abstract_to_html_before( $event )
+    {
+        $block = $event->getBlock();
+    }
+
+
 }

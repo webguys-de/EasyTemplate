@@ -80,6 +80,13 @@
                 </observers>
             </core_block_abstract_to_html_after>
         </events>
+        <layout>
+            <updates>
+                <easytemplate>
+                    <file>easytemplate.xml</file>
+                </easytemplate>
+            </updates>
+        </layout>
     </frontend>
 
     <adminhtml>
