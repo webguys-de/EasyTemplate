@@ -11,7 +11,11 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Bloc
     const TEMPLATE_TYPES_PATH = 'easytemplate';
     const NO_IMAGE_PATH       = 'images/easytemplate/no-image.png';
 
-    public function getTemplateImage($image){
+    public function getTemplateImage($image)
+    {
+        if( $image == ''){
+            return $this::NO_IMAGE_PATH;
+        }
         if( file_exists( Mage::getBaseDir('skin') . '/adminhtml/default/default/' .$image )){
             return $image;
         }
