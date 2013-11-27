@@ -8,35 +8,35 @@
         <tbody>
 
             <script type="text/javascript">
-                chooser_template_field_{{id}} = new WysiwygWidget.chooser(
-                    'template_field_{{id}}',
+                chooser_template_field_<?php echo $this->getCode(); ?>_{{id}} = new WysiwygWidget.chooser(
+                    'template_field_<?php echo $this->getCode(); ?>_{{id}}',
                     null,
                     {}
                 );
-                easytemplatechooser_{{id}} = new EasytemplateChooser( chooser_template_field_{{id}} , <?php echo json_encode( Mage::helper('easytemplate/chooser')->getInitChooserArray('template_field_{{id}}' ) ) ?> );
+                easytemplatechooser_<?php echo $this->getCode(); ?>_{{id}} = new EasytemplateChooser( chooser_template_field_<?php echo $this->getCode(); ?>_{{id}} , <?php echo json_encode( Mage::helper('easytemplate/chooser')->getInitChooserArray('template_field_'.$this->getCode().'_{{id}}' ) ) ?> );
             </script>
 
             <tr class="template_field_text_<?php echo $this->getCode() ?>">
                 <td class="label">
-                    <label for="template_field_{{id}}"><?php echo $this->__($this->getLabel()) ?><?php if($this->getRequired()) : ?> <span class="required">*</span><?php endif; ?></label>
+                    <label for="template_field_<?php echo $this->getCode(); ?>_{{id}}"><?php echo $this->__($this->getLabel()) ?><?php if($this->getRequired()) : ?> <span class="required">*</span><?php endif; ?></label>
                 </td>
                 <td class="value">
 
-                    <div id="template_field_{{id}}label">
+                    <div id="template_field_<?php echo $this->getCode(); ?>_{{id}}label">
                         <?php echo $this->getName(); ?>
                     </div>
 
                     <div class="link-box">
-                        <select id="template_field_{{id}}typeselect" onchange="$('template_field_{{id}}button').show(); if( this.value == 'custom' || this.value == '' ) $('template_field_{{id}}button').hide(); ">
+                        <select id="template_field_<?php echo $this->getCode(); ?>_{{id}}typeselect" onchange="$('template_field_<?php echo $this->getCode(); ?>_{{id}}button').show(); if( this.value == 'custom' || this.value == '' ) $('template_field_<?php echo $this->getCode(); ?>_{{id}}button').hide(); ">
                             <option value="custom"><?php echo $this->__('Custom')?></option>
                             <option value="product" <?php echo ( $this->getEntityCode() == 'product' ? 'selected="selected"':'' ) ?> ><?php echo $this->__('Product')?></option>
                             <option value="category" <?php echo ( $this->getEntityCode() == 'category' ? 'selected="selected"':'' ) ?>><?php echo $this->__('Category')?></option>
                             <option value="cms" <?php echo ( $this->getEntityCode() == 'cms' ? 'selected="selected"':'' ) ?>><?php echo $this->__('Pages')?></option>
                         </select>
 
-                        <input id="template_field_{{id}}value" name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->escapeHtml( $this->getValue() ) ?>" type="hidden" />
+                        <input id="template_field_<?php echo $this->getCode(); ?>_{{id}}value" name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->escapeHtml( $this->getValue() ) ?>" type="hidden" />
 
-                        <button id="template_field_{{id}}button" onclick="easytemplatechooser_{{id}}.open( $('template_field_{{id}}typeselect').value );" class="scalable" type="button">
+                        <button id="template_field_<?php echo $this->getCode(); ?>_{{id}}button" onclick="easytemplatechooser_<?php echo $this->getCode(); ?>_{{id}}.open( $('template_field_<?php echo $this->getCode(); ?>_{{id}}typeselect').value );" class="scalable" type="button">
                             <span><span><?php echo $this->__('Please Select') ?></span></span>
                         </button>
                     </div>
