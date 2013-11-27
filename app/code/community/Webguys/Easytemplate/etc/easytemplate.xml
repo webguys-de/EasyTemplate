@@ -2,6 +2,7 @@
 <config>
     <easytemplate>
         <simple translate="label">
+            <enabled>1</enabled>
             <label>Simple Templates</label>
             <templates>
                 <headline_text template="easytemplate/template/headline_text.phtml" type="easytemplate/template" translate="label,comment">
@@ -249,6 +250,7 @@
             </templates>
         </simple>
         <test translate="label">
+            <enabled>1</enabled>
             <label>Test Templates</label>
             <templates>
                 <testtemplate template="easytemplate/template/testtemplate.phtml" type="easytemplate/template" translate="label,comment">
