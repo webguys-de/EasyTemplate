@@ -397,6 +397,7 @@
                             <comment>Comment for block</comment>
                             <backend_model>easytemplate/template_data_int</backend_model>
                             <input_renderer>easytemplate/input_renderer_block</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_blocks</input_renderer_source>
                             <sort_order>110</sort_order>
                             <default_value>3</default_value>
                             <required>0</required>
