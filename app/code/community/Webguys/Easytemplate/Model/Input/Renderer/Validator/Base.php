@@ -27,13 +27,16 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_Base extends Mage_Core
     }
 
     /**
-     * @param $value mixed
+     * @param $value
+     * @param $oldValue
+     * @return $this
      */
-    public function beforeFieldSave($value)
+    public function beforeFieldSave($value, $oldValue)
     {
         Mage::dispatchEvent('easytemplate_backend_field_save_before', array(
             'template' => $this->getTemplate(),
             'field' => $this->getField(),
+            'old_value' => $oldValue,
             'value' => $value
         ));
 
@@ -41,7 +44,8 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_Base extends Mage_Core
     }
 
     /**
-     * @param $value mixed
+     * @param $value
+     * @return $this
      */
     public function afterFieldSave($value)
     {

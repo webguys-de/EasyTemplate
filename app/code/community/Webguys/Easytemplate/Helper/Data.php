@@ -23,7 +23,7 @@ class Webguys_Easytemplate_Helper_Data extends Mage_Core_Helper_Abstract
                 foreach($_FILES['template']['name'] as $templateId => $data) {
                     if (is_array($data)) {
                         foreach ($data['fields'] as $fieldName => $field) {
-                            $templateData[$templateId]['fields'][$fieldName] = array('value' => $field);
+                            $templateData[$templateId]['fields'][$fieldName]['value'] = $field;
                         }
                     }
                 }
