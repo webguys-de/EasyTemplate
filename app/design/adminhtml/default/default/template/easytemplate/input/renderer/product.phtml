@@ -25,11 +25,12 @@
                     <div id="template_field_<?php echo $this->getCode(); ?>_{{id}}label">
                         <?php echo $this->getName(); ?>
                     </div>
-
-                    <input id="template_field_<?php echo $this->getCode(); ?>_{{id}}value" name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->escapeHtml( $this->getValue() ) ?>" type="hidden">
-                    <button id="template_field_<?php echo $this->getCode(); ?>_{{id}}button" onclick="easytemplatechooser_<?php echo $this->getCode(); ?>_{{id}}.open( 'product' );" class="scalable" type="button">
-                        <span><span><span><?php echo $this->__('Please Select') ?></span></span></span>
-                    </button>
+                    <div class="link-box">
+                        <input id="template_field_<?php echo $this->getCode(); ?>_{{id}}value" name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->escapeHtml( $this->getValue() ) ?>" type="hidden">
+                        <button id="template_field_<?php echo $this->getCode(); ?>_{{id}}button" onclick="easytemplatechooser_<?php echo $this->getCode(); ?>_{{id}}.open( 'product' );" class="scalable" type="button">
+                            <span><span><span><?php echo $this->__('Please Select') ?></span></span></span>
+                        </button>
+                    </div>
                 </td>
                 <td class="comment">
                     <?php echo $this->__($this->getComment()) ?>
