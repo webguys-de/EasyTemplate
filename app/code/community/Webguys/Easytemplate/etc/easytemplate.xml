@@ -269,7 +269,7 @@
                         <textarea_test translate="label,comment">
                             <label>Textarea</label>
                             <comment>Comment for textarea</comment>
-                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <!-- <backend_model>easytemplate/template_data_text</backend_model> -->
                             <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
                             <sort_order>10</sort_order>
                             <default_value>Textarea default value</default_value>
@@ -279,7 +279,7 @@
                         <textfield_test translate="label,comment">
                             <label>Textfield</label>
                             <comment>Comment for textfield</comment>
-                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <!-- <backend_model>easytemplate/template_data_varchar</backend_model> -->
                             <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>20</sort_order>
                             <default_value>Textfield default value</default_value>
@@ -289,7 +289,7 @@
                         <editor_test translate="label,comment">
                             <label>Editor</label>
                             <comment>Comment for editor</comment>
-                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <!-- <backend_model>easytemplate/template_data_text</backend_model> -->
                             <input_renderer>easytemplate/input_renderer_editor</input_renderer>
                             <sort_order>30</sort_order>
                             <default_value>Editor default text</default_value>
@@ -299,7 +299,7 @@
                         <selectyesno_test translate="label,comment">
                             <label>Select yesno</label>
                             <comment>Comment for select yesno</comment>
-                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <!-- <backend_model>easytemplate/template_data_int</backend_model> -->
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
                             <input_renderer_source>easytemplate/input_renderer_source_yesno</input_renderer_source>
                             <sort_order>40</sort_order>
@@ -310,7 +310,7 @@
                         <selectcustomsource_test translate="label,comment">
                             <label>Select source xml</label>
                             <comment>Comment for select xml source</comment>
-                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <!-- <backend_model>easytemplate/template_data_varchar</backend_model> -->
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
                             <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
                             <values>
@@ -327,7 +327,7 @@
                         <selectnumbers_test translate="label,comment">
                             <label>Select source numbers</label>
                             <comment>Comment for number select</comment>
-                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <!-- <backend_model>easytemplate/template_data_int</backend_model> -->
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
                             <input_renderer_source>easytemplate/input_renderer_source_numbers</input_renderer_source>
                             <sort_order>60</sort_order>
@@ -338,7 +338,7 @@
                         <multiselect_test translate="label,comment">
                             <label>Select source numbers</label>
                             <comment>Comment for number select</comment>
-                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <!-- <backend_model>easytemplate/template_data_int</backend_model> -->
                             <input_renderer>easytemplate/input_renderer_multiselect</input_renderer>
                             <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
                             <values>
@@ -355,7 +355,7 @@
                         <file_test translate="label,comment">
                             <label>File</label>
                             <comment>Comment for file</comment>
-                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <!-- <backend_model>easytemplate/template_data_varchar</backend_model> -->
                             <input_renderer>easytemplate/input_renderer_file</input_renderer>
                             <sort_order>80</sort_order>
                             <default_value></default_value>
@@ -365,7 +365,7 @@
                         <link_test translate="label,comment">
                             <label>Link</label>
                             <comment>Comment for link</comment>
-                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <!-- <backend_model>easytemplate/template_data_varchar</backend_model> -->
                             <input_renderer>easytemplate/input_renderer_link</input_renderer>
                             <sort_order>90</sort_order>
                             <default_value></default_value>
@@ -375,7 +375,7 @@
                         <product_test translate="label,comment">
                             <label>Product</label>
                             <comment>Comment for product</comment>
-                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <!-- <backend_model>easytemplate/template_data_int</backend_model> -->
                             <input_renderer>easytemplate/input_renderer_product</input_renderer>
                             <sort_order>100</sort_order>
                             <default_value></default_value>
@@ -385,7 +385,7 @@
                         <category_test translate="label,comment">
                             <label>Category</label>
                             <comment>Comment for category</comment>
-                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <!-- <backend_model>easytemplate/template_data_int</backend_model> -->
                             <input_renderer>easytemplate/input_renderer_category</input_renderer>
                             <sort_order>100</sort_order>
                             <default_value></default_value>
@@ -395,7 +395,7 @@
                         <block_test translate="label,comment">
                             <label>Block reference</label>
                             <comment>Comment for block</comment>
-                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <!-- <backend_model>easytemplate/template_data_int</backend_model> -->
                             <input_renderer>easytemplate/input_renderer_block</input_renderer>
                             <input_renderer_source>easytemplate/input_renderer_source_blocks</input_renderer_source>
                             <sort_order>110</sort_order>
