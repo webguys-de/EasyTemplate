@@ -338,7 +338,7 @@
                         <multiselect_test translate="label,comment">
                             <label>Select source numbers</label>
                             <comment>Comment for number select</comment>
-                            <!-- <backend_model>easytemplate/template_data_int</backend_model> -->
+                            <!-- <backend_model>easytemplate/template_data_varchar</backend_model> -->
                             <input_renderer>easytemplate/input_renderer_multiselect</input_renderer>
                             <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
                             <values>
