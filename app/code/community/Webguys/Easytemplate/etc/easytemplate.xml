@@ -412,7 +412,7 @@
             <label>Test Templates</label>
             <templates>
 
-                <category_products translate="label,comment">
+                <category_products template="catalog/product/list.phtml" type="easytemplate/template_product_list" translate="label,comment">
 
                     <enabled>1</enabled>
                     <label>Display Category Products</label>
@@ -431,7 +431,7 @@
                             <required>1</required>
                         </category_id>
 
-                        <count translate="label,comment">
+                        <limit translate="label,comment">
                             <label>Number of Products</label>
                             <comment>How much products you like to display?</comment>
                             <backend_model>easytemplate/template_data_int</backend_model>
@@ -439,16 +439,16 @@
                             <sort_order>20</sort_order>
                             <default_value>6</default_value>
                             <required>1</required>
-                        </count>
+                        </limit>
 
-                        <order translate="label">
+                        <sort_by translate="label">
                             <label>Sort by</label>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
                             <input_renderer_source>catalog/category_attribute_source_sortby</input_renderer_source>
                             <sort_order>30</sort_order>
                             <required>0</required>
-                        </order>
+                        </sort_by>
 
                     </fields>
 

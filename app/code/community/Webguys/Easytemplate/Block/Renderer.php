@@ -29,6 +29,8 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                     $childBlock = $this->getLayout()->createBlock($model->getType());
                     $childBlock->setTemplate($model->getTemplate());
                     $childBlock->setTemplateModel($template);
+                    $childBlock->setTemplateCode( $template->getCode() );
+
 
                     /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
                     foreach ($model->getFields() as $field) {
@@ -50,7 +52,8 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
 
                         // TODO: So kann man mit dem value im event noch nichts machen... :(
 
-                        $childBlock->setTemplateVar($field->getCode(), $frontendValue);
+                        $childBlock->setData($field->getCode(), $frontendValue);
+
                     }
 
                     $this->setChild('block_'.$position.'_'.$template->getCode(), $childBlock);
