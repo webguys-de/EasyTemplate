@@ -394,21 +394,16 @@
                 </testtemplate>
             </templates>
         </test>
-
-        <product>
+        <product translate="label">
             <enabled>1</enabled>
             <label>Test Templates</label>
             <templates>
-
                 <category_products template="catalog/product/list.phtml" type="easytemplate/template_product_list" translate="label,comment">
-
                     <enabled>1</enabled>
                     <label>Display Category Products</label>
                     <comment>Display Products of a custom category</comment>
                     <sort_order>10</sort_order>
-
                     <fields>
-
                         <category_id translate="label,comment">
                             <label>Category</label>
                             <comment>Comment for category</comment>
@@ -458,13 +453,41 @@
                             <sort_order>30</sort_order>
                             <required>0</required>
                         </sort_by_direction>
-
                     </fields>
-
                 </category_products>
+                <three_products template="easytemplate/template/three_products.phtml" type="easytemplate/template" translate="label,comment">
+                    <enabled>1</enabled>
+                    <label>Three products</label>
+                    <image>images/easytemplate/three_products.png</image>
+                    <comment>Three products in a row</comment>
+                    <sort_order>60</sort_order>
+                    <fields>
+                        <product_one translate="label,comment">
+                            <label>Product 1</label>
+                            <comment>First product in row</comment>
+                            <input_renderer>easytemplate/input_renderer_product</input_renderer>
+                            <sort_order>10</sort_order>
+                            <required>1</required>
+                        </product_one>
 
+                        <product_two translate="label,comment">
+                            <label>Product 2</label>
+                            <comment>Second product in row</comment>
+                            <input_renderer>easytemplate/input_renderer_product</input_renderer>
+                            <sort_order>20</sort_order>
+                            <required>1</required>
+                        </product_two>
+
+                        <product_three translate="label,comment">
+                            <label>Product 3</label>
+                            <comment>Third product in row</comment>
+                            <input_renderer>easytemplate/input_renderer_product</input_renderer>
+                            <sort_order>30</sort_order>
+                            <required>1</required>
+                        </product_three>
+                    </fields>
+                </three_products>
             </templates>
         </product>
-
     </easytemplate>
 </config>

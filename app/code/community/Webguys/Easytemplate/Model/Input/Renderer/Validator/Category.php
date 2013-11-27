@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class Webguys_Easytemplate_Model_Input_Renderer_Validator_Category
+ *
+ */
 class Webguys_Easytemplate_Model_Input_Renderer_Validator_Category extends Webguys_Easytemplate_Model_Input_Renderer_Validator_Base
 {
 
@@ -11,7 +15,5 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_Category extends Webgu
         }
         return end( explode('/', $data) );
     }
-
-
 
 }

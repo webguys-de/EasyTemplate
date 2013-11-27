@@ -1,0 +1,21 @@
+<?php /** @var $this Webguys_Easytemplate_Block_Template */ ?>
+
+<div class="<?php echo $this->getTemplateCode() ?>">
+    <div class="col3-set">
+        <div class="col-1">
+            <?php if ($product1 = $this->getProductOne()) : ?>
+                Name: <?php echo $product1->getName(); ?>
+            <?php endif; ?>
+        </div>
+        <div class="col-2">
+            <?php if ($product2 = $this->getProductOne()) : ?>
+                Name: <?php echo $product2->getName(); ?>
+            <?php endif; ?>
+        </div>
+        <div class="col-3">
+            <?php if ($product3 = $this->getProductOne()) : ?>
+                Name: <?php echo $product3->getName(); ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
