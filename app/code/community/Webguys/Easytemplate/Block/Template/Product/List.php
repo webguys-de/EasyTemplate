@@ -11,6 +11,9 @@
  *
  * @method getSortBy
  * @method setSortBy
+ *
+ * @method getSortByDirection
+ * @method setSortByDirection
  */
 class Webguys_Easytemplate_Block_Template_Product_List extends Mage_Catalog_Block_Product_List
 {
@@ -23,6 +26,12 @@ class Webguys_Easytemplate_Block_Template_Product_List extends Mage_Catalog_Bloc
         {
             $collection->setPageSize( $this->getLimit() );
         }
+
+        if( $this->getSortBy() )
+        {
+            $collection->setOrder( $this->getSortBy(), $this->getSortByDirection()  );
+        }
+
 
         return $collection;
     }
