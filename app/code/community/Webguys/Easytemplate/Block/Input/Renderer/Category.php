@@ -4,13 +4,13 @@
  * Class Webguys_Easytemplate_Block_Input_Renderer_File
  *
  */
-class Webguys_Easytemplate_Block_Input_Renderer_Product extends Webguys_Easytemplate_Block_Input_Renderer_Abstract
+class Webguys_Easytemplate_Block_Input_Renderer_Category extends Webguys_Easytemplate_Block_Input_Renderer_Abstract
 {
 
     public function __construct()
     {
         parent::__construct();
-        $this->setTemplate('easytemplate/input/renderer/product.phtml');
+        $this->setTemplate('easytemplate/input/renderer/category.phtml');
     }
 
     public function getDefaultBackendModel()
@@ -19,11 +19,11 @@ class Webguys_Easytemplate_Block_Input_Renderer_Product extends Webguys_Easytemp
     }
 
     /**
-     * @return Mage_Catalog_Model_Product
+     * @return Mage_Catalog_Model_Category
      */
     public function getEntityModel()
     {
-        $model = Mage::getModel('catalog/product');
+        $model = Mage::getModel('catalog/category');
         $model->load( $this->getEntityId() );
         return $model;
     }

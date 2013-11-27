@@ -18,7 +18,7 @@
  * @method getSource
  * @method setSource
  */
-class Webguys_Easytemplate_Block_Input_Renderer_Abstract extends Mage_Adminhtml_Block_Template
+abstract class Webguys_Easytemplate_Block_Input_Renderer_Abstract extends Mage_Adminhtml_Block_Template
 {
 
     /**
@@ -52,4 +52,5 @@ class Webguys_Easytemplate_Block_Input_Renderer_Abstract extends Mage_Adminhtml_
         return $this->_value;
     }
 
+    abstract public function getDefaultBackendModel();
 }

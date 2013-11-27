@@ -15,6 +15,11 @@ class Webguys_Easytemplate_Block_Input_Renderer_Link extends Webguys_Easytemplat
         $this->setTemplate('easytemplate/input/renderer/link.phtml');
     }
 
+    public function getDefaultBackendModel()
+    {
+        return Mage::getModel('easytemplate/template_data_varchar');
+    }
+
     public function getEntityCode()
     {
         $code = current( explode('/', $this->getValue() ) );
