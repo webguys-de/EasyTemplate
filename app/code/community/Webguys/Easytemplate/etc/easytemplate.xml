@@ -171,19 +171,9 @@
                     <comment>Display a point on the landscape</comment>
                     <sort_order>50</sort_order>
                     <fields>
-                        <test translate="label,comment">
-                            <label>Image</label>
-                            <comment>An image</comment>
-                            <backend_model>easytemplate/template_data_int</backend_model>
-                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
-                            <input_renderer_source>easytemplate/input_renderer_source_numbers</input_renderer_source>
-                            <sort_order>5</sort_order>
-                            <default_value></default_value>
-                            <required>0</required>
-                        </test>
                         <image translate="label,comment">
                             <label>Image</label>
-                            <comment>An image</comment>
+                            <comment>The image is not going to be resized, please upload the image in the right size.</comment>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_file</input_renderer>
                             <sort_order>10</sort_order>
@@ -192,13 +182,11 @@
                         </image>
                         <link translate="label,comment">
                             <label>Link</label>
-                            <comment>A simple Link</comment>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_link</input_renderer>
-                            <sort_order>1</sort_order>
-                            <required>1</required>
+                            <sort_order>30</sort_order>
+                            <required>0</required>
                         </link>
-                        
                         <image_alignment translate="label,comment">
                             <label>Alignment</label>
                             <comment>How to align the image</comment>
@@ -219,7 +207,7 @@
                             <comment>The caption of the image</comment>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_text</input_renderer>
-                            <sort_order>30</sort_order>
+                            <sort_order>40</sort_order>
                             <default_value></default_value>
                             <required>0</required>
                         </caption>
@@ -228,7 +216,7 @@
                             <comment>Text</comment>
                             <backend_model>easytemplate/template_data_text</backend_model>
                             <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
-                            <sort_order>40</sort_order>
+                            <sort_order>50</sort_order>
                             <default_value></default_value>
                             <required>0</required>
                         </text>
@@ -412,7 +400,7 @@
             <label>Test Templates</label>
             <templates>
 
-                <category_products translate="label,comment">
+                <category_products template="catalog/product/list.phtml" type="easytemplate/template_product_list" translate="label,comment">
 
                     <enabled>1</enabled>
                     <label>Display Category Products</label>
@@ -424,31 +412,52 @@
                         <category_id translate="label,comment">
                             <label>Category</label>
                             <comment>Comment for category</comment>
-                            <backend_model>easytemplate/template_data_int</backend_model>
                             <input_renderer>easytemplate/input_renderer_category</input_renderer>
                             <sort_order>10</sort_order>
                             <default_value></default_value>
                             <required>1</required>
                         </category_id>
 
-                        <count translate="label,comment">
+                        <column_count translate="label,comment">
+                            <label>Column Count</label>
+                            <comment>Comment for category</comment>
+                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                            <sort_order>15</sort_order>
+                            <default_value>3</default_value>
+                            <required>1</required>
+                        </column_count>
+
+                        <limit translate="label,comment">
                             <label>Number of Products</label>
                             <comment>How much products you like to display?</comment>
-                            <backend_model>easytemplate/template_data_int</backend_model>
                             <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>20</sort_order>
                             <default_value>6</default_value>
                             <required>1</required>
-                        </count>
+                        </limit>
 
-                        <order translate="label">
-                            <label>Sort by</label>
-                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                        <sort_by translate="label">
+                            <label>Product Listing Sort by</label>
+                            <backend_model>easytemplate/template_data_int</backend_model>
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
                             <input_renderer_source>catalog/category_attribute_source_sortby</input_renderer_source>
                             <sort_order>30</sort_order>
                             <required>0</required>
-                        </order>
+                        </sort_by>
+
+                        <sort_by_direction translate="label">
+                            <label>Product Listing Sort by</label>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
+                            <values translate="desc,asc">
+                                <desc>Set Descending Direction</desc>
+                                <asc>Set Ascending Direction</asc>
+                            </values>
+                            <sort_order>30</sort_order>
+                            <required>0</required>
+                        </sort_by_direction>
 
                     </fields>
 
