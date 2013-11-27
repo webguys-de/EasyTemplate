@@ -72,12 +72,15 @@ class Webguys_Easytemplate_Block_Input_Renderer_Link extends Webguys_Easytemplat
 
         if( $this->getEntityCode() == 'product' )
         {
-            return '#'.$model->getId().': '. $model->getSku() .' - ' .$model->getName();
+
+            return '<div class="hover"><strong>#</strong>'.$model->getId().'</strong>: '. $model->getName() . '<span class="tooltip">' . $this->__('Sku') . ': ' . $model->getSku() . '</span></div>';
+
+            //return '<a class="tooltips" href="#"><strong>#</strong>'.$model->getId().'</strong>: '. $model->getName() . '<span>' . $this->__('Sku') . ': ' . $model->getSku() . '</span></a>';
         } else if( $this->getEntityCode() == 'cms' ) {
-            return '#'.$model->getId().': '.$model->getTitle();
+            return '<strong>#'.$model->getId().'</strong>: '.$model->getTitle();
         }
 
-        return '#'.$model->getId().': '.$model->getName();
+        return '<strong>#'.$model->getId().'</strong>: '.$model->getName();
     }
 
     public function getEntityId()

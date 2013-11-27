@@ -357,7 +357,7 @@
                             <input_renderer>easytemplate/input_renderer_link</input_renderer>
                             <sort_order>90</sort_order>
                             <default_value></default_value>
-                            <required>0</required>
+                            <required>1</required>
                         </link_test>
 
                         <product_test translate="label,comment">
