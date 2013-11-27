@@ -36,7 +36,6 @@
                             <sort_order>30</sort_order>
                             <default_value>Hallo EasyTemplate Paragraph Textarea</default_value>
                             <required>0</required>
-                            <wysiwyg>1</wysiwyg>
                         </text>
                     </fields>
                 </headline_text>
@@ -249,37 +248,143 @@
                 </spacer>
             </templates>
         </simple>
-        <complex translate="label">
-            <enabled>1</enabled>
-            <label>Complex Templates</label>
+        <test translate="label">
+            <label>Test Templates</label>
             <templates>
-                <imagegallery template="easytemplate/template/imagegallery.phtml" type="easytemplate/template" translate="label,comment">
-                    <label>Gallery</label>
-                    <comment>A gallery with photos</comment>
-                    <image>images/easytemplate/imagegallery.png</image>
+                <testtemplate template="easytemplate/template/testtemplate.phtml" type="easytemplate/template" translate="label,comment">
+                    <enabled>1</enabled>
+                    <label>Test template</label>
+                    <comment>A test template with all easy template features</comment>
+                    <image>images/easytemplate/testtemplate.png</image>
                     <fields>
-                        <text translate="label,comment">
-                            <label>Text</label>
-                            <comment>Some text</comment>
+                        <textarea_test translate="label,comment">
+                            <label>Textarea</label>
+                            <comment>Comment for textarea</comment>
                             <backend_model>easytemplate/template_data_text</backend_model>
                             <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
-                            <sort_order>1</sort_order>
-                            <default_value>Hallo EasyTemplate Imagegallery Textarea</default_value>
-                            <required>1</required>
-                        </text>
+                            <sort_order>10</sort_order>
+                            <default_value>Textarea default value</default_value>
+                            <required>0</required>
+                        </textarea_test>
 
-                        <otherblock translate="label,comment">
-                            <label>Another block as test</label>
-                            <backend_model>easytemplate/template_data_int</backend_model>
-                            <input_renderer>easytemplate/input_renderer_block</input_renderer>
-                            <input_renderer_source>easytemplate/input_renderer_source_blocks</input_renderer_source>
+                        <textfield_test translate="label,comment">
+                            <label>Textfield</label>
+                            <comment>Comment for textfield</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>20</sort_order>
+                            <default_value>Textfield default value</default_value>
+                            <required>0</required>
+                        </textfield_test>
+
+                        <editor_test translate="label,comment">
+                            <label>Editor</label>
+                            <comment>Comment for editor</comment>
+                            <backend_model>easytemplate/template_data_text</backend_model>
+                            <input_renderer>easytemplate/input_renderer_editor</input_renderer>
+                            <sort_order>30</sort_order>
+                            <default_value>Editor default text</default_value>
+                            <required>0</required>
+                        </editor_test>
+
+                        <selectyesno_test translate="label,comment">
+                            <label>Select yesno</label>
+                            <comment>Comment for select yesno</comment>
+                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_yesno</input_renderer_source>
+                            <sort_order>40</sort_order>
+                            <default_value>true</default_value>
+                            <required>0</required>
+                        </selectyesno_test>
+
+                        <selectcustomsource_test translate="label,comment">
+                            <label>Select source xml</label>
+                            <comment>Comment for select xml source</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
+                            <values>
+                                <option1>Option 1</option1>
+                                <option2>Option 2</option2>
+                                <option3>Option 3</option3>
+                                <optionX>Option X</optionX>
+                            </values>
+                            <sort_order>50</sort_order>
+                            <default_value>option2</default_value>
+                            <required>0</required>
+                        </selectcustomsource_test>
+
+                        <selectnumbers_test translate="label,comment">
+                            <label>Select source numbers</label>
+                            <comment>Comment for number select</comment>
+                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_numbers</input_renderer_source>
+                            <sort_order>60</sort_order>
+                            <default_value>5</default_value>
+                            <required>0</required>
+                        </selectnumbers_test>
+
+                        <multiselect_test translate="label,comment">
+                            <label>Select source numbers</label>
+                            <comment>Comment for number select</comment>
+                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <input_renderer>easytemplate/input_renderer_multiselect</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
+                            <values>
+                                <option1>Option 1</option1>
+                                <option2>Option 2</option2>
+                                <option3>Option 3</option3>
+                                <optionX>Option X</optionX>
+                            </values>
+                            <sort_order>70</sort_order>
+                            <default_value>option2,option3</default_value>
+                            <required>0</required>
+                        </multiselect_test>
+
+                        <file_test translate="label,comment">
+                            <label>File</label>
+                            <comment>Comment for file</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_file</input_renderer>
+                            <sort_order>80</sort_order>
                             <default_value></default_value>
                             <required>0</required>
-                        </otherblock>
+                        </file_test>
+
+                        <link_test translate="label,comment">
+                            <label>Link</label>
+                            <comment>Comment for link</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_link</input_renderer>
+                            <sort_order>90</sort_order>
+                            <default_value></default_value>
+                            <required>0</required>
+                        </link_test>
+
+                        <product_test translate="label,comment">
+                            <label>Product</label>
+                            <comment>Comment for product</comment>
+                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <input_renderer>easytemplate/input_renderer_product</input_renderer>
+                            <sort_order>100</sort_order>
+                            <default_value></default_value>
+                            <required>0</required>
+                        </product_test>
+
+                        <block_test translate="label,comment">
+                            <label>Block reference</label>
+                            <comment>Comment for block</comment>
+                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <input_renderer>easytemplate/input_renderer_block</input_renderer>
+                            <sort_order>110</sort_order>
+                            <default_value>3</default_value>
+                            <required>0</required>
+                        </block_test>
                     </fields>
-                </imagegallery>
+                </testtemplate>
             </templates>
-        </complex>
+        </test>
     </easytemplate>
 </config>
