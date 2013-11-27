@@ -60,6 +60,20 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
     }
 
     /**
+     * Orders field by sort_order attribute
+     *
+     * @param $a Webguys_Easytemplate_Model_Input_Parser_Template
+     * @param $b Webguys_Easytemplate_Model_Input_Parser_Template
+     */
+    private function orderTemplates($a, $b)
+    {
+        if ($a->getSortOrder() == $b->getSortOrder()) {
+            return 0;
+        }
+        return ($a->getSortOrder() < $b->getSortOrder()) ? -1 : 1;
+    }
+
+    /**
      * Returns an array of all templates which are defined in easytemplate.xml files
      *
      * @return Webguys_Easytemplate_Model_Input_Parser_Template[]
@@ -87,6 +101,10 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
                     }
                 }
             }
+
+            // Sort fields by sort_order
+            usort($result, array($this, 'orderTemplates'));
+
             $this->_templates = $result;
         }
 
