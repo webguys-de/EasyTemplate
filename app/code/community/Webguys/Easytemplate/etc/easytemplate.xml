@@ -171,19 +171,9 @@
                     <comment>Display a point on the landscape</comment>
                     <sort_order>50</sort_order>
                     <fields>
-                        <test translate="label,comment">
-                            <label>Image</label>
-                            <comment>An image</comment>
-                            <backend_model>easytemplate/template_data_int</backend_model>
-                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
-                            <input_renderer_source>easytemplate/input_renderer_source_numbers</input_renderer_source>
-                            <sort_order>5</sort_order>
-                            <default_value></default_value>
-                            <required>0</required>
-                        </test>
                         <image translate="label,comment">
                             <label>Image</label>
-                            <comment>An image</comment>
+                            <comment>The image is not going to be resized, please upload the image in the right size.</comment>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_file</input_renderer>
                             <sort_order>10</sort_order>
@@ -192,13 +182,11 @@
                         </image>
                         <link translate="label,comment">
                             <label>Link</label>
-                            <comment>A simple Link</comment>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_link</input_renderer>
-                            <sort_order>1</sort_order>
-                            <required>1</required>
+                            <sort_order>30</sort_order>
+                            <required>0</required>
                         </link>
-                        
                         <image_alignment translate="label,comment">
                             <label>Alignment</label>
                             <comment>How to align the image</comment>
@@ -219,7 +207,7 @@
                             <comment>The caption of the image</comment>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_text</input_renderer>
-                            <sort_order>30</sort_order>
+                            <sort_order>40</sort_order>
                             <default_value></default_value>
                             <required>0</required>
                         </caption>
@@ -228,7 +216,7 @@
                             <comment>Text</comment>
                             <backend_model>easytemplate/template_data_text</backend_model>
                             <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
-                            <sort_order>40</sort_order>
+                            <sort_order>50</sort_order>
                             <default_value></default_value>
                             <required>0</required>
                         </text>
