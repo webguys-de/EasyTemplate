@@ -1,3 +1,5 @@
+html body#html-body.adminhtml-cms-page-edit div.wrapper div#anchor-content.middle div#page:main-container div.columns div#content.main-col div.main-col-inner div.entry-edit form#edit_form div#page_tabs_templates_content div.entry-edit div#easy_template_selector div.template-wrapper div.template div.title
+
 .easy-templates .template-box {
     border: 1px solid #cddddd;
     padding: 1em;
@@ -49,6 +51,11 @@
 #easy_template_selector .template-wrapper .template .title{
     text-align:center;
     font-weight: normal;
+}
+#easy_template_selector .template-wrapper .template .title a {
+    text-decoration: none;
+    color: #000000;
+    cursor: pointer;
 }
 #easy_template_selector .template-wrapper .template img {
     margin:0 5px;

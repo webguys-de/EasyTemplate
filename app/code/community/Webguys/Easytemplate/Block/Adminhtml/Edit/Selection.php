@@ -9,6 +9,14 @@
 class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Block_Template
 {
     const TEMPLATE_TYPES_PATH = 'easytemplate';
+    const NO_IMAGE_PATH       = 'images/easytemplate/no-image.png';
+
+    public function getTemplateImage($image){
+        if( file_exists( Mage::getBaseDir('skin') . '/adminhtml/default/default/' .$image )){
+            return $image;
+        }
+        return $this::NO_IMAGE_PATH;
+    }
 
     public function getTemplates()
     {
@@ -27,7 +35,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Bloc
                 $types[] = array(
                     'label' => $helper->__($template->getLabel()),
                     'value' => $template->getCode(),
-                    'image' => $template->getImage()
+                    'image' => $this->getTemplateImage($template->getImage())
                 );
             }
 
