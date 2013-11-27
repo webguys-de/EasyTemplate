@@ -1,10 +1,10 @@
 <?php /** @var $this Webguys_Easytemplate_Block_Adminhtml_Edit_Selection */ ?>
 
-<?php foreach( $this->getTemplates() AS $template) : ?>
+<?php $first = true; foreach( $this->getTemplates() AS $template) : ?>
 
-    <div class="template-wrapper">
+    <div class="template-wrapper <?php if($first) : ?>first<? endif; ?>">
 
-        <div class="title">
+        <div class="section-title">
             <?php echo $template['label'] ?>
         </div>
 
@@ -20,6 +20,8 @@
             <?php endforeach; ?>
 
         <?php endif; ?>
+        <?php $first = false; ?>
+        <br class="clear" />
 
     </div>
 

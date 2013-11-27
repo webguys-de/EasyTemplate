@@ -27,10 +27,21 @@
 }
 #easy_template_selector .template-wrapper{
     background:white;
-    margin:0;
-    float:left;
-    margin-right:5px;
-    padding:5px 0 5px 5px;
+    margin:8px 0 0 0;
+    height: auto;
+    display: block;
+    padding:0;
+}
+#easy_template_selector .template-wrapper.first{
+    margin-top: 0;
+}
+#easy_template_selector .template-wrapper .section-title{
+    display:block;
+    text-align:center;
+    margin:0px 0 6px;
+    font-weight:bold;
+    padding: 5px;
+    background: #E7EFEF;
 }
 #easy_template_selector .template-wrapper .title{
     display:block;
@@ -130,4 +141,12 @@
 }
 .easytemplate .link-box button{
     display: inline-block;
+}
+.clear{
+    height: 0 !important;
+    width:  0 !important;
+    font-size: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    clear: both !important;
 }
