@@ -13,6 +13,9 @@
  */
 class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate_Model_Input_Parser_Abstract
 {
+    protected $_backendModel;
+
+    protected $_inputRenderer;
 
     public function getBackendModelAlias( $name )
     {
@@ -39,12 +42,22 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
      */
     public function getBackendModel()
     {
-        $model = Mage::getModel(
-            $this->getBackendModelAlias( $this->getData('backend_model') )
-        );
+        if (is_null($this->_backendModel)) {
+            if ($backendmodel = $this->getData('backend_model')) {
+                $model = Mage::getModel(
+                    $this->getBackendModelAlias( $backendmodel )
+                );
+            }
+            else {
+                $inputRenderer = $this->getInputRenderer();
+                $model = $inputRenderer->getDefaultBackendModel();
+            }
 
-        $model->setParentParserField( $this );
-        return $model;
+            $model->setParentParserField( $this );
+
+            $this->_backendModel = $model;
+        }
+        return $this->_backendModel;
     }
 
     /**
@@ -52,23 +65,27 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
      */
     public function getInputRenderer()
     {
-        $template = $this->getTemplate();
-        $name = $template->getCode().'_'.$this->getCode();
+        if (is_null($this->_inputRenderer)) {
+            $template = $this->getTemplate();
+            $name = $template->getCode().'_'.$this->getCode();
 
-        /** @var $block Webguys_Easytemplate_Block_Input_Renderer_Abstract */
-        $block = Mage::app()->getLayout()->createBlock(
-            $this->getBackendModelAlias( $this->getData('input_renderer') ),
-            'easytemplate_template_field_'.$name
-        );
-        $block->setParentParserField( $this );
-        $block->setCode( $this->getCode() );
-        $block->setLabel( $this->getLabel() );
-        $block->setComment( $this->getComment() );
-        $block->setDefault( $this->getDefaultValue() );
-        $block->setRequired( $this->getRequired() );
-        $block->setSource( $this->getInputRendererSource() );
+            /** @var $block Webguys_Easytemplate_Block_Input_Renderer_Abstract */
+            $block = Mage::app()->getLayout()->createBlock(
+                $this->getBackendModelAlias( $this->getData('input_renderer') ),
+                'easytemplate_template_field_'.$name
+            );
+            $block->setParentParserField( $this );
+            $block->setCode( $this->getCode() );
+            $block->setLabel( $this->getLabel() );
+            $block->setComment( $this->getComment() );
+            $block->setDefault( $this->getDefaultValue() );
+            $block->setRequired( $this->getRequired() );
+            $block->setSource( $this->getInputRendererSource() );
 
-        return $block;
+            $this->_inputRenderer = $block;
+        }
+
+        return $this->_inputRenderer;
     }
 
     /**
@@ -89,8 +106,8 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
 
     public function getInputRendererSource()
     {
-        $inputRenderer = $this->getData('input_renderer_source');
-        $rendererModel = Mage::getModel($inputRenderer);
+        $inputRendererSource = $this->getData('input_renderer_source');
+        $rendererModel = Mage::getModel($inputRendererSource);
 
 
 

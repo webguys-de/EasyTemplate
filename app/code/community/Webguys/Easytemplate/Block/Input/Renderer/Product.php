@@ -13,6 +13,11 @@ class Webguys_Easytemplate_Block_Input_Renderer_Product extends Webguys_Easytemp
         $this->setTemplate('easytemplate/input/renderer/product.phtml');
     }
 
+    public function getDefaultBackendModel()
+    {
+        return Mage::getModel('easytemplate/template_data_int');
+    }
+
     /**
      * @return Mage_Catalog_Model_Product
      */

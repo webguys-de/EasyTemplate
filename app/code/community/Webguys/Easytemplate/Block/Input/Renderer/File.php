@@ -12,6 +12,11 @@ class Webguys_Easytemplate_Block_Input_Renderer_File extends Webguys_Easytemplat
         $this->setTemplate('easytemplate/input/renderer/file.phtml');
     }
 
+    public function getDefaultBackendModel()
+    {
+        return Mage::getModel('easytemplate/template_data_varchar');
+    }
+
     public function hasFile()
     {
         return !empty($this->_value);
