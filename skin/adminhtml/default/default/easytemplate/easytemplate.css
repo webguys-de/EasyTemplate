@@ -1,5 +1,3 @@
-html body#html-body.adminhtml-cms-page-edit div.wrapper div#anchor-content.middle div#page:main-container div.columns div#content.main-col div.main-col-inner div.entry-edit form#edit_form div#page_tabs_templates_content div.entry-edit div#easy_template_selector div.template-wrapper div.template div.title
-
 .easy-templates .template-box {
     border: 1px solid #cddddd;
     padding: 1em;
@@ -20,7 +18,6 @@ html body#html-body.adminhtml-cms-page-edit div.wrapper div#anchor-content.middl
     color: #6f8992;
     font-size: .9em;
 }
-
 #easy_template_selector{
     width: 98%;
     background:#6F8992;
