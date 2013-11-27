@@ -382,6 +382,16 @@
                             <required>0</required>
                         </product_test>
 
+                        <category_test translate="label,comment">
+                            <label>Category</label>
+                            <comment>Comment for category</comment>
+                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <input_renderer>easytemplate/input_renderer_category</input_renderer>
+                            <sort_order>100</sort_order>
+                            <default_value></default_value>
+                            <required>0</required>
+                        </category_test>
+
                         <block_test translate="label,comment">
                             <label>Block reference</label>
                             <comment>Comment for block</comment>

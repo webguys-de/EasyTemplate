@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * Class Webguys_Easytemplate_Block_Input_Renderer_File
+ *
+ */
+class Webguys_Easytemplate_Block_Input_Renderer_Category extends Webguys_Easytemplate_Block_Input_Renderer_Abstract
+{
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setTemplate('easytemplate/input/renderer/category.phtml');
+    }
+
+    /**
+     * @return Mage_Catalog_Model_Category
+     */
+    public function getEntityModel()
+    {
+        $model = Mage::getModel('catalog/category');
+        $model->load( $this->getEntityId() );
+        return $model;
+    }
+
+    public function getName()
+    {
+        $model = $this->getEntityModel();
+        return '#'.$model->getId().': '. $model->getSku() .' - ' .$model->getName();
+    }
+
+    public function getEntityId()
+    {
+        return $this->getValue();
+    }
+}
