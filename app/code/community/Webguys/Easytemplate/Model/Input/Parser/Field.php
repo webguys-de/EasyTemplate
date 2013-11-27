@@ -109,8 +109,15 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
         $inputRendererSource = $this->getData('input_renderer_source');
         $rendererModel = Mage::getModel($inputRendererSource);
 
-        if ($rendererModel && $rendererModel instanceof Webguys_Easytemplate_Model_Input_Renderer_Source_Abstract) {
-            $rendererModel->setParentField($this);
+
+
+        if ($rendererModel ) {
+
+            if( $rendererModel instanceof Webguys_Easytemplate_Model_Input_Renderer_Source_Abstract )
+            {
+                $rendererModel->setParentField($this);
+            }
+
             return $rendererModel;
         }
 

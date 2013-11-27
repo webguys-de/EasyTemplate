@@ -406,5 +406,56 @@
                 </testtemplate>
             </templates>
         </test>
+
+        <product>
+            <enabled>1</enabled>
+            <label>Test Templates</label>
+            <templates>
+
+                <category_products translate="label,comment">
+
+                    <enabled>1</enabled>
+                    <label>Display Category Products</label>
+                    <comment>Display Products of a custom category</comment>
+                    <sort_order>10</sort_order>
+
+                    <fields>
+
+                        <category_id translate="label,comment">
+                            <label>Category</label>
+                            <comment>Comment for category</comment>
+                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <input_renderer>easytemplate/input_renderer_category</input_renderer>
+                            <sort_order>10</sort_order>
+                            <default_value></default_value>
+                            <required>1</required>
+                        </category_id>
+
+                        <count translate="label,comment">
+                            <label>Number of Products</label>
+                            <comment>How much products you like to display?</comment>
+                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                            <sort_order>20</sort_order>
+                            <default_value>6</default_value>
+                            <required>1</required>
+                        </count>
+
+                        <order translate="label">
+                            <label>Sort by</label>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
+                            <input_renderer_source>catalog/category_attribute_source_sortby</input_renderer_source>
+                            <sort_order>30</sort_order>
+                            <required>0</required>
+                        </order>
+
+                    </fields>
+
+                </category_products>
+
+            </templates>
+        </product>
+
     </easytemplate>
 </config>
