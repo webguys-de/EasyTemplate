@@ -13,6 +13,11 @@ class Webguys_Easytemplate_Block_Input_Renderer_Category extends Webguys_Easytem
         $this->setTemplate('easytemplate/input/renderer/category.phtml');
     }
 
+    public function getDefaultBackendModel()
+    {
+        return Mage::getModel('easytemplate/template_data_int');
+    }
+
     /**
      * @return Mage_Catalog_Model_Category
      */

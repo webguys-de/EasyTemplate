@@ -11,4 +11,9 @@ class Webguys_Easytemplate_Block_Input_Renderer_Text extends Webguys_Easytemplat
         parent::__construct();
         $this->setTemplate('easytemplate/input/renderer/text.phtml');
     }
+
+    public function getDefaultBackendModel()
+    {
+        return Mage::getModel('easytemplate/template_data_varchar');
+    }
 }

@@ -60,7 +60,7 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
     }
 
     /**
-     * Orders field by sort_order attribute
+     * Orders templates by sort_order attribute
      *
      * @param $a Webguys_Easytemplate_Model_Input_Parser_Template
      * @param $b Webguys_Easytemplate_Model_Input_Parser_Template

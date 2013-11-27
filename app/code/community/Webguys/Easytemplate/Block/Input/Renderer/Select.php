@@ -12,6 +12,11 @@ class Webguys_Easytemplate_Block_Input_Renderer_Select extends Webguys_Easytempl
         $this->setTemplate('easytemplate/input/renderer/select.phtml');
     }
 
+    public function getDefaultBackendModel()
+    {
+        return Mage::getModel('easytemplate/template_data_varchar');
+    }
+
     public function getOptionValues()
     {
         /** @var $source Webguys_Easytemplate_Model_Input_Renderer_Source_Abstract */
