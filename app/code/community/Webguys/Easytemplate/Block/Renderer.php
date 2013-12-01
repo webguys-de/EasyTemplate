@@ -29,6 +29,8 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                     $childBlock = $this->getLayout()->createBlock($model->getType());
                     $childBlock->setTemplate($model->getTemplate());
                     $childBlock->setTemplateModel($template);
+                    $childBlock->setTemplateCode( $template->getCode() );
+
 
                     /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
                     foreach ($model->getFields() as $field) {
@@ -38,24 +40,26 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                         $inputValidator->setField($field);
 
                         $frontendValue = $inputValidator->prepareForFrontend($template->getFieldData($field->getCode()));
+                        if ($frontendValue) {
 
-                        Mage::dispatchEvent('easytemplate_frontend_prepared_var', array(
-                            'template' => $template,
-                            'template_model' => $model,
-                            'field' => $field,
-                            'block' => $childBlock,
-                            'validator' => $inputValidator,
-                            'value' => $frontendValue
-                        ));
+                            $valueTransport = new Varien_Object();
+                            $valueTransport->setValue($frontendValue);
 
-                        // TODO: So kann man mit dem value im event noch nichts machen... :(
+                            Mage::dispatchEvent('easytemplate_frontend_prepared_var', array(
+                                'template' => $template,
+                                'template_model' => $model,
+                                'field' => $field,
+                                'block' => $childBlock,
+                                'validator' => $inputValidator,
+                                'value' => $valueTransport
+                            ));
 
-                        $childBlock->setTemplateVar($field->getCode(), $frontendValue);
+                            $childBlock->setData($field->getCode(), $valueTransport->getValue());
+                        }
                     }
 
                     $this->setChild('block_'.$position.'_'.$template->getCode(), $childBlock);
                     $position++;
-
                 }
             }
         }

@@ -27,6 +27,11 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
         return $this->getData('comment');
     }
 
+    public function getSortOrder()
+    {
+        return $this->getData('sort_order');
+    }
+
     public function getTemplate()
     {
         return $this->_getAttribute('template');

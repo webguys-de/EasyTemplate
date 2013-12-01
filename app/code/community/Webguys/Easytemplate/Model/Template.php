@@ -93,10 +93,11 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
                 $backendModel = $field->getBackendModel();
                 $backendModel->loadByTemplate($this);
 
+                $inputValidator->beforeFieldSave($value, $backendModel->getValue());
+
                 $backendModel->importData($value);
                 $backendModel->setTemplateId( $this->getId() );
 
-                $inputValidator->beforeFieldSave($value);
                 $backendModel->save();
                 $inputValidator->afterFieldSave($value);
             }

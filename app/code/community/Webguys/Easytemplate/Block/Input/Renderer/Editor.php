@@ -17,6 +17,11 @@ class Webguys_Easytemplate_Block_Input_Renderer_Editor extends Webguys_Easytempl
         $this->setTemplate('easytemplate/input/renderer/editor.phtml');
     }
 
+    public function getDefaultBackendModel()
+    {
+        return Mage::getModel('easytemplate/template_data_text');
+    }
+
     public function getEditor()
     {
         if (is_null($this->_editor)) {

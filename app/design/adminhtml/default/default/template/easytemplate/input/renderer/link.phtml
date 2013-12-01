@@ -1,6 +1,6 @@
 <?php /** @var $this Webguys_Easytemplate_Block_Input_Renderer_Link */ ?>
 
-<fieldset class="config">
+<fieldset class="config easytemplate">
     <table cellspacing="0" class="form-list">
         <colgroup class="label"></colgroup>
         <colgroup class="value"></colgroup>
@@ -8,46 +8,39 @@
         <tbody>
 
             <script type="text/javascript">
-                chooser_template_field_{{id}} = new WysiwygWidget.chooser(
-                    'template_field_{{id}}',
+                // <![CDATA[
+                chooser_template_field_<?php echo $this->getCode(); ?>_{{id}} = new WysiwygWidget.chooser(
+                    'template_field_<?php echo $this->getCode(); ?>_{{id}}',
                     null,
                     {}
                 );
-                easytemplatechooser_{{id}} = new EasytemplateChooser( chooser_template_field_{{id}} , <?php echo json_encode( Mage::helper('easytemplate/chooser')->getInitChooserArray('template_field_{{id}}' ) ) ?> );
+                easytemplatechooser_<?php echo $this->getCode(); ?>_{{id}} = new EasytemplateChooser( chooser_template_field_<?php echo $this->getCode(); ?>_{{id}} , <?php echo json_encode( Mage::helper('easytemplate/chooser')->getInitChooserArray('template_field_'.$this->getCode().'_{{id}}' ) ) ?> );
+                //]]>
             </script>
 
-            <tr class="template_field_text_<?php echo $this->getCode() ?>">
+            <tr class="template_field_link_<?php echo $this->getCode() ?>">
                 <td class="label">
-                    <label for="template_field_{{id}}"><?php echo $this->__($this->getLabel()) ?><?php if($this->getRequired()) : ?> <span class="required">*</span><?php endif; ?></label>
+                    <label for="template_field_<?php echo $this->getCode(); ?>_{{id}}"><?php echo $this->__($this->getLabel()) ?><?php if($this->getRequired()) : ?> <span class="required">*</span><?php endif; ?></label>
                 </td>
                 <td class="value">
-
-                    <div id="template_field_{{id}}label">
+                    <div id="template_field_<?php echo $this->getCode(); ?>_{{id}}label">
                         <?php echo $this->getName(); ?>
                     </div>
+                    <div id="template_input_<?php echo $this->getCode(); ?>_{{id}}label">
+                        <input id="template_field_<?php echo $this->getCode(); ?>_{{id}}value" name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->escapeHtml( $this->getValue() ) ?>" class="input-text <?php if($this->getRequired()) : ?>required-entry<?php endif; ?>" type="text" />
+                    </div>
+                    <div class="link-box">
+                        <select id="template_field_<?php echo $this->getCode(); ?>_{{id}}typeselect" onchange="switch_{{id}}_input(this.id)">
+                            <option value="custom"><?php echo $this->__('Custom')?></option>
+                            <option value="product" <?php echo ( $this->getEntityCode() == 'product' ? 'selected="selected"':'' ) ?> ><?php echo $this->__('Product')?></option>
+                            <option value="category" <?php echo ( $this->getEntityCode() == 'category' ? 'selected="selected"':'' ) ?>><?php echo $this->__('Category')?></option>
+                            <option value="cms" <?php echo ( $this->getEntityCode() == 'cms' ? 'selected="selected"':'' ) ?>><?php echo $this->__('Pages')?></option>
+                        </select>
 
-                    <select id="template_field_{{id}}typeselect" onchange="$('template_field_{{id}}button').show(); if( this.value == 'custom' || this.value == '' ) $('template_field_{{id}}button').hide(); ">
-
-                        <option value="custom">
-                            <?php echo $this->__('Custom')?>
-                        </option>
-
-                        <option value="product" <?php echo ( $this->getEntityCode() == 'product' ? 'selected="selected"':'' ) ?> >
-                            <?php echo $this->__('Product')?>
-                        </option>
-                        <option value="category" <?php echo ( $this->getEntityCode() == 'category' ? 'selected="selected"':'' ) ?>>
-                            <?php echo $this->__('Category')?>
-                        </option>
-                        <option value="cms" <?php echo ( $this->getEntityCode() == 'cms' ? 'selected="selected"':'' ) ?>>
-                            <?php echo $this->__('Pages')?>
-                        </option>
-
-                    </select>
-
-                    <input id="template_field_{{id}}value" name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->escapeHtml( $this->getValue() ) ?>" class="input-text<?php if($this->getRequired()) : ?> required-entry<?php endif; ?>" type="text">
-                    <button id="template_field_{{id}}button" onclick="easytemplatechooser_{{id}}.open( $('template_field_{{id}}typeselect').value );" class="scalable" type="button">
-                        <span><span><span><?php echo $this->__('Please Select') ?></span></span></span>
-                    </button>
+                        <button id="template_field_<?php echo $this->getCode(); ?>_{{id}}button" onclick="easytemplatechooser_<?php echo $this->getCode(); ?>_{{id}}.open( $('template_field_<?php echo $this->getCode(); ?>_{{id}}typeselect').value );" class="scalable" type="button">
+                            <span><span><?php echo $this->__('Please Select') ?></span></span>
+                        </button>
+                    </div>
                 </td>
                 <td class="comment">
                     <?php echo $this->__($this->getComment()) ?>
@@ -56,3 +49,20 @@
         </tbody>
     </table>
 </fieldset>
+<script type="text/javascript">
+    // <![CDATA[
+    function switch_{{id}}_input(element)
+    {
+        $('template_field_<?php echo $this->getCode(); ?>_{{id}}button').show();
+        if( $(element).value == 'custom' || $(element).value == '' ){
+            $('template_field_<?php echo $this->getCode(); ?>_{{id}}button').hide();
+            $('template_field_<?php echo $this->getCode(); ?>_{{id}}label').hide();
+            $('template_input_<?php echo $this->getCode(); ?>_{{id}}label').show();
+        }else{
+            $('template_field_<?php echo $this->getCode(); ?>_{{id}}label').show();
+            $('template_input_<?php echo $this->getCode(); ?>_{{id}}label').hide();
+        }
+    }
+    switch_{{id}}_input('template_field_<?php echo $this->getCode(); ?>_{{id}}typeselect');
+    //]]>
+</script>

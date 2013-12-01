@@ -1,0 +1,34 @@
+<?php /** @var $this Webguys_Easytemplate_Block_Input_Renderer_Datepicker */ ?>
+
+<fieldset class="config">
+    <table cellspacing="0" class="form-list">
+        <colgroup class="label"></colgroup>
+        <colgroup class="value"></colgroup>
+        <colgroup class="comment"></colgroup>
+        <tbody>
+        <tr class="template_field_datepicker_<?php echo $this->getCode() ?>">
+            <td class="label">
+                <label for="template_field_{{id}}_<?php echo $this->getCode() ?>"><?php echo $this->__($this->getLabel()) ?><?php if($this->getRequired()) : ?> <span class="required">*</span><?php endif; ?></label>
+            </td>
+            <td class="value">
+                <input id="template_field_{{id}}_<?php echo $this->getCode() ?>" name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->escapeHtml( $this->getValue() ) ?>" type="text" class="datetime-input<?php if($this->getRequired()) : ?> required-entry<?php endif; ?>" style="width:70px;text-align:right">
+                <img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="template_field_datepicker_{{id}}_<?php echo $this->getCode() ?>_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;">
+            </td>
+            <td class="comment">
+                <?php echo $this->__($this->getComment()) ?>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</fieldset>
+<script type="text/javascript">
+    //<![CDATA[
+    Calendar.setup({
+        inputField: 'template_field_{{id}}_<?php echo $this->getCode() ?>',
+        ifFormat: '<?php echo $this->getDateStrFormat() ?>',
+        button: 'template_field_datepicker_{{id}}_<?php echo $this->getCode() ?>_trig',
+        align: 'Bl',
+        singleClick: true
+    });
+    //]]>
+</script>

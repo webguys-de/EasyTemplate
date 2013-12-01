@@ -1,10 +1,10 @@
 <?php /** @var $this Webguys_Easytemplate_Block_Adminhtml_Edit_Selection */ ?>
 
-<?php foreach( $this->getTemplates() AS $template) : ?>
+<?php $first = true; foreach( $this->getTemplates() AS $template) : ?>
 
-    <div class="template-wrapper">
+    <div class="template-wrapper <?php if($first) : ?>first<? endif; ?>">
 
-        <div class="title">
+        <div class="section-title">
             <?php echo $template['label'] ?>
         </div>
 
@@ -12,7 +12,7 @@
 
             <?php  foreach( $template['items'] AS $item) : ?>
                 <div class="template">
-                    <div class="title"><?php echo $item['label'] ?> </div>
+                    <div class="title"><a onclick="easyTemplate.add('<?php echo $item['value']?>', '<?php echo $item['label']?>')"><?php echo $item['label'] ?></a></div>
                     <a onclick="easyTemplate.add('<?php echo $item['value']?>', '<?php echo $item['label']?>')">
                         <img src="<?php echo $this->getSkinUrl($item['image']) ?>" />
                     </a>
@@ -20,6 +20,8 @@
             <?php endforeach; ?>
 
         <?php endif; ?>
+        <?php $first = false; ?>
+        <br class="clear" />
 
     </div>
 

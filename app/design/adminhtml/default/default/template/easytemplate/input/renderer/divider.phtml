@@ -1,0 +1,11 @@
+<?php /** @var $this Webguys_Easytemplate_Block_Input_Renderer_Divider */ ?>
+
+<div class="divider template_field_divider_<?php echo $this->getCode() ?>">
+    <?php if ($label = $this->getLabel()) : ?>
+        <h1><?php echo $this->__($label) ?></h1>
+    <?php endif; ?>
+
+    <?php if ($comment = $this->getComment()) : ?>
+        <h2><?php echo $this->__($comment) ?></h2>
+    <?php endif; ?>
+</div>

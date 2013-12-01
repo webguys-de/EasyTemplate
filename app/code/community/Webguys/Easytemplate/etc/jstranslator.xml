@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<jstranslator>
+    <!-- chooser.js -->
+    <easytemplate-impossible translate="message" module="easytemplate">
+        <message>Action not possible</message>
+    </easytemplate-impossible>
+</jstranslator>
