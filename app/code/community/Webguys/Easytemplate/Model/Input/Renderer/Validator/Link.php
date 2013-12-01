@@ -14,12 +14,12 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_Link extends Webguys_E
         if( $code == 'product' )
         {
             // TODO: Wirklich so laden?
+
             $product = Mage::getModel('catalog/product');
             $product->load( $id );
             return $product->getProductUrl();
         }
-
-        if( $code == 'category' )
+        else if( $code == 'category' )
         {
             // TODO: Wirklich so laden?
 
@@ -28,8 +28,7 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_Link extends Webguys_E
             $category->load( $id );
             return $category->getUrl();
         }
-
-        if( is_numeric( $data ) )
+        else if( is_numeric( $data ) )
         {
             return Mage::Helper('cms/page')->getPageUrl( $data );
         }
