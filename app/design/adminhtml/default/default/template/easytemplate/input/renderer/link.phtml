@@ -8,12 +8,14 @@
         <tbody>
 
             <script type="text/javascript">
+                // <![CDATA[
                 chooser_template_field_<?php echo $this->getCode(); ?>_{{id}} = new WysiwygWidget.chooser(
                     'template_field_<?php echo $this->getCode(); ?>_{{id}}',
                     null,
                     {}
                 );
                 easytemplatechooser_<?php echo $this->getCode(); ?>_{{id}} = new EasytemplateChooser( chooser_template_field_<?php echo $this->getCode(); ?>_{{id}} , <?php echo json_encode( Mage::helper('easytemplate/chooser')->getInitChooserArray('template_field_'.$this->getCode().'_{{id}}' ) ) ?> );
+                //]]>
             </script>
 
             <tr class="template_field_text_<?php echo $this->getCode() ?>">
@@ -47,7 +49,8 @@
         </tbody>
     </table>
 </fieldset>
-<script>
+<script type="text/javascript">
+    // <![CDATA[
     function switch_{{id}}_input(element)
     {
         $('template_field_<?php echo $this->getCode(); ?>_{{id}}button').show();
@@ -61,4 +64,5 @@
         }
     }
     switch_{{id}}_input('template_field_<?php echo $this->getCode(); ?>_{{id}}typeselect');
+    //]]>
 </script>
