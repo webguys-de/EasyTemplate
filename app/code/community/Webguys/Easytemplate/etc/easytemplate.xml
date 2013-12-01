@@ -397,6 +397,16 @@
                             <default_value>3</default_value>
                             <required>0</required>
                         </block_test>
+
+                        <datepicker_test translate="label,comment">
+                            <label>Datepicker</label>
+                            <comment>Comment for datepicker</comment>
+                            <!-- <backend_model>easytemplate/template_data_datetime</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_datepicker</input_renderer>
+                            <sort_order>120</sort_order>
+                            <default_value>2013-12-05</default_value>
+                            <required>0</required>
+                        </datepicker_test>
                     </fields>
                 </testtemplate>
             </templates>
