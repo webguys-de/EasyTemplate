@@ -16,7 +16,7 @@
                 easytemplatechooser_<?php echo $this->getCode(); ?>_{{id}} = new EasytemplateChooser( chooser_template_field_<?php echo $this->getCode(); ?>_{{id}} , <?php echo json_encode( Mage::helper('easytemplate/chooser')->getInitChooserArray('template_field_'.$this->getCode().'_{{id}}' ) ) ?> );
             </script>
 
-            <tr class="template_field_text_<?php echo $this->getCode() ?>">
+            <tr class="template_field_product_<?php echo $this->getCode() ?>">
                 <td class="label">
                     <label for="template_field_<?php echo $this->getCode(); ?>_{{id}}"><?php echo $this->__($this->getLabel()) ?><?php if($this->getRequired()) : ?> <span class="required">*</span><?php endif; ?></label>
                 </td>
