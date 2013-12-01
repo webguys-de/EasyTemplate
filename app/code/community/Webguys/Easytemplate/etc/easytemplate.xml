@@ -274,6 +274,13 @@
                             <required>0</required>
                         </textfield_test>
 
+                        <divider_test translate="label,comment">
+                            <label>Heading divider</label>
+                            <comment>Comment for divider</comment>
+                            <input_renderer>easytemplate/input_renderer_divider</input_renderer>
+                            <sort_order>25</sort_order>
+                        </divider_test>
+
                         <editor_test translate="label,comment">
                             <label>Editor</label>
                             <comment>Comment for editor</comment>
