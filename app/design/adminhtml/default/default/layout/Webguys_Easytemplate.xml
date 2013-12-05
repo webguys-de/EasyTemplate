@@ -5,6 +5,7 @@
         <reference name="head">
             <action method="addCss"><name>easytemplate/easytemplate.css</name></action>
             <action method="addItem"><type>skin_js</type><name>easytemplate/chooser.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>easytemplate/general.js</name></action>
         </reference>
         <reference name="cms_page_edit_tabs">
             <block type="easytemplate/adminhtml_cms_page_edit_tab_templates" name="cms_page_edit_tab_templates">
@@ -18,6 +19,7 @@
         <reference name="head">
             <action method="addCss"><name>easytemplate/easytemplate.css</name></action>
             <action method="addItem"><type>skin_js</type><name>easytemplate/chooser.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>easytemplate/general.js</name></action>
         </reference>
         <remove name="cms_block_edit" />
         <reference name="content">
