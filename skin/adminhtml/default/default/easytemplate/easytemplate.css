@@ -176,19 +176,21 @@
 
 .easytemplate .divider {
     height: auto;
-    overflow: initial;
     margin: 0;
-    border-bottom: 3px #6f8992 solid;
-}
-.easytemplate .divider h2 {
-    margin: 0;
-    padding: 5px 20px;
-    color: #eb5e00; font-size: 1.25em;
-    line-height: 1.2em;
+    border-bottom: 0px;
+    background: #6F8992;
 }
 .easytemplate .divider h1 {
     margin: 0;
-    padding: 0 20px;
+    padding: 8px 20px 4px;
+    color: #ffffff;
+    font-size: 1.25em;
+    line-height: 1.2em;
+}
+.easytemplate .divider p {
+    margin: 0;
+    padding: 0 20px 6px;
+    color: #ffffff;
 }
 
 .clear {
