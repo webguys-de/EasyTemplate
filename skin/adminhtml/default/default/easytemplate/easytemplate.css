@@ -178,19 +178,19 @@
     height: auto;
     margin: 0;
     border-bottom: 0px;
-    background: #6F8992;
+    background: #D6D6D6;
 }
 .easytemplate .divider h1 {
     margin: 0;
     padding: 8px 20px 4px;
-    color: #ffffff;
+    color: #444444;
     font-size: 1.25em;
     line-height: 1.2em;
 }
 .easytemplate .divider p {
     margin: 0;
     padding: 0 20px 6px;
-    color: #ffffff;
+    color: #444444;
 }
 
 .clear {
