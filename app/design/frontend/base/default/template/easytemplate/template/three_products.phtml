@@ -1,21 +1,46 @@
 <?php /** @var $this Webguys_Easytemplate_Block_Template */ ?>
 
-<div class="<?php echo $this->getTemplateCode() ?>">
-    <div class="col3-set">
-        <div class="col-1">
-            <?php if ($product1 = $this->getProductOne()) : ?>
-                Name: <?php echo $product1->getName(); ?>
+<?php
+    $_helper  = Mage::helper('catalog/output');
+    $products = array();
+    if ($product = $this->getProductOne()){
+        array_push($products, $product);
+    }
+    if ($product = $this->getProductTwo()){
+        array_push($products, $product);
+    }
+    if ($product = $this->getProductThree()){
+        array_push($products, $product);
+    }
+    $block = new Mage_Catalog_Block_Product();
+?>
+
+<ul class="products-grid <?php echo $this->getTemplateCode() ?>">
+
+    <?php $i=0; foreach( $products AS $_product ) : ?>
+        <?php $i++; ?>
+        <li class="item <?php if($i==1): ?>first<?php elseif($i==count($products)) :?>last<?php endif; ?>">
+            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
+            <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+            <?php if($_product->getRatingSummary()): ?>
+            <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
             <?php endif; ?>
-        </div>
-        <div class="col-2">
-            <?php if ($product2 = $this->getProductOne()) : ?>
-                Name: <?php echo $product2->getName(); ?>
-            <?php endif; ?>
-        </div>
-        <div class="col-3">
-            <?php if ($product3 = $this->getProductOne()) : ?>
-                Name: <?php echo $product3->getName(); ?>
-            <?php endif; ?>
-        </div>
-    </div>
-</div>
+            <?php echo $block->getPriceHtml($_product, true) ?>
+            <div class="actions">
+                <?php if($_product->isSaleable()): ?>
+                    <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $block->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                <?php else: ?>
+                    <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                <?php endif; ?>
+                <ul class="add-to-links">
+                    <?php if (Mage::helper('wishlist')->isAllow()) : ?>
+                        <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                    <?php endif; ?>
+                    <?php if($_compareUrl=$block->getAddToCompareUrl($_product)): ?>
+                        <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </li>
+    <?php endforeach; ?>
+</ul>
