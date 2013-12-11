@@ -139,4 +139,60 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
 
         }
     }
+
+    public function adminhtml_catalog_category_tabs( $observer )
+    {
+        /** @var $tabs Mage_Adminhtml_Block_Catalog_Category_Tabs */
+        $tabs = $observer->getTabs();
+
+        $tabs->addTab('easytemplate', array(
+            'label'     => Mage::helper('catalog')->__('Template'),
+            'content'   => $tabs->getLayout()->getBlock('adminhtml_category_templates')->toHtml(),
+        ));
+
+    }
+
+    public function catalog_category_save_commit_after($observer)
+    {
+
+        /** @var $category Mage_Catalog_Model_Category */
+        $category = $observer->getDataObject();
+
+        /** @var $group Webguys_Easytemplate_Model_Group */
+        $group = Mage::helper('easytemplate/category')->getGroupByCategoryId( $category->getId() );
+
+        /** @var $helper Webguys_Easytemplate_Helper_Data */
+        $helper = Mage::helper('easytemplate');
+        $helper->saveTemplateInformation($group);
+    }
+
+    public function core_block_abstract_to_html_before( $event )
+    {
+        /** @var $block Mage_Catalog_Block_Category_View */
+        $block = $event->getBlock();
+        if ( $block instanceof Mage_Catalog_Block_Category_View )
+        {
+
+            /** @var $category Mage_Catalog_Model_Category */
+            $category = Mage::registry('current_category');
+
+            /** @var $helper Webguys_Easytemplate_Helper_Category */
+            $helper = Mage::helper('easytemplate/category');
+
+            if ( $groupId = $helper->getGroupByCategoryId( $category->getId() ) )
+            {
+
+                /** @var $renderer Webguys_Easytemplate_Block_Renderer */
+                $renderer = Mage::app()->getLayout()->createBlock('easytemplate/renderer');
+                $renderer->setGroupId( $groupId );
+                $html = $renderer->toHtml();
+
+                $block->setCmsBlockHtml( $html );
+
+            }
+
+        }
+    }
+
+
 }
