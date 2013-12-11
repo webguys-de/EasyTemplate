@@ -50,8 +50,8 @@
                     <sort_order>20</sort_order>
                     <fields>
                         <map_url translate="label,comment">
-                            <label>Map Url</label>
-                            <comment>Simply paste the map url</comment>
+                            <label>iFrame Code</label>
+                            <comment>Simply paste the iFrame Html-Code</comment>
                             <backend_model>easytemplate/template_data_text</backend_model>
                             <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
                             <sort_order>10</sort_order>
