@@ -42,18 +42,6 @@
             <span class="label et-head" id="head_name_{{id}}"><?php echo Mage::helper('easytemplate')->__('Name') ?>:</span>
             <span class="et-head-value" id="head_name_{{id}}_value">{{name}}</span>
         </div>
-        <style>
-            .et-head {
-                display: inline-block;
-            }
-
-            .et-head-value {
-                display: inline-block;
-            }
-            .et-head-value.first {
-                margin-right: 20px;
-            }
-        </style>
         <div class="information last f-right a-right">
             <!-- <?php echo $this->jsQuoteEscape($this->getDeleteButtonHtml()) ?><br/> -->
             <?php echo $this->getOpenButton('{{id}}'); ?>
@@ -71,35 +59,27 @@
 
         <div class="template_content_status">
             <span class="label"><?php echo Mage::helper('easytemplate')->__('Active'); ?>:</span>
-            <span class="desc"><input type="checkbox" name="template[{{id}}][active]" id="template_{{id}}_active"
-                                      class="active-input" value="1"/></span>
+            <span class="desc"><input type="checkbox" name="template[{{id}}][active]" id="template_{{id}}_active" class="active-input" value="1"/></span>
             <span class="separator"></span>
             <span class="label"><?php echo Mage::helper('easytemplate')->__('Valid From') ?>:</span>
-            <span class="desc"><input name="template[{{id}}][valid_from]" id="_valid_from_{{id}}" value="{{valid_from}}"
-                                      type="text" class="datetime-input" style="width:70px;text-align:right"><img
-                    title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_from_{{id}}_trig"
-                    src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>"
-                    class="v-middle" style="margin-left:3px;"></span>
+            <span class="desc"><input name="template[{{id}}][valid_from]" id="_valid_from_{{id}}" value="{{valid_from}}" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_from_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
             <span class="separator"></span>
             <span class="label"><?php echo Mage::helper('easytemplate')->__('Valid To') ?>:</span>
-            <span clasS="desc"><input id="_valid_to_{{id}}" name="template[{{id}}][valid_to]" value="{{valid_to}}"
-                                      type="text" class="datetime-input" style="width:70px;text-align:right"><img
-                    title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_to_{{id}}_trig"
-                    src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>"
-                    class="v-middle" style="margin-left:3px;"></span>
-            <span class="separator"></span>
-            <span class="label"><?php echo Mage::helper('easytemplate')->__('Name') ?></span>
-            <span class="desc"><input type="text" class="required-entry input-text" id="template_{{id}}_name"
-                                      name="template[{{id}}][name]" value="{{name}}" style="width:250px"></span>
+            <span clasS="desc"><input id="_valid_to_{{id}}" name="template[{{id}}][valid_to]" value="{{valid_to}}" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_to_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>"
+            class="v-middle" style="margin-left:3px;"></span>
+            <br style="margin-bottom:8px"/>
+            <span class="label"><?php echo Mage::helper('easytemplate')->__('Name') ?>:</span>
+            <span class="desc"><input type="text" class="required-entry input-text" id="template_{{id}}_name" name="template[{{id}}][name]" value="{{name}}" style="width:366px" maxlength="60"> <small><?php echo $this->__('max. 60 char.'); ?></small></small></span>
         </div>
         <script type="text/javascript">
             //<![CDATA[
-            var from_{{id}} = "{{valid_from}}";
-            var to_{{id}} = "{{valid_to}}";
-            var immer_{{id}} = "<?php echo Mage::helper('easytemplate')->__('always') ?>";
+            var from_{{id}}        = "{{valid_from}}";
+            var to_{{id}}          = "{{valid_to}}";
+            var immer_{{id}}       = "<?php echo Mage::helper('easytemplate')->__('always') ?>";
             var label_valid_{{id}} = "<?php echo Mage::helper('easytemplate')->__('Valid') ?>";
             var label_from_{{id}}  = "<?php echo Mage::helper('easytemplate')->__('Valid from') ?>";
             var label_to_{{id}}    = "<?php echo Mage::helper('easytemplate')->__('Valid to') ?>";
+            var name_{{id}}        = "{{name}}";
 
             Calendar.setup({
                 inputField: '_valid_to_{{id}}',
@@ -137,31 +117,30 @@
                 to_{{id}} = $('_valid_to_{{id}}').value;
                 updateValues_{{id}}_func();
             });
+            $('template_{{id}}_name').observe('change', function(e){
+                name_{{id}} = $('template_{{id}}_name').value;
+                updateValues_{{id}}_func();
+            });
             function updateValues_{{id}}_func(){
-                console.log( from_{{id}} );
-                console.log( to_{{id}} );
-                console.log( '---' );
+                $('head_name_{{id}}_value').update( name_{{id}} );
                 if ((from_{{id}} != "") && (to_{{id}} != "")) {
-                    console.log('1');
-                    $('head_valid_{{id}}').update(label_valid_{{id}});
+                    $('head_valid_{{id}}').update(label_valid_{{id}} + ":");
                     $('head_valid_{{id}}_value').update( from_{{id}} + ' - ' + to_{{id}});
                 }
                 else if ((from_{{id}} != "") && (to_{{id}} == "")) {
-                    console.log('2');
-                    $('head_valid_{{id}}').update(label_from_{{id}});
+                    $('head_valid_{{id}}').update(label_from_{{id}} + ":");
                     $('head_valid_{{id}}_value').update( from_{{id}} );
                 }
                 else if ((from_{{id}} == "") && (to_{{id}} != "")) {
-                    console.log('3');
-                    $('head_valid_{{id}}').update(label_to_{{id}});
+                    $('head_valid_{{id}}').update(label_to_{{id}} + ":");
                     $('head_valid_{{id}}_value').update( to_{{id}} );
                 } else {
-                    console.log('4');
-                    $('head_valid_{{id}}').update(label_valid_{{id}});
+                    $('head_valid_{{id}}').update(label_valid_{{id}} + ":");
                     $('head_valid_{{id}}_value').update( immer_{{id}} );
                 }
 
                 var widest = 0;
+                console.log('{{id}}');
                 group = $$('.et-overview-wrapper');
                 group.each(function(c) {
                     thisWidth = c.offsetWidth;
@@ -171,6 +150,7 @@
                 });
                 group.invoke("setStyle", {width: widest + 'px'});
             }
+            updateValues_{{id}}_func.delay(1.1);
             //]]>
         </script>
         <?php echo $this->getChildHtml('input'); ?>
