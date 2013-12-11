@@ -1,0 +1,38 @@
+<?php /** @var $this Webguys_Easytemplate_Block_Input_Renderer_Link */ ?>
+
+<fieldset class="config">
+    <table cellspacing="0" class="form-list">
+        <colgroup class="label"></colgroup>
+        <colgroup class="value"></colgroup>
+        <colgroup class="comment"></colgroup>
+        <tbody>
+
+            <script type="text/javascript">
+                MediabrowserInstance = new Mediabrowser(<?php echo Mage::helper('easytemplate/chooser')->getFilebrowserSetupObject( 'template_field_'.$this->getCode().'_{{id}}' ) ?>);
+                MediabrowserInstance.storeId = '0';
+            </script>
+
+            <tr class="template_field_product_<?php echo $this->getCode() ?>">
+                <td class="label">
+                    <label for="template_field_<?php echo $this->getCode(); ?>_{{id}}"><?php echo $this->__($this->getLabel()) ?><?php if($this->getRequired()) : ?> <span class="required">*</span><?php endif; ?></label>
+                </td>
+                <td class="value">
+
+
+                    <div id="template_field_<?php echo $this->getCode(); ?>_{{id}}label">
+                        <?php echo $this->getName(); ?>
+                    </div>
+                    <div class="link-box">
+                        <input id="template_field_<?php echo $this->getCode(); ?>_{{id}}" name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->escapeHtml( $this->getValue() ) ?>" type="hidden">
+                        <button onclick="MediabrowserUtility.openDialog( '<?php echo Mage::helper('easytemplate/chooser')->getMediaOpenDialogUrl( 'template_field_'.$this->getCode().'_{{id}}') ?>' , false, false, 'Media-Browser');" class="scalable" type="button">
+                            <span><span><span><?php echo $this->__('Please Select') ?></span></span></span>
+                        </button>
+                    </div>
+                </td>
+                <td class="comment">
+                    <?php echo $this->__($this->getComment()) ?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</fieldset>

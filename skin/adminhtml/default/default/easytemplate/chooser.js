@@ -10,6 +10,7 @@ EasytemplateChooser.prototype = {
         this.product_chooser_url = config.product_chooser_url;
         this.category_chooser_url = config.category_chooser_url;
         this.cms_chooser_url = config.cms_chooser_url;
+        this.image_select_url = config.image_select_url;
     },
     open: function (entity) {
         if (entity == 'product') {
@@ -18,6 +19,8 @@ EasytemplateChooser.prototype = {
             url = this.category_chooser_url;
         } else if (entity == 'cms') {
             url = this.cms_chooser_url;
+        } else if (entity == 'image_select') {
+            url = this.image_select_url;
         }
 
         if (url) {
