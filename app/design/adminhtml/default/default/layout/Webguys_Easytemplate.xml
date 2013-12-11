@@ -1,12 +1,26 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
 
-    <adminhtml_cms_page_edit>
-        <reference name="head">
-            <action method="addCss"><name>easytemplate/easytemplate.css</name></action>
-            <action method="addItem"><type>skin_js</type><name>easytemplate/chooser.js</name></action>
-            <action method="addItem"><type>skin_js</type><name>easytemplate/general.js</name></action>
+    <default>
+
+        <reference name="category.edit">
+            <reference name="head">
+                <action method="addCss"><name>easytemplate/easytemplate.css</name></action>
+                <action method="addItem"><type>skin_js</type><name>easytemplate/chooser.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>easytemplate/general.js</name></action>
+            </reference>
         </reference>
+
+        <reference name="category.edit">
+            <block type="easytemplate/adminhtml_category_templates" name="adminhtml_category_templates">
+                <block type="easytemplate/adminhtml_edit_selection" name="selection" as="selection"
+                       template="easytemplate/edit/selection.phtml"/>
+            </block>
+        </reference>
+
+    </default>
+
+    <adminhtml_cms_page_edit>
         <reference name="cms_page_edit_tabs">
             <block type="easytemplate/adminhtml_cms_page_edit_tab_templates" name="cms_page_edit_tab_templates">
                 <block type="easytemplate/adminhtml_edit_selection" name="selection" as="selection" template="easytemplate/edit/selection.phtml" />
@@ -16,11 +30,6 @@
     </adminhtml_cms_page_edit>
 
     <adminhtml_cms_block_edit>
-        <reference name="head">
-            <action method="addCss"><name>easytemplate/easytemplate.css</name></action>
-            <action method="addItem"><type>skin_js</type><name>easytemplate/chooser.js</name></action>
-            <action method="addItem"><type>skin_js</type><name>easytemplate/general.js</name></action>
-        </reference>
         <remove name="cms_block_edit" />
         <reference name="content">
             <block type="easytemplate/adminhtml_cms_block_edit" name="easytemplate_cms_block_edit"></block>

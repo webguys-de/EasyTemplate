@@ -146,7 +146,8 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
         $tabs = $observer->getTabs();
 
         $tabs->addTab('easytemplate', array(
-            'label'     => Mage::helper('catalog')->__('Template'),
+            'label'     => Mage::helper('catalog')->__('Easy template'),
+
             'content'   => $tabs->getLayout()->getBlock('adminhtml_category_templates')->toHtml(),
         ));
 
