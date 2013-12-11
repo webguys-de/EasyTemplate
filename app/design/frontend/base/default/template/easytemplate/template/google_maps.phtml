@@ -1,5 +1,15 @@
 <?php /** @var $this Webguys_Easytemplate_Block_Template */ ?>
 
+<?php
+
+    preg_match('/< *iframe[^>]*src *= *["\']?([^"\']*)/i', $this->getData('map_url'), $iframe_matches);
+    $iframeSrc = $iframe_matches[1];
+
+    preg_match('/<small>(.*)<\/small>/isU', $this->getData('map_url'), $iframe_link);
+    $link = $iframe_link[1];
+
+?>
+
 <iframe
     width="<?php echo $this->getData('width'); ?>"
     height="<?php echo $this->getData('height'); ?>"
@@ -7,9 +17,9 @@
     scrolling="no"
     marginheight="0"
     marginwidth="0"
-    src="https://www.google.de/maps?f=q&amp;source=s_q&amp;hl=de&amp;geocode=&amp;q=soest&amp;aq=&amp;sll=51.574508,8.07974&amp;sspn=0.261596,0.298004&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=Soest,+Arnsberg,+Nordrhein-Westfalen&amp;ll=51.574509,8.079758&amp;spn=0.261616,0.298004&amp;z=12&amp;output=embed">
+    src="<?php echo $iframeSrc; ?>">
 </iframe>
 
 <?php if( $show_link = $this->getData('show_link')) : ?>
-    <br /><small><a href="<?php echo $this->getData('map_url'); ?>" style="color:#0000FF;text-align:left"><?php echo $this->__('View Larger Map'); ?></a></small>
+    <br /><small><?php echo $link; ?></small>
 <?php endif; ?>

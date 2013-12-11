@@ -1,7 +1,5 @@
 <?php /** @var $this Webguys_Easytemplate_Block_Template */ ?>
-
-<div class="<?php echo $this->getTemplateCode() ?>">
-    <div class="left-column"><?php echo $this->getData('text_left'); ?></div>
-    <div class="right-column"><?php echo $this->getData('text_right'); ?></div>
+<div class="col2-set <?php echo $this->getTemplateCode() ?>">
+    <div class="col-1"><?php echo $this->getData('text_left'); ?></div>
+    <div class="col-2"><?php echo $this->getData('text_right'); ?></div>
 </div>
-<br class="clear"/>
