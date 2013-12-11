@@ -226,8 +226,16 @@
     -o-transition: all 0.5s;
     transition: all 0.5s;
 }
-
 .hover:hover .tooltip {
     opacity: 1;
     cursor: default;
+}
+.et-head {
+    display: inline-block;
+}
+.et-head-value {
+    display: inline-block;
+}
+.et-head-value.first {
+    margin-right: 20px;
 }
