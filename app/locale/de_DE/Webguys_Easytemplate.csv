@@ -16,9 +16,6 @@
 "Output is not set to Easy template. This content will not be available on frontend","Modus ist nicht Easy template. Der gepflegte Inhalt wird nicht angezeigt werden."
 "Add New Template","Neue Vorlage hinzufügen"
 "Easy template","Easy template"
-
-
-
 "Headline + Text","Überschrift + Text"
 "Headline, teaser and some additional text","Überschrift, Einleitung and Fliesstext",
 "Headline","Überschrift"
@@ -84,3 +81,6 @@
 "Product Listing Sort Order","Sortierung"
 "iFrame Code","iFrame Code"
 "Simply paste the iFrame Html-Code","Einfach den HTML-Code des iframes eintragen"
+"Valid from","Gültig von"
+"Valid to","Gültig bis"
+"always","immer"

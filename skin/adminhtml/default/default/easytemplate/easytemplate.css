@@ -97,7 +97,7 @@
 .template_content_status {
     margin-top: -10px;
     padding: 5px 20px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     border: 1px solid #6F8992;
     background: #6F8992;
     color: white;

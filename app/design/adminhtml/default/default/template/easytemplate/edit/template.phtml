@@ -23,7 +23,7 @@
             <ul class="messages">
                 <li class="error-msg">
                     <ul>
-                        <li><?php echo $this->__('Output is not set to templates - template content will not be available on frontend') ?></li>
+                        <li><?php echo $this->__('Output is not set to Easy template. This content will not be available on frontend') ?></li>
                     </ul>
                 </li>
             </ul>
@@ -33,7 +33,7 @@
     <div class="entry-edit-head">
         <h4><?php echo Mage::helper('easytemplate')->__('Templates') ?></h4>
         <div class="right">
-            <button style="" onclick="$('easy_template_selector').show();" class="scalable add" type="button" title="Add New Template"><span><span><span>Add New Template</span></span></span></button>
+            <button style="" onclick="$('easy_template_selector').show();" class="scalable add" type="button" title="<?php echo Mage::helper('easytemplate')->__('Add New Template'); ?>"><span><span><?php echo Mage::helper('easytemplate')->__('Add New Template'); ?></span></span></button>
         </div>
     </div>
 
@@ -41,7 +41,6 @@
         <?php echo $this->getChildHtml('selection'); ?>
     </div>
     <div style="clear:both;"></div>
-
 
     <div id="easy_templates_container" class="box">
         <div id="easy_templates_container_top"></div>

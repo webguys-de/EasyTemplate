@@ -3,31 +3,57 @@
 <div class="template-box easytemplate" id="template_{{id}}">
 
     <div id="template_overview_{{id}}" class="template_overview f-left">
-
-        <div class="information f-left">
-            <div class="f-left">
-                <span class="label"><?php echo Mage::helper('easytemplate')->__('Valid From') ?>:</span><br/>
-                <span class="label"><?php echo Mage::helper('easytemplate')->__('Valid To') ?>:</span>
-            </div>
-            <div class="f-left">
-                <span class="valid-from">{{valid_from}}</span><br/>
-                <span class="valid-to">{{valid_to}}</span>
-            </div>
-            <br class="clear" />
+        <div class="f-left">
+            <span class="et-overview-wrapper" style="display: inline-block;">
+                <span class="label et-head first" id="head_valid_{{id}}">
+                    <script type="text/javascript">
+                        if (("{{valid_from}}" != "") && ("{{valid_to}}" != "")) {
+                            document.write('<?php echo Mage::helper('easytemplate')->__('Valid') ?>');
+                        }
+                        else if (("{{valid_from}}" != "") && ("{{valid_to}}" == "")) {
+                            document.write('<?php echo Mage::helper('easytemplate')->__('Valid from') ?>');
+                        }
+                        else if (("{{valid_from}}" == "") && ("{{valid_to}}" != "")) {
+                            document.write('<?php echo Mage::helper('easytemplate')->__('Valid to') ?>');
+                        } else {
+                            document.write('<?php echo Mage::helper('easytemplate')->__('Valid') ?>');
+                        }
+                    </script>
+                :</span>
+                <span class="et-head-value first" id="head_valid_{{id}}_value">
+                    <script type="text/javascript">
+                        if (("{{valid_from}}" != "") && ("{{valid_to}}" != "")) {
+                            document.write('{{valid_from}} - {{valid_to}}');
+                        }
+                        else if (("{{valid_from}}" != "") && ("{{valid_to}}" == "")) {
+                            document.write('{{valid_from}}');
+                        }
+                        else if (("{{valid_from}}" == "") && ("{{valid_to}}" != "")) {
+                            document.write('{{valid_to}}');
+                        } else {
+                            document.write('<?php echo Mage::helper('easytemplate')->__('always') ?>');
+                        }
+                    </script>
+                </span>
+            </span>
+            <span class="label et-head" id="head_type_{{id}}"><?php echo Mage::helper('easytemplate')->__('Template Type') ?>:</span>
+            <span class="et-head-value" id="head_type_{{id}}_value">{{label}}</span>
+            <br/>
+            <span class="label et-head" id="head_name_{{id}}"><?php echo Mage::helper('easytemplate')->__('Name') ?>:</span>
+            <span class="et-head-value" id="head_name_{{id}}_value">{{name}}</span>
         </div>
+        <style>
+            .et-head {
+                display: inline-block;
+            }
 
-        <div class="information f-left">
-            <div class="f-left">
-                <span class="label"><?php echo Mage::helper('easytemplate')->__('Template Type') ?>:</span><br/>
-                <span class="label"><?php echo Mage::helper('easytemplate')->__('Name') ?>:</span>
-            </div>
-            <div class="f-left">
-                <span>{{label}}</span><br/>
-                <span>{{name}}</span>
-                <input type="hidden" name="template[{{id}}][code]" value="{{code}}"/>
-            </div>
-            <br style="clear:both"/>
-        </div>
+            .et-head-value {
+                display: inline-block;
+            }
+            .et-head-value.first {
+                margin-right: 20px;
+            }
+        </style>
         <div class="information last f-right a-right">
             <!-- <?php echo $this->jsQuoteEscape($this->getDeleteButtonHtml()) ?><br/> -->
             <?php echo $this->getOpenButton('{{id}}'); ?>
@@ -41,21 +67,39 @@
         <input type="hidden" id="template_{{id}}_is_delete" name="template[{{id}}][is_delete]" value=""/>
         <input type="hidden" id="template_{{id}}_id" name="template[{{id}}][id]" value="{{id}}"/>
         <input type="hidden" id="template_{{id}}_sort_order" name="template[{{id}}][sort_order]" value="{{position}}"/>
+
         <div class="template_content_status">
             <span class="label"><?php echo Mage::helper('easytemplate')->__('Active'); ?>:</span>
-            <span class="desc"><input type="checkbox" name="template[{{id}}][active]" id="template_{{id}}_active" class="active-input" value="1" /></span>
+            <span class="desc"><input type="checkbox" name="template[{{id}}][active]" id="template_{{id}}_active"
+                                      class="active-input" value="1"/></span>
             <span class="separator"></span>
             <span class="label"><?php echo Mage::helper('easytemplate')->__('Valid From') ?>:</span>
-            <span class="desc"><input name="template[{{id}}][valid_from]" id="_valid_from_{{id}}" value="{{valid_from}}" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_from_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
+            <span class="desc"><input name="template[{{id}}][valid_from]" id="_valid_from_{{id}}" value="{{valid_from}}"
+                                      type="text" class="datetime-input" style="width:70px;text-align:right"><img
+                    title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_from_{{id}}_trig"
+                    src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>"
+                    class="v-middle" style="margin-left:3px;"></span>
             <span class="separator"></span>
             <span class="label"><?php echo Mage::helper('easytemplate')->__('Valid To') ?>:</span>
-            <span clasS="desc"><input id="_valid_to_{{id}}" name="template[{{id}}][valid_to]" value="{{valid_to}}" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_to_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
+            <span clasS="desc"><input id="_valid_to_{{id}}" name="template[{{id}}][valid_to]" value="{{valid_to}}"
+                                      type="text" class="datetime-input" style="width:70px;text-align:right"><img
+                    title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_to_{{id}}_trig"
+                    src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>"
+                    class="v-middle" style="margin-left:3px;"></span>
             <span class="separator"></span>
             <span class="label"><?php echo Mage::helper('easytemplate')->__('Name') ?></span>
-            <span class="desc"><input type="text" class="required-entry input-text" id="template_{{id}}_name" name="template[{{id}}][name]" value="{{name}}" style="width:250px"></span>
+            <span class="desc"><input type="text" class="required-entry input-text" id="template_{{id}}_name"
+                                      name="template[{{id}}][name]" value="{{name}}" style="width:250px"></span>
         </div>
         <script type="text/javascript">
             //<![CDATA[
+            var from_{{id}} = "{{valid_from}}";
+            var to_{{id}} = "{{valid_to}}";
+            var immer_{{id}} = "<?php echo Mage::helper('easytemplate')->__('always') ?>";
+            var label_valid_{{id}} = "<?php echo Mage::helper('easytemplate')->__('Valid') ?>";
+            var label_from_{{id}}  = "<?php echo Mage::helper('easytemplate')->__('Valid from') ?>";
+            var label_to_{{id}}    = "<?php echo Mage::helper('easytemplate')->__('Valid to') ?>";
+
             Calendar.setup({
                 inputField: '_valid_to_{{id}}',
                 ifFormat: '<?php echo $this->getDateStrFormat() ?>',
@@ -71,11 +115,60 @@
                 singleClick: true
             });
 
-            if( '{{active}}' == 1 ){
+            if ('{{active}}' == 1) {
                 $('template_{{id}}_active').setAttribute('checked', true);
             }
             else {
                 $('template_{{id}}').addClassName('inactive');
+            }
+            $('template_{{id}}_active').observe('click', function(e){
+                if(!this.checked){
+                    $('template_{{id}}').addClassName('inactive');
+                }else{
+                    $('template_{{id}}').removeClassName('inactive');
+                }
+            });
+            $('_valid_from_{{id}}').observe('change', function(e){
+                from_{{id}} = $('_valid_from_{{id}}').value;
+                updateValues_{{id}}_func();
+            });
+            $('_valid_to_{{id}}').observe('change', function(e){
+                to_{{id}} = $('_valid_to_{{id}}').value;
+                updateValues_{{id}}_func();
+            });
+            function updateValues_{{id}}_func(){
+                console.log( from_{{id}} );
+                console.log( to_{{id}} );
+                console.log( '---' );
+                if ((from_{{id}} != "") && (to_{{id}} != "")) {
+                    console.log('1');
+                    $('head_valid_{{id}}').update(label_valid_{{id}});
+                    $('head_valid_{{id}}_value').update( from_{{id}} + ' - ' + to_{{id}});
+                }
+                else if ((from_{{id}} != "") && (to_{{id}} == "")) {
+                    console.log('2');
+                    $('head_valid_{{id}}').update(label_from_{{id}});
+                    $('head_valid_{{id}}_value').update( from_{{id}} );
+                }
+                else if ((from_{{id}} == "") && (to_{{id}} != "")) {
+                    console.log('3');
+                    $('head_valid_{{id}}').update(label_to_{{id}});
+                    $('head_valid_{{id}}_value').update( to_{{id}} );
+                } else {
+                    console.log('4');
+                    $('head_valid_{{id}}').update(label_valid_{{id}});
+                    $('head_valid_{{id}}_value').update( immer_{{id}} );
+                }
+
+                var widest = 0;
+                group = $$('.et-overview-wrapper');
+                group.each(function(c) {
+                    thisWidth = c.offsetWidth;
+                    if(thisWidth > widest) {
+                        widest = thisWidth;
+                    }
+                });
+                group.invoke("setStyle", {width: widest + 'px'});
             }
             //]]>
         </script>
