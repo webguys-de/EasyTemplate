@@ -411,9 +411,10 @@
                 </testtemplate>
             </templates>
         </test>
+
         <product translate="label">
             <enabled>1</enabled>
-            <label>Test Templates</label>
+            <label>Productlisting</label>
             <templates>
                 <category_products template="catalog/product/list.phtml" type="easytemplate/template_product_list" translate="label,comment">
                     <enabled>1</enabled>
@@ -459,19 +460,20 @@
                         </sort_by>
 
                         <sort_by_direction translate="label">
-                            <label>Product Listing Sort by</label>
+                            <label>Product Listing Sort Order</label>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
                             <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
-                            <values translate="desc,asc">
+                            <values>
                                 <desc>Set Descending Direction</desc>
                                 <asc>Set Ascending Direction</asc>
                             </values>
-                            <sort_order>30</sort_order>
+                            <sort_order>31</sort_order>
                             <required>0</required>
                         </sort_by_direction>
                     </fields>
                 </category_products>
+
                 <three_products template="easytemplate/template/three_products.phtml" type="easytemplate/template" translate="label,comment">
                     <enabled>1</enabled>
                     <label>Three products</label>
