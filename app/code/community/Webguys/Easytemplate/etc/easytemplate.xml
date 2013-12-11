@@ -254,6 +254,16 @@
                     <image>images/easytemplate/testtemplate.png</image>
                     <sort_order>10</sort_order>
                     <fields>
+
+                        <image_test translate="label,comment">
+                            <label>Magento Media Gallery</label>
+                            <comment>Comment for image-input</comment>
+                            <!-- <backend_model>easytemplate/template_data_varchar</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_image</input_renderer>
+                            <sort_order>5</sort_order>
+                            <required>0</required>
+                        </image_test>
+
                         <textarea_test translate="label,comment">
                             <label>Textarea</label>
                             <comment>Comment for textarea</comment>
