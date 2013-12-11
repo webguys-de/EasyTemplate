@@ -15,6 +15,7 @@ class Webguys_Easytemplate_Helper_Chooser extends Mage_Core_Helper_Abstract
         );
     }
 
+    /*
     public function getFilebrowserSetupObject( $targetElementId )
     {
         $contentHelper = new Mage_Adminhtml_Block_Cms_Wysiwyg_Images_Content();
@@ -27,7 +28,7 @@ class Webguys_Easytemplate_Helper_Chooser extends Mage_Core_Helper_Abstract
             'deleteFileConfirmationMessage'   => Mage::helper('cms')->__('Are you sure you want to delete the selected file?'),
             'targetElementId' => $targetElementId,
             'contentsUrl'     => $contentHelper->getContentsUrl(),
-            'onInsertUrl'     => $contentHelper->getOnInsertUrl(),
+            'onInsertUrl'     => Mage::getUrl('adminhtml/easytemplate_chooser_image/onInsert'),
             'newFolderUrl'    => $contentHelper->getNewfolderUrl(),
             'deleteFolderUrl' => $contentHelper->getDeletefolderUrl(),
             'deleteFilesUrl'  => $contentHelper->getDeleteFilesUrl(),
@@ -36,10 +37,11 @@ class Webguys_Easytemplate_Helper_Chooser extends Mage_Core_Helper_Abstract
 
         return Mage::helper('core')->jsonEncode($setupObject);
     }
+    */
 
     public function getMediaOpenDialogUrl( $id )
     {
-        return Mage::getUrl('adminhtml/cms_wysiwyg_images/index', array( 'target_element_id' => $id ) );
+        return Mage::getUrl('adminhtml/easytemplate_chooser_image/index', array( 'target_element_id' => $id ) );
     }
 
 }
