@@ -7,7 +7,9 @@
  * @method getEntityType
  * @method setEntityId
  * @method getEntityId
- */
+ * @method setStoreId
+ * @method getStoreId
+ * */
 class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
 {
 
