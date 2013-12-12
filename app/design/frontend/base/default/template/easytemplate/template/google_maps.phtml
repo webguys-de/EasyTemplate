@@ -1,14 +1,4 @@
-<?php /** @var $this Webguys_Easytemplate_Block_Template */ ?>
-
-<?php
-
-    preg_match('/< *iframe[^>]*src *= *["\']?([^"\']*)/i', $this->getData('map_url'), $iframe_matches);
-    $iframeSrc = $iframe_matches[1];
-
-    preg_match('/<small>(.*)<\/small>/isU', $this->getData('map_url'), $iframe_link);
-    $link = $iframe_link[1];
-
-?>
+<?php /** @var $this Webguys_Easytemplate_Block_Template_Googlemaps */ ?>
 
 <iframe
     width="<?php echo $this->getData('width'); ?>"
@@ -17,9 +7,9 @@
     scrolling="no"
     marginheight="0"
     marginwidth="0"
-    src="<?php echo $iframeSrc; ?>">
+    src="<?php echo $this->getIFrameSrc(); ?>">
 </iframe>
 
 <?php if( $show_link = $this->getData('show_link')) : ?>
-    <br /><small><?php echo $link; ?></small>
+    <br /><small><?php echo $this->getIFrameLink(); ?></small>
 <?php endif; ?>

@@ -42,7 +42,7 @@
                     </fields>
                 </headline_text>
 
-                <google_maps template="easytemplate/template/google_maps.phtml" type="easytemplate/template" translate="label,comment">
+                <google_maps template="easytemplate/template/google_maps.phtml" type="easytemplate/template_googlemaps" translate="label,comment">
                     <enabled>1</enabled>
                     <label>Google Maps</label>
                     <image>images/easytemplate/google_maps.png</image>
