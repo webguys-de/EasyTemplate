@@ -31,4 +31,9 @@ class Webguys_Easytemplate_Block_Adminhtml_Category_Templates
         return Mage::registry('category');
     }
 
+    public function isInTemplateMode()
+    {
+        return( $this->getObjectOfType()->getUseEasytemplate() );
+    }
+
 }
