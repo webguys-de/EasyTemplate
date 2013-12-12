@@ -1,16 +1,4 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
 
-    <catalog_category_layered translate="label">
-        <reference name=" content">
-            <block type="easytemplate/category" name="easytemplate.category" before="category.products" />
-        </reference>
-    </catalog_category_layered>
-
-    <catalog_category_default translate="label">
-        <reference name=" content">
-            <block type="easytemplate/category" name="easytemplate.category" before="category.products" />
-        </reference>
-    </catalog_category_default>
-
 </layout>

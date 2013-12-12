@@ -180,15 +180,20 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
             /** @var $helper Webguys_Easytemplate_Helper_Category */
             $helper = Mage::helper('easytemplate/category');
 
-            if ( $groupId = $helper->getGroupByCategoryId( $category->getId() ) )
+            if( $category->getUseEasytemplate() )
             {
 
-                /** @var $renderer Webguys_Easytemplate_Block_Renderer */
-                $renderer = Mage::app()->getLayout()->createBlock('easytemplate/renderer');
-                $renderer->setGroupId( $groupId );
-                $html = $renderer->toHtml();
+                if ( $groupId = $helper->getGroupByCategoryId( $category->getId() ) )
+                {
 
-                $block->setCmsBlockHtml( $html );
+                    /** @var $renderer Webguys_Easytemplate_Block_Renderer */
+                    $renderer = Mage::app()->getLayout()->createBlock('easytemplate/renderer', 'easytemplate_category');
+                    $renderer->setGroupId( $groupId );
+                    $html = $renderer->toHtml();
+
+                    $block->setCmsBlockHtml( $html );
+
+                }
 
             }
 

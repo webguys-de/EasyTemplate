@@ -61,6 +61,13 @@
                 $('block_content').addClassName('ignore-validate');
                 $('block_tabs_content_section').hide();
             }
+
+            // Category mode
+            if( $$('select[name=general[use_easytemplate]]') )
+            {
+                $$('select[name=general[landing_page]]').first().up().up().hide();
+            }
+
         }
 
         function sortableUpdate() {
@@ -91,6 +98,12 @@
             if ($('block_view_mode') && $('block_view_mode').value == 'easytemplate') {
                 useEasyTemplate();
             }
+
+            // Category mode
+            if ($$('select[name=general[use_easytemplate]]') && $$('select[name=general[use_easytemplate]]').first().value ) {
+                useEasyTemplate();
+            }
+
         });
 
         // ]]>
