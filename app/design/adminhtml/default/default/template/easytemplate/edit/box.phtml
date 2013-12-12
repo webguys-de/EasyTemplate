@@ -147,9 +147,24 @@
                         widest = thisWidth;
                     }
                 });
-                group.invoke("setStyle", {width: widest + 'px'});
+                if( widest > 0){
+                    group.invoke("setStyle", {width: widest + 'px'});
+                }
             }
-            updateValues_{{id}}_func.delay(1.1);
+
+            function getHeight_{{id}}_func(){
+                return $('template_content_{{id}}').getWidth();
+            }
+
+            updateValues_{{id}}_func.delay(1);
+
+            function showLoading_{{id}}(){
+                if( getHeight_{{id}}_func() > 0 ){
+                    updateValues_{{id}}_func();
+                    clearInterval(loadingTimer_{{id}});
+                }
+            }
+            loadingTimer_{{id}} = setInterval(this.showLoading_{{id}}.bind(this), 100);
             //]]>
         </script>
         <?php echo $this->getChildHtml('input'); ?>
