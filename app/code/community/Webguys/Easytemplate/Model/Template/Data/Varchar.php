@@ -30,4 +30,8 @@ class Webguys_Easytemplate_Model_Template_Data_Varchar
         parent::importData($data);
     }
 
+    public function isValid()
+    {
+        return (strlen($this->getValue()) <= 255);
+    }
 }

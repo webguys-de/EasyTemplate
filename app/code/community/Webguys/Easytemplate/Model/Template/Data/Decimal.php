@@ -20,4 +20,8 @@ class Webguys_Easytemplate_Model_Template_Data_Decimal
         $this->_init('easytemplate/template_data_decimal');
     }
 
+    public function isValid()
+    {
+        return is_numeric($this->getValue());
+    }
 }

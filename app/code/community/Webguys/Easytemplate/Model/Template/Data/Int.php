@@ -20,4 +20,13 @@ class Webguys_Easytemplate_Model_Template_Data_Int
         $this->_init('easytemplate/template_data_int');
     }
 
+    public function isValid()
+    {
+        $value = $this->getValue();
+        if (is_numeric($value)) {
+            $val = (int)$value;
+            return is_int($val) && $val == $this->getValue();
+        }
+        return false;
+    }
 }
