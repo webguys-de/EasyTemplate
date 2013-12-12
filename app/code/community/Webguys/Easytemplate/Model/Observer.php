@@ -160,7 +160,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
         $category = $observer->getDataObject();
 
         /** @var $group Webguys_Easytemplate_Model_Group */
-        $group = Mage::helper('easytemplate/category')->getGroupByCategoryId( $category->getId() );
+        $group = Mage::helper('easytemplate/category')->getGroupByCategoryId( $category->getId(), $category->getStoreId() );
 
         /** @var $helper Webguys_Easytemplate_Helper_Data */
         $helper = Mage::helper('easytemplate');
@@ -183,7 +183,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
             if( $category->getUseEasytemplate() )
             {
 
-                if ( $groupId = $helper->getGroupByCategoryId( $category->getId() ) )
+                if ( $groupId = $helper->getGroupByCategoryId( $category->getId(), Mage::app()->getStore()->getId(), true ) )
                 {
 
                     /** @var $renderer Webguys_Easytemplate_Block_Renderer */
