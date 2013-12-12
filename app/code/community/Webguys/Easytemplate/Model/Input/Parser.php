@@ -22,6 +22,9 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
             if (Mage::app()->useCache('config')) {
                 Mage::app()->saveCache($config->getXmlString(), 'easytemplate_config',
                     array(Mage_Core_Model_Config::CACHE_TAG));
+
+                // Clean the database just if caching is active to avoid performance issues
+                $this->cleanDatabase();
             }
         }
         return $xmlConfig;
@@ -128,4 +131,13 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
         return false;
     }
 
+    /**
+     * Clean database of all templates
+     */
+    public function cleanDatabase()
+    {
+        foreach ($this->getTemplates() as $template) {
+            $template->cleanDatabase();
+        }
+    }
 }

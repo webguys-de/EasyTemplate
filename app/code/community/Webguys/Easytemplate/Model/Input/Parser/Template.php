@@ -90,4 +90,45 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
         return $this->getCategory() .'_'.parent::getCode();
     }
 
+    public function cleanDatabase()
+    {
+        $fields = $this->getFields();
+
+        // Collect different backend models
+        $usedTypes = array();
+        foreach($fields as $field) {
+            $usedTypes[] = get_class($field->getBackendModel());
+        }
+        $usedTypes = array_unique($usedTypes);
+
+        foreach ($usedTypes as $type) {
+
+            // Delete all fields of type which do not belong to this template type
+            $validFields = array();
+            foreach ($fields as $field) {
+                if (get_class($field->getBackendModel()) == $type) {
+                    $validFields[] = $field->getCode();
+                }
+            }
+
+            /** @var $model Webguys_Easytemplate_Model_Template_Data_Abstract */
+            $model = Mage::getModel($type);
+
+            $resource = $model->getResource();
+
+            /** @var $collection Webguys_Easytemplate_Model_Resource_Template_Data_Collection_Abstract */
+            $collection = $model->getCollection();
+            $collection->getSelect()
+                ->join(
+                    array('template' => $resource->getTable('easytemplate/template')),
+                    'main_table.template_id = template.id',
+                    array()
+                )
+                ->where('template.code = ?', $this->getCode())
+                ->where('main_table.field NOT IN (?)', $validFields);
+
+            $collection->load();
+            $collection->walk('delete');
+        }
+    }
 }
