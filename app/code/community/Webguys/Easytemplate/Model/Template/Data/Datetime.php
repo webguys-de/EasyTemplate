@@ -20,4 +20,8 @@ class Webguys_Easytemplate_Model_Template_Data_Datetime
         $this->_init('easytemplate/template_data_datetime');
     }
 
+    public function isValid()
+    {
+        return (strtotime($this->getValue()) !== false);
+    }
 }
