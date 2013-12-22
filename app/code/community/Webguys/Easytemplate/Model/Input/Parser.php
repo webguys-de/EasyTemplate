@@ -23,8 +23,10 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
                 Mage::app()->saveCache($config->getXmlString(), 'easytemplate_config',
                     array(Mage_Core_Model_Config::CACHE_TAG));
 
-                // Clean the database just if caching is active to avoid performance issues
-                $this->cleanDatabase();
+                if (Mage::getStoreConfig('easytemplate/configuration/automatically_clean_database', Mage::app()->getStore()->getId())) {
+                    // Clean the database just if caching is active to avoid performance issues
+                    $this->cleanDatabase();
+                }
             }
         }
         return $xmlConfig;

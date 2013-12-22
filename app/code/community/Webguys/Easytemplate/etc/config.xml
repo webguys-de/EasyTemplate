@@ -199,4 +199,13 @@
             </modules>
         </suite>
     </phpunit>
+
+    <default>
+        <easytemplate>
+            <configuration>
+                <use_in_categories>1</use_in_categories>
+                <automatically_clean_database>0</automatically_clean_database>
+            </configuration>
+        </easytemplate>
+    </default>
 </config>
