@@ -12,13 +12,11 @@
                 <class>Webguys_Easytemplate_Helper</class>
             </easytemplate>
         </helpers>
-
         <blocks>
             <easytemplate>
                 <class>Webguys_Easytemplate_Block</class>
             </easytemplate>
         </blocks>
-
         <models>
             <easytemplate>
                 <class>Webguys_Easytemplate_Model</class>
@@ -57,7 +55,6 @@
                 </rewrite>
             </cms>
         </models>
-
         <resources>
             <easytemplate_setup>
                 <setup>
@@ -66,20 +63,10 @@
                 </setup>
             </easytemplate_setup>
         </resources>
-
     </global>
 
     <frontend>
         <events>
-            <core_block_abstract_to_html_after>
-                <observers>
-                    <easytemplate_core_block_abstract_to_html_after>
-                        <type>singleton</type>
-                        <class>easytemplate/observer</class>
-                        <method>core_block_abstract_to_html_after</method>
-                    </easytemplate_core_block_abstract_to_html_after>
-                </observers>
-            </core_block_abstract_to_html_after>
             <core_block_abstract_to_html_before>
                 <observers>
                     <easytemplate_core_block_abstract_to_html_after>
@@ -89,7 +76,23 @@
                     </easytemplate_core_block_abstract_to_html_after>
                 </observers>
             </core_block_abstract_to_html_before>
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <easytemplate_core_block_abstract_to_html_after>
+                        <type>singleton</type>
+                        <class>easytemplate/observer</class>
+                        <method>core_block_abstract_to_html_after</method>
+                    </easytemplate_core_block_abstract_to_html_after>
+                </observers>
+            </core_block_abstract_to_html_after>
         </events>
+        <layout>
+            <updates>
+                <easytemplate>
+                    <file>webguys/easytemplate.xml</file>
+                </easytemplate>
+            </updates>
+        </layout>
     </frontend>
 
     <adminhtml>
@@ -139,7 +142,6 @@
                     </easytemplate_cms_block_save_commit_after>
                 </observers>
             </cms_block_save_commit_after>
-
             <adminhtml_catalog_category_tabs>
                 <observers>
                     <easytemplate_adminhtml_catalog_category_tabs>
@@ -149,8 +151,6 @@
                     </easytemplate_adminhtml_catalog_category_tabs>
                 </observers>
             </adminhtml_catalog_category_tabs>
-
-
             <catalog_category_save_commit_after>
                 <observers>
                     <easytemplate_catalog_category_save_commit_after>
@@ -160,12 +160,11 @@
                     </easytemplate_catalog_category_save_commit_after>
                 </observers>
             </catalog_category_save_commit_after>
-
         </events>
         <layout>
             <updates>
                 <easytemplate>
-                    <file>Webguys_Easytemplate.xml</file>
+                    <file>webguys/easytemplate.xml</file>
                 </easytemplate>
             </updates>
         </layout>

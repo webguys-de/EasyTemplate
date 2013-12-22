@@ -3,8 +3,8 @@
 /**
  * Class Webguys_Easytemplate_Block_Renderer
  *
- * @method getGroupId
- * @method setGroupId
+ * @method getGroup
+ * @method setGroup
  */
 class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
 {
@@ -69,7 +69,7 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
 
     protected function _beforeToHtml()
     {
-        $this->setChildsBasedOnGroup( $this->getGroupId() );
+        $this->setChildsBasedOnGroup( $this->getGroup() );
         return $this;
     }
 

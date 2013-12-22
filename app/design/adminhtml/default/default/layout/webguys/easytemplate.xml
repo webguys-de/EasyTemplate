@@ -2,7 +2,6 @@
 <layout version="0.1.0">
 
     <default>
-
         <reference name="category.edit">
             <reference name="head">
                 <action method="addCss"><name>easytemplate/easytemplate.css</name></action>
@@ -10,14 +9,12 @@
                 <action method="addItem"><type>skin_js</type><name>easytemplate/general.js</name></action>
             </reference>
         </reference>
-
         <reference name="category.edit">
             <block type="easytemplate/adminhtml_category_templates" name="adminhtml_category_templates">
                 <block type="easytemplate/adminhtml_edit_selection" name="selection" as="selection"
                        template="easytemplate/edit/selection.phtml"/>
             </block>
         </reference>
-
     </default>
 
     <adminhtml_cms_page_edit>

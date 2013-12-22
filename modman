@@ -1,8 +1,8 @@
 app/code/community/Webguys/* app/code/community/Webguys/
 app/etc/modules/* app/etc/modules/
-app/design/frontend/base/default/layout/* app/design/frontend/base/default/layout/
+app/design/frontend/base/default/layout/webguys/easytemplate.xml app/design/frontend/base/default/layout/webguys/easytemplate.xml
 app/design/frontend/base/default/template/* app/design/frontend/base/default/template/
-app/design/adminhtml/default/default/layout/Webguys_Easytemplate.xml app/design/adminhtml/default/default/layout/Webguys_Easytemplate.xml
+app/design/adminhtml/default/default/layout/webguys/easytemplate.xml app/design/adminhtml/default/default/layout/webguys/easytemplate.xml
 app/design/adminhtml/default/default/template/easytemplate app/design/adminhtml/default/default/template/easytemplate
 skin/adminhtml/default/default/easytemplate skin/adminhtml/default/default/easytemplate
 skin/adminhtml/default/default/images/easytemplate skin/adminhtml/default/default/images/easytemplate
