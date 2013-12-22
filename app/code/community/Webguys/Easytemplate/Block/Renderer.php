@@ -10,6 +10,8 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
 {
     public function setChildsBasedOnGroup($group)
     {
+        Varien_Profiler::start('easytemplate_template_rendering');
+
         /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
         $configModel = Mage::getSingleton('easytemplate/input_parser');
 
@@ -18,10 +20,13 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
 
         /** @var $template Webguys_Easytemplate_Model_Template */
         foreach ($group->getTemplateCollection() as $template) {
-            if ($model = $configModel->getTemplate( $template->getCode() )) {
+            $templateCode = $template->getCode();
+            if ($model = $configModel->getTemplate( $templateCode )) {
                 $active = $template->getActive();
                 $validFrom = ($template->getValidFrom()) ? strtotime($template->getValidFrom()) : false;
                 $validTo = ($template->getValidTo()) ? strtotime($template->getValidTo()) : false;
+
+                Varien_Profiler::start('easytemplate_template_rendering_'.$templateCode);
 
                 if ($active && (!$validFrom || $validFrom <= $time) && (!$validTo || $validTo >= $time)) {
 
@@ -29,17 +34,20 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                     $childBlock = $this->getLayout()->createBlock($model->getType());
                     $childBlock->setTemplate($model->getTemplate());
                     $childBlock->setTemplateModel($template);
-                    $childBlock->setTemplateCode( $template->getCode() );
-
+                    $childBlock->setTemplateCode( $templateCode );
 
                     /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
                     foreach ($model->getFields() as $field) {
+                        $fieldCode = $field->getCode();
+
+                        Varien_Profiler::start('easytemplate_template_rendering_'.$templateCode.'_field_'.$fieldCode);
+
                         /** @var $inputValidator Webguys_Easytemplate_Model_Input_Renderer_Validator_Base */
                         $inputValidator = $field->getInputRendererValidator();
                         $inputValidator->setTemplate($template);
                         $inputValidator->setField($field);
 
-                        $frontendValue = $inputValidator->prepareForFrontend($template->getFieldData($field->getCode()));
+                        $frontendValue = $inputValidator->prepareForFrontend($template->getFieldData($fieldCode));
                         if ($frontendValue) {
 
                             $valueTransport = new Varien_Object();
@@ -54,15 +62,21 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                                 'value' => $valueTransport
                             ));
 
-                            $childBlock->setData($field->getCode(), $valueTransport->getValue());
+                            $childBlock->setData($fieldCode, $valueTransport->getValue());
                         }
+
+                        Varien_Profiler::stop('easytemplate_template_rendering_'.$templateCode.'_field_'.$fieldCode);
                     }
 
-                    $this->setChild('block_'.$position.'_'.$template->getCode(), $childBlock);
+                    $this->setChild('block_'.$position.'_'.$templateCode, $childBlock);
                     $position++;
                 }
+
+                Varien_Profiler::stop('easytemplate_template_rendering_'.$templateCode);
             }
         }
+
+        Varien_Profiler::stop('easytemplate_template_rendering');
 
         return $this;
     }
