@@ -145,17 +145,16 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
         /** @var $tabs Mage_Adminhtml_Block_Catalog_Category_Tabs */
         $tabs = $observer->getTabs();
 
-        $tabs->addTab('easytemplate', array(
-            'label'     => Mage::helper('catalog')->__('Easy template'),
-
-            'content'   => $tabs->getLayout()->getBlock('adminhtml_category_templates')->toHtml(),
-        ));
-
+        if (Mage::getStoreConfig('easytemplate/configuration/use_in_categories')) {
+            $tabs->addTab('easytemplate', array(
+                'label'     => Mage::helper('catalog')->__('Easy template'),
+                'content'   => $tabs->getLayout()->getBlock('adminhtml_category_templates')->toHtml(),
+            ));
+        }
     }
 
     public function catalog_category_save_commit_after($observer)
     {
-
         /** @var $category Mage_Catalog_Model_Category */
         $category = $observer->getDataObject();
 
@@ -173,7 +172,6 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
         $block = $event->getBlock();
         if ( $block instanceof Mage_Catalog_Block_Category_View )
         {
-
             /** @var $category Mage_Catalog_Model_Category */
             $category = Mage::registry('current_category');
 
@@ -182,23 +180,16 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
 
             if( $category->getUseEasytemplate() )
             {
-
                 if ( $groupId = $helper->getGroupByCategoryId( $category->getId(), Mage::app()->getStore()->getId(), true ) )
                 {
-
                     /** @var $renderer Webguys_Easytemplate_Block_Renderer */
                     $renderer = Mage::app()->getLayout()->createBlock('easytemplate/renderer', 'easytemplate_category');
                     $renderer->setGroupId( $groupId );
                     $html = $renderer->toHtml();
 
                     $block->setCmsBlockHtml( $html );
-
                 }
-
             }
-
         }
     }
-
-
 }
