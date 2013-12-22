@@ -136,12 +136,49 @@
                     </fields>
                 </youtube>
 
+                <vimeo template="easytemplate/template/vimeo.phtml" type="easytemplate/template" translate="label,comment">
+                    <enabled>1</enabled>
+                    <label>Vimeo</label>
+                    <image>images/easytemplate/vimeo.png</image>
+                    <comment>Displays a vimeo video</comment>
+                    <sort_order>40</sort_order>
+                    <fields>
+                        <video_id translate="label,comment">
+                            <label>Video-ID</label>
+                            <comment>Simply paste the Video-ID</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                            <sort_order>10</sort_order>
+                            <default_value></default_value>
+                            <required>0</required>
+                        </video_id>
+                        <width translate="label,comment">
+                            <label>Width</label>
+                            <comment>Width of the video</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                            <sort_order>20</sort_order>
+                            <default_value>560</default_value>
+                            <required>1</required>
+                        </width>
+                        <height translate="label,comment">
+                            <label>Height</label>
+                            <comment>Height of the video</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                            <sort_order>30</sort_order>
+                            <default_value>315</default_value>
+                            <required>1</required>
+                        </height>
+                    </fields>
+                </vimeo>
+
                 <text_2column template="easytemplate/template/text_2column.phtml" type="easytemplate/template" translate="label,comment">
                     <enabled>1</enabled>
                     <label>Text 2column</label>
                     <image>images/easytemplate/text_2column.png</image>
                     <comment>2 Columns text</comment>
-                    <sort_order>40</sort_order>
+                    <sort_order>50</sort_order>
                     <fields>
                         <text_left translate="label,comment">
                             <label>Text</label>
@@ -169,7 +206,7 @@
                     <label>Text + picture</label>
                     <image>images/easytemplate/text_picture.png</image>
                     <comment>Display a point on the landscape</comment>
-                    <sort_order>50</sort_order>
+                    <sort_order>60</sort_order>
                     <fields>
                         <image translate="label,comment">
                             <label>Image</label>
@@ -228,7 +265,7 @@
                     <label>Spacer</label>
                     <image>images/easytemplate/spacer.png</image>
                     <comment>Inserts empty line(s)</comment>
-                    <sort_order>60</sort_order>
+                    <sort_order>70</sort_order>
                     <fields>
                         <amount translate="label,comment">
                             <label>Amount of lines</label>

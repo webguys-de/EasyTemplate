@@ -1,0 +1,11 @@
+<?php /** @var $this Webguys_Easytemplate_Block_Template */ ?>
+
+<?php if( $video_id = $this->getData('video_id')) : ?>
+    <div class="et <?php echo $this->getTemplateCode() ?>">
+        <iframe
+            width="<?php echo $this->getData('width'); ?>"
+            height="<?php echo $this->getData('height'); ?>"
+            src="//player.vimeo.com/video/<?php echo $video_id; ?>" frameborder="0">
+        </iframe>
+    </div>
+<?php endif; ?>
