@@ -53,9 +53,8 @@ abstract class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
 
         foreach( $group->getTemplateCollection() AS $template )
         {
-
             /** @var $box Webguys_Easytemplate_Block_Adminhtml_Edit_Box */
-            $box = $this->getLayout()->createBlock( 'easytemplate/adminhtml_edit_box');
+            $box = $this->getLayout()->createBlock('easytemplate/adminhtml_edit_box');
             $box->setTemplateModel($template);
 
             $html .= $box->toHtml();

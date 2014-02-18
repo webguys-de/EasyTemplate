@@ -8,6 +8,34 @@
  */
 class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
 {
+    protected $_cachingAllowed = true;
+
+    public function __construct(array $args = array())
+    {
+        parent::__construct($args);
+        $this->addCacheTag(Webguys_Easytemplate_Helper_Cache::CACHE_TAG);
+    }
+
+    public function getCacheKeyInfo()
+    {
+        return array(
+            'BLOCK_TPL_EASYTEMPLATE',
+            Mage::app()->getStore()->getCode(),
+            $this->getGroup()->getId()
+        );
+    }
+
+    public function getCacheLifetime()
+    {
+        /** @var $helper Webguys_Easytemplate_Helper_Cache */
+        $helper = Mage::helper('easytemplate/cache');
+        return ($this->_cachingAllowed) ? $helper->getCacheLifeTime() : null;
+    }
+
+    /**
+     * @param $group Webguys_Easytemplate_Model_Group
+     * @return $this
+     */
     public function setChildsBasedOnGroup($group)
     {
         Varien_Profiler::start('easytemplate_template_rendering');
@@ -26,6 +54,10 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                 $validFrom = ($template->getValidFrom()) ? strtotime($template->getValidFrom()) : false;
                 $validTo = ($template->getValidTo()) ? strtotime($template->getValidTo()) : false;
 
+                if ($validFrom !== false || $validTo !== false) {
+                    #$this->_cachingAllowed = false;
+                }
+
                 Varien_Profiler::start('easytemplate_template_rendering_'.$templateCode);
 
                 if ($active && (!$validFrom || $validFrom <= $time) && (!$validTo || $validTo >= $time)) {
@@ -34,7 +66,8 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                     $childBlock = $this->getLayout()->createBlock($model->getType());
                     $childBlock->setTemplate($model->getTemplate());
                     $childBlock->setTemplateModel($template);
-                    $childBlock->setTemplateCode( $templateCode );
+                    $childBlock->setTemplateCode($templateCode);
+                    $childBlock->setGroup($group);
 
                     /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
                     foreach ($model->getFields() as $field) {

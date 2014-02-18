@@ -63,6 +63,15 @@
                 </setup>
             </easytemplate_setup>
         </resources>
+        <cache>
+            <types>
+                <easytemplate>
+                    <label>Easytemplate Output</label>
+                    <description>Unit test case file paths cache.</description>
+                    <tags>EASYTEMPLATE</tags>
+                </easytemplate>
+            </types>
+        </cache>
     </global>
 
     <frontend>
@@ -204,6 +213,7 @@
             <configuration>
                 <use_in_categories>1</use_in_categories>
                 <automatically_clean_database>0</automatically_clean_database>
+                <cache_lifetime>5</cache_lifetime>
             </configuration>
         </easytemplate>
     </default>

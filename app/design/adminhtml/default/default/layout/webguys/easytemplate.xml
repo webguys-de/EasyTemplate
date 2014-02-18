@@ -22,7 +22,7 @@
             <block type="easytemplate/adminhtml_cms_page_edit_tab_templates" name="cms_page_edit_tab_templates">
                 <block type="easytemplate/adminhtml_edit_selection" name="selection" as="selection" template="easytemplate/edit/selection.phtml" />
             </block>
-            <action method="addTab"><name>Easy template</name><block>cms_page_edit_tab_templates</block></action>
+            <action method="addTab"><name>easy_template</name><block>cms_page_edit_tab_templates</block></action>
         </reference>
     </adminhtml_cms_page_edit>
 
@@ -40,7 +40,7 @@
                 </block>
                 <action method="addTab"><name>main_section</name><block>easytemplate_cms_block_edit_tab_main</block></action>
                 <action method="addTab"><name>content_section</name><block>easytemplate_cms_block_edit_tab_content</block></action>
-                <action method="addTab"><name>Easy template</name><block>easytemplate_cms_block_edit_tab_templates</block></action>
+                <action method="addTab"><name>easy_template</name><block>easytemplate_cms_block_edit_tab_templates</block></action>
             </block>
         </reference>
     </adminhtml_cms_block_edit>

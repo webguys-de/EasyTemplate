@@ -14,12 +14,12 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Bloc
     public function getTemplateImage($image)
     {
         if( $image == ''){
-            return $this::NO_IMAGE_PATH;
+            return self::NO_IMAGE_PATH;
         }
         if( file_exists( Mage::getBaseDir('skin') . '/adminhtml/default/default/' .$image )){
             return $image;
         }
-        return $this::NO_IMAGE_PATH;
+        return self::NO_IMAGE_PATH;
     }
 
     public function getTemplates()
@@ -51,4 +51,5 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Bloc
 
         return $categories;
     }
+
 }

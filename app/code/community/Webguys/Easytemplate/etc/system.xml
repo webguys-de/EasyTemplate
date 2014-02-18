@@ -44,6 +44,15 @@
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
                         </automatically_clean_database>
+                        <cache_lifetime translate="label,comment">
+                            <label>Cache lifetime</label>
+                            <comment>Lifetime (in minutes) of easytemplate cache if caching is enabled</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </cache_lifetime>
                     </fields>
                 </configuration>
             </groups>

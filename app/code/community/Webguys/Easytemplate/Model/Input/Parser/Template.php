@@ -5,7 +5,7 @@
  *
  * @method setCategory
  * @method getCategory
- *
+ * @method getImage
  */
 class Webguys_Easytemplate_Model_Input_Parser_Template
  extends Webguys_Easytemplate_Model_Input_Parser_Abstract

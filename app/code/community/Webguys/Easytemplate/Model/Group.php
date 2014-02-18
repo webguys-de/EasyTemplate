@@ -32,6 +32,10 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
             throw new Exception("Could not import data to empty entity");
         }
 
+        /** @var $helper Webguys_Easytemplate_Helper_Cache */
+        $helper = Mage::helper('easytemplate/cache');
+        $helper->flushCache();
+
         foreach( $data AS $id => $template_data )
         {
 

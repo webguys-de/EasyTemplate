@@ -14,8 +14,10 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Templates
      */
     public function getGroup()
     {
-        if ($page = $this->getObjectOfType()) {
-            return Mage::helper('easytemplate/block')->getGroupByBlockId( $page->getId() );
+        if ($block = $this->getObjectOfType()) {
+            /** @var $helper Webguys_Easytemplate_Helper_Block */
+            $helper = Mage::helper('easytemplate/block');
+            return $helper->getGroupByBlockId( $block->getId() );
         }
         return Mage::getModel('easytemplate/group');
     }
@@ -29,4 +31,5 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Templates
     {
         return Mage::registry('cms_block');
     }
+
 }

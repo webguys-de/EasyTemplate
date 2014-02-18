@@ -5,11 +5,9 @@
  *
  * @method getCode
  */
-class Webguys_Easytemplate_Block_Adminhtml_Edit_Box
-    extends Mage_Adminhtml_Block_Widget
+class Webguys_Easytemplate_Block_Adminhtml_Edit_Box extends Mage_Adminhtml_Block_Widget
 {
     protected $_locale;
-
     protected $_template_model;
 
     public function __construct()
@@ -20,6 +18,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box
 
     public function getOpenButton($id)
     {
+        /** @var $button Mage_Core_Block_Abstract */
         $button = $this->getLayout()->createBlock('adminhtml/widget_button')
             ->setData(array(
                 'id' => $id,
@@ -34,6 +33,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box
 
     public function getCloseButton($id, $position)
     {
+        /** @var $button Mage_Core_Block_Abstract */
         $button = $this->getLayout()->createBlock('adminhtml/widget_button')
             ->setData(array(
                 'id' => $id.'_'.$position,
@@ -43,24 +43,6 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box
                 'title' => $this->helper('easytemplate')->__('Close')
             ));
         return $button->toHtml();
-    }
-
-    public function getDatePicker()
-    {
-
-        $ret = <<<EOF
-        <script type="text/javascript">
-            //<![CDATA[
-            Calendar.setup({
-                inputField : '_dob',
-                ifFormat : '%m/%e/%y',
-                button : '_dob_trig',
-                align : 'Bl',
-                singleClick : true
-            });
-            //]]>
-        </script>
-EOF;
     }
 
     public function getDeleteButtonHtml()
@@ -88,7 +70,6 @@ EOF;
 
     public function _toHtml()
     {
-
         /** @var $input Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer */
         $input = $this->getLayout()->createBlock('easytemplate/adminhtml_edit_renderer');
         $input->setTemplateModel($this->getTemplateModel());
@@ -138,5 +119,4 @@ EOF;
         $this->_template_model = $model;
         return $this;
     }
-
 }
