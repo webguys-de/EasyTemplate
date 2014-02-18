@@ -55,7 +55,7 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                 $validTo = ($template->getValidTo()) ? strtotime($template->getValidTo()) : false;
 
                 if ($validFrom !== false || $validTo !== false) {
-                    #$this->_cachingAllowed = false;
+                    $this->_cachingAllowed = false;
                 }
 
                 Varien_Profiler::start('easytemplate_template_rendering_'.$templateCode);
