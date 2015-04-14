@@ -5,7 +5,7 @@
     <div class="template-wrapper <?php if($first) : ?>first<? endif; ?>">
 
         <div class="section-title">
-            <?php echo $template['label'] ?>
+            <?php echo $this->getCategoryLabel($template['label']); ?>
         </div>
 
         <?php if( is_array($template['items']) && count($template['items'])>0) : ?>

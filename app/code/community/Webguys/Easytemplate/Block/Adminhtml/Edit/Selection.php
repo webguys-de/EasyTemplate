@@ -11,6 +11,23 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Bloc
     const TEMPLATE_TYPES_PATH = 'easytemplate';
     const NO_IMAGE_PATH       = 'images/easytemplate/no-image.png';
 
+    public function getCategoryLabel($_category)
+    {
+        $path = 'easytemplate';
+        $config = Mage::getModel('easytemplate/input_parser')->getXmlConfig();
+
+        foreach ($config->getNode($path)->children() as $category) {
+            $categ = $category->asArray();
+            if (isset($categ['enabled']) && $categ['enabled']) {
+                if( $category->getName() == $_category )
+                {
+                    return $categ['label'];
+                }
+            }
+        }
+        return $_category;
+    }
+
     public function getTemplateImage($image)
     {
         if( $image == ''){
