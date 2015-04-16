@@ -33,7 +33,7 @@
     <div class="entry-edit-head">
         <h4><?php echo Mage::helper('easytemplate')->__('Templates') ?></h4>
         <div class="right">
-            <button style="" onclick="$('easy_template_selector').show();" class="scalable add" type="button" title="<?php echo Mage::helper('easytemplate')->__('Add New Template'); ?>"><span><span><?php echo Mage::helper('easytemplate')->__('Add New Template'); ?></span></span></button>
+            <button onclick="$('easy_template_selector').show();" class="scalable add" type="button" title="<?php echo Mage::helper('easytemplate')->__('Add New Template'); ?>"><span><span><?php echo Mage::helper('easytemplate')->__('Add New Template'); ?></span></span></button>
         </div>
     </div>
 
@@ -229,6 +229,21 @@
 
         //]]>
     </script>
+
+
+    <div class="box">
+        <h4>
+            <?php echo Mage::helper('easytemplate')->__('Design Change') ?>
+        </h4>
+
+        <input type="hidden" id="easytemplate_publish" name="easytemplate_publish" value="" />
+
+        <button onclick="$('easytemplate_publish').value='publish'; editForm.submit();" class="scalable save" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Publish'); ?></span></span></button>
+        <button onclick="$('easytemplate_publish').value='reset'; editForm.submit();" class="scalable" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Reset'); ?></span></span></button>
+
+        <button onclick="" class="scalable" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Preview'); ?></span></span></button>
+
+    </div>
 
 </div>
 

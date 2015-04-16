@@ -73,25 +73,6 @@ abstract class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
 
     abstract public function getObjectOfType();
 
-    protected function _prepareLayout()
-    {
-        $this->setChild('add_button',
-            $this->getLayout()->createBlock('adminhtml/widget_button')
-                ->setData(array(
-                    'label' => Mage::helper('easytemplate')->__('Add New Template'),
-                    'class' => 'add',
-                    'id'    => 'add_new_template'
-                ))
-        );
-
-        return parent::_prepareLayout();
-    }
-
-    public function getAddButtonHtml()
-    {
-        return $this->getChildHtml('add_button');
-    }
-
     public function isInTemplateMode()
     {
         if ($page = $this->getObjectOfType()) {

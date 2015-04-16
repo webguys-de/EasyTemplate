@@ -31,5 +31,27 @@ class Webguys_Easytemplate_Helper_Data extends Mage_Core_Helper_Abstract
 
             $group->importData( $templateData );
         }
+
+        switch( $request->getParam('easytemplate_publish') )
+        {
+
+            case 'publish':
+                if( $group->getCopyOf() )
+                {
+                    $mainGroup = Mage::getModel('easytemplate/group');
+                    $mainGroup->load( $group->getCopyOf() );
+                    $mainGroup->delete();
+
+                    $group->setCopyOf( null );
+                    $group->save();
+                }
+                break;
+
+            case 'reset':
+                $group->delete();
+                break;
+
+        }
+
     }
 }
