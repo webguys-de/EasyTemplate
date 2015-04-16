@@ -9,6 +9,8 @@
  * @method getEntityId
  * @method setStoreId
  * @method getStoreId
+ * @method setCopyOf
+ * @method getCopyOf
  * */
 class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
 {
@@ -23,6 +25,54 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
     protected function _construct()
     {
         $this->_init('easytemplate/group');
+    }
+
+    public function getCopyOfInstance()
+    {
+        $collection = Mage::getModel('easytemplate/group')->getCollection()
+            ->addFieldToFilter('entity_type', $this->getEntityType() )
+            ->addFieldToFilter('entity_id', $this->getEntityId() )
+            ->addFieldToFilter('copy_of', $this->getId() );
+
+        if( $collection->count() == 1 )
+        {
+            $group = Mage::getModel('easytemplate/group');
+            $group->load( $collection->getFirstItem()->getId() );
+
+            if( $group->getId() ) {
+                return $group;
+            }
+        }
+        return $this->duplicate();
+    }
+
+    public function duplicate()
+    {
+        if( !$this->getId() )
+        {
+            throw new Exception("Could not clone empty entity");
+        }
+
+        /** @var $newGroup Webguys_Easytemplate_Model_Group */
+        $newGroup = Mage::getModel('easytemplate/group');
+        $newGroup->setData( $this->getData() );
+        $newGroup->setId(null);
+        $newGroup->setCopyOf( $this->getId() );
+        $newGroup->save();
+
+        foreach( $this->getTemplateCollection() AS $templateModel )
+        {
+            $classname = get_class($templateModel);
+
+            /** @var $newTemplate Webguys_Easytemplate_Model_Template */
+            $newTemplate = new $classname;
+            $newTemplate->setData( $templateModel->getData() );
+            $newTemplate->setId(null);
+            $newTemplate->setGroupId( $newGroup->getId() );
+            $newTemplate->save();
+        }
+
+        return $newGroup;
     }
 
     public function importData( $data )

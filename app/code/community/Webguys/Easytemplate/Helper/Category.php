@@ -19,7 +19,8 @@ class Webguys_Easytemplate_Helper_Category extends Mage_Core_Helper_Abstract
         /** @var $collection Webguys_Easytemplate_Model_Resource_Group_Collection */
         $collection = Mage::getModel('easytemplate/group')->getCollection()
             ->addFieldToFilter('entity_type', self::ENTITY_TYPE_CATEGORY)
-            ->addFieldToFilter('entity_id', $id);
+            ->addFieldToFilter('entity_id', $id)
+            ->addFieldToFilter('copy_of', array('null' => true) );
 
         if( $store_fallback ) {
             $collection->addFieldToFilter('store_id', array( 'in' => array( $store_id, 0 ) ) );
@@ -33,7 +34,7 @@ class Webguys_Easytemplate_Helper_Category extends Mage_Core_Helper_Abstract
         $collection->load();
 
         if ($collection->getSize() >= 1) {
-            return $collection->getFirstItem();
+            return $collection->getFirstItem()->getCopyOfInstance();
         }
         else {
             // Return new item

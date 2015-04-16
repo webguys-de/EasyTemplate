@@ -29,10 +29,11 @@ class Webguys_Easytemplate_Helper_Block extends Mage_Core_Helper_Abstract
         $collection = Mage::getModel('easytemplate/group')->getCollection()
             ->addFieldToFilter('entity_type', self::ENTITY_TYPE_BLOCK)
             ->addFieldToFilter('entity_id', $id)
+            ->addFieldToFilter('copy_of', array('null' => true) )
             ->load();
 
         if ($collection->getSize() >= 1) {
-            return $collection->getFirstItem();
+            return $collection->getFirstItem()->getCopyOfInstance();
         }
         else {
             // Return new item
