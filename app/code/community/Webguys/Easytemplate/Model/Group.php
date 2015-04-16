@@ -27,23 +27,77 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         $this->_init('easytemplate/group');
     }
 
+    public function getFrontendUrl()
+    {
+        if( $this->getEntityType() == Webguys_Easytemplate_Helper_Page::ENTITY_TYPE_PAGE )
+        {
+            $page = Mage::getModel('cms/page');
+            $page->load( $this->getEntityId() );
+
+            $urlModel = Mage::getModel('core/url')->setStore($page->getData('_first_store_id'));
+            $href = $urlModel->getUrl(
+                $page->getIdentifier(), array(
+                    '_current' => false,
+                    '_query' => '___store='.$page->getStoreCode().'&easytemplate_preview='.$this->getPreviewHash()
+                )
+            );
+
+            return $href;
+        }
+
+        // TODO: Other Entity-Types?
+
+        return null;
+    }
+
     public function getCopyOfInstance()
     {
-        $collection = Mage::getModel('easytemplate/group')->getCollection()
-            ->addFieldToFilter('entity_type', $this->getEntityType() )
-            ->addFieldToFilter('entity_id', $this->getEntityId() )
-            ->addFieldToFilter('copy_of', $this->getId() );
-
-        if( $collection->count() == 1 )
+        if( Mage::app()->getStore()->isAdmin() )
         {
-            $group = Mage::getModel('easytemplate/group');
-            $group->load( $collection->getFirstItem()->getId() );
+            $collection = Mage::getModel('easytemplate/group')->getCollection()
+                ->addFieldToFilter('entity_type', $this->getEntityType())
+                ->addFieldToFilter('entity_id', $this->getEntityId())
+                ->addFieldToFilter('copy_of', $this->getId());
 
-            if( $group->getId() ) {
-                return $group;
+            if ($collection->count() == 1) {
+                $group = Mage::getModel('easytemplate/group');
+                $group->load($collection->getFirstItem()->getId());
+
+                if ($group->getId()) {
+                    return $group;
+                }
+            }
+            return $this->duplicate();
+        }
+
+        if( $preview = Mage::app()->getRequest()->getParam('easytemplate_preview') )
+        {
+            $collection = Mage::getModel('easytemplate/group')->getCollection()
+                ->addFieldToFilter('entity_type', $this->getEntityType())
+                ->addFieldToFilter('entity_id', $this->getEntityId())
+                ->addFieldToFilter('copy_of', $this->getId());
+
+            if ($collection->count() == 1)
+            {
+                /** @var Webguys_Easytemplate_Model_Group $previewGroup */
+                $previewGroup = $collection->getFirstItem();
+                if( $previewGroup->getPreviewHash() == $preview )
+                {
+                    // Dispatch Event to (may) disable Varnish Caching
+                    Mage::dispatchEvent('easytemplate_rendering_preview', array( 'group' => $previewGroup ) );
+
+                    $previewGroup->load($collection->getFirstItem()->getId());
+                    return $previewGroup;
+                }
             }
         }
-        return $this->duplicate();
+
+        return $this;
+    }
+
+    public function getPreviewHash()
+    {
+        return md5( Mage::helper('core')->encrypt( $this->getEntityId().$this->getEntityType().$this->getId().$this->getCopyOf() ) );
     }
 
     public function duplicate()

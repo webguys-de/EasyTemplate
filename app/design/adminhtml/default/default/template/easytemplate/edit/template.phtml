@@ -241,7 +241,7 @@
         <button onclick="$('easytemplate_publish').value='publish'; editForm.submit();" class="scalable save" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Publish'); ?></span></span></button>
         <button onclick="$('easytemplate_publish').value='reset'; editForm.submit();" class="scalable" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Reset'); ?></span></span></button>
 
-        <button onclick="" class="scalable" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Preview'); ?></span></span></button>
+        <button onclick="window.open('<?php echo $this->getGroup()->getFrontendUrl()?>');" class="scalable" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Preview'); ?></span></span></button>
 
     </div>
 
