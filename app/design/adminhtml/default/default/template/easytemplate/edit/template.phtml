@@ -78,13 +78,15 @@
                     i++;
                 }
             });
-        }
 
-        Sortable.create("easy_templates_container", {
-            tag: 'div',
-            treeTag: 'div',
-            onUpdate: sortableUpdate
-        });
+
+            Sortable.create("easy_templates_container", {
+                tag: 'div',
+                treeTag: 'div',
+                onUpdate: sortableUpdate
+            });
+        }
+        sortableUpdate();
 
         document.observe("dom:loaded", function() {
             $('edit_form').writeAttribute('enctype', 'multipart/form-data');
