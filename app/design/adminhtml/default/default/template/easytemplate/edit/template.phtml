@@ -63,7 +63,7 @@
             }
 
             // Category mode
-            if( $$('select[name=general[use_easytemplate]]') )
+            if( $$('select[name=general[landing_page]]').first() )
             {
                 $$('select[name=general[landing_page]]').first().up().up().hide();
             }
@@ -100,7 +100,7 @@
             }
 
             // Category mode
-            if ($$('select[name=general[use_easytemplate]]') && $$('select[name=general[use_easytemplate]]').first().value ) {
+            if ($$('select[name=general[use_easytemplate]]').first() && $$('select[name=general[use_easytemplate]]').first().value ) {
                 useEasyTemplate();
             }
 
@@ -123,6 +123,8 @@
             templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
             itemCount : 1,
             add : function( code, label ) {
+
+                this.itemCount++;
 
                 data = {};
                 data.id  = 'new_' + this.itemCount;
@@ -149,7 +151,6 @@
                 $('template_content_' + data.id).show();
                 $('template_overview_' + data.id).hide();
 
-                this.itemCount++;
                 this.bindRemoveButtons();
                 this.bindDateTimeChangeEvents();
                 this.bindActiveChangeEvents();
