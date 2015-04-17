@@ -50,6 +50,7 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
         /** @var Webguys_Easytemplate_Model_Template $clone */
         $clone = clone $this;
         $clone->setId(null);
+        $clone->setIsDuplicate(true);
         $clone->save();
 
         return $clone;
@@ -102,7 +103,10 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
                 $inputValidator->setTemplate($this);
                 $inputValidator->setField($field);
 
-                $value = $inputValidator->prepareForSave($this->_field_data[$field->getCode()]);
+                $value = $this->_field_data[$field->getCode()];
+                if( !$this->getIsDuplicate() ){
+                    $value = $inputValidator->prepareForSave($value);
+                }
 
                 $backendModel = $field->getBackendModel();
                 $backendModel->loadByTemplate($this);
