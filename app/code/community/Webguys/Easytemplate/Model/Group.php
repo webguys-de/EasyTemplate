@@ -116,12 +116,8 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
 
         foreach( $this->getTemplateCollection() AS $templateModel )
         {
-            $classname = get_class($templateModel);
-
             /** @var $newTemplate Webguys_Easytemplate_Model_Template */
-            $newTemplate = new $classname;
-            $newTemplate->setData( $templateModel->getData() );
-            $newTemplate->setId(null);
+            $newTemplate = $templateModel->duplicate();
             $newTemplate->setGroupId( $newGroup->getId() );
             $newTemplate->save();
         }
