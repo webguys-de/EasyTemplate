@@ -40,7 +40,7 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_Base extends Mage_Core
             'value' => $value
         ));
 
-        return $this;
+        return $value;
     }
 
     /**

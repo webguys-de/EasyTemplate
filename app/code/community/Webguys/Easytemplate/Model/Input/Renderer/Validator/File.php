@@ -32,7 +32,7 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_File extends Webguys_E
 
     public function beforeFieldSave($value, $oldValue)
     {
-        parent::beforeFieldSave($value, $oldValue);
+        $value = parent::beforeFieldSave($value, $oldValue);
 
         $template = $this->getTemplate();
 
@@ -68,13 +68,16 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_File extends Webguys_E
                 Mage::dispatchEvent('easytemplate_upload_file_after', array(
                     'result' => $result
                 ));
+
+                $value = $result['file'];
+
             }
             else {
                 // TODO: Error handling
             }
         }
 
-        return $this;
+        return $value;
     }
 
     protected function extractFilePostInformation($type)
