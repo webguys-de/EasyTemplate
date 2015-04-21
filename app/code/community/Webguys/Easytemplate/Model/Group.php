@@ -117,8 +117,7 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         foreach( $this->getTemplateCollection() AS $templateModel )
         {
             /** @var $newTemplate Webguys_Easytemplate_Model_Template */
-            $newTemplate = $templateModel->duplicate();
-            $newTemplate->setGroupId( $newGroup->getId() );
+            $newTemplate = $templateModel->duplicate( $newGroup->getId() );
             $newTemplate->save();
         }
 
@@ -193,6 +192,13 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         return $collection;
     }
 
-
+    protected function _afterDelete()
+    {
+        $dir = Mage::getBaseDir('media').DS.'easytemplate'.DS.$this->getId();
+        if(file_exists($dir)) {
+            Mage::helper('easytemplate/file')->rrmdir( $dir );
+        }
+        return parent::_afterDelete();
+    }
 
 }

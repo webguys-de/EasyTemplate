@@ -45,13 +45,26 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
     /**
      * @return Webguys_Easytemplate_Model_Template
      */
-    public function duplicate()
+    public function duplicate( $group_id )
     {
         /** @var Webguys_Easytemplate_Model_Template $clone */
         $clone = clone $this;
         $clone->setId(null);
         $clone->setIsDuplicate(true);
+        $clone->setGroupId($group_id);
         $clone->save();
+
+        $source = Mage::helper('easytemplate/file')->getDestinationFilePath($this->getGroupId(), $this->getId() );
+        $dest = Mage::helper('easytemplate/file')->getDestinationFilePath($clone->getGroupId(), $clone->getId() );
+
+        if( file_exists( $source ) )
+        {
+            mkdir( $dest, 0777, true );
+            foreach( glob($source.'/*') AS $source_file )
+            {
+                copy( $source_file, $dest.DS.basename($source_file) );
+            }
+        }
 
         return $clone;
     }

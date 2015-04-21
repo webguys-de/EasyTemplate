@@ -27,4 +27,18 @@ class Webguys_Easytemplate_Helper_File extends Mage_Core_Helper_Abstract
     {
         return file_exists($filePath);
     }
+
+    public function rrmdir($dir) {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (filetype($dir."/".$object) == "dir") $this->rrmdir($dir."/".$object); else unlink($dir."/".$object);
+                }
+            }
+            reset($objects);
+            rmdir($dir);
+        }
+    }
+
 }
