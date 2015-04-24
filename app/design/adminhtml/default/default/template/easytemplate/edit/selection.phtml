@@ -2,7 +2,7 @@
 
 <?php $first = true; foreach( $this->getTemplates() AS $template) : ?>
 
-    <div class="template-wrapper <?php if($first) : ?>first<? endif; ?>">
+    <div class="template-wrapper <?php if($first) : ?>first<?php endif; ?>">
 
         <div class="section-title">
             <?php echo $this->getCategoryLabel($template['label']); ?>
