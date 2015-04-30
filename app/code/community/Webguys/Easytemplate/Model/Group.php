@@ -67,10 +67,7 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
                     return $group;
                 }
             }
-            return $this->duplicate();
-        }
-
-        if( $preview = Mage::app()->getRequest()->getParam('easytemplate_preview') )
+        }elseif( $preview = Mage::app()->getRequest()->getParam('easytemplate_preview') )
         {
             $collection = Mage::getModel('easytemplate/group')->getCollection()
                 ->addFieldToFilter('entity_type', $this->getEntityType())

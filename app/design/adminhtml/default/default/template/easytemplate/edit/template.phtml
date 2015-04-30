@@ -30,6 +30,28 @@
         </div>
     <?php endif; ?>
 
+
+    <div class="box">
+
+        <input type="hidden" id="easytemplate_publish" name="easytemplate_publish" value="" />
+
+        <?php if ( $this->getGroup()->getCopyOf() ) : ?>
+
+            <button onclick="$('easytemplate_publish').value='publish'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )" class="scalable save" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Publish Working Copy'); ?></span></span></button>
+            <button onclick="$('easytemplate_publish').value='reset'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )" class="scalable" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Discard Working Copy'); ?></span></span></button>
+
+            <?php if( $this->getGroup()->getFrontendUrl() ) : ?>
+                <button onclick="window.open('<?php echo $this->getGroup()->getFrontendUrl()?>');" class="scalable" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Preview Working Copy'); ?></span></span></button>
+            <?php endif; ?>
+
+        <?php else : ?>
+
+            <button onclick="$('easytemplate_publish').value='clone'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )" class="scalable add" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Create Working Copy'); ?></span></span></button>
+
+        <?php endif; ?>
+
+    </div>
+
     <div class="entry-edit-head">
         <h4><?php echo Mage::helper('easytemplate')->__('Templates') ?></h4>
         <div class="right">
@@ -232,21 +254,6 @@
 
         //]]>
     </script>
-
-
-    <div class="box">
-        <h4>
-            <?php echo Mage::helper('easytemplate')->__('Design Change') ?>
-        </h4>
-
-        <input type="hidden" id="easytemplate_publish" name="easytemplate_publish" value="" />
-
-        <button onclick="$('easytemplate_publish').value='publish'; editForm.submit();" class="scalable save" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Publish'); ?></span></span></button>
-        <button onclick="$('easytemplate_publish').value='reset'; editForm.submit();" class="scalable" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Reset'); ?></span></span></button>
-
-        <button onclick="window.open('<?php echo $this->getGroup()->getFrontendUrl()?>');" class="scalable" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Preview'); ?></span></span></button>
-
-    </div>
 
 </div>
 

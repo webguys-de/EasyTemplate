@@ -51,6 +51,10 @@ class Webguys_Easytemplate_Helper_Data extends Mage_Core_Helper_Abstract
                 $group->delete();
                 break;
 
+            case 'clone':
+                $group->duplicate();
+                break;
+
         }
 
     }
