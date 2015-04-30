@@ -133,10 +133,10 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
             /** @var $helper Webguys_Easytemplate_Helper_Block */
             $helper = Mage::helper('easytemplate/block');
 
-            if ($blockId && $helper->isEasyTemplateBlock($blockId)) {
+            if ($blockId && ($InternalBlockId = $helper->isEasyTemplateBlock($blockId) ) ) {
                 $html = '';
 
-                if ( $group = $helper->getGroupByBlockId( $blockId ) ) {
+                if ( $group = $helper->getGroupByBlockId( $InternalBlockId ) ) {
                     /** @var $renderer Webguys_Easytemplate_Block_Renderer */
                     $renderer = Mage::app()->getLayout()->createBlock('easytemplate/renderer');
                     $renderer->setGroup( $group );

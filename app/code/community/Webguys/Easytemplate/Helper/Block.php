@@ -14,7 +14,12 @@ class Webguys_Easytemplate_Helper_Block extends Mage_Core_Helper_Abstract
         $block->setStoreId(Mage::app()->getStore()->getId());
         $block->load($blockId);
 
-        return ($block->getId() && $block->getViewMode() == Webguys_Easytemplate_Model_Config_Source_Cms_Page_Viewmode::VIEWMODE_EASYTPL);
+        if ($block->getId() && $block->getViewMode() == Webguys_Easytemplate_Model_Config_Source_Cms_Page_Viewmode::VIEWMODE_EASYTPL)
+        {
+            return $block->getId();
+        }
+
+        return false;
     }
 
     /**
