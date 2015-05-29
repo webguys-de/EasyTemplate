@@ -9,6 +9,10 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_Link extends Webguys_E
 
     public function prepareForFrontend($data)
     {
+        if( empty($data) )
+        {
+            return $data;
+        }
 
         list($code, $id ) = explode('/', $data);
         if( $code == 'product' )
