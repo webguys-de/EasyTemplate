@@ -117,7 +117,10 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
     protected function _beforeToHtml()
     {
         $this->setChildsBasedOnGroup( $this->getGroup() );
-        return $this;
+
+        Mage::dispatchEvent('easytemplate_frontend_before_to_html', array('block' => $this));
+
+        return parent::_beforeToHtml();
     }
 
     protected function _toHtml()
