@@ -1,0 +1,15 @@
+{
+  "name": webguys/easytemplate",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Matthias Kleine"
+    },
+    {
+      "name": "Ingo Hillebrand"
+    },
+    {
+      "name": "Tobias Vogt"
+    }
+  ]
+}
