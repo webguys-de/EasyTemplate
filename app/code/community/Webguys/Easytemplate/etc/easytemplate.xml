@@ -36,7 +36,7 @@
                             <backend_model>easytemplate/template_data_text</backend_model>
                             <input_renderer>easytemplate/input_renderer_editor</input_renderer>
                             <sort_order>30</sort_order>
-                            <default_value>Hallo EasyTemplate Paragraph Textarea</default_value>
+                            <default_value></default_value>
                             <required>0</required>
                         </text>
                     </fields>
