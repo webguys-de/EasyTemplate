@@ -10,6 +10,10 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_File extends Webguys_E
 
     public function prepareForFrontend($data)
     {
+        if (empty($data)) {
+            return $data;
+        }
+
         /** @var $fileHelper Webguys_Easytemplate_Helper_File */
         $fileHelper = Mage::helper('easytemplate/file');
 
