@@ -45,6 +45,3 @@ class Webguys_Easytemplate_Helper_Chooser extends Mage_Core_Helper_Abstract
     }
 
 }
-
-// http://localhost.magento/test.webguys.de/htdocs/index.php/admin/cms_wysiwyg_images/index/target_element_id/template_field_image_test_7/?isAjax=true
-// http://localhost.magento/test.webguys.de/htdocs/index.php/admin/cms_wysiwyg_images/index/target_element_id/page_content/?isAjax=true
