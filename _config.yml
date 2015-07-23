@@ -1,13 +1,14 @@
-title: Webguys EasyTemplate
+title: webguys.de EasyTemplate
 project_name: EasyTemplate
 description: >
-  A simple page builder for magento
+  A simple page builder for magento.
 repository_url: https://github.com/webguys-de/EasyTemplate
 repository_shorthand: webguys-de/EasyTemplate
 
 baseurl: "/EasyTemplate"
 
-author_name: Webguys
+author_name: webguys.de
 author_url: http://www.webguys.de/
 
 markdown: redcarpet
+highlighter: pygments

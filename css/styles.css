@@ -109,6 +109,11 @@ header {
   position:fixed;
 }
 
+.logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 header ul {
   list-style:none;
   height:40px;

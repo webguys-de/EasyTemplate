@@ -1,2 +1,4 @@
 items:
-  "introduction": "/"
+  "home": "/"
+  "installation": "/installation/"
+  "extend": "/extend/"
