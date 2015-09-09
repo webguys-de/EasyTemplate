@@ -1,0 +1,16 @@
+{
+    "name": "webguys-de/EasyTemplate",
+    "version": "0.9.0.1",
+    "type": "magento-module",
+    "description": "EasyTemplate",
+    "homepage": "https://github.com/webguys-de/EasyTemplate",
+    "authors":[
+        {
+            "name":"klein0r",
+            "email":"dev@mkleine.de"
+        }
+    ],
+    "suggest":{
+        "magento-hackathon/magento-composer-installer":"*"
+    }
+}
