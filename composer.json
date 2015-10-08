@@ -11,5 +11,8 @@
     {
       "name": "Tobias Vogt"
     }
-  ]
+  ],
+  "require": {
+    "magento-hackathon/magento-composer-installer": "*"
+  }
 }
