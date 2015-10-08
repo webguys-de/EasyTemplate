@@ -34,6 +34,13 @@ class Webguys_Easytemplate_Adminhtml_Easytemplate_Chooser_ImageController extend
 
         $filename = $this->getRequest()->getParam('filename');
         $filename = $helper->idDecode($filename);
+
+        $path = $this->getRequest()->getParam('node');
+        if($path !='root'){
+            $filename = $helper->idDecode($path).'/'.$filename;
+        }
+
+
         $asIs = $this->getRequest()->getParam('as_is');
 
         Mage::helper('catalog')->setStoreId($storeId);
