@@ -28,8 +28,9 @@ class Webguys_Easytemplate_Helper_Category extends Mage_Core_Helper_Abstract
             $collection->addFieldToFilter('store_id', $store_id );
         }
 
-        $collection->addOrder('store_id', Webguys_Easytemplate_Model_Resource_Group_Collection::SORT_ORDER_DESC );
+        $collection->addOrder('store_id', Webguys_Easytemplate_Model_Resource_Group_Collection::SORT_ORDER_DESC);
         $collection->setPageSize(1);
+        $collection->setCurPage(1);
 
         $collection->load();
 

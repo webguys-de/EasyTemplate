@@ -59,9 +59,9 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
                 ->addFieldToFilter('entity_id', $this->getEntityId())
                 ->addFieldToFilter('copy_of', $this->getId());
 
-            if ($collection->count() == 1) {
+            if ($collection->getSize() == 1) {
                 $group = Mage::getModel('easytemplate/group');
-                $group->load($collection->getFirstItem()->getId());
+                $group->load($collection->setPageSize(1)->setCurPage(1)->getFirstItem()->getId());
 
                 if ($group->getId()) {
                     return $group;
@@ -74,10 +74,10 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
                 ->addFieldToFilter('entity_id', $this->getEntityId())
                 ->addFieldToFilter('copy_of', $this->getId());
 
-            if ($collection->count() == 1)
+            if ($collection->getSize() == 1)
             {
                 /** @var Webguys_Easytemplate_Model_Group $previewGroup */
-                $previewGroup = $collection->getFirstItem();
+                $previewGroup = $collection->setPageSize(1)->setCurPage(1)->getFirstItem();
                 if( $previewGroup->getPreviewHash() == $preview )
                 {
                     // Dispatch Event to (may) disable Varnish Caching
@@ -191,8 +191,9 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
 
     protected function _afterDelete()
     {
-        $dir = Mage::getBaseDir('media').DS.'easytemplate'.DS.$this->getId();
-        if(file_exists($dir)) {
+        $dir = Mage::getBaseDir('media') . DS . 'easytemplate' . DS . $this->getId();
+        $io = new Varien_Io_File();
+        if ($io->fileExists($dir)) {
             Mage::helper('easytemplate/file')->rrmdir( $dir );
         }
         return parent::_afterDelete();

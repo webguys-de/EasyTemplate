@@ -33,7 +33,7 @@ class Webguys_Easytemplate_Helper_Page extends Mage_Core_Helper_Abstract
             ->load();
 
         if ($collection->getSize() >= 1) {
-            return $collection->getFirstItem()->getCopyOfInstance();
+            return $collection->->setPageSize(1)->setCurPage(1)->getFirstItem()->getCopyOfInstance();
         }
         else {
             // Return new item
