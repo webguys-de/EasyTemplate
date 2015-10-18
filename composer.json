@@ -1,6 +1,7 @@
 {
   "name": "webguys/easytemplate",
   "license": "MIT",
+  "type": "magento-module",
   "authors": [
     {
       "name": "Matthias Kleine"
