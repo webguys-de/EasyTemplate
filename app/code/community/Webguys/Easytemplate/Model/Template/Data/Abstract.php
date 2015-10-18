@@ -57,7 +57,7 @@ abstract class Webguys_Easytemplate_Model_Template_Data_Abstract
             ->load();
 
         if ($collection->getSize() > 0) {
-            $this->load($collection->getFirstItem()->getId());
+            $this->load($collection->setPageSize(1)->setCurPage(1)->getFirstItem()->getId());
         }
 
         return $this;
