@@ -96,7 +96,7 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
     {
         $modelName = str_replace('input_renderer', 'input_renderer_validator', $this->getData('input_renderer'));
 
-        if ($model = Mage::getModel($modelName)) {
+        if ($model = @Mage::getModel($modelName)) {
             return $model;
         }
         else {

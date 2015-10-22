@@ -97,8 +97,8 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
                     foreach ($config->getNode($templatesPath)->children() as $template) {
                         /** @var $templateParser Webguys_Easytemplate_Model_Input_Parser_Template */
                         $templateParser = Mage::getModel('easytemplate/input_parser_template');
-                        $templateParser->setConfig( $template );
-                        $templateParser->setCategory( $category->getName() );
+                        $templateParser->setConfig($template);
+                        $templateParser->setCategory($category->getName());
 
                         if ($templateParser->isEnabled()) {
                             $result[] = $templateParser;
