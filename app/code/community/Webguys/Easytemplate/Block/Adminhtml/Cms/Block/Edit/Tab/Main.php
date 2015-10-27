@@ -26,61 +26,87 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Main
 
         $form->setHtmlIdPrefix('block_');
 
-        $fieldset = $form->addFieldset('base_fieldset', array('legend'=>Mage::helper('cms')->__('Block Information')));
+        $fieldset = $form->addFieldset(
+            'base_fieldset',
+            array('legend' => Mage::helper('cms')->__('Block Information'))
+        );
 
         if ($model->getBlockId()) {
-            $fieldset->addField('block_id', 'hidden', array(
-                'name' => 'block_id',
-            ));
+            $fieldset->addField(
+                'block_id',
+                'hidden',
+                array(
+                    'name' => 'block_id',
+                )
+            );
         }
 
-        $fieldset->addField('title', 'text', array(
-            'name'      => 'title',
-            'label'     => Mage::helper('cms')->__('Block Title'),
-            'title'     => Mage::helper('cms')->__('Block Title'),
-            'required'  => true,
-        ));
+        $fieldset->addField(
+            'title',
+            'text',
+            array(
+                'name' => 'title',
+                'label' => Mage::helper('cms')->__('Block Title'),
+                'title' => Mage::helper('cms')->__('Block Title'),
+                'required' => true,
+            )
+        );
 
-        $fieldset->addField('identifier', 'text', array(
-            'name'      => 'identifier',
-            'label'     => Mage::helper('cms')->__('Identifier'),
-            'title'     => Mage::helper('cms')->__('Identifier'),
-            'required'  => true,
-            'class'     => 'validate-xml-identifier',
-        ));
+        $fieldset->addField(
+            'identifier',
+            'text',
+            array(
+                'name' => 'identifier',
+                'label' => Mage::helper('cms')->__('Identifier'),
+                'title' => Mage::helper('cms')->__('Identifier'),
+                'required' => true,
+                'class' => 'validate-xml-identifier',
+            )
+        );
 
         /**
          * Check is single store mode
          */
         if (!Mage::app()->isSingleStoreMode()) {
-            $field =$fieldset->addField('store_id', 'multiselect', array(
-                'name'      => 'stores[]',
-                'label'     => Mage::helper('cms')->__('Store View'),
-                'title'     => Mage::helper('cms')->__('Store View'),
-                'required'  => true,
-                'values'    => Mage::getSingleton('adminhtml/system_store')->getStoreValuesForForm(false, true),
-            ));
+            $field = $fieldset->addField(
+                'store_id',
+                'multiselect',
+                array(
+                    'name' => 'stores[]',
+                    'label' => Mage::helper('cms')->__('Store View'),
+                    'title' => Mage::helper('cms')->__('Store View'),
+                    'required' => true,
+                    'values' => Mage::getSingleton('adminhtml/system_store')->getStoreValuesForForm(false, true),
+                )
+            );
             $renderer = $this->getLayout()->createBlock('adminhtml/store_switcher_form_renderer_fieldset_element');
             $field->setRenderer($renderer);
-        }
-        else {
-            $fieldset->addField('store_id', 'hidden', array(
-                'name'      => 'stores[]',
-                'value'     => Mage::app()->getStore(true)->getId()
-            ));
+        } else {
+            $fieldset->addField(
+                'store_id',
+                'hidden',
+                array(
+                    'name' => 'stores[]',
+                    'value' => Mage::app()->getStore(true)->getId()
+                )
+            );
             $model->setStoreId(Mage::app()->getStore(true)->getId());
         }
 
-        $fieldset->addField('is_active', 'select', array(
-            'label'     => Mage::helper('cms')->__('Status'),
-            'title'     => Mage::helper('cms')->__('Status'),
-            'name'      => 'is_active',
-            'required'  => true,
-            'options'   => array(
-                '1' => Mage::helper('cms')->__('Enabled'),
-                '0' => Mage::helper('cms')->__('Disabled'),
-            ),
-        ));
+        $fieldset->addField(
+            'is_active',
+            'select',
+            array(
+                'label' => Mage::helper('cms')->__('Status'),
+                'title' => Mage::helper('cms')->__('Status'),
+                'name' => 'is_active',
+                'required' => true,
+                'options' => array(
+                    '1' => Mage::helper('cms')->__('Enabled'),
+                    '0' => Mage::helper('cms')->__('Disabled'),
+                ),
+            )
+        );
         if (!$model->getId()) {
             $model->setData('is_active', '1');
         }

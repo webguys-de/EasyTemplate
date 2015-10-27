@@ -38,30 +38,41 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Content
 
         $form->setHtmlIdPrefix('block_');
 
-        $fieldset = $form->addFieldset('content_fieldset', array('legend'=>Mage::helper('cms')->__('Content'),'class'=>'fieldset-wide'));
+        $fieldset = $form->addFieldset(
+            'content_fieldset',
+            array('legend' => Mage::helper('cms')->__('Content'), 'class' => 'fieldset-wide')
+        );
 
         $wysiwygConfig = Mage::getSingleton('cms/wysiwyg_config')->getConfig(
             array('tab_id' => $this->getTabId())
         );
 
-        $fieldset->addField('content_heading', 'text', array(
-            'name'      => 'content_heading',
-            'label'     => Mage::helper('cms')->__('Content Heading'),
-            'title'     => Mage::helper('cms')->__('Content Heading'),
-            'disabled'  => $isElementDisabled
-        ));
+        $fieldset->addField(
+            'content_heading',
+            'text',
+            array(
+                'name' => 'content_heading',
+                'label' => Mage::helper('cms')->__('Content Heading'),
+                'title' => Mage::helper('cms')->__('Content Heading'),
+                'disabled' => $isElementDisabled
+            )
+        );
 
-        $contentField = $fieldset->addField('content', 'editor', array(
-            'name'      => 'content',
-            'style'     => 'height:36em;',
-            'required'  => true,
-            'disabled'  => $isElementDisabled,
-            'config'    => $wysiwygConfig
-        ));
+        $contentField = $fieldset->addField(
+            'content',
+            'editor',
+            array(
+                'name' => 'content',
+                'style' => 'height:36em;',
+                'required' => true,
+                'disabled' => $isElementDisabled,
+                'config' => $wysiwygConfig
+            )
+        );
 
         // Setting custom renderer for content field to remove label column
         $renderer = $this->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset_element')
-                    ->setTemplate('cms/page/edit/form/renderer/content.phtml');
+            ->setTemplate('cms/page/edit/form/renderer/content.phtml');
         $contentField->setRenderer($renderer);
 
         $form->setValues($model->getData());

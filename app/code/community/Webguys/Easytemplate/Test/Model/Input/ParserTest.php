@@ -5,7 +5,7 @@ class Webguys_Easytemplate_Test_Model_Input_ParserTest extends Webguys_Easytempl
 
     public function testConfigHasTemplates()
     {
-        $this->assertEquals(2, count( $this->_parser->getTemplates() ) );
+        $this->assertEquals(2, count($this->_parser->getTemplates()));
     }
 
 

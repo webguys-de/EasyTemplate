@@ -17,7 +17,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Templates
         if ($block = $this->getObjectOfType()) {
             /** @var $helper Webguys_Easytemplate_Helper_Block */
             $helper = Mage::helper('easytemplate/block');
-            return $helper->getGroupByBlockId( $block->getId() );
+            return $helper->getGroupByBlockId($block->getId());
         }
         return Mage::getModel('easytemplate/group');
     }

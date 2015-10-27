@@ -8,7 +8,7 @@
  * @method getImage
  */
 class Webguys_Easytemplate_Model_Input_Parser_Template
- extends Webguys_Easytemplate_Model_Input_Parser_Abstract
+    extends Webguys_Easytemplate_Model_Input_Parser_Abstract
 {
 
     public function isEnabled()
@@ -69,12 +69,11 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
         $fields = $this->getConfig()->getNode('fields');
         $result = array();
 
-        foreach( $fields->children() AS $data )
-        {
+        foreach ($fields->children() AS $data) {
             /** @var $parser Webguys_Easytemplate_Model_Input_Parser_Field */
             $parser = Mage::getModel('easytemplate/input_parser_field');
-            $parser->setConfig( $data );
-            $parser->setTemplate( $this );
+            $parser->setConfig($data);
+            $parser->setTemplate($this);
 
             $result[] = $parser;
         }
@@ -87,7 +86,7 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
 
     public function getCode()
     {
-        return $this->getCategory() .'_'.parent::getCode();
+        return $this->getCategory() . '_' . parent::getCode();
     }
 
     public function cleanDatabase()
@@ -96,7 +95,7 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
 
         // Collect different backend models
         $usedTypes = array();
-        foreach($fields as $field) {
+        foreach ($fields as $field) {
             $usedTypes[] = get_class($field->getBackendModel());
         }
         $usedTypes = array_unique($usedTypes);

@@ -180,6 +180,7 @@
     border-bottom: 0px;
     background: #D6D6D6;
 }
+
 .easytemplate .divider h1 {
     margin: 0;
     padding: 8px 20px 4px;
@@ -187,6 +188,7 @@
     font-size: 1.25em;
     line-height: 1.2em;
 }
+
 .easytemplate .divider p {
     margin: 0;
     padding: 0 20px 6px;
@@ -226,16 +228,20 @@
     -o-transition: all 0.5s;
     transition: all 0.5s;
 }
+
 .hover:hover .tooltip {
     opacity: 1;
     cursor: default;
 }
+
 .et-head {
     display: inline-block;
 }
+
 .et-head-value {
     display: inline-block;
 }
+
 .et-head-value.first {
     margin-right: 20px;
 }

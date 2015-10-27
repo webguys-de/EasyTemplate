@@ -13,7 +13,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit extends Mage_Adminhtml
      */
     public function __construct()
     {
-        $this->_objectId   = 'block_id';
+        $this->_objectId = 'block_id';
         $this->_controller = 'cms_block';
         $this->_blockGroup = null; // Workaround to avoid automatic block creation by parent
 
@@ -21,11 +21,15 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit extends Mage_Adminhtml
 
         if ($this->_isAllowedAction('save')) {
             $this->_updateButton('save', 'label', Mage::helper('cms')->__('Save Block'));
-            $this->_addButton('saveandcontinue', array(
-                'label'     => Mage::helper('adminhtml')->__('Save and Continue Edit'),
-                'onclick'   => 'saveAndContinueEdit(\''.$this->_getSaveAndContinueUrl().'\')',
-                'class'     => 'save',
-            ), -100);
+            $this->_addButton(
+                'saveandcontinue',
+                array(
+                    'label' => Mage::helper('adminhtml')->__('Save and Continue Edit'),
+                    'onclick' => 'saveAndContinueEdit(\'' . $this->_getSaveAndContinueUrl() . '\')',
+                    'class' => 'save',
+                ),
+                -100
+            );
         } else {
             $this->_removeButton('save');
         }
@@ -45,9 +49,11 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit extends Mage_Adminhtml
     public function getHeaderText()
     {
         if (Mage::registry('cms_block')->getId()) {
-            return Mage::helper('cms')->__("Edit Block '%s'", $this->escapeHtml(Mage::registry('cms_block')->getTitle()));
-        }
-        else {
+            return Mage::helper('cms')->__(
+                "Edit Block '%s'",
+                $this->escapeHtml(Mage::registry('cms_block')->getTitle())
+            );
+        } else {
             return Mage::helper('cms')->__('New Block');
         }
     }
@@ -71,11 +77,14 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit extends Mage_Adminhtml
      */
     protected function _getSaveAndContinueUrl()
     {
-        return $this->getUrl('*/*/save', array(
-            '_current'   => true,
-            'back'       => 'edit',
-            'active_tab' => '{{tab_id}}'
-        ));
+        return $this->getUrl(
+            '*/*/save',
+            array(
+                '_current' => true,
+                'back' => 'edit',
+                'active_tab' => '{{tab_id}}'
+            )
+        );
     }
 
     /**
@@ -88,10 +97,10 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit extends Mage_Adminhtml
         $tabsBlock = $this->getLayout()->getBlock('easytemplate_cms_block_edit_tabs');
         if ($tabsBlock) {
             $tabsBlockJsObject = $tabsBlock->getJsObjectName();
-            $tabsBlockPrefix   = $tabsBlock->getId() . '_';
+            $tabsBlockPrefix = $tabsBlock->getId() . '_';
         } else {
             $tabsBlockJsObject = 'block_tabsJsTabs';
-            $tabsBlockPrefix   = 'block_tabs_';
+            $tabsBlockPrefix = 'block_tabs_';
         }
 
         $this->_formScripts[] = "

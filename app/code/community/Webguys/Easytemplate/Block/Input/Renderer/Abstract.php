@@ -38,15 +38,14 @@ abstract class Webguys_Easytemplate_Block_Input_Renderer_Abstract extends Mage_A
         return $this->_parent_parser_field;
     }
 
-    public function setValue( $value )
+    public function setValue($value)
     {
         $this->_value = $value;
     }
 
     public function getValue()
     {
-        if( $this->_value === null )
-        {
+        if ($this->_value === null) {
             return $this->getDefault();
         }
         return $this->_value;

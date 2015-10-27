@@ -16,11 +16,11 @@ class Webguys_Easytemplate_Helper_Data extends Mage_Core_Helper_Abstract
         $request = Mage::app()->getRequest();
         $templateData = $request->getPost('template');
 
-        if ( is_array( $templateData ) ) {
+        if (is_array($templateData)) {
 
             // Merge file information of $_FILES to $_POST
             if (isset($_FILES['template']['name']) && is_array($_FILES['template']['name'])) {
-                foreach($_FILES['template']['name'] as $templateId => $data) {
+                foreach ($_FILES['template']['name'] as $templateId => $data) {
                     if (is_array($data)) {
                         foreach ($data['fields'] as $fieldName => $field) {
                             $templateData[$templateId]['fields'][$fieldName]['value'] = $field;
@@ -29,20 +29,18 @@ class Webguys_Easytemplate_Helper_Data extends Mage_Core_Helper_Abstract
                 }
             }
 
-            $group->importData( $templateData );
+            $group->importData($templateData);
         }
 
-        switch( $request->getParam('easytemplate_publish') )
-        {
+        switch ($request->getParam('easytemplate_publish')) {
 
             case 'publish':
-                if( $group->getCopyOf() )
-                {
+                if ($group->getCopyOf()) {
                     $mainGroup = Mage::getModel('easytemplate/group');
-                    $mainGroup->load( $group->getCopyOf() );
+                    $mainGroup->load($group->getCopyOf());
                     $mainGroup->delete();
 
-                    $group->setCopyOf( null );
+                    $group->setCopyOf(null);
                     $group->save();
                 }
                 break;

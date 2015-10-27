@@ -9,7 +9,7 @@ class Webguys_Easytemplate_Model_Input_Renderer_Source_Numbers extends Webguys_E
     public function getOptionValues()
     {
         $values = array();
-        for($i=0;$i<51;$i++){
+        for ($i = 0; $i < 51; $i++) {
             $values[$i] = $i;
         }
         return $this->translateOptions($values);

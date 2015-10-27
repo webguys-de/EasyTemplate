@@ -24,14 +24,14 @@ class Webguys_Easytemplate_Block_Input_Renderer_Product extends Webguys_Easytemp
     public function getEntityModel()
     {
         $model = Mage::getModel('catalog/product');
-        $model->load( $this->getEntityId() );
+        $model->load($this->getEntityId());
         return $model;
     }
 
     public function getName()
     {
         $model = $this->getEntityModel();
-        return '#'.$model->getId().': '. $model->getSku() .' - ' .$model->getName();
+        return '#' . $model->getId() . ': ' . $model->getSku() . ' - ' . $model->getName();
     }
 
     public function getEntityId()

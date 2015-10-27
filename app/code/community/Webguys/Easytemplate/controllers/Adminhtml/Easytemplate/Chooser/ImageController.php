@@ -7,7 +7,7 @@ class Webguys_Easytemplate_Adminhtml_Easytemplate_Chooser_ImageController extend
 
     public function indexAction()
     {
-        $storeId = (int) $this->getRequest()->getParam('store');
+        $storeId = (int)$this->getRequest()->getParam('store');
 
         try {
             Mage::helper('cms/wysiwyg_images')->getCurrentPath();
@@ -36,8 +36,8 @@ class Webguys_Easytemplate_Adminhtml_Easytemplate_Chooser_ImageController extend
         $filename = $helper->idDecode($filename);
 
         $path = $this->getRequest()->getParam('node');
-        if($path !='root'){
-            $filename = $helper->idDecode($path).'/'.$filename;
+        if ($path != 'root') {
+            $filename = $helper->idDecode($path) . '/' . $filename;
         }
 
 
