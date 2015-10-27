@@ -30,5 +30,12 @@ and pressing button "Add New Template".
 
 In this example we select "Display Category Products" to show some products in a line.
 
+### 3. Configure Template
 
-![add new template](doc/select-template.png)
+Each template could have any number of input fields so each template have a different configuration.
+This depends on your developer eg. template module.
+
+![add new template](doc/category_products.png)
+
+As an example we a going to configure our basic template "Display Category Products". First of all we select 
+"Category" by pressing "Please Select". After that we save our cms page by pressing "Save and continue edit".
