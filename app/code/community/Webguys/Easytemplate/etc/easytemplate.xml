@@ -295,7 +295,7 @@
                               translate="label,comment">
                     <enabled>1</enabled>
                     <label>Test template</label>
-                    <comment>A test template with all easy template features</comment>
+                    <comment>A test template with all EasyTemplate features</comment>
                     <image>images/easytemplate/testtemplate.png</image>
                     <sort_order>10</sort_order>
                     <fields>
