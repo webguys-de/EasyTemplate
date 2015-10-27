@@ -18,7 +18,7 @@ class Webguys_Easytemplate_Model_Config_Source_Cms_Page_Viewmode
     {
         return array(
             array('value' => self::VIEWMODE_CORE, 'label' => Mage::helper('easytemplate')->__('Standard')),
-            array('value' => self::VIEWMODE_EASYTPL, 'label' => Mage::helper('easytemplate')->__('Easy template')),
+            array('value' => self::VIEWMODE_EASYTPL, 'label' => Mage::helper('easytemplate')->__('EasyTemplate')),
         );
     }
 
@@ -31,7 +31,7 @@ class Webguys_Easytemplate_Model_Config_Source_Cms_Page_Viewmode
     {
         return array(
             self::VIEWMODE_CORE => Mage::helper('easytemplate')->__('Standard'),
-            self::VIEWMODE_EASYTPL => Mage::helper('easytemplate')->__('Easy template'),
+            self::VIEWMODE_EASYTPL => Mage::helper('easytemplate')->__('EasyTemplate'),
         );
     }
 }

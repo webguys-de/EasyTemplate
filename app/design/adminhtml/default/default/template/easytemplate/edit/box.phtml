@@ -13,7 +13,7 @@
                 <span class="valid-from">{{valid_from}}</span><br/>
                 <span class="valid-to">{{valid_to}}</span>
             </div>
-            <br class="clear" />
+            <br class="clear"/>
         </div>
 
         <div class="information f-left">
@@ -41,18 +41,33 @@
         <input type="hidden" id="template_{{id}}_is_delete" name="template[{{id}}][is_delete]" value=""/>
         <input type="hidden" id="template_{{id}}_id" name="template[{{id}}][id]" value="{{id}}"/>
         <input type="hidden" id="template_{{id}}_sort_order" name="template[{{id}}][sort_order]" value="{{position}}"/>
+
         <div class="template_content_status">
             <span class="label"><?php echo Mage::helper('easytemplate')->__('Active'); ?>:</span>
-            <span class="desc"><input type="checkbox" name="template[{{id}}][active]" id="template_{{id}}_active" class="active-input" value="1" /></span>
+            <span class="desc"><input type="checkbox" name="template[{{id}}][active]" id="template_{{id}}_active"
+                                      class="active-input" value="1"/></span>
             <span class="separator"></span>
             <span class="label"><?php echo Mage::helper('easytemplate')->__('Valid From') ?>:</span>
-            <span class="desc"><input name="template[{{id}}][valid_from]" id="_valid_from_{{id}}" value="{{valid_from}}" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_from_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
+            <span class="desc"><input name="template[{{id}}][valid_from]" id="_valid_from_{{id}}" value="{{valid_from}}"
+                                      type="text" class="datetime-input" style="width:70px;text-align:right"><img
+                    title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_from_{{id}}_trig"
+                    src="<?php echo Mage::getBaseUrl(
+                            Mage_Core_Model_Store::URL_TYPE_SKIN
+                        ) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle"
+                    style="margin-left:3px;"></span>
             <span class="separator"></span>
             <span class="label"><?php echo Mage::helper('easytemplate')->__('Valid To') ?>:</span>
-            <span clasS="desc"><input id="_valid_to_{{id}}" name="template[{{id}}][valid_to]" value="{{valid_to}}" type="text" class="datetime-input" style="width:70px;text-align:right"><img title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_to_{{id}}_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle" style="margin-left:3px;"></span>
+            <span clasS="desc"><input id="_valid_to_{{id}}" name="template[{{id}}][valid_to]" value="{{valid_to}}"
+                                      type="text" class="datetime-input" style="width:70px;text-align:right"><img
+                    title="<?php echo Mage::helper('easytemplate')->__('Select date') ?>" id="_valid_to_{{id}}_trig"
+                    src="<?php echo Mage::getBaseUrl(
+                            Mage_Core_Model_Store::URL_TYPE_SKIN
+                        ) . 'adminhtml/default/default/images/grid-cal.gif'; ?>" class="v-middle"
+                    style="margin-left:3px;"></span>
             <span class="separator"></span>
             <span class="label"><?php echo Mage::helper('easytemplate')->__('Name') ?></span>
-            <span class="desc"><input type="text" class="required-entry input-text" id="template_{{id}}_name" name="template[{{id}}][name]" value="{{name}}" style="width:250px"></span>
+            <span class="desc"><input type="text" class="required-entry input-text" id="template_{{id}}_name"
+                                      name="template[{{id}}][name]" value="{{name}}" style="width:250px"></span>
         </div>
         <script type="text/javascript">
             //<![CDATA[
@@ -71,7 +86,7 @@
                 singleClick: true
             });
 
-            if( '{{active}}' == 1 ){
+            if ('{{active}}' == 1) {
                 $('template_{{id}}_active').setAttribute('checked', true);
             }
             else {

@@ -1,21 +1,21 @@
 <?php /** @var $this Webguys_Easytemplate_Block_Template */ ?>
 
 <div class="<?php echo $this->getTemplateCode() ?>">
-    <?php if( $image = $this->getData('image')) : ?>
-       <dl class="<?php echo $this->getData('image_alignment'); ?>">
+    <?php if ($image = $this->getData('image')) : ?>
+        <dl class="<?php echo $this->getData('image_alignment'); ?>">
             <dt>
-            <?php if( $link = $this->getData('link')) : ?>
+                <?php if ($link = $this->getData('link')) : ?>
                 <a href="<?php echo $link; ?>">
-            <?php endif; ?>
-                <img src="<?php echo $image; ?>" />
-            <?php if( $link = $this->getData('link')) : ?>
+                    <?php endif; ?>
+                    <img src="<?php echo $image; ?>"/>
+                    <?php if ($link = $this->getData('link')) : ?>
                 </a>
             <?php endif; ?>
             </dt>
-            <?php if( $caption = $this->getData('caption')) : ?>
+            <?php if ($caption = $this->getData('caption')) : ?>
                 <dd class="caption"><?php echo $caption; ?></dd>
             <?php endif; ?>
-       </dl>
+        </dl>
     <?php endif; ?>
     <?php echo $this->getData('text'); ?>
 </div>

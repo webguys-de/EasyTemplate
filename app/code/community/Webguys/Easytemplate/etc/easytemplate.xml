@@ -5,7 +5,8 @@
             <enabled>1</enabled>
             <label>Simple Templates</label>
             <templates>
-                <headline_text template="easytemplate/template/headline_text.phtml" type="easytemplate/template" translate="label,comment">
+                <headline_text template="easytemplate/template/headline_text.phtml" type="easytemplate/template"
+                               translate="label,comment">
                     <enabled>1</enabled>
                     <label>Headline + Text</label>
                     <image>images/easytemplate/headline_text.png</image>
@@ -42,7 +43,8 @@
                     </fields>
                 </headline_text>
 
-                <google_maps template="easytemplate/template/google_maps.phtml" type="easytemplate/template_googlemaps" translate="label,comment">
+                <google_maps template="easytemplate/template/google_maps.phtml" type="easytemplate/template_googlemaps"
+                             translate="label,comment">
                     <enabled>1</enabled>
                     <label>Google Maps</label>
                     <image>images/easytemplate/google_maps.png</image>
@@ -69,7 +71,7 @@
                         </width>
                         <height translate="label,comment">
                             <label>Height</label>
-                            <comment>Height of the map </comment>
+                            <comment>Height of the map</comment>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>30</sort_order>
@@ -89,7 +91,8 @@
                     </fields>
                 </google_maps>
 
-                <youtube template="easytemplate/template/youtube.phtml" type="easytemplate/template" translate="label,comment">
+                <youtube template="easytemplate/template/youtube.phtml" type="easytemplate/template"
+                         translate="label,comment">
                     <enabled>1</enabled>
                     <label>Youtube</label>
                     <image>images/easytemplate/youtube.png</image>
@@ -136,7 +139,8 @@
                     </fields>
                 </youtube>
 
-                <vimeo template="easytemplate/template/vimeo.phtml" type="easytemplate/template" translate="label,comment">
+                <vimeo template="easytemplate/template/vimeo.phtml" type="easytemplate/template"
+                       translate="label,comment">
                     <enabled>1</enabled>
                     <label>Vimeo</label>
                     <image>images/easytemplate/vimeo.png</image>
@@ -173,7 +177,8 @@
                     </fields>
                 </vimeo>
 
-                <text_2column template="easytemplate/template/text_2column.phtml" type="easytemplate/template" translate="label,comment">
+                <text_2column template="easytemplate/template/text_2column.phtml" type="easytemplate/template"
+                              translate="label,comment">
                     <enabled>1</enabled>
                     <label>Text 2column</label>
                     <image>images/easytemplate/text_2column.png</image>
@@ -201,7 +206,8 @@
                     </fields>
                 </text_2column>
 
-                <text_picture template="easytemplate/template/text_picture.phtml" type="easytemplate/template" translate="label,comment">
+                <text_picture template="easytemplate/template/text_picture.phtml" type="easytemplate/template"
+                              translate="label,comment">
                     <enabled>1</enabled>
                     <label>Text + picture</label>
                     <image>images/easytemplate/text_picture.png</image>
@@ -260,7 +266,8 @@
                     </fields>
                 </text_picture>
 
-                <spacer template="easytemplate/template/spacer.phtml" type="easytemplate/template" translate="label,comment">
+                <spacer template="easytemplate/template/spacer.phtml" type="easytemplate/template"
+                        translate="label,comment">
                     <enabled>1</enabled>
                     <label>Spacer</label>
                     <image>images/easytemplate/spacer.png</image>
@@ -284,10 +291,11 @@
             <enabled>1</enabled>
             <label>Test Templates</label>
             <templates>
-                <testtemplate template="easytemplate/template/testtemplate.phtml" type="easytemplate/template" translate="label,comment">
+                <testtemplate template="easytemplate/template/testtemplate.phtml" type="easytemplate/template"
+                              translate="label,comment">
                     <enabled>1</enabled>
                     <label>Test template</label>
-                    <comment>A test template with all easy template features</comment>
+                    <comment>A test template with all EasyTemplate features</comment>
                     <image>images/easytemplate/testtemplate.png</image>
                     <sort_order>10</sort_order>
                     <fields>
@@ -463,7 +471,8 @@
             <enabled>1</enabled>
             <label>Productlisting</label>
             <templates>
-                <category_products template="catalog/product/list.phtml" type="easytemplate/template_product_list" translate="label,comment">
+                <category_products template="catalog/product/list.phtml" type="easytemplate/template_product_list"
+                                   translate="label,comment">
                     <enabled>1</enabled>
                     <label>Display Category Products</label>
                     <comment>Display Products of a custom category</comment>
@@ -521,7 +530,8 @@
                     </fields>
                 </category_products>
 
-                <three_products template="easytemplate/template/three_products.phtml" type="easytemplate/template" translate="label,comment">
+                <three_products template="easytemplate/template/three_products.phtml" type="easytemplate/template"
+                                translate="label,comment">
                     <enabled>1</enabled>
                     <label>Three products</label>
                     <image>images/easytemplate/three_products.png</image>

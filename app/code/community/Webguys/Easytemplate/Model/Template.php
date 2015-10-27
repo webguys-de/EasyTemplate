@@ -45,7 +45,7 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
     /**
      * @return Webguys_Easytemplate_Model_Template
      */
-    public function duplicate( $group_id )
+    public function duplicate($group_id)
     {
         /** @var Webguys_Easytemplate_Model_Template $clone */
         $clone = clone $this;
@@ -54,34 +54,32 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
         $clone->setGroupId($group_id);
         $clone->save();
 
-        $source = Mage::helper('easytemplate/file')->getDestinationFilePath($this->getGroupId(), $this->getId() );
-        $dest = Mage::helper('easytemplate/file')->getDestinationFilePath($clone->getGroupId(), $clone->getId() );
+        $source = Mage::helper('easytemplate/file')->getDestinationFilePath($this->getGroupId(), $this->getId());
+        $dest = Mage::helper('easytemplate/file')->getDestinationFilePath($clone->getGroupId(), $clone->getId());
 
-        if( file_exists( $source ) )
-        {
-            mkdir( $dest, 0777, true );
-            foreach( glob($source.'/*') AS $source_file )
-            {
-                copy( $source_file, $dest.DS.basename($source_file) );
+        if (file_exists($source)) {
+            mkdir($dest, 0777, true);
+            foreach (glob($source . '/*') AS $source_file) {
+                copy($source_file, $dest . DS . basename($source_file));
             }
         }
 
         return $clone;
     }
 
-    public function importData( Array $data)
+    public function importData(Array $data)
     {
-        $this->setCode( $data['code'] );
-        $this->setName( $data['name'] );
-        $this->setActive( isset($data['active']) ? $data['active'] : 0 );
-        $this->setPosition( $data['sort_order'] );
+        $this->setCode($data['code']);
+        $this->setName($data['name']);
+        $this->setActive(isset($data['active']) ? $data['active'] : 0);
+        $this->setPosition($data['sort_order']);
 
         if (($time = strtotime($data['valid_from'])) !== false) {
-            $this->setValidFrom( date('Y-m-d', $time) );
+            $this->setValidFrom(date('Y-m-d', $time));
         }
 
         if (($time = strtotime($data['valid_to'])) !== false) {
-            $this->setValidTo( date('Y-m-d', $time) );
+            $this->setValidTo(date('Y-m-d', $time));
         }
 
         $this->_field_data = $data['fields'];
@@ -108,7 +106,7 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
         /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
         $configModel = Mage::getSingleton('easytemplate/input_parser');
 
-        if ($model = $configModel->getTemplate( $this->getCode() )) {
+        if ($model = $configModel->getTemplate($this->getCode())) {
 
             foreach ($model->getFields() as $field) {
 
@@ -117,7 +115,7 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
                 $inputValidator->setField($field);
 
                 $value = $this->_field_data[$field->getCode()];
-                if( !$this->getIsDuplicate() ){
+                if (!$this->getIsDuplicate()) {
                     $value = $inputValidator->prepareForSave($value);
                 }
 
@@ -127,7 +125,7 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
                 $value = $inputValidator->beforeFieldSave($value, $backendModel->getValue());
 
                 $backendModel->importData($value);
-                $backendModel->setTemplateId( $this->getId() );
+                $backendModel->setTemplateId($this->getId());
 
                 $backendModel->save();
                 $inputValidator->afterFieldSave($value);
@@ -143,7 +141,7 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
     {
         /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
         $configModel = Mage::getSingleton('easytemplate/input_parser');
-        if ($model = $configModel->getTemplate( $this->getCode() )) {
+        if ($model = $configModel->getTemplate($this->getCode())) {
             return $model;
         }
         return Mage::getModel('easytemplate/input_parser_template');
@@ -165,35 +163,31 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
         $this->setLabel($helper->__($this->getConfig()->getLabel()));
 
         // collect all input-resources
-        foreach( $this->getFields() AS $field )
-        {
+        foreach ($this->getFields() AS $field) {
             $backend_model_name = $field->getBackendModel()->getInternalName();
-            $models[ $backend_model_name ] = $field->getBackendModel();
+            $models[$backend_model_name] = $field->getBackendModel();
         }
 
         // iterate all models and get data using collections
-        foreach( $models AS $backend_model )
-        {
+        foreach ($models AS $backend_model) {
             /** @var $data_collection Webguys_Easytemplate_Model_Resource_Template_Data_Collection_Abstract */
             $data_collection = $backend_model->getCollection();
-            $data_collection->addTemplateFilter( $this );
+            $data_collection->addTemplateFilter($this);
 
             /** @var $data Webguys_Easytemplate_Model_Resource_Template_Data_Abstract */
-            foreach( $data_collection AS $data )
-            {
-                $this->_field_data[ $data->getField() ] = $data->getValue();
+            foreach ($data_collection AS $data) {
+                $this->_field_data[$data->getField()] = $data->getValue();
             }
         }
 
         return $this;
     }
 
-    public function getFieldData( $field = null )
+    public function getFieldData($field = null)
     {
-        if( $field === null )
-        {
+        if ($field === null) {
             return $this->_field_data;
         }
-        return $this->_field_data[ $field ];
+        return $this->_field_data[$field];
     }
 }

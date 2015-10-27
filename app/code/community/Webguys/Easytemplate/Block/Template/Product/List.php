@@ -25,8 +25,8 @@ class Webguys_Easytemplate_Block_Template_Product_List extends Mage_Catalog_Bloc
 
     public function getLayer()
     {
-        if ( !$this->_layer ) {
-            $this->_layer = Mage::getModel( 'catalog/layer' );
+        if (!$this->_layer) {
+            $this->_layer = Mage::getModel('catalog/layer');
         }
         return $this->_layer;
     }

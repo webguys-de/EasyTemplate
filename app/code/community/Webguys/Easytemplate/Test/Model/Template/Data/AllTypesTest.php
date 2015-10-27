@@ -34,7 +34,7 @@ class Webguys_Easytemplate_Test_Model_Template_Data_AllTypesTest
 
     public function testDummy()
     {
-        $this->assertTrue( true );
+        $this->assertTrue(true);
     }
 
 }

@@ -203,7 +203,7 @@
     <phpunit>
         <suite>
             <modules>
-                <Webguys_Easytemplate />
+                <Webguys_Easytemplate/>
             </modules>
         </suite>
     </phpunit>

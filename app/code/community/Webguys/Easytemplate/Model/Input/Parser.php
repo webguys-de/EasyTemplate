@@ -20,10 +20,17 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
             Mage::getConfig()->loadModulesConfiguration('easytemplate.xml', $config);
             $xmlConfig = $config;
             if (Mage::app()->useCache('config')) {
-                Mage::app()->saveCache($config->getXmlString(), 'easytemplate_config',
-                    array(Mage_Core_Model_Config::CACHE_TAG));
+                Mage::app()->saveCache(
+                    $config->getXmlString(),
+                    'easytemplate_config',
+                    array(Mage_Core_Model_Config::CACHE_TAG)
+                );
 
-                if (Mage::getStoreConfig('easytemplate/configuration/automatically_clean_database', Mage::app()->getStore()->getId())) {
+                if (Mage::getStoreConfig(
+                    'easytemplate/configuration/automatically_clean_database',
+                    Mage::app()->getStore()->getId()
+                )
+                ) {
                     // Clean the database just if caching is active to avoid performance issues
                     $this->cleanDatabase();
                 }
@@ -116,15 +123,14 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
         return $this->_templates;
     }
 
-    public function getTemplate( $code )
+    public function getTemplate($code)
     {
         $templates = $this->getTemplates();
 
         /** @var $template Webguys_Easytemplate_Model_Input_Parser_Template */
         foreach ($templates as $template) {
 
-            if ($template->getCode() == $code)
-            {
+            if ($template->getCode() == $code) {
                 return $template;
             }
 

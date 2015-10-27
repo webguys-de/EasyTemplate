@@ -1,15 +1,16 @@
 <?php /** @var $this Webguys_Easytemplate_Block_Template_Googlemaps */ ?>
 
-<iframe
-    width="<?php echo $this->getData('width'); ?>"
-    height="<?php echo $this->getData('height'); ?>"
-    frameborder="0"
-    scrolling="no"
-    marginheight="0"
-    marginwidth="0"
-    src="<?php echo $this->getIFrameSrc(); ?>">
-</iframe>
+    <iframe
+        width="<?php echo $this->getData('width'); ?>"
+        height="<?php echo $this->getData('height'); ?>"
+        frameborder="0"
+        scrolling="no"
+        marginheight="0"
+        marginwidth="0"
+        src="<?php echo $this->getIFrameSrc(); ?>">
+    </iframe>
 
-<?php if( $show_link = $this->getData('show_link')) : ?>
-    <br /><small><?php echo $this->getIFrameLink(); ?></small>
+<?php if ($show_link = $this->getData('show_link')) : ?>
+    <br/>
+    <small><?php echo $this->getIFrameLink(); ?></small>
 <?php endif; ?>

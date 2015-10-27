@@ -8,9 +8,11 @@ class Webguys_Easytemplate_Model_Input_Renderer_Source_Yesno extends Webguys_Eas
 {
     public function getOptionValues()
     {
-        return $this->translateOptions(array(
-            1 => 'Yes',
-            0 => 'No'
-        ));
+        return $this->translateOptions(
+            array(
+                1 => 'Yes',
+                0 => 'No'
+            )
+        );
     }
 }

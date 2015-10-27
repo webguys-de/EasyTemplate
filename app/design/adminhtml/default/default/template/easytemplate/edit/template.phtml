@@ -3,8 +3,7 @@
 
 <script type="text/javascript">
     var easytinyMceWysiwygSetup = Class.create(tinyMceWysiwygSetup, {
-        setup: function(mode)
-        {
+        setup: function (mode) {
             var settings = this.getSettings(mode);
 
             settings.theme_advanced_buttons1 = 'bold,italic,underline,strikethrough,|,bullist,numlist,|,undo,redo';
@@ -18,242 +17,262 @@
 </script>
 
 <div class="entry-edit easy-templates">
-    <?php if (!$this->isInTemplateMode()) : ?>
-        <div id="dynamic-template-warrning">
-            <ul class="messages">
-                <li class="error-msg">
-                    <ul>
-                        <li><?php echo $this->__('Output is not set to Easy template. This content will not be available on frontend') ?></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    <?php endif; ?>
+<?php if (!$this->isInTemplateMode()) : ?>
+    <div id="dynamic-template-warrning">
+        <ul class="messages">
+            <li class="error-msg">
+                <ul>
+                    <li><?php echo $this->__(
+                            'Output is not set to EasyTemplate. This content will not be available on frontend'
+                        ) ?></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+<?php endif; ?>
 
 
-    <div class="box">
+<div class="box">
 
-        <input type="hidden" id="easytemplate_publish" name="easytemplate_publish" value="" />
+    <input type="hidden" id="easytemplate_publish" name="easytemplate_publish" value=""/>
 
-        <?php if ( $this->getGroup()->getCopyOf() ) : ?>
+    <?php if ($this->getGroup()->getCopyOf()) : ?>
 
-            <button onclick="$('easytemplate_publish').value='publish'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )" class="scalable save" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Publish Working Copy'); ?></span></span></button>
-            <button onclick="$('easytemplate_publish').value='reset'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )" class="scalable" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Discard Working Copy'); ?></span></span></button>
+        <button
+            onclick="$('easytemplate_publish').value='publish'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
+            class="scalable save" type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
+                        'Publish Working Copy'
+                    ); ?></span></span></button>
+        <button
+            onclick="$('easytemplate_publish').value='reset'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
+            class="scalable" type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
+                        'Discard Working Copy'
+                    ); ?></span></span></button>
 
-            <?php if( $this->getGroup()->getFrontendUrl() ) : ?>
-                <button onclick="window.open('<?php echo $this->getGroup()->getFrontendUrl()?>');" class="scalable" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Preview Working Copy'); ?></span></span></button>
-            <?php endif; ?>
-
-        <?php else : ?>
-
-            <button onclick="$('easytemplate_publish').value='clone'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )" class="scalable add" type="button"><span><span><?php echo Mage::helper('easytemplate')->__('Create Working Copy'); ?></span></span></button>
-
+        <?php if ($this->getGroup()->getFrontendUrl()) : ?>
+            <button onclick="window.open('<?php echo $this->getGroup()->getFrontendUrl() ?>');" class="scalable"
+                    type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
+                            'Preview Working Copy'
+                        ); ?></span></span></button>
         <?php endif; ?>
 
+    <?php else : ?>
+
+        <button
+            onclick="$('easytemplate_publish').value='clone'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
+            class="scalable add" type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
+                        'Create Working Copy'
+                    ); ?></span></span></button>
+
+    <?php endif; ?>
+
+</div>
+
+<div class="entry-edit-head">
+    <h4><?php echo Mage::helper('easytemplate')->__('Templates') ?></h4>
+
+    <div class="right">
+        <button onclick="$('easy_template_selector').show();" class="scalable add" type="button"
+                title="<?php echo Mage::helper('easytemplate')->__('Add New Template'); ?>">
+            <span><span><?php echo Mage::helper('easytemplate')->__('Add New Template'); ?></span></span></button>
     </div>
+</div>
 
-    <div class="entry-edit-head">
-        <h4><?php echo Mage::helper('easytemplate')->__('Templates') ?></h4>
-        <div class="right">
-            <button onclick="$('easy_template_selector').show();" class="scalable add" type="button" title="<?php echo Mage::helper('easytemplate')->__('Add New Template'); ?>"><span><span><?php echo Mage::helper('easytemplate')->__('Add New Template'); ?></span></span></button>
-        </div>
-    </div>
+<div id="easy_template_selector" style="display: none;">
+    <?php echo $this->getChildHtml('selection'); ?>
+</div>
+<div style="clear:both;"></div>
 
-    <div id="easy_template_selector" style="display: none;">
-        <?php echo $this->getChildHtml('selection'); ?>
-    </div>
-    <div style="clear:both;"></div>
+<div id="easy_templates_container" class="box">
+    <div id="easy_templates_container_top"></div>
+    <?php echo $this->getExistingTemplatesHtml(); ?>
+</div>
 
-    <div id="easy_templates_container" class="box">
-        <div id="easy_templates_container_top"></div>
-        <?php echo $this->getExistingTemplatesHtml(); ?>
-    </div>
-
-    <script type="text/javascript">
-        // <![CDATA[
-        function useEasyTemplate() {
-            // Page mode
-            if ($('page_content')) {
-                $('page_content').addClassName('ignore-validate');
-                $('page_tabs_content_section').hide();
-            }
-
-            // Block mode
-            if ($('block_content')) {
-                $('block_content').addClassName('ignore-validate');
-                $('block_tabs_content_section').hide();
-            }
-
-            // Category mode
-            if( $$('select[name=general[landing_page]]').first() )
-            {
-                $$('select[name=general[landing_page]]').first().up().up().hide();
-            }
-
+<script type="text/javascript">
+    // <![CDATA[
+    function useEasyTemplate() {
+        // Page mode
+        if ($('page_content')) {
+            $('page_content').addClassName('ignore-validate');
+            $('page_tabs_content_section').hide();
         }
 
-        function sortableUpdate() {
-            var i = 1;
-            $$('#easy_templates_container div').each(function(c){
-                if(c.hasClassName('template-box') && !c.hasClassName('no-display')) {
-                    $( c.id + '_sort_order').value = i;
-                    i++;
-                }
-            });
-
-
-            Sortable.create("easy_templates_container", {
-                tag: 'div',
-                treeTag: 'div',
-                onUpdate: sortableUpdate
-            });
+        // Block mode
+        if ($('block_content')) {
+            $('block_content').addClassName('ignore-validate');
+            $('block_tabs_content_section').hide();
         }
-        sortableUpdate();
 
-        document.observe("dom:loaded", function() {
-            $('edit_form').writeAttribute('enctype', 'multipart/form-data');
+        // Category mode
+        if ($$('select[name=general[landing_page]]').first()) {
+            $$('select[name=general[landing_page]]').first().up().up().hide();
+        }
 
-            // Page mode
-            if ($('page_view_mode') && $('page_view_mode').value == 'easytemplate') {
-                useEasyTemplate();
+    }
+
+    function sortableUpdate() {
+        var i = 1;
+        $$('#easy_templates_container div').each(function (c) {
+            if (c.hasClassName('template-box') && !c.hasClassName('no-display')) {
+                $(c.id + '_sort_order').value = i;
+                i++;
             }
-
-            // Block mode
-            if ($('block_view_mode') && $('block_view_mode').value == 'easytemplate') {
-                useEasyTemplate();
-            }
-
-            // Category mode
-            if ($$('select[name=general[use_easytemplate]]').first() && $$('select[name=general[use_easytemplate]]').first().value ) {
-                useEasyTemplate();
-            }
-
         });
 
-        // ]]>
-    </script>
 
-    <script type="text/javascript">
-        //<![CDATA[
-        templates = <?php echo json_encode( $this->getEmptyTemplates() ); ?>
-        //]]>
-    </script>
+        Sortable.create("easy_templates_container", {
+            tag: 'div',
+            treeTag: 'div',
+            onUpdate: sortableUpdate
+        });
+    }
+    sortableUpdate();
 
-    <script type="text/javascript">
-        //<![CDATA[
+    document.observe("dom:loaded", function () {
+        $('edit_form').writeAttribute('enctype', 'multipart/form-data');
 
-        easyTemplate = {
-            div : $('easy_templates_container_top'),
-            templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
-            itemCount : 1,
-            add : function( code, label ) {
+        // Page mode
+        if ($('page_view_mode') && $('page_view_mode').value == 'easytemplate') {
+            useEasyTemplate();
+        }
 
-                this.itemCount++;
+        // Block mode
+        if ($('block_view_mode') && $('block_view_mode').value == 'easytemplate') {
+            useEasyTemplate();
+        }
 
-                data = {};
-                data.id  = 'new_' + this.itemCount;
-                data.code = code;
-                data.name = label;
-                data.label = label;
-                data.active = 1;
+        // Category mode
+        if ($$('select[name=general[use_easytemplate]]').first() && $$('select[name=general[use_easytemplate]]').first().value) {
+            useEasyTemplate();
+        }
 
-                if ( template = templates[code] ) {
+    });
 
-                    this.secondTemplate = new Template(template, this.templateSyntax);
+    // ]]>
+</script>
 
-                    var content = this.secondTemplate.evaluate(data);
-                    Element.insert(this.div, {'after':content});
+<script type="text/javascript">
+    //<![CDATA[
+    templates =
+    <?php echo json_encode( $this->getEmptyTemplates() ); ?>
+    //]]>
+</script>
 
-                    content.evalScripts();
+<script type="text/javascript">
+    //<![CDATA[
 
+    easyTemplate = {
+        div: $('easy_templates_container_top'),
+        templateSyntax: /(^|.|\r|\n)({{(\w+)}})/,
+        itemCount: 1,
+        add: function (code, label) {
+
+            this.itemCount++;
+
+            data = {};
+            data.id = 'new_' + this.itemCount;
+            data.code = code;
+            data.name = label;
+            data.label = label;
+            data.active = 1;
+
+            if (template = templates[code]) {
+
+                this.secondTemplate = new Template(template, this.templateSyntax);
+
+                var content = this.secondTemplate.evaluate(data);
+                Element.insert(this.div, {'after': content});
+
+                content.evalScripts();
+
+            }
+            $('easy_template_selector').hide();
+            sortableUpdate();
+            useEasyTemplate();
+
+            // TODO: Remove duplicate logic here and in box.phtml
+            $('template_content_' + data.id).show();
+            $('template_overview_' + data.id).hide();
+
+            this.bindRemoveButtons();
+            this.bindDateTimeChangeEvents();
+            this.bindActiveChangeEvents();
+        },
+        remove: function (event) {
+            var element = $(Event.findElement(event, 'div.template-box'));
+            if (element) {
+                $(element.readAttribute('id') + '_' + 'is_delete').value = '1';
+                element.addClassName('no-display');
+                element.addClassName('ignore-validate');
+                element.hide();
+            }
+            sortableUpdate();
+        },
+        dateTimeChanged: function (event) {
+
+            var dateTimeTarget = null;
+            var sourceElement = event.srcElement;
+            var sourceId = sourceElement.readAttribute('id');
+
+            if (sourceId.indexOf('from') > -1) {
+                dateTimeTarget = 'span.valid-from';
+            } else if (sourceId.indexOf('to') > -1) {
+                dateTimeTarget = 'span.valid-to';
+            }
+
+            var element = $(Event.findElement(event, 'div.template-box'));
+            if (dateTimeTarget && element) {
+                element.down(dateTimeTarget).update(sourceElement.value);
+            }
+        },
+        activeChanged: function (event) {
+            var sourceElement = event.srcElement;
+
+            var element = $(Event.findElement(event, 'div.template-box'));
+            if (element) {
+                if (sourceElement.checked) {
+                    element.removeClassName('inactive');
                 }
-                $('easy_template_selector').hide();
-                sortableUpdate();
-                useEasyTemplate();
-
-                // TODO: Remove duplicate logic here and in box.phtml
-                $('template_content_' + data.id).show();
-                $('template_overview_' + data.id).hide();
-
-                this.bindRemoveButtons();
-                this.bindDateTimeChangeEvents();
-                this.bindActiveChangeEvents();
-            },
-            remove : function(event){
-                var element = $(Event.findElement(event, 'div.template-box'));
-                if(element){
-                    $(element.readAttribute('id')+'_'+'is_delete').value = '1';
-                    element.addClassName('no-display');
-                    element.addClassName('ignore-validate');
-                    element.hide();
+                else {
+                    element.addClassName('inactive');
                 }
-                sortableUpdate();
-            },
-            dateTimeChanged : function(event){
-
-                var dateTimeTarget = null;
-                var sourceElement = event.srcElement;
-                var sourceId = sourceElement.readAttribute('id');
-
-                if (sourceId.indexOf('from') > -1) {
-                    dateTimeTarget = 'span.valid-from';
-                } else if (sourceId.indexOf('to') > -1) {
-                    dateTimeTarget = 'span.valid-to';
+            }
+        },
+        bindRemoveButtons: function () {
+            var buttons = $$('div.easy-templates .delete-easy-template');
+            for (var i = 0; i < buttons.length; i++) {
+                if (!$(buttons[i]).binded) {
+                    $(buttons[i]).binded = true;
+                    Event.observe(buttons[i], 'click', this.remove.bind(this));
                 }
-
-                var element = $(Event.findElement(event, 'div.template-box'));
-                if(dateTimeTarget && element){
-                    element.down(dateTimeTarget).update(sourceElement.value);
+            }
+        },
+        bindDateTimeChangeEvents: function () {
+            var inputFields = $$('div.easy-templates input.datetime-input')
+            for (var i = 0; i < inputFields.length; i++) {
+                if (!$(inputFields[i]).binded) {
+                    $(inputFields[i]).binded = true;
+                    Event.observe(inputFields[i], 'change', this.dateTimeChanged.bind(this));
                 }
-            },
-            activeChanged : function(event){
-                var sourceElement = event.srcElement;
-
-                var element = $(Event.findElement(event, 'div.template-box'));
-                if (element) {
-                    if (sourceElement.checked) {
-                        element.removeClassName('inactive');
-                    }
-                    else {
-                        element.addClassName('inactive');
-                    }
-                }
-            },
-            bindRemoveButtons : function(){
-                var buttons = $$('div.easy-templates .delete-easy-template');
-                for(var i=0;i<buttons.length;i++){
-                    if(!$(buttons[i]).binded){
-                        $(buttons[i]).binded = true;
-                        Event.observe(buttons[i], 'click', this.remove.bind(this));
-                    }
-                }
-            },
-            bindDateTimeChangeEvents : function(){
-                var inputFields = $$('div.easy-templates input.datetime-input')
-                for(var i=0;i<inputFields.length;i++){
-                    if(!$(inputFields[i]).binded){
-                        $(inputFields[i]).binded = true;
-                        Event.observe(inputFields[i], 'change', this.dateTimeChanged.bind(this));
-                    }
-                }
-            },
-            bindActiveChangeEvents : function() {
-                var inputFields = $$('div.easy-templates input.active-input')
-                for(var i=0;i<inputFields.length;i++){
-                    if(!$(inputFields[i]).binded){
-                        $(inputFields[i]).binded = true;
-                        Event.observe(inputFields[i], 'change', this.activeChanged.bind(this));
-                    }
+            }
+        },
+        bindActiveChangeEvents: function () {
+            var inputFields = $$('div.easy-templates input.active-input')
+            for (var i = 0; i < inputFields.length; i++) {
+                if (!$(inputFields[i]).binded) {
+                    $(inputFields[i]).binded = true;
+                    Event.observe(inputFields[i], 'change', this.activeChanged.bind(this));
                 }
             }
         }
+    }
 
-        easyTemplate.bindRemoveButtons();
-        easyTemplate.bindDateTimeChangeEvents();
-        easyTemplate.bindActiveChangeEvents();
+    easyTemplate.bindRemoveButtons();
+    easyTemplate.bindDateTimeChangeEvents();
+    easyTemplate.bindActiveChangeEvents();
 
-        //]]>
-    </script>
+    //]]>
+</script>
 
 </div>
 
