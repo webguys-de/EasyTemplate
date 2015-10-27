@@ -87,7 +87,7 @@ abstract class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
      */
     public function getTabLabel()
     {
-        return Mage::helper('easytemplate')->__('Easy template');
+        return Mage::helper('easytemplate')->__('EasyTemplate');
     }
 
     /**
@@ -97,7 +97,7 @@ abstract class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
      */
     public function getTabTitle()
     {
-        return Mage::helper('easytemplate')->__('Easy template');
+        return Mage::helper('easytemplate')->__('EasyTemplate');
     }
 
     /**
