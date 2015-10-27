@@ -213,4 +213,49 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
         $helper = Mage::helper('easytemplate');
         $helper->saveTemplateInformation($group);
     }
+
+    public function cms_page_delete_commit_after($observer)
+    {
+        $dataObject = $observer->getDataObject();
+
+        $collection = Mage::getModel('easytemplate/group')
+            ->getCollection()
+            ->addFieldToFilter('entity_id', $dataObject->getPageId())
+            ->addFieldToFilter('entity_type', Webguys_Easytemplate_Helper_Page::ENTITY_TYPE_PAGE);
+
+        foreach($collection as $item)
+        {
+            $item->delete();
+        }
+    }
+
+    public function catalog_category_delete_commit_after($observer)
+    {
+        $dataObject = $observer->getDataObject();
+
+        $collection = Mage::getModel('easytemplate/group')
+            ->getCollection()
+            ->addFieldToFilter('entity_id', $dataObject->getEntityId())
+            ->addFieldToFilter('entity_type', Webguys_Easytemplate_Helper_Category::ENTITY_TYPE_CATEGORY);
+
+        foreach($collection as $item)
+        {
+            $item->delete();
+        }
+    }
+
+    public function cms_block_delete_commit_after($observer)
+    {
+        $dataObject = $observer->getDataObject();
+
+        $collection = Mage::getModel('easytemplate/group')
+            ->getCollection()
+            ->addFieldToFilter('entity_id', $dataObject->getBlockId())
+            ->addFieldToFilter('entity_type', Webguys_Easytemplate_Helper_Block::ENTITY_TYPE_BLOCK);
+
+        foreach($collection as $item)
+        {
+            $item->delete();
+        }
+    }
 }
