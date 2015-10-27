@@ -508,7 +508,7 @@
 
                         <sort_by translate="label">
                             <label>Product Listing Sort by</label>
-                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
                             <input_renderer>easytemplate/input_renderer_select</input_renderer>
                             <input_renderer_source>catalog/category_attribute_source_sortby</input_renderer_source>
                             <sort_order>30</sort_order>
