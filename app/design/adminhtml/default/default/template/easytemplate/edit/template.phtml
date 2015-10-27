@@ -31,42 +31,42 @@
     </div>
 <?php endif; ?>
 
+<?php if($this->getGroup()->getId()): ?>
+    <div class="box">
 
-<div class="box">
+        <input type="hidden" id="easytemplate_publish" name="easytemplate_publish" value=""/>
 
-    <input type="hidden" id="easytemplate_publish" name="easytemplate_publish" value=""/>
+        <?php if ($this->getGroup()->getCopyOf()) : ?>
 
-    <?php if ($this->getGroup()->getCopyOf()) : ?>
-
-        <button
-            onclick="$('easytemplate_publish').value='publish'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
-            class="scalable save" type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
-                        'Publish Working Copy'
-                    ); ?></span></span></button>
-        <button
-            onclick="$('easytemplate_publish').value='reset'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
-            class="scalable" type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
-                        'Discard Working Copy'
-                    ); ?></span></span></button>
-
-        <?php if ($this->getGroup()->getFrontendUrl()) : ?>
-            <button onclick="window.open('<?php echo $this->getGroup()->getFrontendUrl() ?>');" class="scalable"
-                    type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
-                            'Preview Working Copy'
+            <button
+                onclick="$('easytemplate_publish').value='publish'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
+                class="scalable save" type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
+                            'Publish Working Copy'
                         ); ?></span></span></button>
+            <button
+                onclick="$('easytemplate_publish').value='reset'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
+                class="scalable" type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
+                            'Discard Working Copy'
+                        ); ?></span></span></button>
+
+            <?php if ($this->getGroup()->getFrontendUrl()) : ?>
+                <button onclick="window.open('<?php echo $this->getGroup()->getFrontendUrl() ?>');" class="scalable"
+                        type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
+                                'Preview Working Copy'
+                            ); ?></span></span></button>
+            <?php endif; ?>
+
+        <?php else : ?>
+                <button
+                    onclick="$('easytemplate_publish').value='clone'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
+                    class="scalable add" type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
+                                'Create Working Copy'
+                            ); ?></span></span></button>
         <?php endif; ?>
+    </div>
+<?php endif; ?>
 
-    <?php else : ?>
 
-        <button
-            onclick="$('easytemplate_publish').value='clone'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
-            class="scalable add" type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
-                        'Create Working Copy'
-                    ); ?></span></span></button>
-
-    <?php endif; ?>
-
-</div>
 
 <div class="entry-edit-head">
     <h4><?php echo Mage::helper('easytemplate')->__('Templates') ?></h4>
