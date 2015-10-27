@@ -14,7 +14,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Category_Templates
      */
     public function getGroup()
     {
-        if ($category = $this->getObjectOfType()) {
+        if (($category = $this->getObjectOfType()) && (!$category->isObjectNew())) {
             return Mage::helper('easytemplate/category')->getGroupByCategoryId(
                 $category->getId(),
                 $category->getStoreId()

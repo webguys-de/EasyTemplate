@@ -14,7 +14,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Page_Edit_Tab_Templates
      */
     public function getGroup()
     {
-        if ($page = $this->getObjectOfType()) {
+        if (($page = $this->getObjectOfType()) && (!$page->isObjectNew())) {
             /** @var $helper Webguys_Easytemplate_Helper_Page */
             $helper = Mage::helper('easytemplate/page');
             return $helper->getGroupByPageId($page->getId());
