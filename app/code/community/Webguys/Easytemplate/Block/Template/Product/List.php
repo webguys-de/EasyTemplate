@@ -33,7 +33,14 @@ class Webguys_Easytemplate_Block_Template_Product_List extends Mage_Catalog_Bloc
 
     public function _getProductCollection()
     {
-        $collection = parent::_getProductCollection();
+        if( $this->getSkuList() ) {
+            $collection = Mage::getModel('catalog/product')->getCollection();
+        } else {
+            $collection = parent::_getProductCollection();
+        }
+
+        $layer = $this->getLayer();
+        $layer->prepareProductCollection($collection);
 
         if ($this->getLimit()) {
             $collection->setPageSize($this->getLimit());
