@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="config" type="configType"/>
+  <xs:complexType name="templateType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="label"/>
+      <xs:element type="xs:string" name="comment" minOccurs="0"/>
+      <xs:element type="xs:string" name="image" minOccurs="0"/>
+      <xs:element type="fieldsType" name="fields"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id" use="required"/>
+    <xs:attribute type="xs:string" name="template" use="required"/>
+    <xs:attribute type="xs:string" name="type" use="required"/>
+    <xs:attribute type="xs:string" name="translate" use="optional" default="label"/>
+    <xs:attribute type="xs:string" name="enabled" use="required" default="1"/>
+    <xs:attribute type="xs:string" name="sortOrder" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="groupType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="label"/>
+      <xs:element type="templatesType" name="templates"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id" use="required"/>
+    <xs:attribute type="xs:string" name="translate" use="optional" default="label"/>
+    <xs:attribute type="xs:string" name="enabled" use="required" default="1"/>
+  </xs:complexType>
+  <xs:complexType name="templatesType">
+    <xs:sequence>
+      <xs:element type="templateType" name="template" maxOccurs="unbounded" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="easytemplateType">
+    <xs:sequence>
+      <xs:element type="groupType" name="group" maxOccurs="unbounded" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="configType">
+    <xs:sequence>
+      <xs:element type="easytemplateType" name="easytemplate"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="fieldType">
+    <xs:sequence>
+      <xs:element type="xs:string" minOccurs="1" name="label"/>
+      <xs:element type="xs:string" name="comment" minOccurs="0"/>
+      <xs:element type="xs:string" name="default_value" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id" use="required"/>
+    <xs:attribute type="xs:string" name="inputRenderer" use="required"/>
+    <xs:attribute type="xs:string" name="backendModel" use="optional"/>
+    <xs:attribute type="xs:string" name="required" use="optional" default="1"/>
+    <xs:attribute type="xs:string" name="translate" use="optional" default="label"/>
+    <xs:attribute type="xs:string" name="sortOrder" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="fieldsType">
+    <xs:sequence>
+      <xs:element type="fieldType" name="field" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

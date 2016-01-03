@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Webguys_Easytemplate:etc/easytemplate.xsd">
+    <easytemplate>
+
+        <group id="tmp 222" enabled="1">
+            <label>sadasd</label>
+            <templates>
+                <template id="test1" template="path/to/template.phtml" enabled="1" type="core/template">
+                    <label>label</label>
+                    <fields>
+                        <field id="blub" inputRenderer="ssad">
+                            <label>Label 1</label>
+                        </field>
+                        <field id="222" inputRenderer="222">
+                            <label>Label 2</label>
+                        </field>
+                    </fields>
+                </template>
+            </templates>
+        </group>
+
+        <group id="test" translate="label" enabled="1">
+            <label>Test Templates</label>
+            <templates>
+                <template id="test2" template="path/to/template.phtml" enabled="1" type="core/template">
+                    <label>Test</label>
+                    <comment>Bla Blub</comment>
+                    <fields>
+                        <field id="image_test"
+                               inputRenderer="easytemplate/input_renderer_image"
+                               backendModel="easytemplate/template_data_varchar"
+                               required="0"
+                               translate="label,comment"
+                               sortOrder="5">
+                            <label>Magento Media Gallery</label>
+                            <comment>Comment for image-input</comment>
+                        </field>
+                    </fields>
+                </template>
+
+                <template id="testtemplate"
+                          template="easytemplate/template/testtemplate.phtml"
+                          type="easytemplate/template"
+                          translate="label,comment"
+                          enabled="1"
+                          sortOrder="1"
+                        >
+                    <label>Test template</label>
+                    <comment>A test template with all EasyTemplate features</comment>
+                    <image>images/easytemplate/testtemplate.png</image>
+                    <fields>
+
+                        <field id="image_test"
+                               inputRenderer="easytemplate/input_renderer_image"
+                               backendModel="easytemplate/template_data_varchar"
+                               required="0"
+                               translate="label,comment"
+                               sortOrder="5">
+                            <label>Magento Media Gallery</label>
+                            <comment>Comment for image-input</comment>
+                        </field>
+
+                        <field id="textfield_test"
+                               inputRenderer="easytemplate/input_renderer_text"
+                               backendModel="easytemplate/template_data_varchar"
+                               required="0"
+                               translate="label,comment"
+                               sortOrder="20">
+                            <label>Textfield</label>
+                            <comment>Comment for textfield</comment>
+                            <default_value>Textfield default value</default_value>
+                        </field>
+
+                        <!--<textarea_test translate="label,comment">-->
+                            <!--<label>Textarea</label>-->
+                            <!--<comment>Comment for textarea</comment>-->
+                            <!--&lt;!&ndash; <backend_model>easytemplate/template_data_text</backend_model> &ndash;&gt;-->
+                            <!--<input_renderer>easytemplate/input_renderer_textarea</input_renderer>-->
+                            <!--<sort_order>10</sort_order>-->
+                            <!--<default_value>Textarea default value</default_value>-->
+                            <!--<required>0</required>-->
+                        <!--</textarea_test>-->
+
+                        <!--<textfield_test translate="label,comment">-->
+                            <!--<label>Textfield</label>-->
+                            <!--<comment>Comment for textfield</comment>-->
+                            <!--&lt;!&ndash; <backend_model>easytemplate/template_data_varchar</backend_model> &ndash;&gt;-->
+                            <!--<input_renderer>easytemplate/input_renderer_text</input_renderer>-->
+                            <!--<sort_order>20</sort_order>-->
+                            <!--<default_value>Textfield default value</default_value>-->
+                            <!--<required>0</required>-->
+                        <!--</textfield_test>-->
+
+                        <!--<divider_test translate="label,comment">-->
+                            <!--<label>Heading divider</label>-->
+                            <!--<comment>Comment for divider</comment>-->
+                            <!--<input_renderer>easytemplate/input_renderer_divider</input_renderer>-->
+                            <!--<sort_order>25</sort_order>-->
+                        <!--</divider_test>-->
+
+                        <!--<editor_test translate="label,comment">-->
+                            <!--<label>Editor</label>-->
+                            <!--<comment>Comment for editor</comment>-->
+                            <!--&lt;!&ndash; <backend_model>easytemplate/template_data_text</backend_model> &ndash;&gt;-->
+                            <!--<input_renderer>easytemplate/input_renderer_editor</input_renderer>-->
+                            <!--<sort_order>30</sort_order>-->
+                            <!--<default_value>Editor default text</default_value>-->
+                            <!--<required>0</required>-->
+                        <!--</editor_test>-->
+
+                        <!--<selectyesno_test translate="label,comment">-->
+                            <!--<label>Select yesno</label>-->
+                            <!--<comment>Comment for select yesno</comment>-->
+                            <!--&lt;!&ndash; <backend_model>easytemplate/template_data_int</backend_model> &ndash;&gt;-->
+                            <!--<input_renderer>easytemplate/input_renderer_select</input_renderer>-->
+                            <!--<input_renderer_source>easytemplate/input_renderer_source_yesno</input_renderer_source>-->
+                            <!--<sort_order>40</sort_order>-->
+                            <!--<default_value>true</default_value>-->
+                            <!--<required>0</required>-->
+                        <!--</selectyesno_test>-->
+
+                        <!--<selectcustomsource_test translate="label,comment">-->
+                            <!--<label>Select source xml</label>-->
+                            <!--<comment>Comment for select xml source</comment>-->
+                            <!--&lt;!&ndash; <backend_model>easytemplate/template_data_varchar</backend_model> &ndash;&gt;-->
+                            <!--<input_renderer>easytemplate/input_renderer_select</input_renderer>-->
+                            <!--<input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>-->
+                            <!--<values>-->
+                                <!--<option1>Option 1</option1>-->
+                                <!--<option2>Option 2</option2>-->
+                                <!--<option3>Option 3</option3>-->
+                                <!--<optionX>Option X</optionX>-->
+                            <!--</values>-->
+                            <!--<sort_order>50</sort_order>-->
+                            <!--<default_value>option2</default_value>-->
+                            <!--<required>0</required>-->
+                        <!--</selectcustomsource_test>-->
+
+                        <!--<selectnumbers_test translate="label,comment">-->
+                            <!--<label>Select source numbers</label>-->
+                            <!--<comment>Comment for number select</comment>-->
+                            <!--&lt;!&ndash; <backend_model>easytemplate/template_data_int</backend_model> &ndash;&gt;-->
+                            <!--<input_renderer>easytemplate/input_renderer_select</input_renderer>-->
+                            <!--<input_renderer_source>easytemplate/input_renderer_source_numbers</input_renderer_source>-->
+                            <!--<sort_order>60</sort_order>-->
+                            <!--<default_value>5</default_value>-->
+                            <!--<required>0</required>-->
+                        <!--</selectnumbers_test>-->
+
+                        <!--<multiselect_test translate="label,comment">-->
+                            <!--<label>Select source numbers</label>-->
+                            <!--<comment>Comment for number select</comment>-->
+                            <!--&lt;!&ndash; <backend_model>easytemplate/template_data_varchar</backend_model> &ndash;&gt;-->
+                            <!--<input_renderer>easytemplate/input_renderer_multiselect</input_renderer>-->
+                            <!--<input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>-->
+                            <!--<values>-->
+                                <!--<option1>Option 1</option1>-->
+                                <!--<option2>Option 2</option2>-->
+                                <!--<option3>Option 3</option3>-->
+                                <!--<optionX>Option X</optionX>-->
+                            <!--</values>-->
+                            <!--<sort_order>70</sort_order>-->
+                            <!--<default_value>option2,option3</default_value>-->
+                            <!--<required>0</required>-->
+                        <!--</multiselect_test>-->
+
+                        <!--<file_test translate="label,comment">-->
+                            <!--<label>File</label>-->
+                            <!--<comment>Comment for file</comment>-->
+                            <!--&lt;!&ndash; <backend_model>easytemplate/template_data_varchar</backend_model> &ndash;&gt;-->
+                            <!--<input_renderer>easytemplate/input_renderer_file</input_renderer>-->
+                            <!--<sort_order>80</sort_order>-->
+                            <!--<default_value></default_value>-->
+                            <!--<required>0</required>-->
+                        <!--</file_test>-->
+
+                        <!--<link_test translate="label,comment">-->
+                            <!--<label>Link</label>-->
+                            <!--<comment>Comment for link</comment>-->
+                            <!--&lt;!&ndash; <backend_model>easytemplate/template_data_varchar</backend_model> &ndash;&gt;-->
+                            <!--<input_renderer>easytemplate/input_renderer_link</input_renderer>-->
+                            <!--<sort_order>90</sort_order>-->
+                            <!--<default_value></default_value>-->
+                            <!--<required>1</required>-->
+                        <!--</link_test>-->
+
+                        <!--<product_test translate="label,comment">-->
+                            <!--<label>Product</label>-->
+                            <!--<comment>Comment for product</comment>-->
+                            <!--&lt;!&ndash; <backend_model>easytemplate/template_data_int</backend_model> &ndash;&gt;-->
+                            <!--<input_renderer>easytemplate/input_renderer_product</input_renderer>-->
+                            <!--<sort_order>100</sort_order>-->
+                            <!--<default_value></default_value>-->
+                            <!--<required>0</required>-->
+                        <!--</product_test>-->
+
+                        <!--<category_test translate="label,comment">-->
+                            <!--<label>Category</label>-->
+                            <!--<comment>Comment for category</comment>-->
+                            <!--&lt;!&ndash; <backend_model>easytemplate/template_data_int</backend_model> &ndash;&gt;-->
+                            <!--<input_renderer>easytemplate/input_renderer_category</input_renderer>-->
+                            <!--<sort_order>100</sort_order>-->
+                            <!--<default_value></default_value>-->
+                            <!--<required>0</required>-->
+                        <!--</category_test>-->
+
+                        <!--<block_test translate="label,comment">-->
+                            <!--<label>Block reference</label>-->
+                            <!--<comment>Comment for block</comment>-->
+                            <!--&lt;!&ndash; <backend_model>easytemplate/template_data_int</backend_model> &ndash;&gt;-->
+                            <!--<input_renderer>easytemplate/input_renderer_block</input_renderer>-->
+                            <!--<input_renderer_source>easytemplate/input_renderer_source_blocks</input_renderer_source>-->
+                            <!--<sort_order>110</sort_order>-->
+                            <!--<default_value>3</default_value>-->
+                            <!--<required>0</required>-->
+                        <!--</block_test>-->
+
+                        <!--<datepicker_test translate="label,comment">-->
+                            <!--<label>Datepicker</label>-->
+                            <!--<comment>Comment for datepicker</comment>-->
+                            <!--&lt;!&ndash; <backend_model>easytemplate/template_data_datetime</backend_model> &ndash;&gt;-->
+                            <!--<input_renderer>easytemplate/input_renderer_datepicker</input_renderer>-->
+                            <!--<sort_order>120</sort_order>-->
+                            <!--<default_value>2013-12-05</default_value>-->
+                            <!--<required>0</required>-->
+                        <!--</datepicker_test>-->
+                    </fields>
+                </template>
+            </templates>
+        </group>
+    </easytemplate>
+</config>
