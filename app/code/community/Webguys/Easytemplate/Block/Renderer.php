@@ -13,7 +13,10 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
     public function __construct(array $args = array())
     {
         parent::__construct($args);
-        $this->addCacheTag(Webguys_Easytemplate_Helper_Cache::CACHE_TAG);
+
+        if( method_exists($this,'addCacheTag') ) {
+            $this->addCacheTag(Webguys_Easytemplate_Helper_Cache::CACHE_TAG);
+        }
     }
 
     public function getCacheKeyInfo()
