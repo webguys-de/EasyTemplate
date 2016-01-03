@@ -1,0 +1,14 @@
+{
+    "name": "webguys/easytemplate",
+    "description": "Easytemplate Magento 2",
+    "type": "magento2-module",
+    "version": "2.0.0.1",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Webguys\\Easytemplate\\": ""
+        }
+    }
+}
