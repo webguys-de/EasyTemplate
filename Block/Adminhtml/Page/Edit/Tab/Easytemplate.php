@@ -2,7 +2,7 @@
 
 namespace Webguys\Easytemplate\Block\Adminhtml\Page\Edit\Tab;
 
-class Easytemplate extends \Magento\Backend\Block\Widget\Form\Generic implements \Magento\Backend\Block\Widget\Tab\TabInterface
+class Easytemplate extends \Magento\Backend\Block\Template implements \Magento\Backend\Block\Widget\Tab\TabInterface
 {
 
     /**

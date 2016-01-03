@@ -8,9 +8,14 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 
+    <head>
+        <css src="Webguys_Easytemplate::css/gridster.css"/>
+        <css src="Webguys_Easytemplate::css/gridster-custom.css"/>
+    </head>
+
     <body>
         <referenceBlock name="cms_page_edit_tabs">
-            <block class="Webguys\Easytemplate\Block\Adminhtml\Page\Edit\Tab\Easytemplate" name="cms_page_easytemplate"/>
+            <block class="Webguys\Easytemplate\Block\Adminhtml\Page\Edit\Tab\Easytemplate" template="Webguys_Easytemplate::gridster.phtml" name="cms_page_easytemplate"/>
             <action method="addTab">
                 <argument name="name" xsi:type="string">easytemplate_section</argument>
                 <argument name="block" xsi:type="string">cms_page_easytemplate</argument>
