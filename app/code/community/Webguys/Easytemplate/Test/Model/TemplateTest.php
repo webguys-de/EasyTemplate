@@ -13,13 +13,13 @@ class Webguys_Easytemplate_Test_Model_TemplateTest
 
         $id = $model->getId();
         $model = Mage::getModel('easytemplate/template');
-        $model->load( $id );
-        $this->assertEquals('Test', $model->getCode() );
+        $model->load($id);
+        $this->assertEquals('Test', $model->getCode());
 
         $model->delete();
         $model = Mage::getModel('easytemplate/template');
-        $model->load( $id );
-        $this->assertNotEquals( $id, $model->getId() );
+        $model->load($id);
+        $this->assertNotEquals($id, $model->getId());
 
     }
 

@@ -22,19 +22,16 @@ class Webguys_Easytemplate_Block_Input_Renderer_Select extends Webguys_Easytempl
         /** @var $source Webguys_Easytemplate_Model_Input_Renderer_Source_Abstract */
         $source = $this->getSource();
 
-        if( method_exists( $source, 'getAllOptions' ) )
-        {
+        if (method_exists($source, 'getAllOptions')) {
             $options = $source->getAllOptions();
             $result = array();
-            foreach( $options AS $option )
-            {
-                $result[ $option[ 'value' ] ] = $option['label'];
+            foreach ($options AS $option) {
+                $result[$option['value']] = $option['label'];
             }
             return $result;
         }
 
-        if( method_exists( $source, 'getOptionValues' ) )
-        {
+        if (method_exists($source, 'getOptionValues')) {
             return $source->getOptionValues();
         }
 

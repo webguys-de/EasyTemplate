@@ -23,6 +23,9 @@ class Webguys_Easytemplate_Model_Template_Data_Int
     public function isValid()
     {
         $value = $this->getValue();
+        if(empty($value)) {
+            return true;
+        }
         if (is_numeric($value)) {
             $val = (int)$value;
             return is_int($val) && $val == $this->getValue();

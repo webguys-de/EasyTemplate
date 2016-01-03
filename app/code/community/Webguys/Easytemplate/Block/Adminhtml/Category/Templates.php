@@ -4,7 +4,6 @@
  *
  *
  */
-
 class Webguys_Easytemplate_Block_Adminhtml_Category_Templates
     extends Webguys_Easytemplate_Block_Adminhtml_Edit_Template
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
@@ -15,8 +14,11 @@ class Webguys_Easytemplate_Block_Adminhtml_Category_Templates
      */
     public function getGroup()
     {
-        if ($category = $this->getObjectOfType()) {
-            return Mage::helper('easytemplate/category')->getGroupByCategoryId( $category->getId(), $category->getStoreId() );
+        if (($category = $this->getObjectOfType()) && (!$category->isObjectNew())) {
+            return Mage::helper('easytemplate/category')->getGroupByCategoryId(
+                $category->getId(),
+                $category->getStoreId()
+            );
         }
         return Mage::getModel('easytemplate/group');
     }
@@ -33,7 +35,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Category_Templates
 
     public function isInTemplateMode()
     {
-        return( $this->getObjectOfType()->getUseEasytemplate() );
+        return ($this->getObjectOfType()->getUseEasytemplate());
     }
 
 }

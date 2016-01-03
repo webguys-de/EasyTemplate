@@ -29,16 +29,16 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
 
     public function getFrontendUrl()
     {
-        if( $this->getEntityType() == Webguys_Easytemplate_Helper_Page::ENTITY_TYPE_PAGE )
-        {
+        if ($this->getEntityType() == Webguys_Easytemplate_Helper_Page::ENTITY_TYPE_PAGE) {
             $page = Mage::getModel('cms/page');
-            $page->load( $this->getEntityId() );
+            $page->load($this->getEntityId());
 
             $urlModel = Mage::getModel('core/url')->setStore($page->getData('_first_store_id'));
             $href = $urlModel->getUrl(
-                $page->getIdentifier(), array(
+                $page->getIdentifier(),
+                array(
                     '_current' => false,
-                    '_query' => '___store='.$page->getStoreCode().'&easytemplate_preview='.$this->getPreviewHash()
+                    '_query' => '___store=' . $page->getStoreCode() . '&easytemplate_preview=' . $this->getPreviewHash()
                 )
             );
 
@@ -52,8 +52,7 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
 
     public function getCopyOfInstance()
     {
-        if( Mage::app()->getStore()->isAdmin() )
-        {
+        if (Mage::app()->getStore()->isAdmin()) {
             $collection = Mage::getModel('easytemplate/group')->getCollection()
                 ->addFieldToFilter('entity_type', $this->getEntityType())
                 ->addFieldToFilter('entity_id', $this->getEntityId())
@@ -67,21 +66,18 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
                     return $group;
                 }
             }
-        }elseif( $preview = Mage::app()->getRequest()->getParam('easytemplate_preview') )
-        {
+        } elseif ($preview = Mage::app()->getRequest()->getParam('easytemplate_preview')) {
             $collection = Mage::getModel('easytemplate/group')->getCollection()
                 ->addFieldToFilter('entity_type', $this->getEntityType())
                 ->addFieldToFilter('entity_id', $this->getEntityId())
                 ->addFieldToFilter('copy_of', $this->getId());
 
-            if ($collection->getSize() == 1)
-            {
+            if ($collection->getSize() == 1) {
                 /** @var Webguys_Easytemplate_Model_Group $previewGroup */
                 $previewGroup = $collection->setPageSize(1)->setCurPage(1)->getFirstItem();
-                if( $previewGroup->getPreviewHash() == $preview )
-                {
+                if ($previewGroup->getPreviewHash() == $preview) {
                     // Dispatch Event to (may) disable Varnish Caching
-                    Mage::dispatchEvent('easytemplate_rendering_preview', array( 'group' => $previewGroup ) );
+                    Mage::dispatchEvent('easytemplate_rendering_preview', array('group' => $previewGroup));
 
                     $previewGroup->load($collection->getFirstItem()->getId());
                     return $previewGroup;
@@ -94,37 +90,38 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
 
     public function getPreviewHash()
     {
-        return md5( Mage::helper('core')->encrypt( $this->getEntityId().$this->getEntityType().$this->getId().$this->getCopyOf() ) );
+        return md5(
+            Mage::helper('core')->encrypt(
+                $this->getEntityId() . $this->getEntityType() . $this->getId() . $this->getCopyOf()
+            )
+        );
     }
 
     public function duplicate()
     {
-        if( !$this->getId() )
-        {
+        if (!$this->getId()) {
             throw new Exception("Could not clone empty entity");
         }
 
         /** @var $newGroup Webguys_Easytemplate_Model_Group */
         $newGroup = Mage::getModel('easytemplate/group');
-        $newGroup->setData( $this->getData() );
+        $newGroup->setData($this->getData());
         $newGroup->setId(null);
-        $newGroup->setCopyOf( $this->getId() );
+        $newGroup->setCopyOf($this->getId());
         $newGroup->save();
 
-        foreach( $this->getTemplateCollection() AS $templateModel )
-        {
+        foreach ($this->getTemplateCollection() AS $templateModel) {
             /** @var $newTemplate Webguys_Easytemplate_Model_Template */
-            $newTemplate = $templateModel->duplicate( $newGroup->getId() );
+            $newTemplate = $templateModel->duplicate($newGroup->getId());
             $newTemplate->save();
         }
 
         return $newGroup;
     }
 
-    public function importData( $data )
+    public function importData($data)
     {
-        if( !$this->getId() )
-        {
+        if (!$this->getId()) {
             throw new Exception("Could not import data to empty entity");
         }
 
@@ -132,29 +129,24 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         $helper = Mage::helper('easytemplate/cache');
         $helper->flushCache();
 
-        foreach( $data AS $id => $template_data )
-        {
+        foreach ($data AS $id => $template_data) {
 
             /** @var $template Webguys_Easytemplate_Model_Template */
             $template = Mage::getModel('easytemplate/template');
-            if ( is_numeric( $id ) )
-            {
-                $template->load( $id );
-            }
-            else {
+            if (is_numeric($id)) {
+                $template->load($id);
+            } else {
                 // Used for file handling to identify entries of array
-                $template->setTemporaryId( $id );
+                $template->setTemporaryId($id);
             }
-            $template->setGroupId( $this->getId() );
+            $template->setGroupId($this->getId());
 
-            if( $template_data['is_delete'] == '1' )
-            {
-                if( $template->getId() )
-                {
+            if ($template_data['is_delete'] == '1') {
+                if ($template->getId()) {
                     $template->delete();
                 }
             } else {
-                $template->importData( $template_data );
+                $template->importData($template_data);
                 $template->save();
             }
 
@@ -181,9 +173,8 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         $collection->addFieldToFilter('code', array('in' => $validTemplates));
         $collection->getSelect()->order('main_table.position');
 
-        foreach( $collection AS &$model )
-        {
-            $model->load( $model->getId() );
+        foreach ($collection AS &$model) {
+            $model->load($model->getId());
         }
 
         return $collection;
@@ -194,7 +185,7 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         $dir = Mage::getBaseDir('media') . DS . 'easytemplate' . DS . $this->getId();
         $io = new Varien_Io_File();
         if ($io->fileExists($dir)) {
-            Mage::helper('easytemplate/file')->rrmdir( $dir );
+            Mage::helper('easytemplate/file')->rrmdir($dir);
         }
         return parent::_afterDelete();
     }

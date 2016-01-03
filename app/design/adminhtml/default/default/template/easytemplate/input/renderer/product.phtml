@@ -7,35 +7,41 @@
         <colgroup class="comment"></colgroup>
         <tbody>
 
-            <script type="text/javascript">
-                chooser_template_field_<?php echo $this->getCode(); ?>_{{id}} = new WysiwygWidget.chooser(
-                    'template_field_<?php echo $this->getCode(); ?>_{{id}}',
-                    null,
-                    {}
-                );
-                easytemplatechooser_<?php echo $this->getCode(); ?>_{{id}} = new EasytemplateChooser( chooser_template_field_<?php echo $this->getCode(); ?>_{{id}} , <?php echo json_encode( Mage::helper('easytemplate/chooser')->getInitChooserArray('template_field_'.$this->getCode().'_{{id}}' ) ) ?> );
-            </script>
+        <script type="text/javascript">
+            chooser_template_field_<?php echo $this->getCode(); ?>_{{id}} = new WysiwygWidget.chooser(
+                'template_field_<?php echo $this->getCode(); ?>_{{id}}',
+                null,
+                {}
+            );
+            easytemplatechooser_<?php echo $this->getCode(); ?>_{{id}} = new EasytemplateChooser(chooser_template_field_<?php echo $this->getCode(); ?>_{{id}}, <?php echo json_encode( Mage::helper('easytemplate/chooser')->getInitChooserArray('template_field_'.$this->getCode().'_{{id}}' ) ) ?>);
+        </script>
 
-            <tr class="template_field_product_<?php echo $this->getCode() ?>">
-                <td class="label">
-                    <label for="template_field_<?php echo $this->getCode(); ?>_{{id}}"><?php echo $this->__($this->getLabel()) ?><?php if($this->getRequired()) : ?> <span class="required">*</span><?php endif; ?></label>
-                </td>
-                <td class="value">
+        <tr class="template_field_product_<?php echo $this->getCode() ?>">
+            <td class="label">
+                <label for="template_field_<?php echo $this->getCode(); ?>_{{id}}"><?php echo $this->__(
+                        $this->getLabel()
+                    ) ?><?php if ($this->getRequired()) : ?> <span class="required">*</span><?php endif; ?></label>
+            </td>
+            <td class="value">
 
-                    <div id="template_field_<?php echo $this->getCode(); ?>_{{id}}label">
-                        <?php echo $this->getName(); ?>
-                    </div>
-                    <div class="link-box">
-                        <input id="template_field_<?php echo $this->getCode(); ?>_{{id}}value" name="template[{{id}}][fields][<?php echo $this->getCode() ?>]" value="<?php echo $this->escapeHtml( $this->getValue() ) ?>" type="hidden">
-                        <button id="template_field_<?php echo $this->getCode(); ?>_{{id}}button" onclick="easytemplatechooser_<?php echo $this->getCode(); ?>_{{id}}.open( 'product' );" class="scalable" type="button">
-                            <span><span><span><?php echo $this->__('Please Select') ?></span></span></span>
-                        </button>
-                    </div>
-                </td>
-                <td class="comment">
-                    <?php echo $this->__($this->getComment()) ?>
-                </td>
-            </tr>
+                <div id="template_field_<?php echo $this->getCode(); ?>_{{id}}label">
+                    <?php echo $this->getName(); ?>
+                </div>
+                <div class="link-box">
+                    <input id="template_field_<?php echo $this->getCode(); ?>_{{id}}value"
+                           name="template[{{id}}][fields][<?php echo $this->getCode() ?>]"
+                           value="<?php echo $this->escapeHtml($this->getValue()) ?>" type="hidden">
+                    <button id="template_field_<?php echo $this->getCode(); ?>_{{id}}button"
+                            onclick="easytemplatechooser_<?php echo $this->getCode(); ?>_{{id}}.open( 'product' );"
+                            class="scalable" type="button">
+                        <span><span><span><?php echo $this->__('Please Select') ?></span></span></span>
+                    </button>
+                </div>
+            </td>
+            <td class="comment">
+                <?php echo $this->__($this->getComment()) ?>
+            </td>
+        </tr>
         </tbody>
     </table>
 </fieldset>

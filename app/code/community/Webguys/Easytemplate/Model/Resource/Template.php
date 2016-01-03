@@ -36,11 +36,11 @@ class Webguys_Easytemplate_Model_Resource_Template
     {
         // TODO: Solve this workaround
         if ($object->getValidFrom()) {
-            $object->setValidFrom( date('Y-m-d', strtotime($object->getValidFrom())) );
+            $object->setValidFrom(date('Y-m-d', strtotime($object->getValidFrom())));
         }
 
         if ($object->getValidTo()) {
-            $object->setValidTo( date('Y-m-d', strtotime($object->getValidTo())) );
+            $object->setValidTo(date('Y-m-d', strtotime($object->getValidTo())));
         }
 
         return parent::_afterLoad($object);

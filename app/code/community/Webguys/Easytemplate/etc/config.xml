@@ -169,6 +169,33 @@
                     </easytemplate_catalog_category_save_commit_after>
                 </observers>
             </catalog_category_save_commit_after>
+            <cms_page_delete_commit_after>
+                <observers>
+                    <easytemplate_cms_page_delete_commit_after>
+                        <type>singleton</type>
+                        <class>easytemplate/observer</class>
+                        <method>cms_page_delete_commit_after</method>
+                    </easytemplate_cms_page_delete_commit_after>
+                </observers>
+            </cms_page_delete_commit_after>
+            <catalog_category_delete_commit_after>
+                <observers>
+                    <easytemplate_catalog_category_delete_commit_after>
+                        <type>singleton</type>
+                        <class>easytemplate/observer</class>
+                        <method>catalog_category_delete_commit_after</method>
+                    </easytemplate_catalog_category_delete_commit_after>
+                </observers>
+            </catalog_category_delete_commit_after>
+            <cms_block_delete_commit_after>
+                <observers>
+                    <easytemplate_cms_block_delete_commit_after>
+                        <type>singleton</type>
+                        <class>easytemplate/observer</class>
+                        <method>cms_block_delete_commit_after</method>
+                    </easytemplate_cms_block_delete_commit_after>
+                </observers>
+            </cms_block_delete_commit_after>
         </events>
         <layout>
             <updates>
@@ -203,7 +230,7 @@
     <phpunit>
         <suite>
             <modules>
-                <Webguys_Easytemplate />
+                <Webguys_Easytemplate/>
             </modules>
         </suite>
     </phpunit>

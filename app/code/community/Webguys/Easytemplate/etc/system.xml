@@ -8,7 +8,7 @@
     </tabs>
     <sections>
         <easytemplate translate="label" module="easytemplate">
-            <label>Easy Template</label>
+            <label>EasyTemplate</label>
             <tab>webguys</tab>
             <frontend_type>text</frontend_type>
             <sort_order>1</sort_order>

@@ -52,7 +52,7 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
         /** @var $template Webguys_Easytemplate_Model_Template */
         foreach ($group->getTemplateCollection() as $template) {
             $templateCode = $template->getCode();
-            if ($model = $configModel->getTemplate( $templateCode )) {
+            if ($model = $configModel->getTemplate($templateCode)) {
                 $active = $template->getActive();
                 $validFrom = ($template->getValidFrom()) ? strtotime($template->getValidFrom()) : false;
                 $validTo = ($template->getValidTo()) ? strtotime($template->getValidTo()) : false;
@@ -61,7 +61,7 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                     $this->_cachingAllowed = false;
                 }
 
-                Varien_Profiler::start('easytemplate_template_rendering_'.$templateCode);
+                Varien_Profiler::start('easytemplate_template_rendering_' . $templateCode);
 
                 if ($active && (!$validFrom || $validFrom <= $time) && (!$validTo || $validTo >= $time)) {
 
@@ -76,7 +76,9 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                     foreach ($model->getFields() as $field) {
                         $fieldCode = $field->getCode();
 
-                        Varien_Profiler::start('easytemplate_template_rendering_'.$templateCode.'_field_'.$fieldCode);
+                        Varien_Profiler::start(
+                            'easytemplate_template_rendering_' . $templateCode . '_field_' . $fieldCode
+                        );
 
                         /** @var $inputValidator Webguys_Easytemplate_Model_Input_Renderer_Validator_Base */
                         $inputValidator = $field->getInputRendererValidator();
@@ -89,26 +91,31 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                             $valueTransport = new Varien_Object();
                             $valueTransport->setValue($frontendValue);
 
-                            Mage::dispatchEvent('easytemplate_frontend_prepared_var', array(
-                                'template' => $template,
-                                'template_model' => $model,
-                                'field' => $field,
-                                'block' => $childBlock,
-                                'validator' => $inputValidator,
-                                'value' => $valueTransport
-                            ));
+                            Mage::dispatchEvent(
+                                'easytemplate_frontend_prepared_var',
+                                array(
+                                    'template' => $template,
+                                    'template_model' => $model,
+                                    'field' => $field,
+                                    'block' => $childBlock,
+                                    'validator' => $inputValidator,
+                                    'value' => $valueTransport
+                                )
+                            );
 
                             $childBlock->setData($fieldCode, $valueTransport->getValue());
                         }
 
-                        Varien_Profiler::stop('easytemplate_template_rendering_'.$templateCode.'_field_'.$fieldCode);
+                        Varien_Profiler::stop(
+                            'easytemplate_template_rendering_' . $templateCode . '_field_' . $fieldCode
+                        );
                     }
 
-                    $this->setChild('block_'.$position.'_'.$templateCode, $childBlock);
+                    $this->setChild('block_' . $position . '_' . $templateCode, $childBlock);
                     $position++;
                 }
 
-                Varien_Profiler::stop('easytemplate_template_rendering_'.$templateCode);
+                Varien_Profiler::stop('easytemplate_template_rendering_' . $templateCode);
             }
         }
 
@@ -119,7 +126,7 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
 
     protected function _beforeToHtml()
     {
-        $this->setChildsBasedOnGroup( $this->getGroup() );
+        $this->setChildsBasedOnGroup($this->getGroup());
 
         Mage::dispatchEvent('easytemplate_frontend_before_to_html', array('block' => $this));
 

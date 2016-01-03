@@ -14,7 +14,8 @@ abstract class Webguys_Easytemplate_Model_Resource_Template_Data_Abstract
     {
         // Object validation - null values allowed
         if ($object instanceof Webguys_Easytemplate_Model_Template_Data_Abstract &&
-            !is_null($object->getValue()) && !$object->isValid()) {
+            !is_null($object->getValue()) && !$object->isValid()
+        ) {
 
             throw new Exception('Form data not valid');
         }

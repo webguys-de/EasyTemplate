@@ -19,7 +19,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
         return $this->_template_model;
     }
 
-    public function setTemplateModel( Webguys_Easytemplate_Model_Template $model )
+    public function setTemplateModel($model)
     {
         $this->_template_model = $model;
         return $this;
@@ -28,7 +28,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
     protected function _toHtml()
     {
         $html = '';
-        if ($model = $this->getTemplateModel() ) {
+        if ($model = $this->getTemplateModel()) {
 
             foreach ($model->getFields() as $field) {
                 /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
@@ -36,10 +36,9 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
                 /** @var $inputRenderer Webguys_Easytemplate_Block_Input_Renderer_Abstract */
                 $inputRenderer = $field->getInputRenderer();
 
-                if( $this->getTemplateModel()->getId() )
-                {
+                if ($this->getTemplateModel()->getId()) {
                     $inputRenderer->setTemplateModel($this->getTemplateModel());
-                    $inputRenderer->setValue( $this->getTemplateModel()->getFieldData( $field->getCode() ) );
+                    $inputRenderer->setValue($this->getTemplateModel()->getFieldData($field->getCode()));
                 }
 
                 $html .= $inputRenderer->toHtml();

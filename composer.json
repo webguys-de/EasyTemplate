@@ -1,19 +1,19 @@
 {
-  "name": "webguys/easytemplate",
-  "license": "MIT",
-  "type": "magento-module",
-  "authors": [
-    {
-      "name": "Matthias Kleine"
-    },
-    {
-      "name": "Ingo Hillebrand"
-    },
-    {
-      "name": "Tobias Vogt"
+    "name": "webguys/easytemplate",
+    "license": "MIT",
+    "type": "magento-module",
+    "authors": [
+        {
+            "name": "Matthias Kleine"
+        },
+        {
+            "name": "Ingo Hillebrand"
+        },
+        {
+            "name": "Tobias Vogt"
+        }
+    ],
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
     }
-  ],
-  "require": {
-    "magento-hackathon/magento-composer-installer": "*"
-  }
 }
