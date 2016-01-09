@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Webguys\Easytemplate\Model\Config\Reader" shared="true">
+        <arguments>
+            <argument name="fileName" xsi:type="string">easytemplate.xml</argument>
+            <argument name="converter" xsi:type="object">Webguys\Easytemplate\Model\Config\Reader\Converter</argument>
+            <argument name="schemaLocator" xsi:type="object">Webguys\Easytemplate\Model\Config\Reader\SchemaLocator</argument>
+        </arguments>
+    </type>
+
+</config>

@@ -49,7 +49,7 @@ class ViewModeObserver implements ObserverInterface
                 'required' => true,
                 'options' => $this->easytemplateConfig->getViewModes(),
                 'disabled' => false,
-                'note' => __('Use the template engine or default behavior'),
+                'note' => __('Use the easytemplate engine or default behavior'),
             ]
         );
     }
