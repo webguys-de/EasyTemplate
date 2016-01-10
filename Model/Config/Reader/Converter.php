@@ -4,6 +4,7 @@ namespace Webguys\Easytemplate\Model\Config\Reader;
 
 use \Webguys\Easytemplate\Model\Config\Reader\Data\Template AS DataTemplate;
 use \Webguys\Easytemplate\Model\Config\Reader\Data\Field AS DataField;
+use \Webguys\Easytemplate\Model\Config\Reader\Data\Group AS DataGroup;
 
 class Converter implements \Magento\Framework\Config\ConverterInterface
 {
@@ -15,7 +16,7 @@ class Converter implements \Magento\Framework\Config\ConverterInterface
      */
     public function convert($source)
     {
-        $result = ['groups' => []];
+        $result = array();
 
         $groups = $source->getElementsByTagName('group');
         foreach ($groups as $group) {
@@ -24,8 +25,8 @@ class Converter implements \Magento\Framework\Config\ConverterInterface
             if ($group->hasChildNodes()) {
 
                 $attr = $group->attributes;
-                $id = $attr->getNamedItem('id')->nodeValue;
-                $enabled = $attr->getNamedItem('enabled')->nodeValue;
+                $id = $this->getValueOrNull($attr,'id');
+
 
                 /** @var \DOMNode $groupAssoc */
                 $groupAssoc = array();
@@ -34,10 +35,16 @@ class Converter implements \Magento\Framework\Config\ConverterInterface
                     $groupAssoc[$item->nodeName] = $item;
                 }
 
-                $result['groups'][$id]['label'] = $groupAssoc['label']->nodeValue;
-                $result['groups'][$id]['enabled'] = (bool)$enabled;
-                $result['groups'][$id]['templates'] = $this->_convertTemplates($groupAssoc['templates']);
-
+                $templates = $this->_convertTemplates($groupAssoc['templates']);
+                if( $id && count($templates) )
+                {
+                    $result[ $id ] = new DataGroup(
+                        $id,
+                        (isset($dataAssoc['label']) ? $dataAssoc['label']->nodeValue : null),
+                        $this->getValueOrNull($attr,'enabled'),
+                        $templates
+                    );
+                }
             }
         }
 

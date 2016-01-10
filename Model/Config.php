@@ -23,9 +23,31 @@ class Config
         );
     }
 
-    public function getTemplates()
+    /**
+     * @return Config\Reader\Data\Group[];
+     */
+    public function getTemplateGroups()
     {
         return $this->reader->read();
+    }
+
+    /**
+     * @param $id
+     * @return Config\Reader\Data\Template|null
+     */
+    public function findTemplate( $id )
+    {
+        foreach( $this->getTemplateGroups() AS $group )
+        {
+            foreach( $group->getTemplates() AS $template )
+            {
+                if( $template->getId() == $id )
+                {
+                    return $template;
+                }
+            }
+        }
+        return null;
     }
 
 }

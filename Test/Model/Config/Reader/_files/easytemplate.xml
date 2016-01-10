@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Webguys_Easytemplate:etc/easytemplate.xsd">
+    <easytemplate>
+
+        <group id="tmp 222" enabled="1">
+            <label>sadasd</label>
+            <templates>
+                <template id="test1" template="path/to/template.phtml" enabled="1" type="core/template">
+                    <label>label</label>
+                    <fields>
+                        <field id="blub" inputRenderer="ssad">
+                            <label>Label 1</label>
+                        </field>
+                        <field id="222" inputRenderer="222">
+                            <label>Label 2</label>
+                        </field>
+                    </fields>
+                </template>
+            </templates>
+        </group>
+
+        <group id="test" translate="label" enabled="1">
+            <label>Test Templates</label>
+            <templates>
+                <template id="test2" template="path/to/template.phtml" enabled="1" type="core/template">
+                    <label>Test</label>
+                    <comment>Bla Blub</comment>
+                    <fields>
+                        <field id="image_test"
+                               inputRenderer="easytemplate/input_renderer_image"
+                               backendModel="easytemplate/template_data_varchar"
+                               required="0"
+                               translate="label,comment"
+                               sortOrder="5">
+                            <label>Magento Media Gallery</label>
+                            <comment>Comment for image-input</comment>
+                        </field>
+                    </fields>
+                </template>
+
+                <template id="testtemplate"
+                          template="easytemplate/template/testtemplate.phtml"
+                          type="easytemplate/template"
+                          translate="label,comment"
+                          enabled="1"
+                          sortOrder="1"
+                        >
+                    <label>Test template</label>
+                    <comment>A test template with all EasyTemplate features</comment>
+                    <image>images/easytemplate/testtemplate.png</image>
+                    <fields>
+
+                        <field id="image_test"
+                               inputRenderer="easytemplate/input_renderer_image"
+                               backendModel="easytemplate/template_data_varchar"
+                               required="0"
+                               translate="label,comment"
+                               sortOrder="5">
+                            <label>Magento Media Gallery</label>
+                            <comment>Comment for image-input</comment>
+                        </field>
+
+                        <field id="textfield_test"
+                               inputRenderer="easytemplate/input_renderer_text"
+                               backendModel="easytemplate/template_data_varchar"
+                               required="0"
+                               translate="label,comment"
+                               sortOrder="20">
+                            <label>Textfield</label>
+                            <comment>Comment for textfield</comment>
+                            <default_value>Textfield default value</default_value>
+                        </field>
+                    </fields>
+                </template>
+            </templates>
+        </group>
+    </easytemplate>
+</config>

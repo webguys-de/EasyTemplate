@@ -2,8 +2,6 @@
 
 namespace Webguys\Easytemplate\Model;
 
-use Webguys\Easytemplate\Model\Config as Config;;
-
 /**
  * Class Template
  * @package Webguys\Easytemplate\Model
@@ -33,9 +31,12 @@ class Template extends \Magento\Framework\Model\AbstractModel implements Templat
     /**
      * @var Config
      */
-    protected $easytemplateConfig;
+    protected $config;
 
-    protected $configTemplate;
+    /**
+     * @var Config\Reader\Data\Template
+     */
+    protected $templateConfig;
 
     /**
      * @var string
@@ -55,10 +56,12 @@ class Template extends \Magento\Framework\Model\AbstractModel implements Templat
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         array $data = [],
-        Config $easytemplateConfigTemplate
+        Config $config,
+        Config\Reader\Data\Template $templateConfig
     )
     {
-        $this->easytemplateConfig = $easytemplateConfig;
+        $this->config = $config;
+        $this->$templateConfig = $templateConfig;
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
     }
 
@@ -89,7 +92,7 @@ class Template extends \Magento\Framework\Model\AbstractModel implements Templat
 
     public function getFields()
     {
-        $this->easytemplateConfig->getFieldsByTemplateCode($this->code);
+        return $this->templateConfig->getFields();
     }
 
     public function getFieldData($field = null)

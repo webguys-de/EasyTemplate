@@ -1,0 +1,106 @@
+array (
+  'tmp 222' => 
+  Webguys\Easytemplate\Model\Config\Reader\Data\Group::__set_state(array(
+     'id' => 'tmp 222',
+     'label' => NULL,
+     'enabled' => NULL,
+     'templates' => 
+    array (
+      0 => 
+      Webguys\Easytemplate\Model\Config\Reader\Data\Template::__set_state(array(
+         'id' => 'test1',
+         'templateFile' => 'path/to/template.phtml',
+         'enabled' => '1',
+         'type' => 'core/template',
+         'label' => 'label',
+         'comment' => NULL,
+         'fields' => 
+        array (
+          0 => 
+          Webguys\Easytemplate\Model\Config\Reader\Data\Field::__set_state(array(
+             'id' => 'blub',
+             'inputRenderer' => 'ssad',
+             'backendModel' => NULL,
+             'required' => NULL,
+             'sortOrder' => NULL,
+             'label' => 'Label 1',
+             'comment' => NULL,
+          )),
+          1 => 
+          Webguys\Easytemplate\Model\Config\Reader\Data\Field::__set_state(array(
+             'id' => '222',
+             'inputRenderer' => '222',
+             'backendModel' => NULL,
+             'required' => NULL,
+             'sortOrder' => NULL,
+             'label' => 'Label 2',
+             'comment' => NULL,
+          )),
+        ),
+      )),
+    ),
+  )),
+  'test' => 
+  Webguys\Easytemplate\Model\Config\Reader\Data\Group::__set_state(array(
+     'id' => 'test',
+     'label' => NULL,
+     'enabled' => NULL,
+     'templates' => 
+    array (
+      0 => 
+      Webguys\Easytemplate\Model\Config\Reader\Data\Template::__set_state(array(
+         'id' => 'test2',
+         'templateFile' => 'path/to/template.phtml',
+         'enabled' => '1',
+         'type' => 'core/template',
+         'label' => 'Test',
+         'comment' => 'Bla Blub',
+         'fields' => 
+        array (
+          0 => 
+          Webguys\Easytemplate\Model\Config\Reader\Data\Field::__set_state(array(
+             'id' => 'image_test',
+             'inputRenderer' => 'easytemplate/input_renderer_image',
+             'backendModel' => 'easytemplate/template_data_varchar',
+             'required' => '0',
+             'sortOrder' => '5',
+             'label' => 'Magento Media Gallery',
+             'comment' => 'Comment for image-input',
+          )),
+        ),
+      )),
+      1 => 
+      Webguys\Easytemplate\Model\Config\Reader\Data\Template::__set_state(array(
+         'id' => 'testtemplate',
+         'templateFile' => 'easytemplate/template/testtemplate.phtml',
+         'enabled' => '1',
+         'type' => 'easytemplate/template',
+         'label' => 'Test template',
+         'comment' => 'A test template with all EasyTemplate features',
+         'fields' => 
+        array (
+          0 => 
+          Webguys\Easytemplate\Model\Config\Reader\Data\Field::__set_state(array(
+             'id' => 'image_test',
+             'inputRenderer' => 'easytemplate/input_renderer_image',
+             'backendModel' => 'easytemplate/template_data_varchar',
+             'required' => '0',
+             'sortOrder' => '5',
+             'label' => 'Magento Media Gallery',
+             'comment' => 'Comment for image-input',
+          )),
+          1 => 
+          Webguys\Easytemplate\Model\Config\Reader\Data\Field::__set_state(array(
+             'id' => 'textfield_test',
+             'inputRenderer' => 'easytemplate/input_renderer_text',
+             'backendModel' => 'easytemplate/template_data_varchar',
+             'required' => '0',
+             'sortOrder' => '20',
+             'label' => 'Textfield',
+             'comment' => 'Comment for textfield',
+          )),
+        ),
+      )),
+    ),
+  )),
+)
