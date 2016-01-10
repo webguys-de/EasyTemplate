@@ -80,6 +80,10 @@ class Converter implements \Magento\Framework\Config\ConverterInterface
                     $this->getValueOrNull($attr,'type'),
                     (isset($dataAssoc['label']) ? $dataAssoc['label']->nodeValue : null),
                     (isset($dataAssoc['comment']) ? $dataAssoc['comment']->nodeValue : null),
+                    $this->getValueOrNull($attr,'min_sizex'),
+                    $this->getValueOrNull($attr,'min_sizey'),
+                    $this->getValueOrNull($attr,'max_sizex'),
+                    $this->getValueOrNull($attr,'max_sizey'),
                     $fields
                 );
 

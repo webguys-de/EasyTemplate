@@ -14,6 +14,10 @@ array (
          'type' => 'core/template',
          'label' => 'label',
          'comment' => NULL,
+         'min_sizex' => '12',
+         'min_sizey' => '1',
+         'max_sizex' => '12',
+         'max_sizey' => '1',
          'fields' => 
         array (
           0 => 
@@ -55,6 +59,10 @@ array (
          'type' => 'core/template',
          'label' => 'Test',
          'comment' => 'Bla Blub',
+         'min_sizex' => NULL,
+         'min_sizey' => NULL,
+         'max_sizex' => NULL,
+         'max_sizey' => NULL,
          'fields' => 
         array (
           0 => 
@@ -77,6 +85,10 @@ array (
          'type' => 'easytemplate/template',
          'label' => 'Test template',
          'comment' => 'A test template with all EasyTemplate features',
+         'min_sizex' => NULL,
+         'min_sizey' => NULL,
+         'max_sizex' => NULL,
+         'max_sizey' => NULL,
          'fields' => 
         array (
           0 => 

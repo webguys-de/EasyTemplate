@@ -5,7 +5,7 @@
         <group id="tmp 222" enabled="1">
             <label>sadasd</label>
             <templates>
-                <template id="test1" template="path/to/template.phtml" enabled="1" type="core/template">
+                <template id="test1" template="path/to/template.phtml" enabled="1" type="core/template" min_sizey="1" max_sizey="1" max_sizex="12" min_sizex="12">
                     <label>label</label>
                     <fields>
                         <field id="blub" inputRenderer="ssad">

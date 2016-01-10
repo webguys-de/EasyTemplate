@@ -1,4 +1,5 @@
 .gridster ul {
+    width: 600px;
     background-color: #EFEFEF;
 }
 
@@ -7,6 +8,7 @@
     font-weight: bold;
     text-align: center;
     line-height: 100%;
+    list-style-type: none;
 }
 
 

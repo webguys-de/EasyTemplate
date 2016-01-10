@@ -20,6 +20,14 @@ namespace Webguys\Easytemplate\Model;
  * @method getValidFrom
  * @method setValidTo($date)
  * @method getValidTo
+ * @method getCol
+ * @method setCol($int)
+ * @method getRow
+ * @method setRow($int)
+ * @method getSizex
+ * @method setSizex($int)
+ * @method getSizey
+ * @method setSizey($int)
  */
 class Template extends \Magento\Framework\Model\AbstractModel implements TemplateInterface
 {
@@ -46,25 +54,23 @@ class Template extends \Magento\Framework\Model\AbstractModel implements Templat
     /**
      * @param \Magento\Framework\Model\Context $context
      * @param \Magento\Framework\Registry $registry
-     * @param \Magento\Framework\Model\ResourceModel\AbstractResource $resource
-     * @param \Magento\Framework\Data\Collection\AbstractDb $resourceCollection
+     * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
+     * @param \Magento\Framework\Data\Collection\AbstractDb|null $resourceCollection
      * @param array $data
+     * @param Config $config
      */
     public function __construct(
         \Magento\Framework\Model\Context $context,
         \Magento\Framework\Registry $registry,
+        \Webguys\Easytemplate\Model\Config $config,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
-        array $data = [],
-        Config $config,
-        Config\Reader\Data\Template $templateConfig
+        array $data = []
     )
     {
         $this->config = $config;
-        $this->$templateConfig = $templateConfig;
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
     }
-
 
     protected function _construct()
     {
@@ -101,6 +107,14 @@ class Template extends \Magento\Framework\Model\AbstractModel implements Templat
             return $this->_fieldData;
         }
         return $this->_fieldData[$field];
+    }
+
+    /**
+     * @return null|Config\Reader\Data\Template
+     */
+    public function getTemplateConfig()
+    {
+        return $this->config->findTemplate($this->getCode());
     }
 
 }

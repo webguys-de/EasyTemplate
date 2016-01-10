@@ -32,7 +32,7 @@ class ConverterTest extends \PHPUnit_Framework_TestCase
         $convertedFile = file_get_contents( $this->_filePath . 'easytemplate_converted.txt' );
         $result = var_export( $this->_model->convert($this->_source), true);
 
-        // file_put_contents( $this->_filePath . 'easytemplate_converted.php', $result ); // In case of new data-schema write it to php-file
+        //file_put_contents( $this->_filePath . 'easytemplate_converted.txt', $result ); // In case of new data-schema write it to php-file
 
         $this->assertEquals($convertedFile, $result);
     }

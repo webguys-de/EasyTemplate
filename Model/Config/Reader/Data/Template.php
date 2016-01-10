@@ -10,6 +10,10 @@ class Template
     protected $type;
     protected $label;
     protected $comment;
+    protected $min_sizex;
+    protected $min_sizey;
+    protected $max_sizex;
+    protected $max_sizey;
 
     /** @var \Webguys\Easytemplate\Model\Config\Reader\Data\Template[] */
     protected $fields = array();
@@ -23,7 +27,7 @@ class Template
      * @param $comment
      * @param \Webguys\Easytemplate\Model\Config\Reader\Data\Template[] $fields
      */
-    public function __construct($id, $templateFile, $enabled, $type, $label, $comment, Array $fields)
+    public function __construct($id, $templateFile, $enabled, $type, $label, $comment, $min_sizex, $min_sizey, $max_sizex, $max_sizey, Array $fields)
     {
         $this->id = $id;
         $this->templateFile = $templateFile;
@@ -32,6 +36,10 @@ class Template
         $this->label = $label;
         $this->comment = $comment;
         $this->fields = $fields;
+        $this->min_sizex = $min_sizex;
+        $this->min_sizey = $min_sizey;
+        $this->max_sizex = $max_sizex;
+        $this->max_sizey = $max_sizey;
     }
 
     /**
@@ -88,6 +96,38 @@ class Template
     public function getFields()
     {
         return $this->fields;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMinSizex()
+    {
+        return $this->min_sizex;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMinSizey()
+    {
+        return $this->min_sizey;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMaxSizex()
+    {
+        return $this->max_sizex;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMaxSizey()
+    {
+        return $this->max_sizey;
     }
 
 }
