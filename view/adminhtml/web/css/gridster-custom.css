@@ -26,16 +26,13 @@
 
 .gridster .gs-w {
     background: #DDD;
-    cursor: pointer;
+    cursor: move;
 }
 
 .gridster .player {
     background: #BBB;
 }
 
-
-.gridster .preview-holder {
-    border: none!important;
-    background: red!important;
+.gridster .js-et-edit {
+    cursor: pointer;
 }
-

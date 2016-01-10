@@ -76,41 +76,7 @@ class Easytemplate extends \Magento\Backend\Block\Template implements \Magento\B
      */
     public function getTemplates()
     {
-        // TODO: Get Templates from Database
-
-        $col = clone $this->templateCollection;
-
-        /** @var \Webguys\Easytemplate\Model\Template $template */
-        $template = $this->templateCollection->getNewEmptyItem();
-        $template->setCode('test1');
-        $template->setName('Hallo World');
-        $template->setCol(1);
-        $template->setRow(2);
-        $template->setSizex(12);
-        $template->setSizey(1);
-        $col->addItem($template);
-
-        /** @var \Webguys\Easytemplate\Model\Template $template */
-        $template = $this->templateCollection->getNewEmptyItem();
-        $template->setCode('test1');
-        $template->setName('Hallo World 2');
-        $template->setCol(1);
-        $template->setRow(2);
-        $template->setSizex(6);
-        $template->setSizey(1);
-        $col->addItem($template);
-
-        /** @var \Webguys\Easytemplate\Model\Template $template */
-        $template = $this->templateCollection->getNewEmptyItem();
-        $template->setCode('test1');
-        $template->setName('Hallo World 3');
-        $template->setCol(2);
-        $template->setRow(2);
-        $template->setSizex(6);
-        $template->setSizey(1);
-        $col->addItem($template);
-
-        return $col;
+        return $this->templateCollection; // TODO: Filtering!
     }
 
 }

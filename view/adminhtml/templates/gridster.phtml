@@ -19,7 +19,7 @@
                 <?php endif; ?>
 
                 >
-                <div onclick="tobi_test(); return false;" style="cursor:pointer;">
+                <div class="js-et-edit" data-et-edit-url="<?php echo $this->getUrl('easytemplate/template/edit',array('id' => $template->getId())) ?>">
                     <?php echo $template->getName(); ?>
                 </div>
             </li>
@@ -29,40 +29,9 @@
 </div>
 
 <script type="text/javascript">
-    var gridster;
+    require(["Webguys_Easytemplate/js/easytemplate"], function () {
 
-    function tobi_test() {
-        require([
-            'jquery',
-            'jquery/ui',
-            'Magento_Ui/js/modal/modal'
-        ], function ($) {
-            $('<div />').html('TODO: Add and render fields here!')
-                .modal({
-                    type: 'slide',
-                    title: 'Edit Template',
-                    autoOpen: true,
-                    buttons: [{
-                        text: 'Confirm',
-                        'class': 'action-primary',
-                        click: function () {
-                            this.closeModal();
-                        }
-                    }]
-                });
-        });
-    }
-
-    require(["Webguys_Easytemplate/js/gridster"], function () {
-
-        gridster = jQuery(".gridster ul").gridster({
-            widget_margins: [5, 5],
-            widget_base_dimensions: [jQuery('#page_tabs_easytemplate_section_content').width() / 12, 70],
-            min_cols: 12,
-            resize: {
-                enabled: true
-            }
-        }).data('gridster');
+        jQuery(".gridster ul").easytemplate();
 
     });
 
