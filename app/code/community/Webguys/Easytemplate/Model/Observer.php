@@ -202,6 +202,10 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
     {
         /** @var $category Mage_Catalog_Model_Category */
         $category = $observer->getDataObject();
+        
+        if($category == null){
+            return;
+        }
 
         /** @var $group Webguys_Easytemplate_Model_Group */
         $group = Mage::helper('easytemplate/category')->getGroupByCategoryId(
