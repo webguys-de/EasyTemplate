@@ -2,81 +2,73 @@
 
 namespace Webguys\Easytemplate\Model\Config\Reader\Data;
 
-class Field
+class Field extends DataAbstract
 {
-    protected $id;
-    protected $inputRenderer;
-    protected $backendModel;
-    protected $required;
-    protected $sortOrder;
-    protected $label;
-    protected $comment;
+    protected $code;
+    protected $modelname;
+    protected $frontend;
+    protected $backend;
 
-    public function __construct($id, $inputRenderer, $backendModel, $required, $sortOrder, $label, $comment)
+    public function __construct($code, $modelname, Frontend $frontend=null, Backend $backend=null)
     {
-        $this->id = $id;
-        $this->inputRenderer = $inputRenderer;
-        $this->backendModel = $backendModel;
-        $this->required = $required;
-        $this->sortOrder = $sortOrder;
-        $this->label = $label;
-        $this->comment = $comment;
+        $this->code = $code;
+        $this->modelname = $modelname;
+        $this->frontend = $frontend;
+        $this->backend = $backend;
     }
 
     /**
      * @return mixed
      */
-    public function getId()
+    public function getCode()
     {
-        return $this->id;
+        return $this->code;
+    }
+
+    /**
+     * @return Backend
+     */
+    public function getBackend()
+    {
+        return $this->backend;
+    }
+
+    /**
+     * @return Frontend
+     */
+    public function getFrontend()
+    {
+        return $this->frontend;
     }
 
     /**
      * @return mixed
      */
-    public function getInputRenderer()
+    public function getModelname()
     {
-        return $this->inputRenderer;
+        return $this->modelname;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getBackendModel()
+    public static function xmlFactory(\DOMNode $fieldNode)
     {
-        return $this->backendModel;
-    }
+        if ($fieldNode->hasChildNodes()) {
 
-    /**
-     * @return mixed
-     */
-    public function getRequired()
-    {
-        return $this->required;
-    }
+            /** @var \DOMNode $dataAssoc */
+            $dataAssoc = array();
+            foreach ($fieldNode->childNodes AS $item) {
+                /** @var \DOMNode $item */
+                $dataAssoc[$item->nodeName] = $item;
+            }
 
-    /**
-     * @return mixed
-     */
-    public function getSortOrder()
-    {
-        return $this->sortOrder;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLabel()
-    {
-        return $this->label;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getComment()
-    {
-        return $this->comment;
+            $attr = $fieldNode->attributes;
+            return new Field(
+                self::getValueOrNull($attr, 'code'),
+                self::getValueOrNull($attr, 'model'),
+                (isset($dataAssoc['frontend']) ? Frontend::xmlFactory($dataAssoc['frontend']) : null),
+                (isset($dataAssoc['backend']) ? Backend::xmlFactory($dataAssoc['backend']) : null)
+            );
+        }
+        return null;
     }
 
 }

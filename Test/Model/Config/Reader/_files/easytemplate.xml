@@ -1,77 +1,81 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Webguys_Easytemplate:etc/easytemplate.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Webguys_Easytemplate:etc/easytemplate.xsd">
     <easytemplate>
 
-        <group id="tmp 222" enabled="1">
-            <label>sadasd</label>
-            <templates>
-                <template id="test1" template="path/to/template.phtml" enabled="1" type="core/template" min_sizey="1" max_sizey="1" max_sizex="12" min_sizex="12">
-                    <label>label</label>
-                    <fields>
-                        <field id="blub" inputRenderer="ssad">
-                            <label>Label 1</label>
-                        </field>
-                        <field id="222" inputRenderer="222">
-                            <label>Label 2</label>
-                        </field>
-                    </fields>
-                </template>
-            </templates>
-        </group>
-
-        <group id="test" translate="label" enabled="1">
+        <group code="test" translate="label" enabled="1">
             <label>Test Templates</label>
             <templates>
-                <template id="test2" template="path/to/template.phtml" enabled="1" type="core/template">
-                    <label>Test</label>
-                    <comment>Bla Blub</comment>
-                    <fields>
-                        <field id="image_test"
-                               inputRenderer="easytemplate/input_renderer_image"
-                               backendModel="easytemplate/template_data_varchar"
-                               required="0"
-                               translate="label,comment"
-                               sortOrder="5">
-                            <label>Magento Media Gallery</label>
-                            <comment>Comment for image-input</comment>
-                        </field>
-                    </fields>
-                </template>
 
-                <template id="testtemplate"
+                <template code="testtemplate"
                           template="easytemplate/template/testtemplate.phtml"
                           type="easytemplate/template"
                           translate="label,comment"
                           enabled="1"
-                          sortOrder="1"
+                          sort="1"
+                          min_sizey="1"
+                          min_sizex="1"
+                          max_sizex="1"
+                          max_sizey="12"
                         >
-                    <label>Test template</label>
-                    <comment>A test template with all EasyTemplate features</comment>
-                    <image>images/easytemplate/testtemplate.png</image>
+                    <label>Test Text template</label>
+                    <comment>A test template</comment>
                     <fields>
 
-                        <field id="image_test"
-                               inputRenderer="easytemplate/input_renderer_image"
-                               backendModel="easytemplate/template_data_varchar"
-                               required="0"
-                               translate="label,comment"
-                               sortOrder="5">
-                            <label>Magento Media Gallery</label>
-                            <comment>Comment for image-input</comment>
+                        <field code="field1" model="easytemplate/template_data_varchar">
+
+                            <backend sort="1" translate="label,comment">
+                                <label>Text 1</label>
+                                <comment>Comment 1</comment>
+                                <input type="text" required="0"/>
+                            </backend>
+
                         </field>
 
-                        <field id="textfield_test"
-                               inputRenderer="easytemplate/input_renderer_text"
-                               backendModel="easytemplate/template_data_varchar"
-                               required="0"
-                               translate="label,comment"
-                               sortOrder="20">
-                            <label>Textfield</label>
-                            <comment>Comment for textfield</comment>
-                            <default_value>Textfield default value</default_value>
+                        <field code="field2" model="easytemplate/template_data_varchar">
+
+                            <backend sort="10" translate="label,comment">
+                                <label>Text 2</label>
+                                <comment>Comment 2</comment>
+                                <input type="text" required="0"/>
+                            </backend>
+
+                        </field>
+
+                    </fields>
+                </template>
+
+                <template code="imagetest"
+                          template="path/to/template.phtml"
+                          enabled="1"
+                          type="easytemplate/template"
+                          sort="10"
+                        >
+                    <label>Test</label>
+                    <comment>Bla Blub</comment>
+                    <fields>
+                        <field code="image_test" model="easytemplate/template_data_varchar">
+
+                            <backend sort="5" translate="label,comment">
+                                <label>Magento Media Gallery</label>
+                                <comment>Comment for image-input</comment>
+                                <input type="select" required="0">
+                                    <param name="abc" translate="value">
+                                        <value>test</value>
+                                    </param>
+                                </input>
+                            </backend>
+
+                            <frontend renderer="easytemplate/renderer_image">
+                                <param name="blub">
+                                    <value>test</value>
+                                </param>
+                            </frontend>
+
                         </field>
                     </fields>
                 </template>
+
             </templates>
         </group>
     </easytemplate>

@@ -19,7 +19,7 @@
                 <?php endif; ?>
 
                 >
-                <div class="js-et-edit" data-et-edit-url="<?php echo $this->getUrl('easytemplate/template/edit',array('id' => $template->getId())) ?>">
+                <div class="js-et-edit" data-et-edit-url="<?php echo $this->getUrl('easytemplate/template/view',array( 'id' => $template->getCode())) ?>">
                     <?php echo $template->getName(); ?>
                 </div>
             </li>

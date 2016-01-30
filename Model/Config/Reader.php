@@ -10,8 +10,8 @@ class Reader extends \Magento\Framework\Config\Reader\Filesystem
      * @var array
      */
     protected $_idAttributes = [
-        '/config/group' => 'id',
-        '/config/group/templates/template' => 'id',
-        '/config/group/templates/template/fields' => 'id',
+        '/config/group' => 'code',
+        '/config/group/templates/template' => 'code',
+        '/config/group/templates/template/fields' => 'code',
     ];
 }

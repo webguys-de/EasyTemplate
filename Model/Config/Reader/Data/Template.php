@@ -2,9 +2,9 @@
 
 namespace Webguys\Easytemplate\Model\Config\Reader\Data;
 
-class Template
+class Template extends DataAbstract
 {
-    protected $id;
+    protected $code;
     protected $templateFile;
     protected $enabled;
     protected $type;
@@ -15,7 +15,7 @@ class Template
     protected $max_sizex;
     protected $max_sizey;
 
-    /** @var \Webguys\Easytemplate\Model\Config\Reader\Data\Template[] */
+    /** @var \Webguys\Easytemplate\Model\Config\Reader\Data\Field[] */
     protected $fields = array();
 
     /**
@@ -27,9 +27,9 @@ class Template
      * @param $comment
      * @param \Webguys\Easytemplate\Model\Config\Reader\Data\Template[] $fields
      */
-    public function __construct($id, $templateFile, $enabled, $type, $label, $comment, $min_sizex, $min_sizey, $max_sizex, $max_sizey, Array $fields)
+    public function __construct($code, $templateFile, $enabled, $type, $label, $comment, $min_sizex, $min_sizey, $max_sizex, $max_sizey, Array $fields)
     {
-        $this->id = $id;
+        $this->code = $code;
         $this->templateFile = $templateFile;
         $this->enabled = $enabled;
         $this->type = $type;
@@ -91,7 +91,7 @@ class Template
     }
 
     /**
-     * @return array
+     * @return \Webguys\Easytemplate\Model\Config\Reader\Data\Field[]
      */
     public function getFields()
     {
@@ -128,6 +128,40 @@ class Template
     public function getMaxSizey()
     {
         return $this->max_sizey;
+    }
+
+    public static function xmlFactory(\DOMNode $templateNode)
+    {
+        /** @var \DOMNode $dataAssoc */
+        $dataAssoc = array();
+        foreach ($templateNode->childNodes AS $item) {
+            /** @var \DOMNode $item */
+            $dataAssoc[$item->nodeName] = $item;
+        }
+
+        $fields = array();
+        if (isset($dataAssoc['fields']) && isset($dataAssoc['fields']->childNodes)) {
+            foreach ($dataAssoc['fields']->childNodes AS $fieldNode) {
+                if ($field = Field::xmlFactory($fieldNode)) {
+                    $fields[] = $field;
+                }
+            }
+        }
+
+        $attr = $templateNode->attributes;
+        return new Template(
+            self::getValueOrNull($attr, 'code'),
+            self::getValueOrNull($attr, 'template'),
+            self::getValueOrNull($attr, 'enabled'),
+            self::getValueOrNull($attr, 'type'),
+            (isset($dataAssoc['label']) ? $dataAssoc['label']->nodeValue : null),
+            (isset($dataAssoc['comment']) ? $dataAssoc['comment']->nodeValue : null),
+            self::getValueOrNull($attr, 'min_sizex'),
+            self::getValueOrNull($attr, 'min_sizey'),
+            self::getValueOrNull($attr, 'max_sizex'),
+            self::getValueOrNull($attr, 'max_sizey'),
+            $fields
+        );
     }
 
 }

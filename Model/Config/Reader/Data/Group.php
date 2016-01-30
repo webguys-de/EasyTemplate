@@ -2,9 +2,9 @@
 
 namespace Webguys\Easytemplate\Model\Config\Reader\Data;
 
-class Group
+class Group extends DataAbstract
 {
-    protected $id;
+    protected $code;
     protected $label;
     protected $enabled;
 
@@ -19,19 +19,20 @@ class Group
      * @param $enabled
      * @param Template[] $templates
      */
-    public function __construct($id,$label,$enabled,Array $templates)
+    public function __construct($code, $label, $enabled, Array $templates)
     {
-        $this->id = $id;
+        $this->code = $code;
         $this->label = $label;
+        $this->enabled = $enabled;
         $this->templates = $templates;
     }
 
     /**
      * @return mixed
      */
-    public function getId()
+    public function getCode()
     {
-        return $this->id;
+        return $this->code;
     }
 
     /**
@@ -57,5 +58,40 @@ class Group
     {
         return $this->templates;
     }
+
+    public static function xmlFactory(\DOMNode $group)
+    {
+        $attr = $group->attributes;
+        $code = self::getValueOrNull($attr, 'code');
+
+        /** @var \DOMNode $groupAssoc */
+        $groupAssoc = array();
+        foreach ($group->childNodes AS $item) {
+            /** @var \DOMNode $item */
+            $groupAssoc[$item->nodeName] = $item;
+        }
+
+        $templates = array();
+        if ($groupAssoc['templates'] && isset($groupAssoc['templates']->childNodes)) {
+            foreach ($groupAssoc['templates']->childNodes AS $templateNode) {
+                /** @var \DOMNode $templateNode */
+                if ($templateNode->hasChildNodes()) {
+                    $templates[] = Template::xmlFactory($templateNode);
+                }
+            }
+        }
+
+        if ($code && count($templates)) {
+            return new Group(
+                $code,
+                (isset($groupAssoc['label']) ? $groupAssoc['label']->nodeValue : null),
+                self::getValueOrNull($attr, 'enabled'),
+                $templates
+            );
+        }
+
+        return null;
+    }
+
 
 }

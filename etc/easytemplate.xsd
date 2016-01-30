@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="config" type="configType"/>
+
+  <xs:complexType name="paramType">
+    <xs:sequence>
+      <xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="value"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="name" use="required"/>
+    <xs:attribute type="xs:string" name="translate" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="inputType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="comment" minOccurs="0"/>
+      <xs:element type="paramType" name="param" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="type" use="required"/>
+    <xs:attribute type="xs:boolean" name="required" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="frontendType">
+    <xs:sequence>
+      <xs:element type="paramType" name="param" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="renderer" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="backendType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="label"/>
+      <xs:element type="xs:string" name="comment" minOccurs="0"/>
+      <xs:element type="inputType" name="input"/>
+    </xs:sequence>
+    <xs:attribute type="xs:integer" name="sort" use="optional"/>
+    <xs:attribute type="xs:string" name="translate" use="optional"/>
+  </xs:complexType>
+
   <xs:complexType name="templateType">
     <xs:sequence>
       <xs:element type="xs:string" name="label"/>
@@ -8,12 +43,12 @@
       <xs:element type="xs:string" name="image" minOccurs="0"/>
       <xs:element type="fieldsType" name="fields"/>
     </xs:sequence>
-    <xs:attribute type="xs:string" name="id" use="required"/>
+    <xs:attribute type="xs:string" name="code" use="required"/>
     <xs:attribute type="xs:string" name="template" use="required"/>
     <xs:attribute type="xs:string" name="type" use="required"/>
     <xs:attribute type="xs:string" name="translate" use="optional" default="label"/>
     <xs:attribute type="xs:string" name="enabled" use="required" default="1"/>
-    <xs:attribute type="xs:string" name="sortOrder" use="optional"/>
+    <xs:attribute type="xs:string" name="sort" use="optional"/>
 
     <xs:attribute type="xs:string" name="min_sizex" use="optional"/>
     <xs:attribute type="xs:string" name="min_sizey" use="optional"/>
@@ -25,7 +60,7 @@
       <xs:element type="xs:string" name="label"/>
       <xs:element type="templatesType" name="templates"/>
     </xs:sequence>
-    <xs:attribute type="xs:string" name="id" use="required"/>
+    <xs:attribute type="xs:string" name="code" use="required"/>
     <xs:attribute type="xs:string" name="translate" use="optional" default="label"/>
     <xs:attribute type="xs:string" name="enabled" use="required" default="1"/>
   </xs:complexType>
@@ -46,16 +81,12 @@
   </xs:complexType>
   <xs:complexType name="fieldType">
     <xs:sequence>
-      <xs:element type="xs:string" minOccurs="1" name="label"/>
-      <xs:element type="xs:string" name="comment" minOccurs="0"/>
-      <xs:element type="xs:string" name="default_value" minOccurs="0"/>
+      <xs:element type="backendType" name="backend" maxOccurs="1" minOccurs="0"/>
+      <xs:element type="frontendType" name="frontend" maxOccurs="1" minOccurs="0"/>
     </xs:sequence>
-    <xs:attribute type="xs:string" name="id" use="required"/>
-    <xs:attribute type="xs:string" name="inputRenderer" use="required"/>
-    <xs:attribute type="xs:string" name="backendModel" use="optional"/>
+    <xs:attribute type="xs:string" name="code" use="required"/>
+    <xs:attribute type="xs:string" name="model" use="required"/>
     <xs:attribute type="xs:string" name="required" use="optional" default="1"/>
-    <xs:attribute type="xs:string" name="translate" use="optional" default="label"/>
-    <xs:attribute type="xs:string" name="sortOrder" use="optional"/>
   </xs:complexType>
   <xs:complexType name="fieldsType">
     <xs:sequence>

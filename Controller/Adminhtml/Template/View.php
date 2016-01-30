@@ -1,13 +1,12 @@
 <?php
+
 namespace Webguys\Easytemplate\Controller\Adminhtml\Template;
 
 use Magento\Backend\App\Action;
 
-class Edit extends \Magento\Backend\App\Action
+class View extends \Magento\Backend\App\Action
 {
-    protected $template;
-
-    protected $registry;
+    protected $config;
 
     protected $resultJson;
 
@@ -19,15 +18,12 @@ class Edit extends \Magento\Backend\App\Action
      */
     public function __construct(
         Action\Context $context,
-        \Webguys\Easytemplate\Model\Template $template,
-        \Magento\Framework\Registry $registry,
+        \Webguys\Easytemplate\Model\Config $config,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
         \Magento\Framework\Controller\Result\Json $jsonFactory
     )
     {
         parent::__construct($context);
-        $this->template = $template->load($this->getRequest()->getParam('id'));
-        $this->registry = $registry;
         $this->resultPageFactory = $resultPageFactory;
         $this->resultJson = $jsonFactory;
     }
@@ -42,9 +38,10 @@ class Edit extends \Magento\Backend\App\Action
 
     public function execute()
     {
-        $this->registry->register('easytemplate_template', $this->template);
         $resultPage = $this->resultPageFactory->create();
         $block = $resultPage->getLayout()->getBlock('easytemplate_template_edit');
+
+        die( $block->toHtml() ); // TODO
 
         $this->resultJson->setData(array(
             'html' => $block->toHtml()

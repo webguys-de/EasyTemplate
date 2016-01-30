@@ -1,62 +1,63 @@
 array (
-  'tmp 222' => 
+  0 => 
   Webguys\Easytemplate\Model\Config\Reader\Data\Group::__set_state(array(
-     'id' => 'tmp 222',
-     'label' => NULL,
-     'enabled' => NULL,
+     'code' => 'test',
+     'label' => 'Test Templates',
+     'enabled' => '1',
      'templates' => 
     array (
       0 => 
       Webguys\Easytemplate\Model\Config\Reader\Data\Template::__set_state(array(
-         'id' => 'test1',
-         'templateFile' => 'path/to/template.phtml',
+         'code' => 'testtemplate',
+         'templateFile' => 'easytemplate/template/testtemplate.phtml',
          'enabled' => '1',
-         'type' => 'core/template',
-         'label' => 'label',
-         'comment' => NULL,
-         'min_sizex' => '12',
+         'type' => 'easytemplate/template',
+         'label' => 'Test Text template',
+         'comment' => 'A test template',
+         'min_sizex' => '1',
          'min_sizey' => '1',
-         'max_sizex' => '12',
-         'max_sizey' => '1',
+         'max_sizex' => '1',
+         'max_sizey' => '12',
          'fields' => 
         array (
           0 => 
           Webguys\Easytemplate\Model\Config\Reader\Data\Field::__set_state(array(
-             'id' => 'blub',
-             'inputRenderer' => 'ssad',
-             'backendModel' => NULL,
-             'required' => NULL,
-             'sortOrder' => NULL,
-             'label' => 'Label 1',
-             'comment' => NULL,
+             'code' => 'field1',
+             'modelname' => 'easytemplate/template_data_varchar',
+             'frontend' => NULL,
+             'backend' => 
+            Webguys\Easytemplate\Model\Config\Reader\Data\Backend::__set_state(array(
+               'sort' => '1',
+               'label' => 'Text 1',
+               'comment' => 'Comment 1',
+               'input' => 
+              Webguys\Easytemplate\Model\Config\Reader\Data\Input::__set_state(array(
+              )),
+            )),
           )),
           1 => 
           Webguys\Easytemplate\Model\Config\Reader\Data\Field::__set_state(array(
-             'id' => '222',
-             'inputRenderer' => '222',
-             'backendModel' => NULL,
-             'required' => NULL,
-             'sortOrder' => NULL,
-             'label' => 'Label 2',
-             'comment' => NULL,
+             'code' => 'field2',
+             'modelname' => 'easytemplate/template_data_varchar',
+             'frontend' => NULL,
+             'backend' => 
+            Webguys\Easytemplate\Model\Config\Reader\Data\Backend::__set_state(array(
+               'sort' => '10',
+               'label' => 'Text 2',
+               'comment' => 'Comment 2',
+               'input' => 
+              Webguys\Easytemplate\Model\Config\Reader\Data\Input::__set_state(array(
+              )),
+            )),
           )),
         ),
       )),
-    ),
-  )),
-  'test' => 
-  Webguys\Easytemplate\Model\Config\Reader\Data\Group::__set_state(array(
-     'id' => 'test',
-     'label' => NULL,
-     'enabled' => NULL,
-     'templates' => 
-    array (
-      0 => 
+      1 => 
       Webguys\Easytemplate\Model\Config\Reader\Data\Template::__set_state(array(
-         'id' => 'test2',
+         'code' => 'imagetest',
          'templateFile' => 'path/to/template.phtml',
          'enabled' => '1',
-         'type' => 'core/template',
+         'type' => 'easytemplate/template',
          'label' => 'Test',
          'comment' => 'Bla Blub',
          'min_sizex' => NULL,
@@ -67,49 +68,20 @@ array (
         array (
           0 => 
           Webguys\Easytemplate\Model\Config\Reader\Data\Field::__set_state(array(
-             'id' => 'image_test',
-             'inputRenderer' => 'easytemplate/input_renderer_image',
-             'backendModel' => 'easytemplate/template_data_varchar',
-             'required' => '0',
-             'sortOrder' => '5',
-             'label' => 'Magento Media Gallery',
-             'comment' => 'Comment for image-input',
-          )),
-        ),
-      )),
-      1 => 
-      Webguys\Easytemplate\Model\Config\Reader\Data\Template::__set_state(array(
-         'id' => 'testtemplate',
-         'templateFile' => 'easytemplate/template/testtemplate.phtml',
-         'enabled' => '1',
-         'type' => 'easytemplate/template',
-         'label' => 'Test template',
-         'comment' => 'A test template with all EasyTemplate features',
-         'min_sizex' => NULL,
-         'min_sizey' => NULL,
-         'max_sizex' => NULL,
-         'max_sizey' => NULL,
-         'fields' => 
-        array (
-          0 => 
-          Webguys\Easytemplate\Model\Config\Reader\Data\Field::__set_state(array(
-             'id' => 'image_test',
-             'inputRenderer' => 'easytemplate/input_renderer_image',
-             'backendModel' => 'easytemplate/template_data_varchar',
-             'required' => '0',
-             'sortOrder' => '5',
-             'label' => 'Magento Media Gallery',
-             'comment' => 'Comment for image-input',
-          )),
-          1 => 
-          Webguys\Easytemplate\Model\Config\Reader\Data\Field::__set_state(array(
-             'id' => 'textfield_test',
-             'inputRenderer' => 'easytemplate/input_renderer_text',
-             'backendModel' => 'easytemplate/template_data_varchar',
-             'required' => '0',
-             'sortOrder' => '20',
-             'label' => 'Textfield',
-             'comment' => 'Comment for textfield',
+             'code' => 'image_test',
+             'modelname' => 'easytemplate/template_data_varchar',
+             'frontend' => 
+            Webguys\Easytemplate\Model\Config\Reader\Data\Frontend::__set_state(array(
+            )),
+             'backend' => 
+            Webguys\Easytemplate\Model\Config\Reader\Data\Backend::__set_state(array(
+               'sort' => '5',
+               'label' => 'Magento Media Gallery',
+               'comment' => 'Comment for image-input',
+               'input' => 
+              Webguys\Easytemplate\Model\Config\Reader\Data\Input::__set_state(array(
+              )),
+            )),
           )),
         ),
       )),
