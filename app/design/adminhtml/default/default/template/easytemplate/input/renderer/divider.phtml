@@ -8,4 +8,7 @@
     <?php if ($comment = $this->getComment()) : ?>
         <p><?php echo $this->__($comment) ?></p>
     <?php endif; ?>
+    <input id="template_field_{{id}}_<?php echo $this->getCode() ?>"
+           name="template[{{id}}][fields][<?php echo $this->getCode() ?>]"
+           value="1" type="hidden" />
 </div>

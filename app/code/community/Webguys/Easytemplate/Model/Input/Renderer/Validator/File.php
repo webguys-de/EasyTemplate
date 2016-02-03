@@ -24,10 +24,12 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_File extends Webguys_E
 
     public function prepareForSave($data)
     {
-        $this->_deleteFile = (bool)$data['delete'];
+        if (isset($data['delete'])) {
+            $this->_deleteFile = (bool)$data['delete'];
 
-        if ($this->_deleteFile) {
-            return '';
+            if ($this->_deleteFile) {
+                return '';
+            }
         }
 
         $fileName = !empty($data['value']) ? $data['value'] : $data['existing'];
