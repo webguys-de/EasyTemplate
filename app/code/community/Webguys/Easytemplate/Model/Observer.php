@@ -96,6 +96,23 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
         }
     }
 
+    public function cms_page_render($observer)
+    {
+        /** @var Mage_Core_Controller_Varien_Action $action */
+        $action = $observer->getControllerAction();
+
+        /** @var Mage_Cms_Model_Page $page */
+        $page = $observer->getPage();
+
+        /** @var $helper Webguys_Easytemplate_Helper_Page */
+        $helper = Mage::helper('easytemplate/page');
+
+        if ($helper->isEasyTemplatePage($page->getId()) )
+        {
+            $action->getLayout()->getUpdate()->addHandle('cms_easytemplate');
+        }
+    }
+
     public function core_block_abstract_to_html_after($observer)
     {
         /** @var $block Mage_Core_Block_Abstract */
