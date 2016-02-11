@@ -132,6 +132,8 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         $helper = Mage::helper('easytemplate/cache');
         $helper->flushCache();
 
+        $parentIdMapping = array();
+
         foreach( $data AS $id => $template_data )
         {
 
@@ -154,8 +156,19 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
                     $template->delete();
                 }
             } else {
+
+                if( isset($template_data['parent_id']) && $template_data['parent_id'] && !is_numeric($template_data['parent_id']) ) {
+                    if( !isset($parentIdMapping[$template_data['parent_id']]) ) {
+                        Mage::throwException("Could not find parent id");
+                    }
+                    $template_data['parent_id'] = $parentIdMapping[$template_data['parent_id']];
+                }
+
                 $template->importData( $template_data );
                 $template->save();
+                if( $template->getTemporaryId() ) {
+                    $parentIdMapping[ $template->getTemporaryId() ] = $template->getId();
+                }
             }
 
         }
@@ -179,6 +192,7 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         $collection = Mage::getModel('easytemplate/template')->getCollection();
         $collection->addGroupFilter($this);
         $collection->addFieldToFilter('code', array('in' => $validTemplates));
+        $collection->addFieldToFilter('parent_id', array('null'=>'null'));
         $collection->getSelect()->order('main_table.position');
 
         foreach( $collection AS &$model )

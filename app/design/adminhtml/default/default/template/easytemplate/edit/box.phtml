@@ -29,18 +29,18 @@
             <br style="clear:both"/>
         </div>
         <div class="information last f-right a-right">
-            <!-- <?php echo $this->jsQuoteEscape($this->getDeleteButtonHtml()) ?><br/> -->
             <?php echo $this->getOpenButton('{{id}}'); ?>
         </div>
         <br class="clear"/>
     </div>
     <br class="clear"/>
 
-    <div id="template_content_{{id}}" style="display:none">
+    <div id="template_content_{{id}}" class="template_container" style="display:none">
         <?php echo $this->getCloseButton('{{id}}', 'top'); ?>
         <input type="hidden" id="template_{{id}}_is_delete" name="template[{{id}}][is_delete]" value=""/>
-        <input type="hidden" id="template_{{id}}_id" name="template[{{id}}][id]" value="{{id}}"/>
+        <input type="hidden" class="js-parentfield" id="template_{{id}}_id" name="template[{{id}}][id]" value="{{id}}"/>
         <input type="hidden" id="template_{{id}}_sort_order" name="template[{{id}}][sort_order]" value="{{position}}"/>
+        <input type="hidden" id="template_{{id}}_parent_id" name="template[{{id}}][parent_id]" value="{{parent_id}}"/>
         <div class="template_content_status">
             <span class="label"><?php echo Mage::helper('easytemplate')->__('Active'); ?>:</span>
             <span class="desc"><input type="checkbox" name="template[{{id}}][active]" id="template_{{id}}_active" class="active-input" value="1" /></span>

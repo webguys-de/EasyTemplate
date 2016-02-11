@@ -1,0 +1,17 @@
+<?php /** @var $this Webguys_Easytemplate_Block_Input_Renderer_Reference */ ?>
+
+<div class="reference">
+
+    <div id="reference_{{id}}" class="reference_fields">
+        <?php echo $this->getBoxesHtml(); ?>
+    </div>
+
+    <div class="reference-nav">
+
+        <button type="button" class="scalable add" onclick="easyTemplate.add('<?php echo $this->getReference(); ?>', '<?php echo $this->getReferenceDefaultName(); ?>', $('reference_{{id}}') );">
+            <span><span><?php echo $this->getReferenceLabel() ? $this->getReferenceLabel() : $this->__('Add Sub-Template'); ?></span></span>
+        </button>
+
+    </div>
+
+</div>

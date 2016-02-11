@@ -146,7 +146,7 @@
             div : $('easy_templates_container_top'),
             templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
             itemCount : 1,
-            add : function( code, label ) {
+            add : function( code, label,parentContainer=false ) {
 
                 this.itemCount++;
 
@@ -157,12 +157,19 @@
                 data.label = label;
                 data.active = 1;
 
+                if(parentContainer) {
+                    data.parent_id = parentContainer.up('.template_container').select('.js-parentfield')[0].value;
+                } else {
+                    parentContainer = this.div;
+                    data.parent_id = 0;
+                }
+
                 if ( template = templates[code] ) {
 
                     this.secondTemplate = new Template(template, this.templateSyntax);
 
                     var content = this.secondTemplate.evaluate(data);
-                    Element.insert(this.div, {'after':content});
+                    Element.insert(parentContainer, {'after':content});
 
                     content.evalScripts();
 
