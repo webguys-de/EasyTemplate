@@ -20,6 +20,7 @@ class Webguys_Easytemplate_Block_Input_Renderer_Reference extends Webguys_Easyte
         if ($model = $this->getTemplateModel() )
         {
             $collection = $model->getCollection()->addFieldToFilter('parent_id',$model->getId());
+            $collection->getSelect()->order('position');
 
             foreach($collection AS $subModel) {
                 $subModel->load($subModel->getId());
@@ -51,45 +52,6 @@ class Webguys_Easytemplate_Block_Input_Renderer_Reference extends Webguys_Easyte
     {
         $configModel = Mage::getSingleton('easytemplate/input_parser');
         return $configModel->getTemplate($this->getReference())->getLabel();
-    }
-
-    public function getFieldsHtml()
-    {
-        $parentTemplate = $this->getParentParserField()->getTemplate();
-        $parentTemplate->getAttribute('reference');
-
-        $html = '';
-        if ($model = $this->getTemplateModel() )
-        {
-            /** @var Webguys_Easytemplate_Model_Template $model */
-
-            $collection = $model->getCollection()->addFieldToFilter('parent_id',$model->getId());
-
-            foreach($collection AS $subModel) {
-                $subModel->load( $subModel->getId() );
-
-                /** @var Webguys_Easytemplate_Model_Template $subModel */
-
-                foreach ($subModel->getFields() as $field) {
-                    /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
-
-                    /** @var $inputRenderer Webguys_Easytemplate_Block_Input_Renderer_Abstract */
-                    $inputRenderer = $field->getInputRenderer();
-
-                    if( $subModel->getId() )
-                    {
-                        $inputRenderer->setTemplateModel($subModel);
-                        $inputRenderer->setValue( $subModel->getFieldData( $field->getCode() ) );
-                    }
-
-                    $html .= $inputRenderer->toHtml();
-                }
-
-            }
-
-        }
-
-        return $html;
     }
 
 }

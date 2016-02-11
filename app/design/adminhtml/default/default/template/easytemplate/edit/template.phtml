@@ -100,13 +100,27 @@
                     i++;
                 }
             });
-
-
             Sortable.create("easy_templates_container", {
                 tag: 'div',
                 treeTag: 'div',
                 onUpdate: sortableUpdate
             });
+
+            $$('#easy_templates_container .reference_fields div').each(function(c){
+                if(c.hasClassName('template-box') && !c.hasClassName('no-display')) {
+                    $( c.id + '_sort_order').value = i;
+                    i++;
+                }
+            });
+            $$('#easy_templates_container .reference_fields').each(function(c){
+                Sortable.destroy(c);
+                Sortable.create(c, {
+                    tag: 'div',
+                    treeTag: 'div',
+                    onUpdate: sortableUpdate
+                });
+            });
+
         }
         sortableUpdate();
 
@@ -169,7 +183,7 @@
                     this.secondTemplate = new Template(template, this.templateSyntax);
 
                     var content = this.secondTemplate.evaluate(data);
-                    Element.insert(parentContainer, {'after':content});
+                    Element.insert(parentContainer, content);
 
                     content.evalScripts();
 
