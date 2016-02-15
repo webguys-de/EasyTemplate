@@ -178,7 +178,7 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
     /**
      * @return Webguys_Easytemplate_Model_Template[]
      */
-    public function getTemplateCollection()
+    public function getTemplateCollection($parent=null)
     {
         /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
         $configModel = Mage::getSingleton('easytemplate/input_parser');
@@ -192,7 +192,13 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         $collection = Mage::getModel('easytemplate/template')->getCollection();
         $collection->addGroupFilter($this);
         $collection->addFieldToFilter('code', array('in' => $validTemplates));
-        $collection->addFieldToFilter('parent_id', array('null'=>'null'));
+
+        if( $parent === null ) {
+            $collection->addFieldToFilter('parent_id', array('null'=>'null'));
+        } else {
+            $collection->addFieldToFilter('parent_id', $parent);
+        }
+
         $collection->getSelect()->order('main_table.position');
 
         foreach( $collection AS &$model )
