@@ -89,6 +89,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
                     /** @var $renderer Webguys_Easytemplate_Block_Renderer */
                     $renderer = Mage::app()->getLayout()->createBlock('easytemplate/renderer', 'easytemplate_category');
                     $renderer->setGroup( $group );
+                    $renderer->setParentBlock($block);
 
                     $block->setCmsBlockHtml( $renderer->toHtml() );
                 }
@@ -136,6 +137,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
                     /** @var $renderer Webguys_Easytemplate_Block_Renderer */
                     $renderer = Mage::app()->getLayout()->createBlock('easytemplate/renderer');
                     $renderer->setGroup( $group );
+                    $renderer->setParentBlock($block);
                     $html = $renderer->toHtml();
                 }
 
@@ -157,6 +159,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
                     /** @var $renderer Webguys_Easytemplate_Block_Renderer */
                     $renderer = Mage::app()->getLayout()->createBlock('easytemplate/renderer');
                     $renderer->setGroup( $group );
+                    $renderer->setParentBlock($block);
                     $html = $renderer->toHtml();
                 }
 
