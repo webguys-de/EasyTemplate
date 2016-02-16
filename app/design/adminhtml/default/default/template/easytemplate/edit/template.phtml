@@ -160,7 +160,9 @@
             div : $('easy_templates_container_top'),
             templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
             itemCount : 1,
-            add : function( code, label,parentContainer=false ) {
+            add : function( code, label,parentContainer ) {
+
+                if(typeof parentContainer === "undefined") parentContainer = false;
 
                 this.itemCount++;
 
