@@ -19,7 +19,7 @@ class Webguys_Easytemplate_Block_Input_Renderer_File extends Webguys_Easytemplat
 
     public function hasFile()
     {
-        return !empty($this->_value) && file_exists($this->getFileUri(true));
+        return !empty($this->_value);
     }
 
     public function isImageFile()
