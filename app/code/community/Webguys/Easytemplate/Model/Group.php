@@ -184,7 +184,8 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         $configModel = Mage::getSingleton('easytemplate/input_parser');
         $validTemplates = array();
 
-        foreach ($configModel->getTemplates() as $template) {
+        $templates = $configModel->getTemplates();
+        foreach ($templates as $template) {
             $validTemplates[] = $template->getCode();
         }
 
