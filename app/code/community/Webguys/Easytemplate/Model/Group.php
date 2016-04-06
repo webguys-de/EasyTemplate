@@ -34,11 +34,17 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
             $page = Mage::getModel('cms/page');
             $page->load( $this->getEntityId() );
 
-            $urlModel = Mage::getModel('core/url')->setStore($page->getData('_first_store_id'));
+            $storeCode = $page->getStoreCode();
+            if( !$storeCode || $storeCode == 'admin' )
+            {
+                $storeCode = Mage::app()->getDefaultStoreView()->getCode();
+            }
+
+            $urlModel = Mage::getModel('core/url')->setStore($storeCode);
             $href = $urlModel->getUrl(
                 $page->getIdentifier(), array(
                     '_current' => false,
-                    '_query' => '___store='.$page->getStoreCode().'&easytemplate_preview='.$this->getPreviewHash()
+                    '_query' => '___store='.$storeCode.'&easytemplate_preview='.$this->getPreviewHash()
                 )
             );
 
