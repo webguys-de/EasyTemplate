@@ -30,6 +30,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
                     'options'   => $sourceModel->toArray(),
                     'note'      => Mage::helper('easytemplate')->__('Use the template engine or default behavior'),
                     'disabled'  => false,
+                    'onchange'  => "if($('page_tabs_content_section')) { if(this.value=='easytemplate') { $('page_tabs_content_section').hide(); $('page_content').removeClassName('required-entry'); } else { $('page_tabs_content_section').show(); $('page_content').addClassName('required-entry'); } }"
                 ));
             }
         }
