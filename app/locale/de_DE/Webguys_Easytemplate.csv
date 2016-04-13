@@ -59,6 +59,8 @@
 "Spacer","Abstand"
 "Inserts empty line(s)","Leerzeilen einfügen"
 "Amount of lines","Anzahl der Zeilen"
+"Static Block","Statischer Block"
+"Inserts content of a static block","Fügt einen statischen CMS Block ein"
 "Textarea","Textfeld"
 "Display Category Products","Kategorieanzeige"
 "Display Products of a custom category","Zeigt Produkte der gewählten Kategorie an"
