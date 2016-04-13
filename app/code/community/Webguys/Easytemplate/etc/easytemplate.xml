@@ -285,6 +285,26 @@
                         </amount>
                     </fields>
                 </spacer>
+
+                <static_block template="easytemplate/template/static_block.phtml" type="easytemplate/template"
+                        translate="label,comment">
+                    <enabled>1</enabled>
+                    <label>Static Block</label>
+                    <image>images/easytemplate/static_block.png</image>
+                    <comment>Inserts content of a static block</comment>
+                    <sort_order>80</sort_order>
+                    <fields>
+                        <block_identifier translate="label,comment">
+                            <label>Static Block</label>
+                            <backend_model>easytemplate/template_data_int</backend_model>
+                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
+                            <input_renderer_source>catalog/category_attribute_source_page</input_renderer_source>
+                            <sort_order>10</sort_order>
+                            <default_value>1</default_value>
+                            <required>1</required>
+                        </block_identifier>
+                    </fields>
+                </static_block>
             </templates>
         </simple>
         <test translate="label">
