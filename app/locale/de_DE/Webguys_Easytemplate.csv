@@ -60,6 +60,7 @@
 "Inserts empty line(s)","Leerzeilen einfügen"
 "Amount of lines","Anzahl der Zeilen"
 "Static Block","Statischer Block"
+"Identifier of static block","Interner Bezeichner vom Statischen Block"
 "Inserts content of a static block","Fügt einen statischen CMS Block ein"
 "Textarea","Textfeld"
 "Display Category Products","Kategorieanzeige"

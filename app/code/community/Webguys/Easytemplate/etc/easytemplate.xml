@@ -296,9 +296,9 @@
                     <fields>
                         <block_identifier translate="label,comment">
                             <label>Static Block</label>
-                            <backend_model>easytemplate/template_data_int</backend_model>
-                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
-                            <input_renderer_source>catalog/category_attribute_source_page</input_renderer_source>
+                            <comment>Identifier of static block</comment>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
                             <sort_order>10</sort_order>
                             <default_value>1</default_value>
                             <required>1</required>
