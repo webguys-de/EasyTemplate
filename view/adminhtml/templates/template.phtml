@@ -1,23 +1,28 @@
 <?php /** @var $this \Webguys\Easytemplate\Block\Adminhtml\Template */ ?>
-<?php $templateConfig = $this->getTemplateConfig(); ?>
+<?php if ($templateConfig = $this->getTemplateConfig()) : ?>
 
-<form class="<?php echo $templateConfig->getId(); ?>">
+    <form class="<?php echo $templateConfig->getId(); ?>">
 
-    <?php foreach ($templateConfig->getFields() AS $field) : ?>
+        <?php foreach ($templateConfig->getFields() AS $field) : ?>
 
-        <div>
-            <label>
-                <?php echo $field->getLabel(); ?>
-            </label>
+            <div>
+                <label>
+                    <?php echo $field->getBackend()->getLabel(); ?>
+                </label>
 
-            <?php $field->getInputRenderer()->toHtml(); ?>
+                <?php //$field->getBackend()->getInput()->toHtml(); ?>
 
-            <input type="text"
-                   class=" input-text"
-                   value="ToDo"
-                   name="title"/>
-        </div>
+                <input type="text" class=" input-text" value="ToDo" name="title"/>
+            </div>
 
-    <?php endforeach; ?>
+        <?php endforeach; ?>
 
-</form>
+    </form>
+
+<?php else: ?>
+
+    <p>
+        <?php echo __('Template not found'); ?>
+    </p>
+
+<?php endif; ?>

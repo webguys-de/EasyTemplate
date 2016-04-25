@@ -47,7 +47,7 @@ class Template extends DataAbstract
      */
     public function getId()
     {
-        return $this->id;
+        return $this->code;
     }
 
     /**

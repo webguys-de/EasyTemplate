@@ -41,8 +41,6 @@ class View extends \Magento\Backend\App\Action
         $resultPage = $this->resultPageFactory->create();
         $block = $resultPage->getLayout()->getBlock('easytemplate_template_edit');
 
-        die( $block->toHtml() ); // TODO
-
         $this->resultJson->setData(array(
             'html' => $block->toHtml()
         ));
