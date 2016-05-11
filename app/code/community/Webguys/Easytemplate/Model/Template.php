@@ -82,7 +82,11 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
             $this->setValidTo(date('Y-m-d', $time));
         }
 
-        $this->_field_data = $data['fields'];
+        if (array_key_exists('fields', $data)) {
+            $this->_field_data = $data['fields'];
+        } else {
+            $this->_field_data = array();
+        }
     }
 
     protected function _isValid()
