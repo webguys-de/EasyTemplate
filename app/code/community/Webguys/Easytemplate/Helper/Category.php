@@ -43,7 +43,7 @@ class Webguys_Easytemplate_Helper_Category extends Mage_Core_Helper_Abstract
             $newItem->setEntityType(self::ENTITY_TYPE_CATEGORY);
             $newItem->setEntityId($id);
             $newItem->setStoreId($store_id);
-            $newItem->save();
+            //$newItem->save();
 
             return $newItem;
         }
