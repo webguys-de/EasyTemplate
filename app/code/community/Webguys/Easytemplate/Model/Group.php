@@ -155,7 +155,14 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
             }
             $template->setGroupId( $this->getId() );
 
-            if( $template_data['is_delete'] == '1' )
+            $parentIsDelete = false;
+            if( $template_data['parent_id']
+                && $data[ $template_data['parent_id'] ]
+                && $data[ $template_data['parent_id'] ]['is_delete'] == 1  ) {
+                $parentIsDelete = true;
+            }
+
+            if( $template_data['is_delete'] == '1' || $parentIsDelete)
             {
                 if( $template->getId() )
                 {

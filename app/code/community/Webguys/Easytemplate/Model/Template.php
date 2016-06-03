@@ -71,6 +71,18 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
         return $clone;
     }
 
+    protected function _beforeDelete()
+    {
+        if($this->getId()){
+            $col = $this->getCollection()->addFieldToFilter('parent_id',$this->getId());
+            foreach( $col AS $item )
+            {
+                $item->delete();
+            }
+        }
+        return parent::_beforeDelete();
+    }
+
     public function importData( Array $data)
     {
         $this->setCode( $data['code'] );
