@@ -11,7 +11,9 @@ class Webguys_Easytemplate_Helper_Category extends Mage_Core_Helper_Abstract
     /**
      * Returns an existing block entry or creates a new one
      *
-     * @param $id CategoryId
+     * @param int $id ID of category to handle
+     * @param int $store_id ID of store to handle
+     * @param boolean $store_fallback fall back to default scope is there is nothing on store view scope
      * @return Webguys_Easytemplate_Model_Group
      */
     public function getGroupByCategoryId($id, $store_id, $store_fallback = false)
@@ -24,6 +26,13 @@ class Webguys_Easytemplate_Helper_Category extends Mage_Core_Helper_Abstract
 
         if ($store_fallback) {
             $collection->addFieldToFilter('store_id', array('in' => array($store_id, 0)));
+
+            // do not use empty store view groups and also filter deactivated items
+            $collection->getSelect()
+                ->joinLeft('easytemplate','easytemplate.group_id = main_table.id AND active = 1', array())
+                ->group(array('group_id','store_id'))
+                ->having('(count(easytemplate.group_id) > 0 AND store_id != 0) OR store_id = 0')
+            ;
         } else {
             $collection->addFieldToFilter('store_id', $store_id);
         }
@@ -43,7 +52,7 @@ class Webguys_Easytemplate_Helper_Category extends Mage_Core_Helper_Abstract
             $newItem->setEntityType(self::ENTITY_TYPE_CATEGORY);
             $newItem->setEntityId($id);
             $newItem->setStoreId($store_id);
-            //$newItem->save();
+            $newItem->save();
 
             return $newItem;
         }

@@ -213,12 +213,6 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
             $category->getStoreId()
         );
 
-        if ($group->getTemplateCollection()->getSize() == 0) {
-            // Do not save easytemplate on category when it has no items.
-            // So a fallback of empty categories on store view scope to easytemplate on default scope is possible
-            return;
-        }
-
         /** @var $helper Webguys_Easytemplate_Helper_Data */
         $helper = Mage::helper('easytemplate');
         $helper->saveTemplateInformation($group);
