@@ -35,6 +35,8 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
                         'disabled' => false,
                     )
                 );
+                /** Break the loop after default/first fieldset */
+                break; 
             }
         }
     }
