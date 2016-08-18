@@ -20,7 +20,7 @@ class Webguys_Easytemplate_Block_Input_Renderer_Reference extends Webguys_Easyte
             $collection = $model->getCollection()->addFieldToFilter('parent_id', $model->getId());
             $collection->getSelect()->order('position');
 
-            foreach ($collection AS $subModel) {
+            foreach ($collection as $subModel) {
                 $subModel->load($subModel->getId());
 
                 /** @var Webguys_Easytemplate_Block_Adminhtml_Edit_Box $boxBlock */

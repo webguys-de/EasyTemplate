@@ -61,7 +61,7 @@ class Webguys_Easytemplate_Block_Template_Product_List extends Mage_Catalog_Bloc
                 $select->where('e.sku IN (?)', $skus);
 
                 $escapedSkus = array();
-                foreach ($skus AS $sku) {
+                foreach ($skus as $sku) {
                     $escapedSkus[] = $collection->getConnection()->quote($sku);
                 }
                 $select->order(new Zend_Db_Expr('FIELD(e.sku, ' . join(',', $escapedSkus) . ')'));

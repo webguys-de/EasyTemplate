@@ -33,8 +33,7 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
             $page->load($this->getEntityId());
 
             $storeCode = $page->getStoreCode();
-            if( !$storeCode || $storeCode == 'admin' )
-            {
+            if (!$storeCode || $storeCode == 'admin') {
                 $storeCode = Mage::app()->getDefaultStoreView()->getCode();
             }
 
@@ -118,7 +117,7 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         $newGroup->setCopyOf($this->getId());
         $newGroup->save();
 
-        foreach ($this->getTemplateCollection() AS $templateModel) {
+        foreach ($this->getTemplateCollection() as $templateModel) {
             /** @var $newTemplate Webguys_Easytemplate_Model_Template */
             $newTemplate = $templateModel->duplicate($newGroup->getId());
             $newTemplate->save();
@@ -139,7 +138,7 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
 
         $parentIdMapping = array();
 
-        foreach ($data AS $id => $templateData) {
+        foreach ($data as $id => $templateData) {
 
             /** @var $template Webguys_Easytemplate_Model_Template */
             $template = Mage::getModel('easytemplate/template');
@@ -152,16 +151,16 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
             $template->setGroupId($this->getId());
 
             $parentIsDelete = false;
-            if(
-                $template_data['parent_id'] &&
-                $data[$template_data['parent_id']] &&
-                $data[$template_data['parent_id']]['is_delete'] == 1
+            if (
+                $templateData['parent_id'] &&
+                $data[$templateData['parent_id']] &&
+                $data[$templateData['parent_id']]['is_delete'] == 1
             ) {
                 $parentIsDelete = true;
             }
 
-            if($template_data['is_delete'] == '1' || $parentIsDelete) {
-                if($template->getId()) {
+            if ($templateData['is_delete'] == '1' || $parentIsDelete) {
+                if ($template->getId()) {
                     $template->delete();
                 }
             } else {
@@ -209,7 +208,7 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
 
         $collection->getSelect()->order('main_table.position');
 
-        foreach ($collection AS $model) {
+        foreach ($collection as $model) {
             $model->load($model->getId());
         }
 
