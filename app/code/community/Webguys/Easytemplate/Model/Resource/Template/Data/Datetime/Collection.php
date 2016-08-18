@@ -11,5 +11,4 @@ class Webguys_Easytemplate_Model_Resource_Template_Data_Datetime_Collection
     {
         $this->_init('easytemplate/template_data_datetime');
     }
-
 }

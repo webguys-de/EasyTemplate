@@ -13,7 +13,6 @@
 abstract class Webguys_Easytemplate_Model_Template_Data_Abstract
     extends Mage_Core_Model_Abstract
 {
-
     protected $_parent_parser_field = null;
 
     public function setParentParserField($field)
@@ -30,15 +29,15 @@ abstract class Webguys_Easytemplate_Model_Template_Data_Abstract
         return $this->_parent_parser_field;
     }
 
-    public function importData( $data )
+    public function importData($data)
     {
-        $this->setField( $this->getParentParserField()->getCode() );
-        $this->setValue( $data );
+        $this->setField($this->getParentParserField()->getCode());
+        $this->setValue($data);
     }
 
     public function getInternalName()
     {
-        return get_class( $this );
+        return get_class($this);
     }
 
     /**
@@ -47,7 +46,8 @@ abstract class Webguys_Easytemplate_Model_Template_Data_Abstract
      * @param $template Webguys_Easytemplate_Model_Template
      * @return $this
      */
-    public function loadByTemplate($template) {
+    public function loadByTemplate($template)
+    {
         $fieldCode = $this->getParentParserField()->getCode();
 
         /** @var $collection Webguys_Easytemplate_Model_Resource_Template_Data_Collection_Abstract */

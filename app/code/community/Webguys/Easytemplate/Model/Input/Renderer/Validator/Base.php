@@ -33,12 +33,15 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_Base extends Mage_Core
      */
     public function beforeFieldSave($value, $oldValue)
     {
-        Mage::dispatchEvent('easytemplate_backend_field_save_before', array(
-            'template' => $this->getTemplate(),
-            'field' => $this->getField(),
-            'old_value' => $oldValue,
-            'value' => $value
-        ));
+        Mage::dispatchEvent(
+            'easytemplate_backend_field_save_before',
+            array(
+                'template' => $this->getTemplate(),
+                'field' => $this->getField(),
+                'old_value' => $oldValue,
+                'value' => $value
+            )
+        );
 
         return $value;
     }
@@ -49,11 +52,14 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_Base extends Mage_Core
      */
     public function afterFieldSave($value)
     {
-        Mage::dispatchEvent('easytemplate_backend_field_save_after', array(
-            'template' => $this->getTemplate(),
-            'field' => $this->getField(),
-            'value' => $value
-        ));
+        Mage::dispatchEvent(
+            'easytemplate_backend_field_save_after',
+            array(
+                'template' => $this->getTemplate(),
+                'field' => $this->getField(),
+                'value' => $value
+            )
+        );
 
         return $this;
     }

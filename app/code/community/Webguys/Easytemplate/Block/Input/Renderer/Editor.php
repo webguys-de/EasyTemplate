@@ -25,16 +25,20 @@ class Webguys_Easytemplate_Block_Input_Renderer_Editor extends Webguys_Easytempl
     public function getEditor()
     {
         if (is_null($this->_editor)) {
-            $wysiwygConfig = Mage::getSingleton('cms/wysiwyg_config')->getConfig(array(
-                'tab_id' => 'templates'
-            ));
+            $wysiwygConfig = Mage::getSingleton('cms/wysiwyg_config')->getConfig(
+                array(
+                    'tab_id' => 'templates'
+                )
+            );
 
-            $editor = new Varien_Data_Form_Element_Editor(array(
-                'name'      => 'template[{{id}}][fields]['.$this->getCode().']',
-                'required'  => $this->getRequired(),
-                'disabled'  => false,
-                'config'    => $wysiwygConfig
-            ));
+            $editor = new Varien_Data_Form_Element_Editor(
+                array(
+                    'name' => 'template[{{id}}][fields][' . $this->getCode() . ']',
+                    'required' => $this->getRequired(),
+                    'disabled' => false,
+                    'config' => $wysiwygConfig
+                )
+            );
 
             $editor->setId($this->getCode());
             $editor->setValue($this->getValue());

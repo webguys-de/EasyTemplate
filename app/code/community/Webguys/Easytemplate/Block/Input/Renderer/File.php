@@ -25,7 +25,7 @@ class Webguys_Easytemplate_Block_Input_Renderer_File extends Webguys_Easytemplat
     public function isImageFile()
     {
         $i = getimagesize($this->getFileUri(true));
-        return (in_array($i[2] , array(IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG)));
+        return (in_array($i[2], array(IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG)));
     }
 
     public function getFileUri($asPath = false)
@@ -37,9 +37,15 @@ class Webguys_Easytemplate_Block_Input_Renderer_File extends Webguys_Easytemplat
         $templateModel = $this->getTemplateModel();
 
         if ($asPath) {
-            return $fileHelper->getDestinationFilePath($templateModel->getGroupId(), $templateModel->getId()). DS . $this->_value;
+            return $fileHelper->getDestinationFilePath(
+                $templateModel->getGroupId(),
+                $templateModel->getId()
+            ) . DS . $this->_value;
         } else {
-            return $fileHelper->getDestinationUrl($templateModel->getGroupId(), $templateModel->getId()). DS . $this->_value;
+            return $fileHelper->getDestinationUrl(
+                $templateModel->getGroupId(),
+                $templateModel->getId()
+            ) . DS . $this->_value;
         }
     }
 }

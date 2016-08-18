@@ -11,5 +11,4 @@ class Webguys_Easytemplate_Model_Resource_Group_Collection
     {
         $this->_init('easytemplate/group');
     }
-
 }

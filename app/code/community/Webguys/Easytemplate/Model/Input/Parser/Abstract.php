@@ -17,7 +17,7 @@ abstract class Webguys_Easytemplate_Model_Input_Parser_Abstract extends Varien_O
     /** @return Varien_Simplexml_Config */
     public function getConfig()
     {
-        if( !$this->_config ) {
+        if (!$this->_config) {
             $this->_config = new Varien_Simplexml_Config();
         }
         return $this->_config;

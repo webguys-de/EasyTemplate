@@ -10,7 +10,6 @@
 class Webguys_Easytemplate_Model_Input_Parser_Template
     extends Webguys_Easytemplate_Model_Input_Parser_Abstract
 {
-
     public function isHidden()
     {
         $hidden = $this->getData('hidden');
@@ -93,7 +92,6 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
 
             // Sort fields by sort_order
             usort($result, array($this, 'orderFields'));
-
         }
 
         return $result;

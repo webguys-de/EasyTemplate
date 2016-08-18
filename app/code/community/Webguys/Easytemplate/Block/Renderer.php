@@ -14,7 +14,7 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
     {
         parent::__construct($args);
 
-        if( method_exists($this,'addCacheTag') ) {
+        if (method_exists($this, 'addCacheTag')) {
             $this->addCacheTag(Webguys_Easytemplate_Helper_Cache::CACHE_TAG);
         }
     }
@@ -39,9 +39,9 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
      * @param $group Webguys_Easytemplate_Model_Group
      * @return $this
      */
-    public function setChildsBasedOnGroup($group,$parent=null)
+    public function setChildsBasedOnGroup($group, $parent = null)
     {
-        if( !$this->countChildren() ) {
+        if (!$this->countChildren()) {
             Varien_Profiler::start('easytemplate_template_rendering');
 
             /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
@@ -90,14 +90,17 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                                 $valueTransport = new Varien_Object();
                                 $valueTransport->setValue($frontendValue);
 
-                                Mage::dispatchEvent('easytemplate_frontend_prepared_var', array(
-                                    'template' => $template,
-                                    'template_model' => $model,
-                                    'field' => $field,
-                                    'block' => $childBlock,
-                                    'validator' => $inputValidator,
-                                    'value' => $valueTransport
-                                ));
+                                Mage::dispatchEvent(
+                                    'easytemplate_frontend_prepared_var',
+                                    array(
+                                        'template' => $template,
+                                        'template_model' => $model,
+                                        'field' => $field,
+                                        'block' => $childBlock,
+                                        'validator' => $inputValidator,
+                                        'value' => $valueTransport
+                                    )
+                                );
 
                                 $childBlock->setData($fieldCode, $valueTransport->getValue());
                             }
@@ -121,9 +124,14 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
 
     protected function _beforeToHtml()
     {
-        $this->setChildsBasedOnGroup( $this->getGroup() );
+        $this->setChildsBasedOnGroup($this->getGroup());
 
-        Mage::dispatchEvent('easytemplate_frontend_before_to_html', array('block' => $this));
+        Mage::dispatchEvent(
+            'easytemplate_frontend_before_to_html',
+            array(
+                'block' => $this
+            )
+        );
 
         return parent::_beforeToHtml();
     }

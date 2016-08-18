@@ -29,13 +29,12 @@ class Webguys_Easytemplate_Helper_Page extends Mage_Core_Helper_Abstract
         $collection = Mage::getModel('easytemplate/group')->getCollection()
             ->addFieldToFilter('entity_type', self::ENTITY_TYPE_PAGE)
             ->addFieldToFilter('entity_id', $id)
-            ->addFieldToFilter('copy_of', array('null' => true) )
+            ->addFieldToFilter('copy_of', array('null' => true))
             ->load();
 
         if ($collection->getSize() >= 1) {
             return $collection->getFirstItem()->getCopyOfInstance();
-        }
-        else {
+        } else {
             // Return new item
             /** @var $newItem Webguys_Easytemplate_Model_Group */
             $newItem = Mage::getModel('easytemplate/group');
@@ -46,5 +45,4 @@ class Webguys_Easytemplate_Helper_Page extends Mage_Core_Helper_Abstract
             return $newItem;
         }
     }
-
 }

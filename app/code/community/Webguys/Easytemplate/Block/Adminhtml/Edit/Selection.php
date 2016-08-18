@@ -9,7 +9,7 @@
 class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Block_Template
 {
     const TEMPLATE_TYPES_PATH = 'easytemplate';
-    const NO_IMAGE_PATH       = 'images/easytemplate/no-image.png';
+    const NO_IMAGE_PATH = 'images/easytemplate/no-image.png';
 
     public function getCategoryLabel($_category)
     {
@@ -19,8 +19,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Bloc
         foreach ($config->getNode($path)->children() as $category) {
             $categ = $category->asArray();
             if (isset($categ['enabled']) && $categ['enabled']) {
-                if( $category->getName() == $_category )
-                {
+                if ($category->getName() == $_category) {
                     return $categ['label'];
                 }
             }
@@ -30,10 +29,10 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Bloc
 
     public function getTemplateImage($image)
     {
-        if( $image == ''){
+        if ($image == '') {
             return self::NO_IMAGE_PATH;
         }
-        if( file_exists( Mage::getBaseDir('skin') . '/adminhtml/default/default/' .$image )){
+        if (file_exists(Mage::getBaseDir('skin') . '/adminhtml/default/default/' . $image)) {
             return $image;
         }
         return self::NO_IMAGE_PATH;
@@ -69,5 +68,4 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Bloc
 
         return $categories;
     }
-
 }

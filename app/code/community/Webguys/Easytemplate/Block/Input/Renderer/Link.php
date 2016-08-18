@@ -6,7 +6,6 @@
  */
 class Webguys_Easytemplate_Block_Input_Renderer_Link extends Webguys_Easytemplate_Block_Input_Renderer_Abstract
 {
-
     // TODO: Clean up code
 
     public function __construct()
@@ -22,15 +21,12 @@ class Webguys_Easytemplate_Block_Input_Renderer_Link extends Webguys_Easytemplat
 
     public function getEntityCode()
     {
-        $code = current( explode('/', $this->getValue() ) );
-        if( $code == 'product' )
-        {
+        $code = current(explode('/', $this->getValue()));
+        if ($code == 'product') {
             return 'product';
-        } else if( $code == 'category' )
-        {
+        } elseif ($code == 'category') {
             return 'category';
-        } else if( is_numeric( $this->getValue() ) )
-        {
+        } elseif (is_numeric($this->getValue())) {
             return 'cms';
         }
 
@@ -42,24 +38,17 @@ class Webguys_Easytemplate_Block_Input_Renderer_Link extends Webguys_Easytemplat
      */
     public function getEntityModel()
     {
-        if( $this->getEntityCode() == 'product' )
-        {
+        if ($this->getEntityCode() == 'product') {
             $model = Mage::getModel('catalog/product');
-            $model->load( $this->getEntityId() );
+            $model->load($this->getEntityId());
             return $model;
-        }
-
-        if( $this->getEntityCode() == 'category' )
-        {
+        } elseif ($this->getEntityCode() == 'category') {
             $model = Mage::getModel('catalog/category');
-            $model->load( $this->getEntityId() );
+            $model->load($this->getEntityId());
             return $model;
-        }
-
-        if( $this->getEntityCode() == 'cms' )
-        {
+        } elseif ($this->getEntityCode() == 'cms') {
             $model = Mage::getModel('cms/page');
-            $model->load( $this->getEntityId() );
+            $model->load($this->getEntityId());
             return $model;
         }
 
@@ -70,23 +59,21 @@ class Webguys_Easytemplate_Block_Input_Renderer_Link extends Webguys_Easytemplat
     {
         $model = $this->getEntityModel();
 
-        if( $this->getEntityCode() == 'product' )
-        {
-            return '<div class="hover">#'.$model->getId().': '. $model->getName() . '<span class="tooltip">' . $this->__('Sku') . ': ' . $model->getSku() . '</span></div>';
-        } else if( $this->getEntityCode() == 'cms' ) {
-            return '#'.$model->getId().': '.$model->getTitle();
+        if ($this->getEntityCode() == 'product') {
+            return '<div class="hover">#' . $model->getId() . ': ' . $model->getName() . '<span class="tooltip">' . $this->__('Sku') . ': ' . $model->getSku() . '</span></div>';
+        } elseif ($this->getEntityCode() == 'cms') {
+            return '#' . $model->getId() . ': ' . $model->getTitle();
         }
 
-        return '#'.$model->getId().': '.$model->getName();
+        return '#' . $model->getId() . ': ' . $model->getName();
     }
 
     public function getEntityId()
     {
-        if( $this->getEntityCode() == 'cms' )
-        {
+        if ($this->getEntityCode() == 'cms') {
             return $this->getValue();
         }
 
-        return end( explode('/', $this->getValue() ) );
+        return end(explode('/', $this->getValue()));
     }
 }

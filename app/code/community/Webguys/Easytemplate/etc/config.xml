@@ -5,7 +5,6 @@
             <version>1.0.0.6</version>
         </Webguys_Easytemplate>
     </modules>
-
     <global>
         <helpers>
             <easytemplate>
@@ -73,7 +72,6 @@
             </types>
         </cache>
     </global>
-
     <frontend>
         <events>
             <cms_page_render>
@@ -112,7 +110,6 @@
             </updates>
         </layout>
     </frontend>
-
     <adminhtml>
         <events>
             <adminhtml_cms_page_edit_tab_main_prepare_form>
@@ -196,7 +193,6 @@
             </modules>
         </translate>
     </adminhtml>
-
     <admin>
         <routers>
             <adminhtml>
@@ -208,15 +204,13 @@
             </adminhtml>
         </routers>
     </admin>
-
     <phpunit>
         <suite>
             <modules>
-                <Webguys_Easytemplate />
+                <Webguys_Easytemplate/>
             </modules>
         </suite>
     </phpunit>
-
     <default>
         <easytemplate>
             <configuration>

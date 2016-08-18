@@ -7,7 +7,6 @@
 class Webguys_Easytemplate_Model_Template_Data_Decimal
     extends Webguys_Easytemplate_Model_Template_Data_Abstract
 {
-
     /**
      * Prefix of model events names
      *

@@ -6,7 +6,6 @@
  */
 class Webguys_Easytemplate_Block_Input_Renderer_Category extends Webguys_Easytemplate_Block_Input_Renderer_Abstract
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -24,14 +23,14 @@ class Webguys_Easytemplate_Block_Input_Renderer_Category extends Webguys_Easytem
     public function getEntityModel()
     {
         $model = Mage::getModel('catalog/category');
-        $model->load( $this->getEntityId() );
+        $model->load($this->getEntityId());
         return $model;
     }
 
     public function getName()
     {
         $model = $this->getEntityModel();
-        return '#'.$model->getId().': '. $model->getSku() .' - ' .$model->getName();
+        return '#' . $model->getId() . ': ' . $model->getSku() . ' - ' . $model->getName();
     }
 
     public function getEntityId()

@@ -20,14 +20,16 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box extends Mage_Adminhtml_Block
     {
         /** @var $button Mage_Core_Block_Abstract */
         $button = $this->getLayout()->createBlock('adminhtml/widget_button')
-            ->setData(array(
-                'id' => $id,
-                'label' => $this->helper('easytemplate')->__('Edit'),
-                'onclick' => '$(\'template_content_' . $id . '\').show();$(\'template_overview_' . $id . '\').hide();',
-                'class' => 'scalable back',
-                'title' => $this->helper('easytemplate')->__('Edit'),
-                'style' => 'margin-top: 5px;'
-            ));
+            ->setData(
+                array(
+                    'id' => $id,
+                    'label' => $this->helper('easytemplate')->__('Edit'),
+                    'onclick' => '$(\'template_content_' . $id . '\').show();$(\'template_overview_' . $id . '\').hide();',
+                    'class' => 'scalable back',
+                    'title' => $this->helper('easytemplate')->__('Edit'),
+                    'style' => 'margin-top: 5px;'
+                )
+            );
         return $button->toHtml();
     }
 
@@ -35,13 +37,15 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box extends Mage_Adminhtml_Block
     {
         /** @var $button Mage_Core_Block_Abstract */
         $button = $this->getLayout()->createBlock('adminhtml/widget_button')
-            ->setData(array(
-                'id' => $id.'_'.$position,
-                'label' => $this->helper('easytemplate')->__('Close'),
-                'onclick' => '$(\'template_content_' . $id . '\').hide();$(\'template_overview_' . $id . '\').show();',
-                'class' => 'easytemplate scalable back f-right '.$position,
-                'title' => $this->helper('easytemplate')->__('Close')
-            ));
+            ->setData(
+                array(
+                    'id' => $id . '_' . $position,
+                    'label' => $this->helper('easytemplate')->__('Close'),
+                    'onclick' => '$(\'template_content_' . $id . '\').hide();$(\'template_overview_' . $id . '\').show();',
+                    'class' => 'easytemplate scalable back f-right ' . $position,
+                    'title' => $this->helper('easytemplate')->__('Close')
+                )
+            );
         return $button->toHtml();
     }
 
@@ -87,7 +91,6 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box extends Mage_Adminhtml_Block
                     $html = str_replace('{{' . $replace . '}}', $to, $html);
                 }
             }
-
         }
 
         return $html;
@@ -95,12 +98,15 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box extends Mage_Adminhtml_Block
 
     protected function _prepareLayout()
     {
-        $this->setChild('delete_button',
+        $this->setChild(
+            'delete_button',
             $this->getLayout()->createBlock('adminhtml/widget_button')
-                ->setData(array(
-                    'label' => Mage::helper('easytemplate')->__('Delete Template'),
-                    'class' => 'delete delete-easy-template '
-                ))
+                ->setData(
+                    array(
+                        'label' => Mage::helper('easytemplate')->__('Delete Template'),
+                        'class' => 'delete delete-easy-template '
+                    )
+                )
         );
 
         return parent::_prepareLayout();

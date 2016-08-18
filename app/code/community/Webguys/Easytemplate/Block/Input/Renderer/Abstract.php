@@ -20,12 +20,10 @@
  */
 abstract class Webguys_Easytemplate_Block_Input_Renderer_Abstract extends Mage_Adminhtml_Block_Template
 {
-
     /**
      * @var Webguys_Easytemplate_Model_Input_Parser_Field
      */
     protected $_parent_parser_field = null;
-
     protected $_value = null;
 
     public function setParentParserField($field)
@@ -38,15 +36,14 @@ abstract class Webguys_Easytemplate_Block_Input_Renderer_Abstract extends Mage_A
         return $this->_parent_parser_field;
     }
 
-    public function setValue( $value )
+    public function setValue($value)
     {
         $this->_value = $value;
     }
 
     public function getValue()
     {
-        if( $this->_value === null )
-        {
+        if ($this->_value === null) {
             return $this->getDefault();
         }
         return $this->_value;

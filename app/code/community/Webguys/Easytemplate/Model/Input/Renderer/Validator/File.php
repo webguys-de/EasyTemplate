@@ -63,20 +63,23 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_File extends Webguys_E
 
                 $uploader = new Mage_Core_Model_File_Uploader($uploaderData);
                 //$uploader->setAllowedExtensions(array('jpg','jpeg','gif','png','pdf'));
-                $uploader->addValidateCallback('easytemplate_template_file',
-                    $fileHelper, 'validateUploadFile');
+                $uploader->addValidateCallback(
+                    'easytemplate_template_file',
+                    $fileHelper, 'validateUploadFile'
+                );
                 $uploader->setAllowRenameFiles(false);
                 $uploader->setFilesDispersion(false);
                 $result = $uploader->save($destinationPath);
 
-                Mage::dispatchEvent('easytemplate_upload_file_after', array(
-                    'result' => $result
-                ));
+                Mage::dispatchEvent(
+                    'easytemplate_upload_file_after',
+                    array(
+                        'result' => $result
+                    )
+                );
 
                 $value = $result['file'];
-
-            }
-            else {
+            } else {
                 // TODO: Error handling
             }
         }
@@ -95,5 +98,4 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_File extends Webguys_E
     {
         return ($this->extractFilePostInformation('error') === UPLOAD_ERR_OK);
     }
-
 }

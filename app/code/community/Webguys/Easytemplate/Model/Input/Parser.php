@@ -6,7 +6,6 @@
  */
 class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
 {
-
     protected $_templates = null;
 
     public function getXmlConfig()
@@ -20,8 +19,10 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
             Mage::getConfig()->loadModulesConfiguration('easytemplate.xml', $config);
             $xmlConfig = $config;
             if (Mage::app()->useCache('config')) {
-                Mage::app()->saveCache($config->getXmlString(), 'easytemplate_config',
-                    array(Mage_Core_Model_Config::CACHE_TAG));
+                Mage::app()->saveCache(
+                    $config->getXmlString(), 'easytemplate_config',
+                    array(Mage_Core_Model_Config::CACHE_TAG)
+                );
 
                 if (Mage::getStoreConfig('easytemplate/configuration/automatically_clean_database', Mage::app()->getStore()->getId())) {
                     // Clean the database just if caching is active to avoid performance issues
@@ -97,8 +98,8 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
                     foreach ($config->getNode($templatesPath)->children() as $template) {
                         /** @var $templateParser Webguys_Easytemplate_Model_Input_Parser_Template */
                         $templateParser = Mage::getModel('easytemplate/input_parser_template');
-                        $templateParser->setConfig( $template );
-                        $templateParser->setCategory( $category->getName() );
+                        $templateParser->setConfig($template);
+                        $templateParser->setCategory($category->getName());
 
                         if ($templateParser->isEnabled()) {
                             $result[] = $templateParser;
@@ -116,18 +117,15 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
         return $this->_templates;
     }
 
-    public function getTemplate( $code )
+    public function getTemplate($code)
     {
         $templates = $this->getTemplates();
 
         /** @var $template Webguys_Easytemplate_Model_Input_Parser_Template */
         foreach ($templates as $template) {
-
-            if ($template->getCode() == $code)
-            {
+            if ($template->getCode() == $code) {
                 return $template;
             }
-
         }
 
         return false;

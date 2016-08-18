@@ -14,23 +14,20 @@
 class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate_Model_Input_Parser_Abstract
 {
     protected $_backendModel;
-
     protected $_inputRenderer;
 
-    public function getBackendModelAlias( $name )
+    public function getBackendModelAlias($name)
     {
-        if ( strpos($name, '/') === false )
-        {
+        if (strpos($name, '/') === false) {
             $name = 'easytemplate/template_data_' . $name;
         }
 
         return $name;
     }
 
-    public function getInputRenderAlias( $name )
+    public function getInputRenderAlias($name)
     {
-        if ( strpos($name, '/') === false )
-        {
+        if (strpos($name, '/') === false) {
             $name = 'easytemplate/input_renderer_' . $name;
         }
 
@@ -45,15 +42,14 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
         if (is_null($this->_backendModel)) {
             if ($backendmodel = $this->getData('backend_model')) {
                 $model = Mage::getModel(
-                    $this->getBackendModelAlias( $backendmodel )
+                    $this->getBackendModelAlias($backendmodel)
                 );
-            }
-            else {
+            } else {
                 $inputRenderer = $this->getInputRenderer();
                 $model = $inputRenderer->getDefaultBackendModel();
             }
 
-            $model->setParentParserField( $this );
+            $model->setParentParserField($this);
 
             $this->_backendModel = $model;
         }
@@ -67,20 +63,20 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
     {
         if (is_null($this->_inputRenderer)) {
             $template = $this->getTemplate();
-            $name = $template->getCode().'_'.$this->getCode();
+            $name = $template->getCode() . '_' . $this->getCode();
 
             /** @var $block Webguys_Easytemplate_Block_Input_Renderer_Abstract */
             $block = Mage::app()->getLayout()->createBlock(
-                $this->getBackendModelAlias( $this->getData('input_renderer') ),
-                'easytemplate_template_field_'.$name
+                $this->getBackendModelAlias($this->getData('input_renderer')),
+                'easytemplate_template_field_' . $name
             );
-            $block->setParentParserField( $this );
-            $block->setCode( $this->getCode() );
-            $block->setLabel( $this->getLabel() );
-            $block->setComment( $this->getComment() );
-            $block->setDefault( $this->getDefaultValue() );
-            $block->setRequired( $this->getRequired() );
-            $block->setSource( $this->getInputRendererSource() );
+            $block->setParentParserField($this);
+            $block->setCode($this->getCode());
+            $block->setLabel($this->getLabel());
+            $block->setComment($this->getComment());
+            $block->setDefault($this->getDefaultValue());
+            $block->setRequired($this->getRequired());
+            $block->setSource($this->getInputRendererSource());
 
             $this->_inputRenderer = $block;
         }
@@ -98,8 +94,7 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
 
         if ($model = Mage::getModel($modelName)) {
             return $model;
-        }
-        else {
+        } else {
             return Mage::getModel('easytemplate/input_renderer_validator_base');
         }
     }
@@ -109,12 +104,9 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
         $inputRendererSource = $this->getData('input_renderer_source');
         $rendererModel = Mage::getModel($inputRendererSource);
 
+        if ($rendererModel) {
 
-
-        if ($rendererModel ) {
-
-            if( $rendererModel instanceof Webguys_Easytemplate_Model_Input_Renderer_Source_Abstract )
-            {
+            if ($rendererModel instanceof Webguys_Easytemplate_Model_Input_Renderer_Source_Abstract) {
                 $rendererModel->setParentField($this);
             }
 
@@ -128,5 +120,4 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
     {
         return (string)$this->_config->getNode($name);
     }
-
 }
