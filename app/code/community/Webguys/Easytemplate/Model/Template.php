@@ -188,6 +188,6 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
         if ($field === null) {
             return $this->_field_data;
         }
-        return $this->_field_data[$field];
+        return isset($this->_field_data[$field])? $this->_field_data[$field] : null;
     }
 }
