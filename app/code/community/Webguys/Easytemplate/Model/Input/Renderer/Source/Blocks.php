@@ -14,7 +14,7 @@ class Webguys_Easytemplate_Model_Input_Renderer_Source_Blocks extends Webguys_Ea
 
         // Avoid to choose current block (will result in loop)
         if ($curBlock = Mage::registry('cms_block')) {
-            $blockCollection->addFieldToFilter('block_id', array('neq' => $curBlock->getId()));
+            $blockCollection->addFieldToFilter('main_table.block_id', array('neq' => $curBlock->getId()));
         }
 
         $blockCollection->load();
