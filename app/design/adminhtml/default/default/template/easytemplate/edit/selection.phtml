@@ -1,25 +1,27 @@
 <?php /** @var $this Webguys_Easytemplate_Block_Adminhtml_Edit_Selection */ ?>
 
 <?php $first = true;
-foreach ($this->getTemplates() as $template): ?>
+foreach ($this->getTemplates() AS $template) : ?>
 
-    <div class="template-wrapper <?php if ($first): ?>first<?php endif; ?>">
+    <div class="template-wrapper <?php if ($first) : ?>first<?php endif; ?>">
 
         <div class="section-title">
             <?php echo $this->getCategoryLabel($template['label']); ?>
         </div>
 
-        <?php if (is_array($template['items']) && count($template['items']) > 0): ?>
+        <?php if (is_array($template['items']) && count($template['items']) > 0) : ?>
 
-            <?php foreach ($template['items'] as $item): ?>
-                <div class="template">
-                    <div class="title"><a
-                            onclick="easyTemplate.add('<?php echo $item['value'] ?>', '<?php echo $item['label'] ?>')"><?php echo $item['label'] ?></a>
+            <?php foreach ($template['items'] AS $item) : ?>
+                <?php if (!$item['hidden']): ?>
+                    <div class="template">
+                        <div class="title"><a
+                                onclick="easyTemplate.add('<?php echo $item['value'] ?>', '<?php echo $item['label'] ?>')"><?php echo $item['label'] ?></a>
+                        </div>
+                        <a onclick="easyTemplate.add('<?php echo $item['value'] ?>', '<?php echo $item['label'] ?>')">
+                            <img src="<?php echo $this->getSkinUrl($item['image']) ?>"/>
+                        </a>
                     </div>
-                    <a onclick="easyTemplate.add('<?php echo $item['value'] ?>', '<?php echo $item['label'] ?>')">
-                        <img src="<?php echo $this->getSkinUrl($item['image']) ?>"/>
-                    </a>
-                </div>
+                <?php endif; ?>
             <?php endforeach; ?>
 
         <?php endif; ?>

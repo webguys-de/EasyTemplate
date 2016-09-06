@@ -55,7 +55,8 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Bloc
                 $types[] = array(
                     'label' => $helper->__($template->getLabel()),
                     'value' => $template->getCode(),
-                    'image' => $this->getTemplateImage($template->getImage())
+                    'image' => $this->getTemplateImage($template->getImage()),
+                    'hidden' => $template->isHidden(),
                 );
             }
 

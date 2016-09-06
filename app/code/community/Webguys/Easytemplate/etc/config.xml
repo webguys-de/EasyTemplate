@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Webguys_Easytemplate>
-            <version>1.0.0.5</version>
+            <version>1.0.0.6</version>
         </Webguys_Easytemplate>
     </modules>
 
@@ -76,6 +76,15 @@
 
     <frontend>
         <events>
+            <cms_page_render>
+                <observers>
+                    <webguys_easytemplate>
+                        <type>singleton</type>
+                        <class>easytemplate/observer</class>
+                        <method>cms_page_render</method>
+                    </webguys_easytemplate>
+                </observers>
+            </cms_page_render>
             <core_block_abstract_to_html_before>
                 <observers>
                     <easytemplate_core_block_abstract_to_html_after>

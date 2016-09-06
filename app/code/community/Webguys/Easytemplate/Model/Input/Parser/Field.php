@@ -118,4 +118,9 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
         return false;
     }
 
+    public function getConfigAttribute($name)
+    {
+        return (string)$this->_config->getNode($name);
+    }
+
 }

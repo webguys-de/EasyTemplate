@@ -33,7 +33,13 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
             $page = Mage::getModel('cms/page');
             $page->load($this->getEntityId());
 
-            $urlModel = Mage::getModel('core/url')->setStore($page->getData('_first_store_id'));
+            $storeCode = $page->getStoreCode();
+            if( !$storeCode || $storeCode == 'admin' )
+            {
+                $storeCode = Mage::app()->getDefaultStoreView()->getCode();
+            }
+
+            $urlModel = Mage::getModel('core/url')->setStore($storeCode);
             $href = $urlModel->getUrl(
                 $page->getIdentifier(),
                 array(
@@ -129,7 +135,10 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         $helper = Mage::helper('easytemplate/cache');
         $helper->flushCache();
 
-        foreach ($data AS $id => $template_data) {
+        $parentIdMapping = array();
+
+        foreach( $data AS $id => $template_data )
+        {
 
             /** @var $template Webguys_Easytemplate_Model_Template */
             $template = Mage::getModel('easytemplate/template');
@@ -141,13 +150,33 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
             }
             $template->setGroupId($this->getId());
 
-            if ($template_data['is_delete'] == '1') {
-                if ($template->getId()) {
+            $parentIsDelete = false;
+            if( $template_data['parent_id']
+                && $data[ $template_data['parent_id'] ]
+                && $data[ $template_data['parent_id'] ]['is_delete'] == 1  ) {
+                $parentIsDelete = true;
+            }
+
+            if( $template_data['is_delete'] == '1' || $parentIsDelete)
+            {
+                if( $template->getId() )
+                {
                     $template->delete();
                 }
             } else {
-                $template->importData($template_data);
+
+                if( isset($template_data['parent_id']) && $template_data['parent_id'] && !is_numeric($template_data['parent_id']) ) {
+                    if( !isset($parentIdMapping[$template_data['parent_id']]) ) {
+                        Mage::throwException("Could not find parent id");
+                    }
+                    $template_data['parent_id'] = $parentIdMapping[$template_data['parent_id']];
+                }
+
+                $template->importData( $template_data );
                 $template->save();
+                if( $template->getTemporaryId() ) {
+                    $parentIdMapping[ $template->getTemporaryId() ] = $template->getId();
+                }
             }
 
         }
@@ -157,13 +186,14 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
     /**
      * @return Webguys_Easytemplate_Model_Template[]
      */
-    public function getTemplateCollection()
+    public function getTemplateCollection($parent=null)
     {
         /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
         $configModel = Mage::getSingleton('easytemplate/input_parser');
         $validTemplates = array();
 
-        foreach ($configModel->getTemplates() as $template) {
+        $templates = $configModel->getTemplates();
+        foreach ($templates as $template) {
             $validTemplates[] = $template->getCode();
         }
 
@@ -171,10 +201,18 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         $collection = Mage::getModel('easytemplate/template')->getCollection();
         $collection->addGroupFilter($this);
         $collection->addFieldToFilter('code', array('in' => $validTemplates));
+
+        if( $parent === null ) {
+            $collection->addFieldToFilter('parent_id', array('null'=>'null'));
+        } else {
+            $collection->addFieldToFilter('parent_id', $parent);
+        }
+
         $collection->getSelect()->order('main_table.position');
 
-        foreach ($collection AS &$model) {
-            $model->load($model->getId());
+        foreach( $collection AS $model )
+        {
+            $model->load( $model->getId() );
         }
 
         return $collection;

@@ -9,6 +9,8 @@
  * @method getCode
  * @method setName
  * @method getName
+ * @method setLabel
+ * @method getLabel
  * @method setActive
  * @method getActive
  * @method setPosition
@@ -67,12 +69,30 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
         return $clone;
     }
 
-    public function importData(Array $data)
+    protected function _beforeDelete()
+    {
+        if($this->getId()){
+            $col = $this->getCollection()->addFieldToFilter('parent_id',$this->getId());
+            foreach( $col AS $item )
+            {
+                $item->delete();
+            }
+        }
+        return parent::_beforeDelete();
+    }
+
+    public function importData( Array $data)
     {
         $this->setCode($data['code']);
         $this->setName($data['name']);
         $this->setActive(isset($data['active']) ? $data['active'] : 0);
         $this->setPosition($data['sort_order']);
+
+        if(is_numeric($data['parent_id']) && $data['parent_id']>0 ) {
+            $this->setParentId( $data['parent_id'] );
+        } else {
+            $this->setParentId(null);
+        }
 
         if (($time = strtotime($data['valid_from'])) !== false) {
             $this->setValidFrom(date('Y-m-d', $time));

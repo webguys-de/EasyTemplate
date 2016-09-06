@@ -245,3 +245,8 @@
 .et-head-value.first {
     margin-right: 20px;
 }
+
+#easy_templates_container .reference {
+    padding-left: 10px;
+    margin-top: 10px;
+}
