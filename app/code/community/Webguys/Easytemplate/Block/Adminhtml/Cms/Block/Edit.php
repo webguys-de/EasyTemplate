@@ -19,22 +19,14 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit extends Mage_Adminhtml
 
         parent::__construct();
 
-        if ($this->_isAllowedAction('save')) {
-            $this->_updateButton('save', 'label', Mage::helper('cms')->__('Save Block'));
-            $this->_addButton('saveandcontinue', array(
-                'label'     => Mage::helper('adminhtml')->__('Save and Continue Edit'),
-                'onclick'   => 'saveAndContinueEdit(\''.$this->_getSaveAndContinueUrl().'\')',
-                'class'     => 'save',
-            ), -100);
-        } else {
-            $this->_removeButton('save');
-        }
+        $this->_updateButton('save', 'label', Mage::helper('cms')->__('Save Block'));
+        $this->_addButton('saveandcontinue', array(
+            'label'     => Mage::helper('adminhtml')->__('Save and Continue Edit'),
+            'onclick'   => 'saveAndContinueEdit(\''.$this->_getSaveAndContinueUrl().'\')',
+            'class'     => 'save',
+        ), -100);
 
-        if ($this->_isAllowedAction('delete')) {
-            $this->_updateButton('delete', 'label', Mage::helper('cms')->__('Delete Block'));
-        } else {
-            $this->_removeButton('delete');
-        }
+        $this->_updateButton('delete', 'label', Mage::helper('cms')->__('Delete Block'));
     }
 
     /**
