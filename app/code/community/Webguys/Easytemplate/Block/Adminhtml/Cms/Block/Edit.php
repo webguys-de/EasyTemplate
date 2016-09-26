@@ -34,11 +34,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit extends Mage_Adminhtml
             $this->_removeButton('save');
         }
 
-        if ($this->_isAllowedAction('delete')) {
-            $this->_updateButton('delete', 'label', Mage::helper('cms')->__('Delete Block'));
-        } else {
-            $this->_removeButton('delete');
-        }
+        $this->_updateButton('delete', 'label', Mage::helper('cms')->__('Delete Block'));
     }
 
     /**
