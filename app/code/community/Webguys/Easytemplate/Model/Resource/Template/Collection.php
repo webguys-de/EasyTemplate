@@ -17,9 +17,9 @@ class Webguys_Easytemplate_Model_Resource_Template_Collection
         if ($group instanceof Webguys_Easytemplate_Model_Group) {
             $group = $group->getId();
         }
+
         $this->addFieldToFilter('group_id', $group);
 
         return $this;
     }
-
 }

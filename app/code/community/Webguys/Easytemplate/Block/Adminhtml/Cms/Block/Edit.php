@@ -34,11 +34,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit extends Mage_Adminhtml
             $this->_removeButton('save');
         }
 
-        if ($this->_isAllowedAction('delete')) {
-            $this->_updateButton('delete', 'label', Mage::helper('cms')->__('Delete Block'));
-        } else {
-            $this->_removeButton('delete');
-        }
+        $this->_updateButton('delete', 'label', Mage::helper('cms')->__('Delete Block'));
     }
 
     /**
@@ -49,10 +45,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit extends Mage_Adminhtml
     public function getHeaderText()
     {
         if (Mage::registry('cms_block')->getId()) {
-            return Mage::helper('cms')->__(
-                "Edit Block '%s'",
-                $this->escapeHtml(Mage::registry('cms_block')->getTitle())
-            );
+            return Mage::helper('cms')->__("Edit Block '%s'", $this->escapeHtml(Mage::registry('cms_block')->getTitle()));
         } else {
             return Mage::helper('cms')->__('New Block');
         }

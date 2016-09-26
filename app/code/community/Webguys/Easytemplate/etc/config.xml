@@ -2,10 +2,9 @@
 <config>
     <modules>
         <Webguys_Easytemplate>
-            <version>1.0.0.5</version>
+            <version>1.0.0.6</version>
         </Webguys_Easytemplate>
     </modules>
-
     <global>
         <helpers>
             <easytemplate>
@@ -73,9 +72,17 @@
             </types>
         </cache>
     </global>
-
     <frontend>
         <events>
+            <cms_page_render>
+                <observers>
+                    <webguys_easytemplate>
+                        <type>singleton</type>
+                        <class>easytemplate/observer</class>
+                        <method>cms_page_render</method>
+                    </webguys_easytemplate>
+                </observers>
+            </cms_page_render>
             <core_block_abstract_to_html_before>
                 <observers>
                     <easytemplate_core_block_abstract_to_html_after>
@@ -103,7 +110,6 @@
             </updates>
         </layout>
     </frontend>
-
     <adminhtml>
         <events>
             <adminhtml_cms_page_edit_tab_main_prepare_form>
@@ -214,7 +220,6 @@
             </modules>
         </translate>
     </adminhtml>
-
     <admin>
         <routers>
             <adminhtml>
@@ -226,7 +231,6 @@
             </adminhtml>
         </routers>
     </admin>
-
     <phpunit>
         <suite>
             <modules>
@@ -234,7 +238,6 @@
             </modules>
         </suite>
     </phpunit>
-
     <default>
         <easytemplate>
             <configuration>

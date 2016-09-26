@@ -2,8 +2,6 @@
 
 class Webguys_Easytemplate_Test_Model_Input_ParserAbstract extends EcomDev_PHPUnit_Test_Case
 {
-
-
     /** @var Webguys_Easytemplate_Model_Input_Parser */
     protected $_parser = null;
 
@@ -22,5 +20,4 @@ class Webguys_Easytemplate_Test_Model_Input_ParserAbstract extends EcomDev_PHPUn
             ->method('getXmlConfig')
             ->will($this->returnValue($this->getTestXmlData()));
     }
-
 }

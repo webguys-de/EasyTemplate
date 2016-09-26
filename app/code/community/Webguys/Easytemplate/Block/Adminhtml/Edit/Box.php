@@ -83,7 +83,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box extends Mage_Adminhtml_Block
 
         if ($this->getTemplateModel() && $this->getTemplateModel()->getId()) {
 
-            foreach ($this->getTemplateModel()->getData() AS $replace => $to) {
+            foreach ($this->getTemplateModel()->getData() as $replace => $to) {
                 if (in_array($replace, array('valid_from', 'valid_to'))) {
                     $date = strftime($this->getDateStrFormat(), strtotime($to));
                     $html = str_replace('{{' . $replace . '}}', $to ? $date : '--', $html);
@@ -91,7 +91,6 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box extends Mage_Adminhtml_Block
                     $html = str_replace('{{' . $replace . '}}', $to, $html);
                 }
             }
-
         }
 
         return $html;

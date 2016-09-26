@@ -10,6 +10,11 @@
 class Webguys_Easytemplate_Model_Input_Parser_Template
     extends Webguys_Easytemplate_Model_Input_Parser_Abstract
 {
+    public function isHidden()
+    {
+        $hidden = $this->getData('hidden');
+        return empty($hidden) ? false : (bool)$hidden;
+    }
 
     public function isEnabled()
     {
@@ -42,6 +47,11 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
         return $this->_getAttribute('type');
     }
 
+    public function getAttribute($name)
+    {
+        return (string)$this->_getAttribute($name);
+    }
+
     protected function _getAttribute($name)
     {
         return $this->getConfig()->getNode()->getAttribute($name);
@@ -69,17 +79,20 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
         $fields = $this->getConfig()->getNode('fields');
         $result = array();
 
-        foreach ($fields->children() AS $data) {
-            /** @var $parser Webguys_Easytemplate_Model_Input_Parser_Field */
-            $parser = Mage::getModel('easytemplate/input_parser_field');
-            $parser->setConfig($data);
-            $parser->setTemplate($this);
+        if ($fields && $fields->hasChildren()) {
 
-            $result[] = $parser;
+            foreach ($fields->children() as $data) {
+                /** @var $parser Webguys_Easytemplate_Model_Input_Parser_Field */
+                $parser = Mage::getModel('easytemplate/input_parser_field');
+                $parser->setConfig($data);
+                $parser->setTemplate($this);
+
+                $result[] = $parser;
+            }
+
+            // Sort fields by sort_order
+            usort($result, array($this, 'orderFields'));
         }
-
-        // Sort fields by sort_order
-        usort($result, array($this, 'orderFields'));
 
         return $result;
     }

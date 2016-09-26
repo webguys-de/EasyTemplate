@@ -14,7 +14,7 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
     {
         parent::__construct($args);
 
-        if( method_exists($this,'addCacheTag') ) {
+        if (method_exists($this, 'addCacheTag')) {
             $this->addCacheTag(Webguys_Easytemplate_Helper_Cache::CACHE_TAG);
         }
     }
@@ -39,87 +39,85 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
      * @param $group Webguys_Easytemplate_Model_Group
      * @return $this
      */
-    public function setChildsBasedOnGroup($group)
+    public function setChildsBasedOnGroup($group, $parent = null)
     {
-        Varien_Profiler::start('easytemplate_template_rendering');
+        if (!$this->countChildren()) {
+            Varien_Profiler::start('easytemplate_template_rendering');
 
-        /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
-        $configModel = Mage::getSingleton('easytemplate/input_parser');
+            /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
+            $configModel = Mage::getSingleton('easytemplate/input_parser');
 
-        $position = 1;
-        $time = Mage::app()->getLocale()->storeTimeStamp(Mage::app()->getStore()->getId());
+            $position = 1;
+            $time = Mage::app()->getLocale()->storeTimeStamp(Mage::app()->getStore()->getId());
 
-        /** @var $template Webguys_Easytemplate_Model_Template */
-        foreach ($group->getTemplateCollection() as $template) {
-            $templateCode = $template->getCode();
-            if ($model = $configModel->getTemplate($templateCode)) {
-                $active = $template->getActive();
-                $validFrom = ($template->getValidFrom()) ? strtotime($template->getValidFrom()) : false;
-                $validTo = ($template->getValidTo()) ? strtotime($template->getValidTo()) : false;
+            /** @var $template Webguys_Easytemplate_Model_Template */
+            foreach ($group->getTemplateCollection($parent) as $template) {
+                $templateCode = $template->getCode();
+                if ($model = $configModel->getTemplate($templateCode)) {
+                    $active = $template->getActive();
+                    $validFrom = ($template->getValidFrom()) ? strtotime($template->getValidFrom()) : false;
+                    $validTo = ($template->getValidTo()) ? strtotime($template->getValidTo()) : false;
 
-                if ($validFrom !== false || $validTo !== false) {
-                    $this->_cachingAllowed = false;
-                }
-
-                Varien_Profiler::start('easytemplate_template_rendering_' . $templateCode);
-
-                if ($active && (!$validFrom || $validFrom <= $time) && (!$validTo || $validTo >= $time)) {
-
-                    /** @var $childBlock Webguys_Easytemplate_Block_Template */
-                    $childBlock = $this->getLayout()->createBlock($model->getType());
-                    $childBlock->setTemplate($model->getTemplate());
-                    $childBlock->setTemplateModel($template);
-                    $childBlock->setTemplateCode($templateCode);
-                    $childBlock->setGroup($group);
-
-                    /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
-                    foreach ($model->getFields() as $field) {
-                        $fieldCode = $field->getCode();
-
-                        Varien_Profiler::start(
-                            'easytemplate_template_rendering_' . $templateCode . '_field_' . $fieldCode
-                        );
-
-                        /** @var $inputValidator Webguys_Easytemplate_Model_Input_Renderer_Validator_Base */
-                        $inputValidator = $field->getInputRendererValidator();
-                        $inputValidator->setTemplate($template);
-                        $inputValidator->setField($field);
-
-                        $frontendValue = $inputValidator->prepareForFrontend($template->getFieldData($fieldCode));
-                        if ($frontendValue) {
-
-                            $valueTransport = new Varien_Object();
-                            $valueTransport->setValue($frontendValue);
-
-                            Mage::dispatchEvent(
-                                'easytemplate_frontend_prepared_var',
-                                array(
-                                    'template' => $template,
-                                    'template_model' => $model,
-                                    'field' => $field,
-                                    'block' => $childBlock,
-                                    'validator' => $inputValidator,
-                                    'value' => $valueTransport
-                                )
-                            );
-
-                            $childBlock->setData($fieldCode, $valueTransport->getValue());
-                        }
-
-                        Varien_Profiler::stop(
-                            'easytemplate_template_rendering_' . $templateCode . '_field_' . $fieldCode
-                        );
+                    if ($validFrom !== false || $validTo !== false) {
+                        $this->_cachingAllowed = false;
                     }
 
-                    $this->setChild('block_' . $position . '_' . $templateCode, $childBlock);
-                    $position++;
+                    Varien_Profiler::start('easytemplate_template_rendering_' . $templateCode);
+
+                    if ($active && (!$validFrom || $validFrom <= $time) && (!$validTo || $validTo >= $time)) {
+
+                        /** @var $childBlock Webguys_Easytemplate_Block_Template */
+                        $childBlock = $this->getLayout()->createBlock($model->getType());
+                        $childBlock->setTemplate($model->getTemplate());
+                        $childBlock->setTemplateModel($template);
+                        $childBlock->setTemplateCode($templateCode);
+                        $childBlock->setGroup($group);
+
+                        /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
+                        foreach ($model->getFields() as $field) {
+                            $fieldCode = $field->getCode();
+
+                            Varien_Profiler::start('easytemplate_template_rendering_' . $templateCode . '_field_' . $fieldCode);
+
+                            /** @var $inputValidator Webguys_Easytemplate_Model_Input_Renderer_Validator_Base */
+                            $inputValidator = $field->getInputRendererValidator();
+                            $inputValidator->setTemplate($template);
+                            $inputValidator->setField($field);
+
+                            $frontendValue = $inputValidator->prepareForFrontend($template->getFieldData($fieldCode));
+                            if ($frontendValue) {
+
+                                $valueTransport = new Varien_Object();
+                                $valueTransport->setValue($frontendValue);
+
+                                Mage::dispatchEvent(
+                                    'easytemplate_frontend_prepared_var',
+                                    array(
+                                        'template' => $template,
+                                        'template_model' => $model,
+                                        'field' => $field,
+                                        'block' => $childBlock,
+                                        'validator' => $inputValidator,
+                                        'value' => $valueTransport
+                                    )
+                                );
+
+                                $childBlock->setData($fieldCode, $valueTransport->getValue());
+                            }
+
+                            Varien_Profiler::stop('easytemplate_template_rendering_' . $templateCode . '_field_' . $fieldCode);
+                        }
+
+                        $this->setChild('block_' . $position . '_' . $templateCode, $childBlock);
+                        $position++;
+                    }
+
+                    Varien_Profiler::stop('easytemplate_template_rendering_' . $templateCode);
                 }
-
-                Varien_Profiler::stop('easytemplate_template_rendering_' . $templateCode);
             }
-        }
 
-        Varien_Profiler::stop('easytemplate_template_rendering');
+            Varien_Profiler::stop('easytemplate_template_rendering');
+        }
 
         return $this;
     }
@@ -128,7 +126,12 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
     {
         $this->setChildsBasedOnGroup($this->getGroup());
 
-        Mage::dispatchEvent('easytemplate_frontend_before_to_html', array('block' => $this));
+        Mage::dispatchEvent(
+            'easytemplate_frontend_before_to_html',
+            array(
+                'block' => $this
+            )
+        );
 
         return parent::_beforeToHtml();
     }

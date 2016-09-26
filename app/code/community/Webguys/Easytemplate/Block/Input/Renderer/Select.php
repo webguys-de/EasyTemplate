@@ -25,7 +25,7 @@ class Webguys_Easytemplate_Block_Input_Renderer_Select extends Webguys_Easytempl
         if (method_exists($source, 'getAllOptions')) {
             $options = $source->getAllOptions();
             $result = array();
-            foreach ($options AS $option) {
+            foreach ($options as $option) {
                 $result[$option['value']] = $option['label'];
             }
             return $result;

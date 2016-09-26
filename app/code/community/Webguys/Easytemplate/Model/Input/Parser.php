@@ -6,7 +6,6 @@
  */
 class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
 {
-
     protected $_templates = null;
 
     public function getXmlConfig()
@@ -23,7 +22,9 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
                 Mage::app()->saveCache(
                     $config->getXmlString(),
                     'easytemplate_config',
-                    array(Mage_Core_Model_Config::CACHE_TAG)
+                    array(
+                        Mage_Core_Model_Config::CACHE_TAG
+                    )
                 );
 
                 if (Mage::getStoreConfig(
@@ -129,11 +130,9 @@ class Webguys_Easytemplate_Model_Input_Parser extends Mage_Core_Model_Abstract
 
         /** @var $template Webguys_Easytemplate_Model_Input_Parser_Template */
         foreach ($templates as $template) {
-
             if ($template->getCode() == $code) {
                 return $template;
             }
-
         }
 
         return false;

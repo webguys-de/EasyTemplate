@@ -20,12 +20,10 @@
  */
 abstract class Webguys_Easytemplate_Block_Input_Renderer_Abstract extends Mage_Adminhtml_Block_Template
 {
-
     /**
      * @var Webguys_Easytemplate_Model_Input_Parser_Field
      */
     protected $_parent_parser_field = null;
-
     protected $_value = null;
 
     public function setParentParserField($field)

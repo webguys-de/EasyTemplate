@@ -3,7 +3,6 @@
 class Webguys_Easytemplate_Test_Model_GroupTest
     extends EcomDev_PHPUnit_Test_Case
 {
-
     /**
      * @return Webguys_Easytemplate_Model_Group
      */
@@ -28,12 +27,10 @@ class Webguys_Easytemplate_Test_Model_GroupTest
         $model = $this->getModel();
         $model->load($id);
         $this->assertNotEquals($id, $model->getId());
-
     }
 
     public function testRoundtrip()
     {
-
     }
 
     public function testGetTemplateCollection()
@@ -42,5 +39,4 @@ class Webguys_Easytemplate_Test_Model_GroupTest
         $collection = $model->getTemplateCollection();
         $this->assertInstanceOf('Webguys_Easytemplate_Model_Resource_Template_Collection', $collection);
     }
-
 }

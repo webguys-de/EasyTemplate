@@ -15,6 +15,4 @@ class Webguys_Easytemplate_Model_Cms_Block extends Mage_Cms_Model_Block
      * @var string
      */
     protected $_eventPrefix = 'cms_block';
-
-
 }

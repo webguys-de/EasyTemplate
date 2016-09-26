@@ -4,7 +4,6 @@
         <simple translate="label">
             <label>Simple Templates</label>
             <templates>
-
                 <h1_text template="easytemplate/h1_text.phtml" type="easytemplate/template" translate="label,comment">
                     <label>Überschrift + Text</label>
                     <comment>Hallo Welt</comment>
@@ -43,11 +42,9 @@
                         </select>
                     </fields>
                 </h1_text>
-
                 <image_text template="easytemplate/image_text.phtml" type="easytemplate/template" translate="label,comment">
                     <label>Überschrift + Text</label>
                     <comment>Hallo Welt</comment>
-
                     <fields>
                         <h1 translate="label,comment">
                             <label>Überschrift</label>
@@ -58,7 +55,6 @@
                             <comment/>
                             <required>1</required>
                         </h1>
-
                         <image translate="label,comment">
                             <label>Bild</label>
                             <backend_model>easytemplate/source_varchar</backend_model>
@@ -69,9 +65,7 @@
                             <required>1</required>
                         </image>
                     </fields>
-
                 </image_text>
-
             </templates>
         </simple>
     </easytemplate>

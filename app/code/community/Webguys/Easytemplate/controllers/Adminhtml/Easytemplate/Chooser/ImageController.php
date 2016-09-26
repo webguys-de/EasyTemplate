@@ -4,7 +4,6 @@ require 'app/code/core/Mage/Adminhtml/controllers/Cms/Wysiwyg/ImagesController.p
 
 class Webguys_Easytemplate_Adminhtml_Easytemplate_Chooser_ImageController extends Mage_Adminhtml_Cms_Wysiwyg_ImagesController
 {
-
     public function indexAction()
     {
         $storeId = (int)$this->getRequest()->getParam('store');
@@ -49,5 +48,4 @@ class Webguys_Easytemplate_Adminhtml_Easytemplate_Chooser_ImageController extend
         $image = $helper->getImageHtmlDeclaration($filename, $asIs);
         $this->getResponse()->setBody($filename);
     }
-
 }

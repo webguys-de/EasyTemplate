@@ -5,8 +5,7 @@
             <enabled>1</enabled>
             <label>Simple Templates</label>
             <templates>
-                <headline_text template="easytemplate/template/headline_text.phtml" type="easytemplate/template"
-                               translate="label,comment">
+                <headline_text template="easytemplate/template/headline_text.phtml" type="easytemplate/template" translate="label,comment">
                     <enabled>1</enabled>
                     <label>Headline + Text</label>
                     <image>images/easytemplate/headline_text.png</image>
@@ -42,9 +41,7 @@
                         </text>
                     </fields>
                 </headline_text>
-
-                <google_maps template="easytemplate/template/google_maps.phtml" type="easytemplate/template_googlemaps"
-                             translate="label,comment">
+                <google_maps template="easytemplate/template/google_maps.phtml" type="easytemplate/template_googlemaps" translate="label,comment">
                     <enabled>1</enabled>
                     <label>Google Maps</label>
                     <image>images/easytemplate/google_maps.png</image>
@@ -90,9 +87,7 @@
                         </show_link>
                     </fields>
                 </google_maps>
-
-                <youtube template="easytemplate/template/youtube.phtml" type="easytemplate/template"
-                         translate="label,comment">
+                <youtube template="easytemplate/template/youtube.phtml" type="easytemplate/template" translate="label,comment">
                     <enabled>1</enabled>
                     <label>Youtube</label>
                     <image>images/easytemplate/youtube.png</image>
@@ -138,9 +133,7 @@
                         </allowfullscreen>
                     </fields>
                 </youtube>
-
-                <vimeo template="easytemplate/template/vimeo.phtml" type="easytemplate/template"
-                       translate="label,comment">
+                <vimeo template="easytemplate/template/vimeo.phtml" type="easytemplate/template" translate="label,comment">
                     <enabled>1</enabled>
                     <label>Vimeo</label>
                     <image>images/easytemplate/vimeo.png</image>
@@ -176,9 +169,7 @@
                         </height>
                     </fields>
                 </vimeo>
-
-                <text_2column template="easytemplate/template/text_2column.phtml" type="easytemplate/template"
-                              translate="label,comment">
+                <text_2column template="easytemplate/template/text_2column.phtml" type="easytemplate/template" translate="label,comment">
                     <enabled>1</enabled>
                     <label>Text 2column</label>
                     <image>images/easytemplate/text_2column.png</image>
@@ -205,9 +196,7 @@
                         </text_right>
                     </fields>
                 </text_2column>
-
-                <text_picture template="easytemplate/template/text_picture.phtml" type="easytemplate/template"
-                              translate="label,comment">
+                <text_picture template="easytemplate/template/text_picture.phtml" type="easytemplate/template" translate="label,comment">
                     <enabled>1</enabled>
                     <label>Text + picture</label>
                     <image>images/easytemplate/text_picture.png</image>
@@ -265,9 +254,7 @@
                         </text>
                     </fields>
                 </text_picture>
-
-                <spacer template="easytemplate/template/spacer.phtml" type="easytemplate/template"
-                        translate="label,comment">
+                <spacer template="easytemplate/template/spacer.phtml" type="easytemplate/template" translate="label,comment">
                     <enabled>1</enabled>
                     <label>Spacer</label>
                     <image>images/easytemplate/spacer.png</image>
@@ -291,15 +278,13 @@
             <enabled>1</enabled>
             <label>Test Templates</label>
             <templates>
-                <testtemplate template="easytemplate/template/testtemplate.phtml" type="easytemplate/template"
-                              translate="label,comment">
+                <testtemplate template="easytemplate/template/testtemplate.phtml" type="easytemplate/template" translate="label,comment">
                     <enabled>1</enabled>
                     <label>Test template</label>
                     <comment>A test template with all EasyTemplate features</comment>
                     <image>images/easytemplate/testtemplate.png</image>
                     <sort_order>10</sort_order>
                     <fields>
-
                         <image_test translate="label,comment">
                             <label>Magento Media Gallery</label>
                             <comment>Comment for image-input</comment>
@@ -308,7 +293,6 @@
                             <sort_order>5</sort_order>
                             <required>0</required>
                         </image_test>
-
                         <textarea_test translate="label,comment">
                             <label>Textarea</label>
                             <comment>Comment for textarea</comment>
@@ -318,7 +302,6 @@
                             <default_value>Textarea default value</default_value>
                             <required>0</required>
                         </textarea_test>
-
                         <textfield_test translate="label,comment">
                             <label>Textfield</label>
                             <comment>Comment for textfield</comment>
@@ -328,14 +311,12 @@
                             <default_value>Textfield default value</default_value>
                             <required>0</required>
                         </textfield_test>
-
                         <divider_test translate="label,comment">
                             <label>Heading divider</label>
                             <comment>Comment for divider</comment>
                             <input_renderer>easytemplate/input_renderer_divider</input_renderer>
                             <sort_order>25</sort_order>
                         </divider_test>
-
                         <editor_test translate="label,comment">
                             <label>Editor</label>
                             <comment>Comment for editor</comment>
@@ -345,7 +326,6 @@
                             <default_value>Editor default text</default_value>
                             <required>0</required>
                         </editor_test>
-
                         <selectyesno_test translate="label,comment">
                             <label>Select yesno</label>
                             <comment>Comment for select yesno</comment>
@@ -356,7 +336,6 @@
                             <default_value>true</default_value>
                             <required>0</required>
                         </selectyesno_test>
-
                         <selectcustomsource_test translate="label,comment">
                             <label>Select source xml</label>
                             <comment>Comment for select xml source</comment>
@@ -373,7 +352,6 @@
                             <default_value>option2</default_value>
                             <required>0</required>
                         </selectcustomsource_test>
-
                         <selectnumbers_test translate="label,comment">
                             <label>Select source numbers</label>
                             <comment>Comment for number select</comment>
@@ -384,7 +362,6 @@
                             <default_value>5</default_value>
                             <required>0</required>
                         </selectnumbers_test>
-
                         <multiselect_test translate="label,comment">
                             <label>Select source numbers</label>
                             <comment>Comment for number select</comment>
@@ -401,7 +378,6 @@
                             <default_value>option2,option3</default_value>
                             <required>0</required>
                         </multiselect_test>
-
                         <file_test translate="label,comment">
                             <label>File</label>
                             <comment>Comment for file</comment>
@@ -411,7 +387,6 @@
                             <default_value></default_value>
                             <required>0</required>
                         </file_test>
-
                         <link_test translate="label,comment">
                             <label>Link</label>
                             <comment>Comment for link</comment>
@@ -421,7 +396,6 @@
                             <default_value></default_value>
                             <required>1</required>
                         </link_test>
-
                         <product_test translate="label,comment">
                             <label>Product</label>
                             <comment>Comment for product</comment>
@@ -431,7 +405,6 @@
                             <default_value></default_value>
                             <required>0</required>
                         </product_test>
-
                         <category_test translate="label,comment">
                             <label>Category</label>
                             <comment>Comment for category</comment>
@@ -441,7 +414,6 @@
                             <default_value></default_value>
                             <required>0</required>
                         </category_test>
-
                         <block_test translate="label,comment">
                             <label>Block reference</label>
                             <comment>Comment for block</comment>
@@ -452,7 +424,6 @@
                             <default_value>3</default_value>
                             <required>0</required>
                         </block_test>
-
                         <datepicker_test translate="label,comment">
                             <label>Datepicker</label>
                             <comment>Comment for datepicker</comment>
@@ -466,7 +437,6 @@
                 </testtemplate>
             </templates>
         </test>
-
         <product translate="label">
             <enabled>1</enabled>
             <label>Productlisting</label>
@@ -486,7 +456,6 @@
                             <default_value></default_value>
                             <required>1</required>
                         </category_id>
-
                         <column_count translate="label,comment">
                             <label>Column Count</label>
                             <comment>Comment for category</comment>
@@ -496,7 +465,6 @@
                             <default_value>3</default_value>
                             <required>1</required>
                         </column_count>
-
                         <limit translate="label,comment">
                             <label>Number of Products</label>
                             <comment>How much products you like to display?</comment>
@@ -505,7 +473,6 @@
                             <default_value>6</default_value>
                             <required>1</required>
                         </limit>
-
                         <sort_by translate="label">
                             <label>Product Listing Sort by</label>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
@@ -514,7 +481,6 @@
                             <sort_order>30</sort_order>
                             <required>0</required>
                         </sort_by>
-
                         <sort_by_direction translate="label">
                             <label>Product Listing Sort Order</label>
                             <backend_model>easytemplate/template_data_varchar</backend_model>
@@ -529,7 +495,36 @@
                         </sort_by_direction>
                     </fields>
                 </category_products>
-
+                <three_products template="easytemplate/template/three_products.phtml" type="easytemplate/template" translate="label,comment">
+                    <enabled>1</enabled>
+                    <label>Three products</label>
+                    <image>images/easytemplate/three_products.png</image>
+                    <comment>Three products in a row</comment>
+                    <sort_order>60</sort_order>
+                    <fields>
+                        <product_one translate="label,comment">
+                            <label>Product 1</label>
+                            <comment>First product in row</comment>
+                            <input_renderer>easytemplate/input_renderer_product</input_renderer>
+                            <sort_order>10</sort_order>
+                            <required>1</required>
+                        </product_one>
+                        <product_two translate="label,comment">
+                            <label>Product 2</label>
+                            <comment>Second product in row</comment>
+                            <input_renderer>easytemplate/input_renderer_product</input_renderer>
+                            <sort_order>20</sort_order>
+                            <required>1</required>
+                        </product_two>
+                        <product_three translate="label,comment">
+                            <label>Product 3</label>
+                            <comment>Third product in row</comment>
+                            <input_renderer>easytemplate/input_renderer_product</input_renderer>
+                            <sort_order>30</sort_order>
+                            <required>1</required>
+                        </product_three>
+                    </fields>
+                </three_products>
             </templates>
         </product>
     </easytemplate>

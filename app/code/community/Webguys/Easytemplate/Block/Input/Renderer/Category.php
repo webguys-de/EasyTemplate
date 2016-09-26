@@ -6,7 +6,6 @@
  */
 class Webguys_Easytemplate_Block_Input_Renderer_Category extends Webguys_Easytemplate_Block_Input_Renderer_Abstract
 {
-
     public function __construct()
     {
         parent::__construct();

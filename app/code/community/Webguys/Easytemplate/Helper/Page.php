@@ -14,8 +14,7 @@ class Webguys_Easytemplate_Helper_Page extends Mage_Core_Helper_Abstract
         $page->setStoreId(Mage::app()->getStore()->getId());
         $page->load($pageId);
 
-        return ($page->getId() && $page->getViewMode(
-            ) == Webguys_Easytemplate_Model_Config_Source_Cms_Page_Viewmode::VIEWMODE_EASYTPL);
+        return ($page->getId() && $page->getViewMode() == Webguys_Easytemplate_Model_Config_Source_Cms_Page_Viewmode::VIEWMODE_EASYTPL);
     }
 
     /**
@@ -46,5 +45,4 @@ class Webguys_Easytemplate_Helper_Page extends Mage_Core_Helper_Abstract
             return $newItem;
         }
     }
-
 }

@@ -7,7 +7,6 @@
 abstract class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
     extends Mage_Adminhtml_Block_Widget
 {
-
     protected $_templateBlocks = array();
 
     public function __construct()
@@ -40,7 +39,6 @@ abstract class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
             $box->setTemplateModel($template);
 
             $templates[$template->getCode()] = $box->toHtml();
-
         }
 
         return $templates;
@@ -51,7 +49,7 @@ abstract class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
         $group = $this->getGroup();
         $html = '';
 
-        foreach ($group->getTemplateCollection() AS $template) {
+        foreach ($group->getTemplateCollection() as $template) {
             /** @var $box Webguys_Easytemplate_Block_Adminhtml_Edit_Box */
             $box = $this->getLayout()->createBlock('easytemplate/adminhtml_edit_box');
             $box->setTemplateModel($template);
@@ -60,7 +58,6 @@ abstract class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
         }
 
         return $html;
-
     }
 
     /**

@@ -3,7 +3,6 @@
 class Webguys_Easytemplate_Test_Model_Input_Parser_TemplateTest
     extends Webguys_Easytemplate_Test_Model_Input_ParserAbstract
 {
-
     public function testParsingOfFirstTemplate()
     {
         /** @var $template Webguys_Easytemplate_Model_Input_Parser_Template */
@@ -14,7 +13,5 @@ class Webguys_Easytemplate_Test_Model_Input_Parser_TemplateTest
 
         $fields = $template->getFields();
         $this->assertEquals(3, count($template->getFields()));
-
     }
-
 }

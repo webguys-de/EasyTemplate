@@ -79,6 +79,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Main
                     'values' => Mage::getSingleton('adminhtml/system_store')->getStoreValuesForForm(false, true),
                 )
             );
+
             $renderer = $this->getLayout()->createBlock('adminhtml/store_switcher_form_renderer_fieldset_element');
             $field->setRenderer($renderer);
         } else {
@@ -107,11 +108,17 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Main
                 ),
             )
         );
+
         if (!$model->getId()) {
             $model->setData('is_active', '1');
         }
 
-        Mage::dispatchEvent('easytemplate_adminhtml_cms_block_edit_tab_main_prepare_form', array('form' => $form));
+        Mage::dispatchEvent(
+            'easytemplate_adminhtml_cms_block_edit_tab_main_prepare_form',
+            array(
+                'form' => $form
+            )
+        );
 
         $form->setValues($model->getData());
         $this->setForm($form);

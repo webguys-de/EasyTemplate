@@ -22,7 +22,6 @@
  */
 class Webguys_Easytemplate_Block_Template_Product_List extends Mage_Catalog_Block_Product_List
 {
-
     public function getLayer()
     {
         if (!$this->_layer) {
@@ -33,7 +32,7 @@ class Webguys_Easytemplate_Block_Template_Product_List extends Mage_Catalog_Bloc
 
     public function _getProductCollection()
     {
-        if( $this->getSkuList() ) {
+        if ($this->getSkuList()) {
             $collection = Mage::getModel('catalog/product')->getCollection();
             $layer = $this->getLayer();
             $layer->prepareProductCollection($collection);
@@ -62,7 +61,7 @@ class Webguys_Easytemplate_Block_Template_Product_List extends Mage_Catalog_Bloc
                 $select->where('e.sku IN (?)', $skus);
 
                 $escapedSkus = array();
-                foreach ($skus AS $sku) {
+                foreach ($skus as $sku) {
                     $escapedSkus[] = $collection->getConnection()->quote($sku);
                 }
                 $select->order(new Zend_Db_Expr('FIELD(e.sku, ' . join(',', $escapedSkus) . ')'));
@@ -78,5 +77,4 @@ class Webguys_Easytemplate_Block_Template_Product_List extends Mage_Catalog_Bloc
     {
         return null;
     }
-
 }

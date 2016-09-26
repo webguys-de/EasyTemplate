@@ -14,7 +14,6 @@
  * */
 class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
 {
-
     /**
      * Prefix of model events names
      *
@@ -33,12 +32,17 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
             $page = Mage::getModel('cms/page');
             $page->load($this->getEntityId());
 
-            $urlModel = Mage::getModel('core/url')->setStore($page->getData('_first_store_id'));
+            $storeCode = $page->getStoreCode();
+            if (!$storeCode || $storeCode == 'admin') {
+                $storeCode = Mage::app()->getDefaultStoreView()->getCode();
+            }
+
+            $urlModel = Mage::getModel('core/url')->setStore($storeCode);
             $href = $urlModel->getUrl(
                 $page->getIdentifier(),
                 array(
                     '_current' => false,
-                    '_query' => '___store=' . $page->getStoreCode() . '&easytemplate_preview=' . $this->getPreviewHash()
+                    '_query' => '___store=' . $storeCode . '&easytemplate_preview=' . $this->getPreviewHash()
                 )
             );
 
@@ -72,12 +76,18 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
                 ->addFieldToFilter('entity_id', $this->getEntityId())
                 ->addFieldToFilter('copy_of', $this->getId());
 
-            if ($collection->getSize() == 1) {
+            if ($collection->count() == 1) {
                 /** @var Webguys_Easytemplate_Model_Group $previewGroup */
-                $previewGroup = $collection->setPageSize(1)->setCurPage(1)->getFirstItem();
+                $previewGroup = $collection->getFirstItem();
                 if ($previewGroup->getPreviewHash() == $preview) {
-                    // Dispatch Event to (may) disable Varnish Caching
-                    Mage::dispatchEvent('easytemplate_rendering_preview', array('group' => $previewGroup));
+
+                    // Dispatch Event to disable Varnish Caching (if enabled)
+                    Mage::dispatchEvent(
+                        'easytemplate_rendering_preview',
+                        array(
+                            'group' => $previewGroup
+                        )
+                    );
 
                     $previewGroup->load($collection->getFirstItem()->getId());
                     return $previewGroup;
@@ -91,9 +101,7 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
     public function getPreviewHash()
     {
         return md5(
-            Mage::helper('core')->encrypt(
-                $this->getEntityId() . $this->getEntityType() . $this->getId() . $this->getCopyOf()
-            )
+            Mage::helper('core')->encrypt($this->getEntityId() . $this->getEntityType() . $this->getId() . $this->getCopyOf())
         );
     }
 
@@ -110,7 +118,7 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         $newGroup->setCopyOf($this->getId());
         $newGroup->save();
 
-        foreach ($this->getTemplateCollection() AS $templateModel) {
+        foreach ($this->getTemplateCollection() as $templateModel) {
             /** @var $newTemplate Webguys_Easytemplate_Model_Template */
             $newTemplate = $templateModel->duplicate($newGroup->getId());
             $newTemplate->save();
@@ -129,7 +137,9 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         $helper = Mage::helper('easytemplate/cache');
         $helper->flushCache();
 
-        foreach ($data AS $id => $template_data) {
+        $parentIdMapping = array();
+
+        foreach ($data as $id => $templateData) {
 
             /** @var $template Webguys_Easytemplate_Model_Template */
             $template = Mage::getModel('easytemplate/template');
@@ -141,29 +151,48 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
             }
             $template->setGroupId($this->getId());
 
-            if ($template_data['is_delete'] == '1') {
+            $parentIsDelete = false;
+            if (
+                $templateData['parent_id'] &&
+                $data[$templateData['parent_id']] &&
+                $data[$templateData['parent_id']]['is_delete'] == 1
+            ) {
+                $parentIsDelete = true;
+            }
+
+            if ($templateData['is_delete'] == '1' || $parentIsDelete) {
                 if ($template->getId()) {
                     $template->delete();
                 }
             } else {
-                $template->importData($template_data);
+
+                if (isset($templateData['parent_id']) && $templateData['parent_id'] && !is_numeric($templateData['parent_id'])) {
+                    if (!isset($parentIdMapping[$templateData['parent_id']])) {
+                        Mage::throwException("Could not find parent id");
+                    }
+                    $templateData['parent_id'] = $parentIdMapping[$templateData['parent_id']];
+                }
+
+                $template->importData($templateData);
                 $template->save();
+                if ($template->getTemporaryId()) {
+                    $parentIdMapping[$template->getTemporaryId()] = $template->getId();
+                }
             }
-
         }
-
     }
 
     /**
      * @return Webguys_Easytemplate_Model_Template[]
      */
-    public function getTemplateCollection()
+    public function getTemplateCollection($parent = null)
     {
         /** @var $configModel Webguys_Easytemplate_Model_Input_Parser */
         $configModel = Mage::getSingleton('easytemplate/input_parser');
         $validTemplates = array();
 
-        foreach ($configModel->getTemplates() as $template) {
+        $templates = $configModel->getTemplates();
+        foreach ($templates as $template) {
             $validTemplates[] = $template->getCode();
         }
 
@@ -171,9 +200,16 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         $collection = Mage::getModel('easytemplate/template')->getCollection();
         $collection->addGroupFilter($this);
         $collection->addFieldToFilter('code', array('in' => $validTemplates));
+
+        if ($parent === null) {
+            $collection->addFieldToFilter('parent_id', array('null' => 'null'));
+        } else {
+            $collection->addFieldToFilter('parent_id', $parent);
+        }
+
         $collection->getSelect()->order('main_table.position');
 
-        foreach ($collection AS &$model) {
+        foreach ($collection as $model) {
             $model->load($model->getId());
         }
 
@@ -189,5 +225,4 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
         }
         return parent::_afterDelete();
     }
-
 }

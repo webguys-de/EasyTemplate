@@ -3,7 +3,6 @@
 class Webguys_Easytemplate_Test_Model_Template_Data_AllTypesTest
     extends EcomDev_PHPUnit_Test_Case
 {
-
     /**
      * @dataProvider Webguys_Easytemplate_Test_Provider_Datatypes::get
      */
@@ -36,5 +35,4 @@ class Webguys_Easytemplate_Test_Model_Template_Data_AllTypesTest
     {
         $this->assertTrue(true);
     }
-
 }

@@ -9,9 +9,9 @@ class Webguys_Easytemplate_Helper_Category extends Mage_Core_Helper_Abstract
     const ENTITY_TYPE_CATEGORY = 'catalog_category';
 
     /**
-     * Returns an existing block entry or creates a new one
-     *
-     * @param $id CategoryId
+     * @param $id int CategoryId
+     * @param $store_id int StoreId
+     * @param bool $store_fallback
      * @return Webguys_Easytemplate_Model_Group
      */
     public function getGroupByCategoryId($id, $store_id, $store_fallback = false)
@@ -48,5 +48,4 @@ class Webguys_Easytemplate_Helper_Category extends Mage_Core_Helper_Abstract
             return $newItem;
         }
     }
-
 }

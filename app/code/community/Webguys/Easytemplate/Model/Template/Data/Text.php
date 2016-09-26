@@ -7,7 +7,6 @@
 class Webguys_Easytemplate_Model_Template_Data_Text
     extends Webguys_Easytemplate_Model_Template_Data_Abstract
 {
-
     /**
      * Prefix of model events names
      *
@@ -19,5 +18,4 @@ class Webguys_Easytemplate_Model_Template_Data_Text
     {
         $this->_init('easytemplate/template_data_text');
     }
-
 }

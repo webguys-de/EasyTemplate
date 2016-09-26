@@ -3,23 +3,15 @@
 class Webguys_Easytemplate_Test_Model_Input_Parser_FieldTest
     extends Webguys_Easytemplate_Test_Model_Input_ParserAbstract
 {
-
     public function testGetAliasname()
     {
         $field = new Webguys_Easytemplate_Model_Input_Parser_Field();
 
-        $this->assertEquals(
-            'easytemplate/template_data_varchar',
-            $field->getBackendModelAlias('easytemplate/template_data_varchar')
-        );
+        $this->assertEquals('easytemplate/template_data_varchar', $field->getBackendModelAlias('easytemplate/template_data_varchar'));
         $this->assertEquals('easytemplate/template_data_varchar', $field->getBackendModelAlias('varchar'));
 
-        $this->assertEquals(
-            'easytemplate/input_renderer_text',
-            $field->getInputRenderAlias('easytemplate/input_renderer_text')
-        );
+        $this->assertEquals('easytemplate/input_renderer_text', $field->getInputRenderAlias('easytemplate/input_renderer_text'));
         $this->assertEquals('easytemplate/input_renderer_text', $field->getInputRenderAlias('text'));
-
     }
 
     public function testParsingOfFirstTemplateFirstField()
@@ -30,14 +22,6 @@ class Webguys_Easytemplate_Test_Model_Input_Parser_FieldTest
         /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
         $field = current($template->getFields());
 
-//        <label>Überschrift</label>
-//        <backend_model>easytemplate/template_data_varchar</backend_model>
-//        <input_renderer>easytemplate/input_renderer_text</input_renderer>
-//        <sort_order>1</sort_order>
-//        <default_value>Hallo EasyTemplate</default_value>
-//        <comment>Testkommentar</comment>
-//        <required>1</required>
-
         $this->assertEquals('h1', $field->getCode());
         $this->assertEquals('Überschrift', $field->getLabel());
         $this->assertEquals('1', $field->getSortOrder());
@@ -45,16 +29,7 @@ class Webguys_Easytemplate_Test_Model_Input_Parser_FieldTest
         $this->assertEquals('Testkommentar', $field->getComment());
         $this->assertEquals('1', $field->getRequired());
 
-        $this->assertInstanceOf(
-            'Webguys_Easytemplate_Model_Template_Data_Varchar',
-            $field->getBackendModel()
-        ); // easytemplate/template_data_varchar
-        $this->assertInstanceOf(
-            'Webguys_Easytemplate_Block_Input_Renderer_Text',
-            $field->getInputRenderer()
-        ); // easytemplate/input_renderer_text
-
-
+        $this->assertInstanceOf('Webguys_Easytemplate_Model_Template_Data_Varchar', $field->getBackendModel()); // easytemplate/template_data_varchar
+        $this->assertInstanceOf('Webguys_Easytemplate_Block_Input_Renderer_Text', $field->getInputRenderer()); // easytemplate/input_renderer_text
     }
-
 }

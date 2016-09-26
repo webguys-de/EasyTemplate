@@ -33,13 +33,11 @@ class Webguys_Easytemplate_Helper_File extends Mage_Core_Helper_Abstract
         if (is_dir($dir)) {
             $objects = scandir($dir);
             foreach ($objects as $object) {
-                if ($object != "." && $object != "..") {
-                    if (filetype($dir . "/" . $object) == "dir") {
-                        $this->rrmdir($dir . "/" . $object);
+                if ($object != '.' && $object != '..') {
+                    if (filetype($dir . DS . $object) == 'dir') {
+                        $this->rrmdir($dir . DS . $object);
                     } else {
-                        unlink(
-                            $dir . "/" . $object
-                        );
+                        unlink($dir . DS . $object);
                     }
                 }
             }
@@ -47,5 +45,4 @@ class Webguys_Easytemplate_Helper_File extends Mage_Core_Helper_Abstract
             rmdir($dir);
         }
     }
-
 }

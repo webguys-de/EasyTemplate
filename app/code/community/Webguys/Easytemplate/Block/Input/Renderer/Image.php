@@ -2,7 +2,6 @@
 
 class Webguys_Easytemplate_Block_Input_Renderer_Image extends Webguys_Easytemplate_Block_Input_Renderer_Abstract
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -13,5 +12,4 @@ class Webguys_Easytemplate_Block_Input_Renderer_Image extends Webguys_Easytempla
     {
         return Mage::getModel('easytemplate/template_data_varchar');
     }
-
 }

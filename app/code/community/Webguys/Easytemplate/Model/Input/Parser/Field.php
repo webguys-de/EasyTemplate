@@ -14,7 +14,6 @@
 class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate_Model_Input_Parser_Abstract
 {
     protected $_backendModel;
-
     protected $_inputRenderer;
 
     public function getBackendModelAlias($name)
@@ -105,7 +104,6 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
         $inputRendererSource = $this->getData('input_renderer_source');
         $rendererModel = Mage::getModel($inputRendererSource);
 
-
         if ($rendererModel) {
 
             if ($rendererModel instanceof Webguys_Easytemplate_Model_Input_Renderer_Source_Abstract) {
@@ -118,4 +116,8 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
         return false;
     }
 
+    public function getConfigAttribute($name)
+    {
+        return (string)$this->_config->getNode($name);
+    }
 }

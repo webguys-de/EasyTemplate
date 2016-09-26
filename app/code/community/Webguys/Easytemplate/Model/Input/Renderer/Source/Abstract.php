@@ -42,5 +42,4 @@ abstract class Webguys_Easytemplate_Model_Input_Renderer_Source_Abstract extends
     }
 
     abstract public function getOptionValues();
-
 }

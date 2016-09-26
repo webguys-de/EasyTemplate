@@ -8,7 +8,6 @@
 class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
     extends Mage_Adminhtml_Block_Widget
 {
-
     protected $_template_model;
 
     /**
@@ -19,7 +18,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
         return $this->_template_model;
     }
 
-    public function setTemplateModel($model)
+    public function setTemplateModel(Webguys_Easytemplate_Model_Template $model)
     {
         $this->_template_model = $model;
         return $this;
@@ -43,9 +42,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
 
                 $html .= $inputRenderer->toHtml();
             }
-
         }
         return $html;
     }
-
 }

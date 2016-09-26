@@ -10,7 +10,6 @@
  */
 class Webguys_Easytemplate_Block_Template_Product_Skulist extends Webguys_Easytemplate_Block_Template
 {
-
     public function getProductListBlock($skuList, $separator = ',')
     {
         /** @var $productList Webguys_Easytemplate_Block_Template_Product_List */
@@ -23,5 +22,4 @@ class Webguys_Easytemplate_Block_Template_Product_Skulist extends Webguys_Easyte
 
         return $productList;
     }
-
 }

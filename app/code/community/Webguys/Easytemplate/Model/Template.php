@@ -9,6 +9,8 @@
  * @method getCode
  * @method setName
  * @method getName
+ * @method setLabel
+ * @method getLabel
  * @method setActive
  * @method getActive
  * @method setPosition
@@ -20,9 +22,7 @@
  */
 class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
 {
-
     protected $_field_data;
-
     /**
      * Prefix of model events names
      *
@@ -35,7 +35,6 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
      *      $code => $value
      * );
      */
-
 
     protected function _construct()
     {
@@ -59,7 +58,7 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
 
         if (file_exists($source)) {
             mkdir($dest, 0777, true);
-            foreach (glob($source . '/*') AS $source_file) {
+            foreach (glob($source . '/*') as $source_file) {
                 copy($source_file, $dest . DS . basename($source_file));
             }
         }
@@ -67,12 +66,31 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
         return $clone;
     }
 
-    public function importData(Array $data)
+    protected function _beforeDelete()
+    {
+        if ($this->getId()) {
+            $col = $this->getCollection()->addFieldToFilter('parent_id', $this->getId());
+
+            foreach ($col as $item) {
+                $item->delete();
+            }
+        }
+
+        return parent::_beforeDelete();
+    }
+
+    public function importData(array $data)
     {
         $this->setCode($data['code']);
         $this->setName($data['name']);
         $this->setActive(isset($data['active']) ? $data['active'] : 0);
         $this->setPosition($data['sort_order']);
+
+        if (is_numeric($data['parent_id']) && $data['parent_id'] > 0) {
+            $this->setParentId($data['parent_id']);
+        } else {
+            $this->setParentId(null);
+        }
 
         if (($time = strtotime($data['valid_from'])) !== false) {
             $this->setValidFrom(date('Y-m-d', $time));
@@ -134,7 +152,6 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
                 $backendModel->save();
                 $inputValidator->afterFieldSave($value);
             }
-
         }
     }
 
@@ -167,19 +184,19 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
         $this->setLabel($helper->__($this->getConfig()->getLabel()));
 
         // collect all input-resources
-        foreach ($this->getFields() AS $field) {
+        foreach ($this->getFields() as $field) {
             $backend_model_name = $field->getBackendModel()->getInternalName();
             $models[$backend_model_name] = $field->getBackendModel();
         }
 
         // iterate all models and get data using collections
-        foreach ($models AS $backend_model) {
+        foreach ($models as $backend_model) {
             /** @var $data_collection Webguys_Easytemplate_Model_Resource_Template_Data_Collection_Abstract */
             $data_collection = $backend_model->getCollection();
             $data_collection->addTemplateFilter($this);
 
             /** @var $data Webguys_Easytemplate_Model_Resource_Template_Data_Abstract */
-            foreach ($data_collection AS $data) {
+            foreach ($data_collection as $data) {
                 $this->_field_data[$data->getField()] = $data->getValue();
             }
         }
@@ -192,6 +209,6 @@ class Webguys_Easytemplate_Model_Template extends Mage_Core_Model_Abstract
         if ($field === null) {
             return $this->_field_data;
         }
-        return isset($this->_field_data[$field])? $this->_field_data[$field] : null;
+        return $this->_field_data[$field];
     }
 }

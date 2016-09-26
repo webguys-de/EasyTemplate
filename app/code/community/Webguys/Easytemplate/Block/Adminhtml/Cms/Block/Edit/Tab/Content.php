@@ -14,6 +14,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Content
     protected function _prepareLayout()
     {
         parent::_prepareLayout();
+
         if (Mage::getSingleton('cms/wysiwyg_config')->isEnabled()) {
             $this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
         }
@@ -33,14 +34,16 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Content
             $isElementDisabled = true;
         }
 
-
         $form = new Varien_Data_Form();
 
         $form->setHtmlIdPrefix('block_');
 
         $fieldset = $form->addFieldset(
             'content_fieldset',
-            array('legend' => Mage::helper('cms')->__('Content'), 'class' => 'fieldset-wide')
+            array(
+                'legend' => Mage::helper('cms')->__('Content'),
+                'class' => 'fieldset-wide'
+            )
         );
 
         $wysiwygConfig = Mage::getSingleton('cms/wysiwyg_config')->getConfig(
@@ -71,14 +74,21 @@ class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Content
         );
 
         // Setting custom renderer for content field to remove label column
-        $renderer = $this->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset_element')
+        $renderer = $this->getLayout()
+            ->createBlock('adminhtml/widget_form_renderer_fieldset_element')
             ->setTemplate('cms/page/edit/form/renderer/content.phtml');
+
         $contentField->setRenderer($renderer);
 
         $form->setValues($model->getData());
         $this->setForm($form);
 
-        Mage::dispatchEvent('easytemplate_adminhtml_cms_block_edit_tab_content_prepare_form', array('form' => $form));
+        Mage::dispatchEvent(
+            'easytemplate_adminhtml_cms_block_edit_tab_content_prepare_form',
+            array(
+                'form' => $form
+            )
+        );
 
         return parent::_prepareForm();
     }
