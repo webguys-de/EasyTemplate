@@ -36,6 +36,9 @@
                 <block>cms_page_edit_tab_templates</block>
             </action>
         </reference>
+        <reference name="content">
+            <block template="easytemplate/double-click-block.phtml" type="core/template"  name="webguys.easytemplate.dblcl.block" />
+        </reference>
     </adminhtml_cms_page_edit>
 
     <adminhtml_cms_block_edit>
@@ -67,6 +70,9 @@
                     <block>easytemplate_cms_block_edit_tab_templates</block>
                 </action>
             </block>
+        </reference>
+        <reference name="content">
+            <block template="easytemplate/double-click-block.phtml" type="core/template"  name="webguys.easytemplate.dblcl.block" />
         </reference>
     </adminhtml_cms_block_edit>
 
