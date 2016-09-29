@@ -42,7 +42,7 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
                 $page->getIdentifier(),
                 array(
                     '_current' => false,
-                    '_query' => '___store=' . $storeCode . '&easytemplate_preview=' . $this->getPreviewHash()
+                    '_query' => '___store=' . $page->getStoreCode() . '&easytemplate_preview=' . $this->getPreviewHash()
                 )
             );
 

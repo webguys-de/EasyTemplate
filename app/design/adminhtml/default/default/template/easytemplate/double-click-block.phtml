@@ -1,0 +1,9 @@
+<script type="text/javascript">
+    $$('.save').each(function(node) {
+        node.observe('click', function(e) {
+            $$('.save').each(function(elem) {
+                elem.toggleClassName('disabled');
+            });
+        });
+    });
+</script>
