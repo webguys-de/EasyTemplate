@@ -2,6 +2,8 @@
 
 ---------------------------------------------------------------------------------
 
+## Please use branch feature-rc-0.9.1.0 for production. Master is dead at the moment.
+
 ## General
 
 EasyTemplate is a enhancement for Magento CMS Pages which cut ups all elements of your cms-pages in single bricks.
