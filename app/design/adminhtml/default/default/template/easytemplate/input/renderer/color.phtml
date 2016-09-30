@@ -1,0 +1,31 @@
+<?php /** @var $this Webguys_Easytemplate_Block_Input_Renderer_Color */ ?>
+
+
+<fieldset class="config">
+    <table cellspacing="0" class="form-list">
+        <colgroup class="label"></colgroup>
+        <colgroup class="value"></colgroup>
+        <colgroup class="comment"></colgroup>
+        <tbody>
+        <tr class="template_field_text_<?php echo $this->getCode() ?>">
+            <td class="label">
+                <label for="template_field_{{id}}_<?php echo $this->getCode() ?>"><?php echo $this->__(
+                        $this->getLabel()
+                    ) ?><?php if ($this->getRequired()) : ?> <span class="required">*</span><?php endif; ?></label>
+            </td>
+            <td class="value">
+                <input id="template_field_{{id}}_<?php echo $this->getCode() ?>"
+                       name="template[{{id}}][fields][<?php echo $this->getCode() ?>]"
+                       value="<?php echo $this->escapeHtml($this->getValue()) ?>"
+                       class="input-text<?php if ($this->getRequired()) : ?> required-entry<?php endif; ?>" type="text">
+            </td>
+            <td class="comment">
+                <?php echo $this->__($this->getComment()) ?>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <script>
+        $('template_field_{{id}}_<?php echo $this->getCode() ?>').color = new jscolor.color($('template_field_{{id}}_<?php echo $this->getCode() ?>'));
+    </script>
+</fieldset>
