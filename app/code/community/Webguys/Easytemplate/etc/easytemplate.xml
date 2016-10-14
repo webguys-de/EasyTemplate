@@ -433,6 +433,14 @@
                             <default_value>2013-12-05</default_value>
                             <required>0</required>
                         </datepicker_test>
+                        <color_test translate="label,comment">
+                            <label>Color</label>
+                            <comment>Comment for color</comment>
+                            <input_renderer>easytemplate/input_renderer_color</input_renderer>
+                            <sort_order>130</sort_order>
+                            <default_value>#fff</default_value>
+                            <required>0</required>
+                        </color_test>
                     </fields>
                 </testtemplate>
             </templates>
