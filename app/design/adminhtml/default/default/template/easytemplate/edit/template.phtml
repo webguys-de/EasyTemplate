@@ -34,17 +34,17 @@
 <?php if($this->getGroup()->getId()): ?>
     <div class="box">
 
-        <input type="hidden" id="easytemplate_publish" name="easytemplate_publish" value=""/>
+        <input type="hidden" id="easytemplate_action" name="easytemplate_action" value=""/>
 
         <?php if ($this->getGroup()->getCopyOf()) : ?>
 
             <button
-                onclick="$('easytemplate_publish').value='publish'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
+                onclick="$('easytemplate_action').value='publish'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
                 class="scalable save" type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
                             'Publish Working Copy'
                         ); ?></span></span></button>
             <button
-                onclick="$('easytemplate_publish').value='reset'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
+                onclick="$('easytemplate_action').value='reset'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
                 class="scalable" type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
                             'Discard Working Copy'
                         ); ?></span></span></button>
@@ -58,11 +58,12 @@
 
         <?php else : ?>
                 <button
-                    onclick="$('easytemplate_publish').value='clone'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
+                    onclick="$('easytemplate_action').value='clone'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
                     class="scalable add" type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
                                 'Create Working Copy'
                             ); ?></span></span></button>
         <?php endif; ?>
+
     </div>
 <?php endif; ?>
 
@@ -86,6 +87,56 @@
 <div id="easy_templates_container" class="box">
     <div id="easy_templates_container_top"></div>
     <?php echo $this->getExistingTemplatesHtml(); ?>
+</div>
+
+
+<div class="entry-edit-head">
+    <h4>
+        <?php echo $this->__('Import & Export'); ?>
+    </h4>
+</div>
+<div class="box">
+
+    <div>
+
+        <h4>
+            <?php echo $this->__('Import Templates'); ?>
+        </h4>
+
+        <input name="template_archive" class="input-file" type="file">
+
+        <button
+            onclick="$('easytemplate_action').value='upload'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
+            class="scalable save" type="button">
+            <span>
+                <span>
+                    <?php echo Mage::helper('easytemplate')->__('Import from ZIP-File'); ?>
+                </span>
+            </span>
+        </button>
+
+    </div>
+
+    <div style="margin-top: 15px">
+
+        <h4>
+            <?php echo $this->__('Export Templates'); ?>
+        </h4>
+
+        <button
+            onclick="$('easytemplate_action').value='download'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
+            class="scalable" type="button">
+            <span>
+                <span>
+                    <?php echo Mage::helper('easytemplate')->__('Export to ZIP-File'); ?>
+                </span>
+            </span>
+        </button>
+
+    </div>
+
+    <div style="clear: both"></div>
+
 </div>
 
 <script type="text/javascript">
