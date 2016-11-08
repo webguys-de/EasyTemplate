@@ -58,7 +58,7 @@
 
         <?php else : ?>
                 <button
-                    onclick="$('easytemplate_action').value='clone'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
+                    onclick="$('easytemplate_action').value='clone'; editForm.submit($(editForm.formId).action + 'back/edit/active_tab/easy_template')"
                     class="scalable add" type="button"><span><span><?php echo Mage::helper('easytemplate')->__(
                                 'Create Working Copy'
                             ); ?></span></span></button>
@@ -67,15 +67,16 @@
     </div>
 <?php endif; ?>
 
-
-
 <div class="entry-edit-head">
     <h4><?php echo Mage::helper('easytemplate')->__('Templates') ?></h4>
 
     <div class="right">
         <button onclick="$('easy_template_selector').show();" class="scalable add" type="button"
                 title="<?php echo Mage::helper('easytemplate')->__('Add New Template'); ?>">
-            <span><span><?php echo Mage::helper('easytemplate')->__('Add New Template'); ?></span></span></button>
+            <span>
+                <span><?php echo Mage::helper('easytemplate')->__('Add New Template'); ?></span>
+            </span>
+        </button>
     </div>
 </div>
 
@@ -89,16 +90,13 @@
     <?php echo $this->getExistingTemplatesHtml(); ?>
 </div>
 
-
 <div class="entry-edit-head">
     <h4>
         <?php echo $this->__('Import & Export'); ?>
     </h4>
 </div>
 <div class="box">
-
     <div>
-
         <h4>
             <?php echo $this->__('Import Templates'); ?>
         </h4>
@@ -114,11 +112,9 @@
                 </span>
             </span>
         </button>
-
     </div>
 
     <div style="margin-top: 15px">
-
         <h4>
             <?php echo $this->__('Export Templates'); ?>
         </h4>
@@ -132,11 +128,9 @@
                 </span>
             </span>
         </button>
-
     </div>
 
     <div style="clear: both"></div>
-
 </div>
 
 <script type="text/javascript">
@@ -158,40 +152,39 @@
         if ($$('select[name=general[landing_page]]').first()) {
             $$('select[name=general[landing_page]]').first().up().up().hide();
         }
-
     }
 
-        function sortableUpdate() {
-            var i = 1;
-            $$('#easy_templates_container div').each(function(c){
-                if(c.hasClassName('template-box') && !c.hasClassName('no-display')) {
-                    $( c.id + '_sort_order').value = i;
-                    i++;
-                }
-            });
-            Sortable.create("easy_templates_container", {
+    function sortableUpdate() {
+        var i = 1;
+        $$('#easy_templates_container div').each(function(c){
+            if(c.hasClassName('template-box') && !c.hasClassName('no-display')) {
+                $( c.id + '_sort_order').value = i;
+                i++;
+            }
+        });
+        Sortable.create("easy_templates_container", {
+            tag: 'div',
+            treeTag: 'div',
+            onUpdate: sortableUpdate
+        });
+
+        $$('#easy_templates_container .reference_fields div').each(function(c){
+            if(c.hasClassName('template-box') && !c.hasClassName('no-display')) {
+                $( c.id + '_sort_order').value = i;
+                i++;
+            }
+        });
+        $$('#easy_templates_container .reference_fields').each(function(c){
+            Sortable.destroy(c);
+            Sortable.create(c, {
                 tag: 'div',
                 treeTag: 'div',
                 onUpdate: sortableUpdate
             });
+        });
 
-            $$('#easy_templates_container .reference_fields div').each(function(c){
-                if(c.hasClassName('template-box') && !c.hasClassName('no-display')) {
-                    $( c.id + '_sort_order').value = i;
-                    i++;
-                }
-            });
-            $$('#easy_templates_container .reference_fields').each(function(c){
-                Sortable.destroy(c);
-                Sortable.create(c, {
-                    tag: 'div',
-                    treeTag: 'div',
-                    onUpdate: sortableUpdate
-                });
-            });
-
-        }
-        sortableUpdate();
+    }
+    sortableUpdate();
 
     document.observe("dom:loaded", function () {
         $('edit_form').writeAttribute('enctype', 'multipart/form-data');
@@ -218,21 +211,20 @@
 
 <script type="text/javascript">
     //<![CDATA[
-    templates =
-    <?php echo json_encode( $this->getEmptyTemplates() ); ?>
+    templates = <?php echo json_encode($this->getEmptyTemplates()); ?>;
     //]]>
 </script>
 
 <script type="text/javascript">
     //<![CDATA[
 
-        easyTemplate = {
-            div : $('easy_templates_container_top'),
-            templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
-            itemCount : 1,
-            add : function( code, label,parentContainer ) {
+    easyTemplate = {
+        div : $('easy_templates_container_top'),
+        templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
+        itemCount : 1,
+        add: function (code, label, parentContainer) {
 
-                if(typeof parentContainer === "undefined") parentContainer = false;
+            if (typeof parentContainer === "undefined") parentContainer = false;
 
             this.itemCount++;
 
@@ -243,24 +235,25 @@
             data.label = label;
             data.active = 1;
 
-                if(parentContainer) {
-                    data.parent_id = parentContainer.up('.template_container').select('.js-parentfield')[0].value;
-                } else {
-                    parentContainer = this.div;
-                    data.parent_id = 0;
-                }
+            if (parentContainer) {
+                data.parent_id = parentContainer.up('.template_container').select('.js-parentfield')[0].value;
+            } else {
+                parentContainer = this.div;
+                data.parent_id = 0;
+            }
 
-                if ( template = templates[code] ) {
+            if (template = templates[code]) {
 
                 this.secondTemplate = new Template(template, this.templateSyntax);
 
-                    var content = this.secondTemplate.evaluate(data);
-                    Element.insert(parentContainer, content);
+                var content = this.secondTemplate.evaluate(data);
+                Element.insert(parentContainer, content);
 
                 content.evalScripts();
-
             }
+
             $('easy_template_selector').hide();
+
             sortableUpdate();
             useEasyTemplate();
 
@@ -322,7 +315,7 @@
             }
         },
         bindDateTimeChangeEvents: function () {
-            var inputFields = $$('div.easy-templates input.datetime-input')
+            var inputFields = $$('div.easy-templates input.datetime-input');
             for (var i = 0; i < inputFields.length; i++) {
                 if (!$(inputFields[i]).binded) {
                     $(inputFields[i]).binded = true;
@@ -331,7 +324,7 @@
             }
         },
         bindActiveChangeEvents: function () {
-            var inputFields = $$('div.easy-templates input.active-input')
+            var inputFields = $$('div.easy-templates input.active-input');
             for (var i = 0; i < inputFields.length; i++) {
                 if (!$(inputFields[i]).binded) {
                     $(inputFields[i]).binded = true;
@@ -339,7 +332,7 @@
                 }
             }
         }
-    }
+    };
 
     easyTemplate.bindRemoveButtons();
     easyTemplate.bindDateTimeChangeEvents();
