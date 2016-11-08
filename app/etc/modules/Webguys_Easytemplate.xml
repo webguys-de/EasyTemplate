@@ -4,6 +4,10 @@
         <Webguys_Easytemplate>
             <active>true</active>
             <codePool>community</codePool>
+            <depends>
+                <Mage_Catalog/>
+                <Mage_Cms/>
+            </depends>
         </Webguys_Easytemplate>
     </modules>
 </config>
