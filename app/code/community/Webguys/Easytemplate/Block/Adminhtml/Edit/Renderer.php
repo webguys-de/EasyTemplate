@@ -18,7 +18,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
         return $this->_template_model;
     }
 
-    public function setTemplateModel(Webguys_Easytemplate_Model_Template $model)
+    public function setTemplateModel($model)
     {
         $this->_template_model = $model;
         return $this;
