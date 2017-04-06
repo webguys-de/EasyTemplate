@@ -11,16 +11,26 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
  extends Webguys_Easytemplate_Model_Input_Parser_Abstract
 {
 
+    /**
+     * check if template is hidden
+     *
+     * @return bool - template is hidden
+     */
     public function isHidden()
     {
         $hidden = $this->getData('hidden');
-        return empty($hidden) ? false : (bool)$hidden;
+        return '' == $hidden ? false : (bool)$hidden;
     }
 
+    /**
+     * check if template is enabled
+     *
+     * @return bool - template is enabled
+     */
     public function isEnabled()
     {
         $enabled = $this->getData('enabled');
-        return empty($enabled) ? true : (bool)$enabled;
+        return '' == $enabled ? true : (bool)$enabled;
     }
 
     public function getLabel()
@@ -88,7 +98,9 @@ class Webguys_Easytemplate_Model_Input_Parser_Template
                 $parser->setConfig($data);
                 $parser->setTemplate($this);
 
-                $result[] = $parser;
+                if ($parser->isEnabled()) {
+                    $result[] = $parser;
+                }
             }
 
             // Sort fields by sort_order

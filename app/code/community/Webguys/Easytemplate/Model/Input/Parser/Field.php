@@ -120,4 +120,16 @@ class Webguys_Easytemplate_Model_Input_Parser_Field extends Webguys_Easytemplate
     {
         return (string)$this->_config->getNode($name);
     }
+
+
+    /**
+     * check if field is enabled
+     *
+     * @return bool - field is enabled
+     */
+    public function isEnabled()
+    {
+        $enabled = $this->getData('enabled');
+        return '' == $enabled ? true : (bool)$enabled;
+    }
 }
