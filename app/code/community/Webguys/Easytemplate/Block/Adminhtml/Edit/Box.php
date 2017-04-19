@@ -24,7 +24,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box extends Mage_Adminhtml_Block
                 array(
                     'id' => $id,
                     'label' => $this->helper('easytemplate')->__('Edit'),
-                    'onclick' => '$(\'template_content_' . $id . '\').show();$(\'template_overview_' . $id . '\').hide();',
+                    'onclick' => '$(\'' . $id . '\').hide();$(\'template_content_' . $id . '\').show();$(\'' . $id . '_top\').show();',
                     'class' => 'scalable back',
                     'title' => $this->helper('easytemplate')->__('Edit'),
                     'style' => 'margin-top: 5px;'
@@ -41,9 +41,10 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box extends Mage_Adminhtml_Block
                 array(
                     'id' => $id . '_' . $position,
                     'label' => $this->helper('easytemplate')->__('Close'),
-                    'onclick' => '$(\'template_content_' . $id . '\').hide();$(\'template_overview_' . $id . '\').show();',
+                    'onclick' => '$(\'' . $id . '_top\').hide();$(\'template_content_' . $id . '\').hide();$(\'' . $id . '\').show();',
                     'class' => 'easytemplate scalable back f-right ' . $position,
-                    'title' => $this->helper('easytemplate')->__('Close')
+                    'title' => $this->helper('easytemplate')->__('Close'),
+					'style' => 'display: none;'
                 )
             );
         return $button->toHtml();
@@ -53,7 +54,21 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box extends Mage_Adminhtml_Block
     {
         return $this->getChildHtml('delete_button');
     }
-
+	
+    public function getColor()
+    {
+    	$code = $this->getTemplateModel()->getCode();
+    	$template = Mage::getSingleton('easytemplate/input_parser')->getTemplate($code);
+    	$color = $template->getColor();
+    	
+    	if (!$color)
+    	{
+    		$color = '#e7efef';
+    	}
+    	
+    	return sprintf('background: %s;', $color);
+    }
+    
     /**
      * Retrieve locale
      *
