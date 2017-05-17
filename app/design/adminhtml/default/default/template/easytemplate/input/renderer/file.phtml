@@ -13,16 +13,27 @@
                     ) ?><?php if ($this->getRequired()) : ?> <span class="required">*</span><?php endif; ?></label>
             </td>
             <td class="value">
-                <?php if ($this->hasFile() && $this->isImageFile()) : ?>
-                    <a href="<?php echo $this->getFileUri() ?>"
-                       onclick="imagePreview('template_field_{{id}}_file_<?php echo $this->getCode(
-                       ) ?>'); return false;">
-                        <img src="<?php echo $this->getFileUri() ?>"
-                             id="template_field_{{id}}_file_<?php echo $this->getCode() ?>"
-                             title="<?php echo $this->escapeHtml($this->getValue()) ?>"
-                             alt="<?php echo $this->escapeHtml($this->getValue()) ?>" height="22" width="22"
-                             class="small-image-preview v-middle">
-                    </a>
+                <?php if ($this->hasFile()) : ?>
+
+                    <?php if ($this->isImageFile())  : ?>
+
+                        <a href="<?php echo $this->getFileUri() ?>"
+                           onclick="imagePreview('template_field_{{id}}_file_<?php echo $this->getCode() ?>'); return false;">
+                            <img src="<?php echo $this->getFileUri() ?>"
+                                 id="template_field_{{id}}_file_<?php echo $this->getCode() ?>"
+                                 title="<?php echo $this->escapeHtml($this->getValue()) ?>"
+                                 alt="<?php echo $this->escapeHtml($this->getValue()) ?>" height="22" width="22"
+                                 class="small-image-preview v-middle">
+                        </a>
+
+                    <?php else : ?>
+
+                        <a href="<?php echo $this->getFileUri() ?>">
+                            <?php echo $this->escapeHtml($this->getValue()) ?>
+                        </a>
+
+                    <?php endif; ?>
+
                 <?php endif; ?>
 
                 <input id="template_field_{{id}}_<?php echo $this->getCode() ?>"
