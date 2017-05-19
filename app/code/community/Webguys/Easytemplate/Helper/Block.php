@@ -10,7 +10,7 @@ class Webguys_Easytemplate_Helper_Block extends Mage_Core_Helper_Abstract
 
     public function isEasyTemplateBlock($blockId)
     {
-        $block = Mage::getSingleton('cms/block');
+        $block = Mage::getModel('cms/block');
         $block->setStoreId(Mage::app()->getStore()->getId());
         $block->load($blockId);
 
