@@ -196,7 +196,11 @@
     sortableUpdate();
 
     document.observe("dom:loaded", function () {
-        $('edit_form').writeAttribute('enctype', 'multipart/form-data');
+        if (typeof editForm == 'undefined') {
+            editForm = categoryForm;
+        }
+
+        $(editForm.formId).writeAttribute('enctype', 'multipart/form-data');
 
         // Page mode
         if ($('page_view_mode') && $('page_view_mode').value == 'easytemplate') {
