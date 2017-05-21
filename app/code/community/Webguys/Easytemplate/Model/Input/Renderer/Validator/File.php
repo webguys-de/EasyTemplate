@@ -19,7 +19,7 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_File extends Webguys_E
 
         $template = $this->getTemplate();
 
-        return $fileHelper->getDestinationUrl($template->getGroupId(), $template->getId()) . DS . $data;
+        return $fileHelper->getDestinationUrl($template->getGroupId(), $template->getId()) . '/' . $data;
     }
 
     public function prepareForSave($data)
