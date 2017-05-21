@@ -392,5 +392,184 @@
                 </category_products>
             </templates>
         </product>
+        <test translate="label">
+            <enabled>0</enabled>
+            <label>Test Templates</label>
+            <templates>
+                <testtemplate template="easytemplate/template/testtemplate.phtml" type="easytemplate/template"
+                              translate="label,comment">
+                    <enabled>1</enabled>
+                    <label>Test template</label>
+                    <comment>A test template with all EasyTemplate features</comment>
+                    <image>images/easytemplate/testtemplate.png</image>
+                    <sort_order>10</sort_order>
+                    <fields>
+
+                        <image_test translate="label,comment">
+                            <label>Magento Media Gallery</label>
+                            <comment>Comment for image-input</comment>
+                            <!-- <backend_model>easytemplate/template_data_varchar</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_image</input_renderer>
+                            <sort_order>5</sort_order>
+                            <required>0</required>
+                        </image_test>
+
+                        <textarea_test translate="label,comment">
+                            <label>Textarea</label>
+                            <comment>Comment for textarea</comment>
+                            <!-- <backend_model>easytemplate/template_data_text</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_textarea</input_renderer>
+                            <sort_order>10</sort_order>
+                            <default_value>Textarea default value</default_value>
+                            <required>0</required>
+                        </textarea_test>
+
+                        <textfield_test translate="label,comment">
+                            <label>Textfield</label>
+                            <comment>Comment for textfield</comment>
+                            <!-- <backend_model>easytemplate/template_data_varchar</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                            <sort_order>20</sort_order>
+                            <default_value>Textfield default value</default_value>
+                            <required>0</required>
+                        </textfield_test>
+
+                        <divider_test translate="label,comment">
+                            <label>Heading divider</label>
+                            <comment>Comment for divider</comment>
+                            <input_renderer>easytemplate/input_renderer_divider</input_renderer>
+                            <sort_order>25</sort_order>
+                        </divider_test>
+
+                        <editor_test translate="label,comment">
+                            <label>Editor</label>
+                            <comment>Comment for editor</comment>
+                            <!-- <backend_model>easytemplate/template_data_text</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_editor</input_renderer>
+                            <sort_order>30</sort_order>
+                            <default_value>Editor default text</default_value>
+                            <required>0</required>
+                        </editor_test>
+
+                        <selectyesno_test translate="label,comment">
+                            <label>Select yesno</label>
+                            <comment>Comment for select yesno</comment>
+                            <!-- <backend_model>easytemplate/template_data_int</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_yesno</input_renderer_source>
+                            <sort_order>40</sort_order>
+                            <default_value>true</default_value>
+                            <required>0</required>
+                        </selectyesno_test>
+
+                        <selectcustomsource_test translate="label,comment">
+                            <label>Select source xml</label>
+                            <comment>Comment for select xml source</comment>
+                            <!-- <backend_model>easytemplate/template_data_varchar</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
+                            <values>
+                                <option1>Option 1</option1>
+                                <option2>Option 2</option2>
+                                <option3>Option 3</option3>
+                                <optionX>Option X</optionX>
+                            </values>
+                            <sort_order>50</sort_order>
+                            <default_value>option2</default_value>
+                            <required>0</required>
+                        </selectcustomsource_test>
+
+                        <selectnumbers_test translate="label,comment">
+                            <label>Select source numbers</label>
+                            <comment>Comment for number select</comment>
+                            <!-- <backend_model>easytemplate/template_data_int</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_select</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_numbers</input_renderer_source>
+                            <sort_order>60</sort_order>
+                            <default_value>5</default_value>
+                            <required>0</required>
+                        </selectnumbers_test>
+
+                        <multiselect_test translate="label,comment">
+                            <label>Select source numbers</label>
+                            <comment>Comment for number select</comment>
+                            <!-- <backend_model>easytemplate/template_data_varchar</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_multiselect</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_values</input_renderer_source>
+                            <values>
+                                <option1>Option 1</option1>
+                                <option2>Option 2</option2>
+                                <option3>Option 3</option3>
+                                <optionX>Option X</optionX>
+                            </values>
+                            <sort_order>70</sort_order>
+                            <default_value>option2,option3</default_value>
+                            <required>0</required>
+                        </multiselect_test>
+
+                        <file_test translate="label,comment">
+                            <label>File</label>
+                            <comment>Comment for file</comment>
+                            <!-- <backend_model>easytemplate/template_data_varchar</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_file</input_renderer>
+                            <sort_order>80</sort_order>
+                            <default_value></default_value>
+                            <required>0</required>
+                        </file_test>
+
+                        <link_test translate="label,comment">
+                            <label>Link</label>
+                            <comment>Comment for link</comment>
+                            <!-- <backend_model>easytemplate/template_data_varchar</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_link</input_renderer>
+                            <sort_order>90</sort_order>
+                            <default_value></default_value>
+                            <required>1</required>
+                        </link_test>
+
+                        <product_test translate="label,comment">
+                            <label>Product</label>
+                            <comment>Comment for product</comment>
+                            <!-- <backend_model>easytemplate/template_data_int</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_product</input_renderer>
+                            <sort_order>100</sort_order>
+                            <default_value></default_value>
+                            <required>0</required>
+                        </product_test>
+
+                        <category_test translate="label,comment">
+                            <label>Category</label>
+                            <comment>Comment for category</comment>
+                            <!-- <backend_model>easytemplate/template_data_int</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_category</input_renderer>
+                            <sort_order>100</sort_order>
+                            <default_value></default_value>
+                            <required>0</required>
+                        </category_test>
+
+                        <block_test translate="label,comment">
+                            <label>Block reference</label>
+                            <comment>Comment for block</comment>
+                            <!-- <backend_model>easytemplate/template_data_int</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_block</input_renderer>
+                            <input_renderer_source>easytemplate/input_renderer_source_blocks</input_renderer_source>
+                            <sort_order>110</sort_order>
+                            <default_value>3</default_value>
+                            <required>0</required>
+                        </block_test>
+
+                        <datepicker_test translate="label,comment">
+                            <label>Datepicker</label>
+                            <comment>Comment for datepicker</comment>
+                            <!-- <backend_model>easytemplate/template_data_datetime</backend_model> -->
+                            <input_renderer>easytemplate/input_renderer_datepicker</input_renderer>
+                            <sort_order>120</sort_order>
+                            <default_value>2013-12-05</default_value>
+                            <required>0</required>
+                        </datepicker_test>
+                    </fields>
+                </testtemplate>
+            </templates>
+        </test>
     </easytemplate>
 </config>
