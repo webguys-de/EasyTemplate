@@ -272,7 +272,9 @@
 
             // TODO: Remove duplicate logic here and in box.phtml
             $('template_content_' + data.id).show();
-            $('template_overview_' + data.id).hide();
+
+            $(data.id).hide();
+            $(data.id+'_top').show();
 
             this.bindRemoveButtons();
             this.bindDateTimeChangeEvents();
