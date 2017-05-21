@@ -47,6 +47,7 @@
                     <image>images/easytemplate/google_maps.png</image>
                     <comment>Displays a point on the landscape</comment>
                     <sort_order>20</sort_order>
+                    <color>#0066cc</color>
                     <fields>
                         <map_url translate="label,comment">
                             <label>iFrame Code</label>
