@@ -129,7 +129,7 @@
         </h4>
 
         <button
-            onclick="$('easytemplate_action').value='download'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' )"
+            onclick="$('easytemplate_action').value='download'; editForm.submit( $(editForm.formId).action+'back/edit/active_tab/easy_template' );  setTimeout(function(){ $('loading-mask').hide() }, 3000);"
             class="scalable" type="button">
             <span>
                 <span>
@@ -195,7 +195,8 @@
     }
     sortableUpdate();
 
-    document.observe("dom:loaded", function () {
+    function easytemplate_initial()
+    {
         if (typeof editForm == 'undefined') {
             editForm = categoryForm;
         }
@@ -216,7 +217,16 @@
         if ($$('select[name=general[use_easytemplate]]').first() && $$('select[name=general[use_easytemplate]]').first().value) {
             useEasyTemplate();
         }
+    }
 
+    document.observe("dom:loaded", function () {
+        easytemplate_initial();
+    });
+
+    Ajax.Responders.register({
+        onComplete: function() {
+            easytemplate_initial();
+        }
     });
 
     // ]]>
