@@ -5,7 +5,8 @@
             <enabled>1</enabled>
             <label>Simple Templates</label>
             <templates>
-                <headline_text template="easytemplate/template/headline_text.phtml" type="easytemplate/template" translate="label,comment">
+                <headline_text template="easytemplate/template/headline_text.phtml" type="easytemplate/template"
+                               translate="label,comment">
                     <enabled>1</enabled>
                     <label>Headline + Text</label>
                     <image>images/easytemplate/headline_text.png</image>
@@ -41,7 +42,8 @@
                         </text>
                     </fields>
                 </headline_text>
-                <google_maps template="easytemplate/template/google_maps.phtml" type="easytemplate/template_googlemaps" translate="label,comment">
+                <google_maps template="easytemplate/template/google_maps.phtml" type="easytemplate/template_googlemaps"
+                             translate="label,comment">
                     <enabled>1</enabled>
                     <label>Google Maps</label>
                     <image>images/easytemplate/google_maps.png</image>
@@ -88,7 +90,8 @@
                         </show_link>
                     </fields>
                 </google_maps>
-                <youtube template="easytemplate/template/youtube.phtml" type="easytemplate/template" translate="label,comment">
+                <youtube template="easytemplate/template/youtube.phtml" type="easytemplate/template"
+                         translate="label,comment">
                     <enabled>1</enabled>
                     <label>Youtube</label>
                     <image>images/easytemplate/youtube.png</image>
@@ -134,7 +137,8 @@
                         </allowfullscreen>
                     </fields>
                 </youtube>
-                <vimeo template="easytemplate/template/vimeo.phtml" type="easytemplate/template" translate="label,comment">
+                <vimeo template="easytemplate/template/vimeo.phtml" type="easytemplate/template"
+                       translate="label,comment">
                     <enabled>1</enabled>
                     <label>Vimeo</label>
                     <image>images/easytemplate/vimeo.png</image>
@@ -170,7 +174,8 @@
                         </height>
                     </fields>
                 </vimeo>
-                <text_2column template="easytemplate/template/text_2column.phtml" type="easytemplate/template" translate="label,comment">
+                <text_2column template="easytemplate/template/text_2column.phtml" type="easytemplate/template"
+                              translate="label,comment">
                     <enabled>1</enabled>
                     <label>Text 2column</label>
                     <image>images/easytemplate/text_2column.png</image>
@@ -197,7 +202,8 @@
                         </text_right>
                     </fields>
                 </text_2column>
-                <text_picture template="easytemplate/template/text_picture.phtml" type="easytemplate/template" translate="label,comment">
+                <text_picture template="easytemplate/template/text_picture.phtml" type="easytemplate/template"
+                              translate="label,comment">
                     <enabled>1</enabled>
                     <label>Text + picture</label>
                     <image>images/easytemplate/text_picture.png</image>
@@ -255,7 +261,8 @@
                         </text>
                     </fields>
                 </text_picture>
-                <spacer template="easytemplate/template/spacer.phtml" type="easytemplate/template" translate="label,comment">
+                <spacer template="easytemplate/template/spacer.phtml" type="easytemplate/template"
+                        translate="label,comment">
                     <enabled>1</enabled>
                     <label>Spacer</label>
                     <image>images/easytemplate/spacer.png</image>
@@ -273,13 +280,64 @@
                         </amount>
                     </fields>
                 </spacer>
+                <slider template="easytemplate/slider.phtml" type="easytemplate/template"
+                        translate="label,comment">
+                    <enabled>1</enabled>
+                    <label>Slider</label>
+                    <sort_order>10</sort_order>
+                    <fields>
+                        <duration translate="label,comment">
+                            <label>Speed in MS</label>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                            <sort_order>10</sort_order>
+                            <default_value>5000</default_value>
+                            <required>1</required>
+                        </duration>
+
+                        <item translate="label,comment,reference_button_label">
+                            <label>Links</label>
+                            <input_renderer>easytemplate/input_renderer_reference</input_renderer>
+                            <reference>simple_slider_item</reference>
+                            <reference_button_label>Add new Slide-Item</reference_button_label>
+                            <sort_order>20</sort_order>
+                        </item>
+                    </fields>
+                </slider>
+                <slider_item type="easytemplate/template">
+                    <hidden>1</hidden>
+                    <enabled>1</enabled>
+                    <label>Link/Bild</label>
+                    <fields>
+                        <image translate="label,comment">
+                            <label>Image</label>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_file</input_renderer>
+                            <sort_order>5</sort_order>
+                        </image>
+
+                        <link translate="label,comment">
+                            <label>Link</label>
+                            <backend_model>easytemplate/template_data_varchar</backend_model>
+                            <input_renderer>easytemplate/input_renderer_link</input_renderer>
+                            <sort_order>6</sort_order>
+                        </link>
+
+                        <link_text translate="label,comment">
+                            <label>Link-Text</label>
+                            <input_renderer>easytemplate/input_renderer_text</input_renderer>
+                            <sort_order>7</sort_order>
+                        </link_text>
+                    </fields>
+                </slider_item>
             </templates>
         </simple>
         <product translate="label">
             <enabled>1</enabled>
             <label>Productlisting</label>
             <templates>
-                <category_products template="catalog/product/list.phtml" type="easytemplate/template_product_list" translate="label,comment">
+                <category_products template="catalog/product/list.phtml" type="easytemplate/template_product_list"
+                                   translate="label,comment">
                     <enabled>1</enabled>
                     <label>Display Category Products</label>
                     <comment>Display Products of a custom category</comment>

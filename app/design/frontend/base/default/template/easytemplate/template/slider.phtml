@@ -1,0 +1,32 @@
+<?php /** @var $this Webguys_Easytemplate_Block_Template */ ?>
+<?php $id = $this->getTemplateModel()->getId() ?>
+<div class="easy-module slider">
+    <div class="row">
+        <div class="col-xs-12 ">
+            <div id="slider">
+                <?php foreach ($this->getChildTemplates() as $child): ?>
+                    <div class="image" style="background-image: url('<?php echo $child->getData('image') ?>')">
+                        <span><?php echo $child->getData('link_text') ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function($){
+        $(function(){
+            $('#slider').slick({
+                dots: false,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
+                autoplay: true,
+                adaptiveHeight: true,
+                autoplaySpeed: <?php echo $this->getData('duration'); ?>,
+                prevArrow: '<img class="slick-arrow-left js-slick-prev" src="<?php echo $this->getSkinUrl('images/arrow_primary_left_full.png'); ?>" alt="<?php echo $this->__('Vorheriges Bild'); ?>" />',
+                nextArrow: '<img class="slick-arrow-right js-slick-next" src="<?php echo $this->getSkinUrl('images/arrow_primary_right_full.png'); ?>" alt="<?php echo $this->__('Nächstes Bild'); ?>" />'
+            });
+        });
+    }(jQuery))
+</script>
