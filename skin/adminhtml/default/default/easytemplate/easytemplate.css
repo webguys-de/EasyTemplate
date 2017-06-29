@@ -262,5 +262,6 @@
 }
 
 .reference .template_overview {
-    display: none;
+    border: 1px solid #d6d6d6;
+    padding: 5px;
 }
