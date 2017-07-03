@@ -280,7 +280,7 @@
                         </amount>
                     </fields>
                 </spacer>
-                <slider template="easytemplate/slider.phtml" type="easytemplate/template"
+                <slider template="easytemplate/template/slider.phtml" type="easytemplate/template"
                         translate="label,comment">
                     <enabled>1</enabled>
                     <label>Slider</label>
