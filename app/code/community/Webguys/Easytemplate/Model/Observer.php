@@ -146,7 +146,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
 
                 $transport->setHtml($html);
             }
-        } elseif ($block instanceof Mage_Cms_Block_Block) {
+        } elseif ($block instanceof Mage_Cms_Block_Block || $block instanceof Mage_Cms_Block_Widget_Block) {
 
             /** @var $block Mage_Cms_Block_Block */
             $blockId = $block->getBlockId();
