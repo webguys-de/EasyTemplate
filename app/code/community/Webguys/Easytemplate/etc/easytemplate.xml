@@ -564,6 +564,7 @@
                             <!-- <backend_model>easytemplate/template_data_datetime</backend_model> -->
                             <input_renderer>easytemplate/input_renderer_datepicker</input_renderer>
                             <sort_order>120</sort_order>
+                            <!-- you can use all out of strtotime like "now" or "+1 week" as default value -->
                             <default_value>2013-12-05</default_value>
                             <required>0</required>
                         </datepicker_test>
