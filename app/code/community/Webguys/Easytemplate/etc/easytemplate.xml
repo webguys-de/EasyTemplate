@@ -304,7 +304,7 @@
                         </item>
                     </fields>
                 </slider>
-                <slider_item type="easytemplate/template">
+                <slider_item template="easytemplate/template/slider_item.phtml" type="easytemplate/template">
                     <hidden>1</hidden>
                     <enabled>1</enabled>
                     <label>Link/Bild</label>
