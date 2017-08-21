@@ -156,11 +156,6 @@
             $('block_content').addClassName('ignore-validate');
             $('block_tabs_content_section').hide();
         }
-
-        // Category mode
-        if ($$('select[name=general[landing_page]]').first()) {
-            $$('select[name=general[landing_page]]').first().up().up().hide();
-        }
     }
 
     function sortableUpdate() {
