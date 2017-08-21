@@ -163,6 +163,27 @@
         }
     }
 
+    var SortableObserver = Class.create({
+        initialize: function(element, observer) {
+            this.element   = $(element);
+            this.observer  = observer;
+            this.lastValue = Sortable.serialize(this.element);git
+            easytemplateDisableTinymce();
+        },
+
+        onStart: function() {
+            this.lastValue = Sortable.serialize(this.element);
+            easytemplateDisableTinymce();
+        },
+
+        onEnd: function() {
+            easytemplateEnableTinyMce();
+            Sortable.unmark();
+            if(this.lastValue != Sortable.serialize(this.element))
+                this.observer(this.element)
+        }
+    });
+
     function sortableUpdate() {
         var i = 1;
         $$('#easy_templates_container div').each(function(c){
