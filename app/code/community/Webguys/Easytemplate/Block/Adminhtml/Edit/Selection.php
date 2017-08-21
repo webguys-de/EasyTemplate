@@ -11,6 +11,12 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Bloc
     const TEMPLATE_TYPES_PATH = 'easytemplate';
     const NO_IMAGE_PATH = 'images/easytemplate/no-image.png';
 
+    /**
+     * searches category label out of Easytemplate XML definition
+     * 
+     * @param string $_category - internal code name of category
+     * @return string - translated category name
+     */
     public function getCategoryLabel($_category)
     {
         $path = 'easytemplate';
@@ -20,6 +26,9 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Bloc
             $categ = $category->asArray();
             if (isset($categ['enabled']) && $categ['enabled']) {
                 if ($category->getName() == $_category) {
+                    if (in_array('label', explode(',', $categ['@']['translate']))) {
+                        return $this->__($categ['label']);
+                    }
                     return $categ['label'];
                 }
             }
@@ -27,6 +36,12 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Bloc
         return $_category;
     }
 
+    /**
+     * get correct image for a template
+     *
+     * @param string $image - relative path to image file
+     * @return string - relative path to image file to use (placeholder = fallback)
+     */
     public function getTemplateImage($image)
     {
         if ($image == '') {
