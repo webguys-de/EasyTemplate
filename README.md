@@ -2,6 +2,8 @@
 
 ---------------------------------------------------------------------------------
 
+## Please use only tags in production - master branch is not stable!
+
 ## General
 
 EasyTemplate is a enhancement for Magento CMS Pages which cut ups all elements of your cms-pages in single bricks.
