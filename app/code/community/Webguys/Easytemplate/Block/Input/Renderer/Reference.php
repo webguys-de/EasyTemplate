@@ -2,7 +2,7 @@
 
 class Webguys_Easytemplate_Block_Input_Renderer_Reference extends Webguys_Easytemplate_Block_Input_Renderer_Abstract
 {
-    public function __construct(array $args = array())
+    public function __construct(array $args = [])
     {
         parent::__construct($args);
         $this->setTemplate('easytemplate/input/renderer/reference.phtml');
@@ -47,6 +47,15 @@ class Webguys_Easytemplate_Block_Input_Renderer_Reference extends Webguys_Easyte
     public function getReferenceDefaultName()
     {
         $configModel = Mage::getSingleton('easytemplate/input_parser');
+        if (!$configModel->getTemplate($this->getReference())) {
+            Mage::getSingleton('core/session')->addError(
+                $this->__('Template with reference name "%s" not found.', $this->getReference())
+            );
+            $ex = new Webguys_Easytemplate_Exception_RedirectException();
+            $ex->prepareRedirect('adminhtml/cms_page');
+            throw $ex;
+
+        }
         return $configModel->getTemplate($this->getReference())->getLabel();
     }
 }
