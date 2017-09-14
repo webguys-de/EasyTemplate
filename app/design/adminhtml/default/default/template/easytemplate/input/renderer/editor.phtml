@@ -24,7 +24,7 @@
 </fieldset>
 <script type="text/javascript">
     // <![CDATA[
-    if ('{{id}}'.indexOf('new') > -1) {
+    if ('{{id}}'.indexOf('new') > -1 && typeof tinyMCE !== 'undefined') {
         tinyMCE.execCommand('mceAddControl', false, '<?php echo $this->getEditor()->getHtmlId(); ?>');
     }
     //]]>
