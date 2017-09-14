@@ -32,6 +32,10 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_File extends Webguys_E
             }
         }
 
+        if (empty($data['value']) && empty($data['existing'])) {
+            return '';
+        }
+
         $fileName = !empty($data['value']) ? $data['value'] : $data['existing'];
         return Mage_Core_Model_File_Uploader::getNewFileName(strtolower($fileName));
     }
