@@ -37,4 +37,13 @@ class Webguys_Easytemplate_Block_Template extends Mage_Core_Block_Template
     {
         return $this->getRenderer()->toHtml();
     }
+
+    public function getCacheLifetime()
+    {
+        if (!$this->hasData('cache_lifetime')) {
+            return 3600;
+        }
+        return $this->getData('cache_lifetime');
+    }
+
 }

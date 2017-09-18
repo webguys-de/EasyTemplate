@@ -27,6 +27,7 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
             Mage::app()->getStore()->getCode(),
             (int)Mage::app()->getStore()->isCurrentlySecure(),
             Mage::getSingleton('customer/session')->isLoggedIn(),
+            Mage::getSingleton('customer/session')->getCustomerGroupId(),
             $this->getGroup()->getId()
         );
     }
@@ -77,6 +78,10 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                         $childBlock->setTemplateModel($template);
                         $childBlock->setTemplateCode($templateCode);
                         $childBlock->setGroup($group);
+
+                        if(!$childBlock->getCacheLifetime()) {
+                            $this->_cachingAllowed=false;
+                        }
 
                         /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
                         foreach ($model->getFields() as $field) {
