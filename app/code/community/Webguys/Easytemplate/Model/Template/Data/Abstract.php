@@ -10,8 +10,7 @@
  * @method getValue
  * @method setValue
  */
-abstract class Webguys_Easytemplate_Model_Template_Data_Abstract
-    extends Mage_Core_Model_Abstract
+abstract class Webguys_Easytemplate_Model_Template_Data_Abstract extends Mage_Core_Model_Abstract
 {
     protected $_parent_parser_field = null;
 

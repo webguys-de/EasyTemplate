@@ -27,7 +27,6 @@ class Webguys_Easytemplate_Adminhtml_Easytemplate_Chooser_ImageController extend
 
     public function onInsertAction()
     {
-
         $helper = Mage::helper('cms/wysiwyg_images');
         $storeId = $this->getRequest()->getParam('store');
 

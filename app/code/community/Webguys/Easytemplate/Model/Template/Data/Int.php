@@ -4,8 +4,7 @@
  * Class Webguys_Easytemplate_Model_Template_Data_Int
  *
  */
-class Webguys_Easytemplate_Model_Template_Data_Int
-    extends Webguys_Easytemplate_Model_Template_Data_Abstract
+class Webguys_Easytemplate_Model_Template_Data_Int extends Webguys_Easytemplate_Model_Template_Data_Abstract
 {
     /**
      * Prefix of model events names
@@ -22,7 +21,7 @@ class Webguys_Easytemplate_Model_Template_Data_Int
     public function isValid()
     {
         $value = $this->getValue();
-        if(empty($value)) {
+        if (empty($value)) {
             return true;
         }
         if (is_numeric($value)) {

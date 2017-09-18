@@ -4,8 +4,7 @@
  * Class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
  *
  */
-abstract class Webguys_Easytemplate_Block_Adminhtml_Edit_Template
-    extends Mage_Adminhtml_Block_Widget
+abstract class Webguys_Easytemplate_Block_Adminhtml_Edit_Template extends Mage_Adminhtml_Block_Widget
 {
     protected $_templateBlocks = array();
 

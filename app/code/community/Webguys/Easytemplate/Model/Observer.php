@@ -218,7 +218,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
         /** @var $category Mage_Catalog_Model_Category */
         $category = $observer->getDataObject();
 
-        if($category == null){
+        if ($category == null) {
             return;
         }
 
@@ -242,8 +242,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
             ->addFieldToFilter('entity_id', $dataObject->getPageId())
             ->addFieldToFilter('entity_type', Webguys_Easytemplate_Helper_Page::ENTITY_TYPE_PAGE);
 
-        foreach($collection as $item)
-        {
+        foreach ($collection as $item) {
             $item->delete();
         }
     }
@@ -257,8 +256,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
             ->addFieldToFilter('entity_id', $dataObject->getEntityId())
             ->addFieldToFilter('entity_type', Webguys_Easytemplate_Helper_Category::ENTITY_TYPE_CATEGORY);
 
-        foreach($collection as $item)
-        {
+        foreach ($collection as $item) {
             $item->delete();
         }
     }
@@ -272,8 +270,7 @@ class Webguys_Easytemplate_Model_Observer extends Mage_Core_Model_Abstract
             ->addFieldToFilter('entity_id', $dataObject->getBlockId())
             ->addFieldToFilter('entity_type', Webguys_Easytemplate_Helper_Block::ENTITY_TYPE_BLOCK);
 
-        foreach($collection as $item)
-        {
+        foreach ($collection as $item) {
             $item->delete();
         }
     }

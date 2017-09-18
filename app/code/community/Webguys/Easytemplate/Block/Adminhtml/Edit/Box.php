@@ -44,7 +44,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box extends Mage_Adminhtml_Block
                     'onclick' => '$(\'' . $id . '_top\').hide();$(\'template_content_' . $id . '\').hide();$(\'' . $id . '\').show();',
                     'class' => 'easytemplate scalable back f-right ' . $position,
                     'title' => $this->helper('easytemplate')->__('Close'),
-					'style' => 'display: none;'
+                    'style' => 'display: none;'
                 )
             );
         return $button->toHtml();
@@ -54,19 +54,18 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box extends Mage_Adminhtml_Block
     {
         return $this->getChildHtml('delete_button');
     }
-	
+    
     public function getColor()
     {
-    	$code = $this->getTemplateModel()->getCode();
-    	$template = Mage::getSingleton('easytemplate/input_parser')->getTemplate($code);
-    	$color = $template->getColor();
-    	
-    	if (!$color)
-    	{
-    		$color = '#e7efef';
-    	}
-    	
-    	return sprintf('background: %s;', $color);
+        $code = $this->getTemplateModel()->getCode();
+        $template = Mage::getSingleton('easytemplate/input_parser')->getTemplate($code);
+        $color = $template->getColor();
+        
+        if (!$color) {
+            $color = '#e7efef';
+        }
+        
+        return sprintf('background: %s;', $color);
     }
     
     /**
@@ -97,7 +96,6 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Box extends Mage_Adminhtml_Block
         $html = parent::_toHtml();
 
         if ($this->getTemplateModel() && $this->getTemplateModel()->getId()) {
-
             foreach ($this->getTemplateModel()->getData() as $replace => $to) {
                 if (in_array($replace, array('valid_from', 'valid_to'))) {
                     $date = strftime($this->getDateStrFormat(), strtotime($to));

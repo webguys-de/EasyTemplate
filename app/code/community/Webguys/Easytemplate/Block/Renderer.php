@@ -79,7 +79,7 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
                         $childBlock->setTemplateCode($templateCode);
                         $childBlock->setGroup($group);
 
-                        if(!$childBlock->getCacheLifetime()) {
+                        if (!$childBlock->getCacheLifetime()) {
                             $this->_cachingAllowed=false;
                         }
 
@@ -96,7 +96,6 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
 
                             $frontendValue = $inputValidator->prepareForFrontend($template->getFieldData($fieldCode));
                             if ($frontendValue) {
-
                                 $valueTransport = new Varien_Object();
                                 $valueTransport->setValue($frontendValue);
 

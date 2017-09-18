@@ -1,7 +1,6 @@
 <?php
 
-class Webguys_Easytemplate_Test_Model_Input_Parser_TemplateTest
-    extends Webguys_Easytemplate_Test_Model_Input_ParserAbstract
+class Webguys_Easytemplate_Test_Model_Input_Parser_TemplateTest extends Webguys_Easytemplate_Test_Model_Input_ParserAbstract
 {
     public function testParsingOfFirstTemplate()
     {

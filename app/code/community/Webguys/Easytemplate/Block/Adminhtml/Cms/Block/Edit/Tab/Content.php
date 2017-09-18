@@ -4,9 +4,7 @@
  * Class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Content
  *
  */
-class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Content
-    extends Mage_Adminhtml_Block_Widget_Form
-    implements Mage_Adminhtml_Block_Widget_Tab_Interface
+class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Content extends Mage_Adminhtml_Block_Widget_Form implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
     /**
      * Load Wysiwyg on demand and Prepare layout

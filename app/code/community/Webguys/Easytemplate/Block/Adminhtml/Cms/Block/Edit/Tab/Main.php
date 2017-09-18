@@ -4,9 +4,7 @@
  * Class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Main
  *
  */
-class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Main
-    extends Mage_Adminhtml_Block_Widget_Form
-    implements Mage_Adminhtml_Block_Widget_Tab_Interface
+class Webguys_Easytemplate_Block_Adminhtml_Cms_Block_Edit_Tab_Main extends Mage_Adminhtml_Block_Widget_Form implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
     protected function _prepareForm()
     {

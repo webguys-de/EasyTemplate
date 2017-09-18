@@ -71,7 +71,8 @@ class Webguys_Easytemplate_Model_Input_Renderer_Validator_File extends Webguys_E
                 //$uploader->setAllowedExtensions(array('jpg','jpeg','gif','png','pdf'));
                 $uploader->addValidateCallback(
                     'easytemplate_template_file',
-                    $fileHelper, 'validateUploadFile'
+                    $fileHelper,
+                    'validateUploadFile'
                 );
                 $uploader->setAllowRenameFiles(false);
                 $uploader->setFilesDispersion(false);

@@ -165,7 +165,6 @@ class Webguys_Easytemplate_Model_Group extends Mage_Core_Model_Abstract
                     $template->delete();
                 }
             } else {
-
                 if (isset($templateData['parent_id']) && $templateData['parent_id'] && !is_numeric($templateData['parent_id'])) {
                     if (!isset($parentIdMapping[$templateData['parent_id']])) {
                         Mage::throwException("Could not find parent id");

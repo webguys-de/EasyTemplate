@@ -37,7 +37,6 @@ class Webguys_Easytemplate_Helper_Data extends Mage_Core_Helper_Abstract
             case 'upload':
 
                 if (isset($_FILES['template_archive']['name'])) {
-
                     $file = $_FILES['template_archive']['tmp_name'];
 
                     $zip = new ZipArchive();

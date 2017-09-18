@@ -29,7 +29,7 @@ class Webguys_Easytemplate_Helper_Category extends Mage_Core_Helper_Abstract
 
             // do not use empty store view groups and also filter deactivated items
             $collection->getSelect()
-                ->joinLeft('easytemplate','easytemplate.group_id = main_table.id AND active = 1', array())
+                ->joinLeft('easytemplate', 'easytemplate.group_id = main_table.id AND active = 1', array())
                 ->group(array('group_id','store_id'))
                 ->having('(count(easytemplate.group_id) > 0 AND store_id != 0) OR store_id = 0')
             ;
@@ -57,5 +57,4 @@ class Webguys_Easytemplate_Helper_Category extends Mage_Core_Helper_Abstract
             return $newItem;
         }
     }
-
 }

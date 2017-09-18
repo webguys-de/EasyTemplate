@@ -140,4 +140,3 @@ $installer->getConnection()->createTable($table);
 // --------------------------------------------------------------------
 
 $installer->endSetup();
-

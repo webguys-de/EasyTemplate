@@ -13,7 +13,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Selection extends Mage_Core_Bloc
 
     /**
      * searches category label out of Easytemplate XML definition
-     * 
+     *
      * @param string $_category - internal code name of category
      * @return string - translated category name
      */

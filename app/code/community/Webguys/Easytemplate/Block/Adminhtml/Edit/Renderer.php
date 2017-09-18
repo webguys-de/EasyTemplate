@@ -5,8 +5,7 @@
  *
  * @method getCode
  */
-class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
-    extends Mage_Adminhtml_Block_Widget
+class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer extends Mage_Adminhtml_Block_Widget
 {
     protected $_template_model;
 
@@ -28,7 +27,6 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer
     {
         $html = '';
         if ($model = $this->getTemplateModel()) {
-
             foreach ($model->getFields() as $field) {
                 /** @var $field Webguys_Easytemplate_Model_Input_Parser_Field */
 

@@ -54,7 +54,6 @@ class Webguys_Easytemplate_Block_Input_Renderer_Reference extends Webguys_Easyte
             $ex = new Webguys_Easytemplate_Exception_RedirectException();
             $ex->prepareRedirect('adminhtml/cms_page');
             throw $ex;
-
         }
         return $configModel->getTemplate($this->getReference())->getLabel();
     }

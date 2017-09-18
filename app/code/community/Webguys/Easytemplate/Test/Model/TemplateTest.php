@@ -1,7 +1,6 @@
 <?php
 
-class Webguys_Easytemplate_Test_Model_TemplateTest
-    extends EcomDev_PHPUnit_Test_Case
+class Webguys_Easytemplate_Test_Model_TemplateTest extends EcomDev_PHPUnit_Test_Case
 {
     public function testLoadAndSave()
     {

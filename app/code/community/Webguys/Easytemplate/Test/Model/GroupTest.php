@@ -1,7 +1,6 @@
 <?php
 
-class Webguys_Easytemplate_Test_Model_GroupTest
-    extends EcomDev_PHPUnit_Test_Case
+class Webguys_Easytemplate_Test_Model_GroupTest extends EcomDev_PHPUnit_Test_Case
 {
     /**
      * @return Webguys_Easytemplate_Model_Group

@@ -4,8 +4,7 @@
  * Class Webguys_Easytemplate_Model_Template_Data_Datetime
  *
  */
-class Webguys_Easytemplate_Model_Template_Data_Datetime
-    extends Webguys_Easytemplate_Model_Template_Data_Abstract
+class Webguys_Easytemplate_Model_Template_Data_Datetime extends Webguys_Easytemplate_Model_Template_Data_Abstract
 {
     /**
      * Prefix of model events names
