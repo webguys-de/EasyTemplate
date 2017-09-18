@@ -33,7 +33,7 @@ class Webguys_Easytemplate_Block_Template extends Mage_Core_Block_Template
         return $this->getRenderer()->getChild();
     }
 
-    public function getChildHtml()
+    public function getChildHtml($name = '', $useCache = true, $sorted = false)
     {
         return $this->getRenderer()->toHtml();
     }
