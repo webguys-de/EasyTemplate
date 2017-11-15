@@ -159,19 +159,38 @@
             }
         }
 
-        function sortableUpdate() {
-            var i = 1;
-            $$('#easy_templates_container div').each(function(c){
-                if(c.hasClassName('template-box') && !c.hasClassName('no-display')) {
-                    $( c.id + '_sort_order').value = i;
-                    i++;
-                }
-            });
-            Sortable.create("easy_templates_container", {
-                tag: 'div',
-                treeTag: 'div',
-                onUpdate: sortableUpdate
-            });
+    var SortableObserver = Class.create({
+        initialize: function(element, observer) {
+            this.element   = $(element);
+            this.observer  = observer;
+            this.lastValue = Sortable.serialize(this.element);
+            easytemplateDisableTinymce();
+        },
+
+        onStart: function() {
+            this.lastValue = Sortable.serialize(this.element);
+            easytemplateDisableTinymce();
+        },
+
+        onEnd: function() {
+            easytemplateEnableTinyMce();
+            Sortable.unmark();
+            if(this.lastValue != Sortable.serialize(this.element))
+                this.observer(this.element)
+        }
+    });function sortableUpdate() {
+        var i = 1;
+        $$('#easy_templates_container div').each(function(c){
+            if(c.hasClassName('template-box') && !c.hasClassName('no-display')) {
+                $( c.id + '_sort_order').value = i;
+                i++;
+            }
+        });
+        Sortable.create("easy_templates_container", {
+            tag: 'div',
+            treeTag: 'div',
+            onUpdate: sortableUpdate
+        });
 
             $$('#easy_templates_container .reference_fields div').each(function(c){
                 if(c.hasClassName('template-box') && !c.hasClassName('no-display')) {
