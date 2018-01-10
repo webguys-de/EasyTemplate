@@ -94,7 +94,7 @@
 }
 
 .easytemplate.inactive {
-    background: #F6CECE;
+    background: #F6CECE !important;
 }
 
 .template_content_status {
