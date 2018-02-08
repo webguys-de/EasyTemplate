@@ -54,7 +54,9 @@ class Webguys_Easytemplate_Block_Renderer extends Mage_Core_Block_Template
             $configModel = Mage::getSingleton('easytemplate/input_parser');
 
             $position = 1;
-            $time = Mage::app()->getLocale()->storeTimeStamp(Mage::app()->getStore()->getId());
+
+            $storeDate = Mage::app()->getLocale()->storeDate(Mage::app()->getStore()->getId());
+            $time = $storeDate->getTimestamp();
 
             /** @var $template Webguys_Easytemplate_Model_Template */
             foreach ($group->getTemplateCollection($parent) as $template) {
