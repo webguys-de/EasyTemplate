@@ -315,6 +315,16 @@
                 }
                 sortableUpdate();
             },
+            removeProductSelection: function(code, id) {
+                var label = 'template_field_' + code + '_' + id + 'label';
+                $(label).update('-');
+
+                var value = 'template_field_' + code + '_' + id + 'value';
+                $(value).value = '';
+
+                var remove = 'template_field_' + code + '_' + id + 'remove';
+                $(remove).style.display = 'none';
+            },
             dateTimeChanged: function (event) {
 
                 var dateTimeTarget = null;

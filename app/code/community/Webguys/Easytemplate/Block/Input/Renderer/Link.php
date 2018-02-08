@@ -58,6 +58,9 @@ class Webguys_Easytemplate_Block_Input_Renderer_Link extends Webguys_Easytemplat
     public function getName()
     {
         $model = $this->getEntityModel();
+        if (!$model->getId()) {
+            return '-';
+        }
 
         if ($this->getEntityCode() == 'product') {
             return '<div class="hover">#' . $model->getId() . ': ' . $model->getName() . '<span class="tooltip">' . $this->__('Sku') . ': ' . $model->getSku() . '</span></div>';

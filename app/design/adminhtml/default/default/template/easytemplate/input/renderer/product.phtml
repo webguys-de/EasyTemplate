@@ -36,6 +36,10 @@
                             class="scalable" type="button">
                         <span><span><span><?php echo $this->__('Please Select') ?></span></span></span>
                     </button>
+
+                    <?php if ($this->getName() != '-'): ?>
+                    <a id="template_field_<?php echo $this->getCode(); ?>_{{id}}remove" href="javascript:void(0);" onclick="easyTemplate.removeProductSelection('<?php echo $this->getCode(); ?>', '{{id}}')"><?php echo $this->__('Remove Selection')?></a>
+                    <?php endif; ?>
                 </div>
             </td>
             <td class="comment">

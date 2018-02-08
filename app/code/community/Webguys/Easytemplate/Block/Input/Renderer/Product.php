@@ -30,6 +30,10 @@ class Webguys_Easytemplate_Block_Input_Renderer_Product extends Webguys_Easytemp
     public function getName()
     {
         $model = $this->getEntityModel();
+        if (!$model->getId()) {
+            return '-';
+        }
+
         return '#' . $model->getId() . ': ' . $model->getSku() . ' - ' . $model->getName();
     }
 
