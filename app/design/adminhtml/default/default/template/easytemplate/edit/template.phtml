@@ -7,9 +7,9 @@
             setup: function (mode) {
                 var settings = this.getSettings(mode);
 
-                settings.theme_advanced_buttons1 = 'bold,italic,underline,strikethrough,|,bullist,numlist,|,undo,redo';
-                settings.theme_advanced_buttons2 = null;
-                settings.theme_advanced_buttons3 = null;
+                settings.theme_advanced_buttons1 = "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect";
+                settings.theme_advanced_buttons2 = "bullist,numlist,|,outdent,indent,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code";
+                settings.theme_advanced_buttons3 = "hr,removeformat,visualaid,|,sub,sup,|,charmap";
                 settings.theme_advanced_buttons4 = null;
 
                 tinyMCE.init(settings);
