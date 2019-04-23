@@ -17,7 +17,7 @@ class Webguys_Easytemplate_Block_Adminhtml_Edit_Renderer extends Mage_Adminhtml_
         return $this->_template_model;
     }
 
-    public function setTemplateModel($model)
+    public function setTemplateModel(object $model) : object
     {
         $this->_template_model = $model;
         return $this;
